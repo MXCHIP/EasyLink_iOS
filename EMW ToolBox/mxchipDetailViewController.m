@@ -1,8 +1,8 @@
 //
 //  mxchipDetailViewController.m
-//  EMW ToolBox
+//  test
 //
-//  Created by William Xu on 13-7-26.
+//  Created by William Xu on 13-7-27.
 //  Copyright (c) 2013年 MXCHIP Co;Ltd. All rights reserved.
 //
 
@@ -29,7 +29,7 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-
+    
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
     }
