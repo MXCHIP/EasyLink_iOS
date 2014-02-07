@@ -138,8 +138,8 @@
 		3DAA394317A54ED0003806FE /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMWHeader.h; sourceTree = "<group>"; };
 		3DAA394417A54ED0003806FE /* EMWUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMWUtility.h; sourceTree = "<group>"; };
 		3DAA394517A54ED0003806FE /* EMWUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMWUtility.m; sourceTree = "<group>"; };
-		3DAA394617A54ED0003806FE /* EASYLINK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EASYLINK.h; sourceTree = "<group>"; };
-		3DAA394717A54ED0003806FE /* EASYLINK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EASYLINK.m; sourceTree = "<group>"; };
+		3DAA394617A54ED0003806FE /* EASYLINK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EASYLINK.h; path = EasyLink/Classes/Common/EASYLINK.h; sourceTree = "<group>"; };
+		3DAA394717A54ED0003806FE /* EASYLINK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EASYLINK.m; path = EasyLink/Classes/Common/EASYLINK.m; sourceTree = "<group>"; };
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3DAA394D17A55486003806FE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3DAA394F17A554AD003806FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -277,6 +277,8 @@
 		3DAA37E317A542FC003806FE /* EasyLink */ = {
 			isa = PBXGroup;
 			children = (
+				3DAA394617A54ED0003806FE /* EASYLINK.h */,
+				3DAA394717A54ED0003806FE /* EASYLINK.m */,
 				3DAA394017A54ED0003806FE /* Common */,
 			);
 			name = EasyLink;
@@ -362,8 +364,6 @@
 				3DAA394317A54ED0003806FE /* EMWHeader.h */,
 				3DAA394417A54ED0003806FE /* EMWUtility.h */,
 				3DAA394517A54ED0003806FE /* EMWUtility.m */,
-				3DAA394617A54ED0003806FE /* EASYLINK.h */,
-				3DAA394717A54ED0003806FE /* EASYLINK.m */,
 			);
 			name = Common;
 			path = EasyLink/Classes/Common;

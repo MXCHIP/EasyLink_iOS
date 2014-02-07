@@ -17,7 +17,8 @@ extern BOOL newModuleFound;
 /* button action, where we need to start or stop the request 
  @param: button ... tag value defines the action 
  */
-- (IBAction)buttonAction:(UIButton*)button;
+- (IBAction)easyLinkV1ButtonAction:(UIButton*)button;
+- (IBAction)easyLinkV2ButtonAction:(UIButton*)button;
 
 /* 
  Prepare a cell that is created with respect to the indexpath 
@@ -76,12 +77,27 @@ extern BOOL newModuleFound;
 
     easylink_config = [[EASYLINK alloc] init];
     self.navigationItem.title = @"EasyLink";
+    
+    //按钮加边框
+    [EasylinkV1Button.layer setMasksToBounds:YES];
+    [EasylinkV1Button.layer setCornerRadius:8.0];
+    [EasylinkV1Button.layer setBorderWidth:1.5];
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 0, 122.0/255, 1, 1 });
+    [EasylinkV1Button.layer setBorderColor:colorref];
+    
+    [EasylinkV2Button.layer setMasksToBounds:YES];
+    [EasylinkV2Button.layer setCornerRadius:8.0];
+    [EasylinkV2Button.layer setBorderWidth:1.5];
+    [EasylinkV2Button.layer setBorderColor:colorref];
+    
     [configTableView setScrollEnabled:FALSE];
 
     // wifi notification when changed.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wifiStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
-    startbutton.exclusiveTouch = YES;
+    EasylinkV1Button.exclusiveTouch = YES;
+    EasylinkV2Button.exclusiveTouch = YES;
     wifiReachability = [Reachability reachabilityForLocalWiFi];  //监测Wi-Fi连接状态
 	[wifiReachability startNotifier];
     
@@ -172,7 +188,7 @@ extern BOOL newModuleFound;
  AP. Nerwork validation is also done here. All exceptions from
  library is handled. 
  */
-- (void)startTransmitting{
+- (void)startTransmitting: (int)version {
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     if ( netStatus == NotReachable ){// No activity if no wifi
             
@@ -184,9 +200,9 @@ extern BOOL newModuleFound;
     NSString *ssid = [ssidField.text length] ? ssidField.text : nil;
     NSString *passwordKey = [passwordField.text length] ? passwordField.text : nil;
         
-    [easylink_config setSettingsWithSsid:ssid password:passwordKey version:EASYLINK_V2];
+    [easylink_config setSettingsWithSsid:ssid password:passwordKey version:version];
     [self sendAction];
-    [NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
+    //[NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
 
     [self enableUIAccess:NO];
 }
@@ -195,19 +211,47 @@ extern BOOL newModuleFound;
   This is the button action, where we need to start or stop the request 
  @param: button ... tag value defines the action !!!!!!!!!
  !!!*/
-- (IBAction)buttonAction:(UIButton*)button{
+- (IBAction)easyLinkV1ButtonAction:(UIButton*)button{
 
     switch (button.selected) {
       case 0:
-          [self startTransmitting];
+            [EasylinkV1Button setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
+            [EasylinkV1Button setSelected:YES];
+            [EasylinkV2Button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]];
+            [EasylinkV2Button setSelected:NO];
+            [self startTransmitting: EASYLINK_V1];
           break;
       case 1: /// stop the loop
-          [self stopAction];
-          // Retain the UI access for the user.
-          [self enableUIAccess:YES];
-          break;
+            [button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]];
+            [EasylinkV1Button setSelected:NO];
+            [self stopAction];
+            // Retain the UI access for the user.
+            [self enableUIAccess:YES];
+            break;
       default:
-          break;
+            break;
+    }
+}
+
+- (IBAction)easyLinkV2ButtonAction:(UIButton*)button{
+    
+    switch (button.selected) {
+        case 0:
+            [EasylinkV2Button setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
+            [EasylinkV2Button setSelected:YES];
+            [EasylinkV1Button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]];
+            [EasylinkV1Button setSelected:NO];
+            [self startTransmitting: EASYLINK_V2];
+            break;
+        case 1: /// stop the loop
+            [button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]];
+            [EasylinkV2Button setSelected:NO];
+            [self stopAction];
+            // Retain the UI access for the user.
+            [self enableUIAccess:YES];
+            break;
+        default:
+            break;
     }
 }
 
@@ -272,11 +316,10 @@ extern BOOL newModuleFound;
  * @param: vbool is to validate the controls.
  */
 -(void) enableUIAccess:(BOOL) isEnable{
-    [startbutton setSelected:!isEnable];
     passwordField.userInteractionEnabled = isEnable;
     
     // rotating the wheel is app transmitting the data
-    [[EMWUtility sharedInstance] rotateSpinner:spinnerView onButton:startbutton isStart:!isEnable];
+    [[EMWUtility sharedInstance] rotateSpinner:spinnerView onButton:EasylinkV2Button isStart:!isEnable];
 }
 
 /* 
@@ -296,8 +339,7 @@ extern BOOL newModuleFound;
         [ssidField setPlaceholder:@"SSID"];
         [ssidField setBackgroundColor:[UIColor clearColor]];
         [ssidField setReturnKeyType:UIReturnKeyDone];
-        NSString *ssidText = [easylink_config ssidForConnectedNetwork];
-        [ssidField setText:ssidText];
+        [ssidField setText:[EASYLINK ssidForConnectedNetwork]];
         [cell addSubview:ssidField];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
@@ -321,18 +363,19 @@ extern BOOL newModuleFound;
     }
     else if ( indexPath.row == GATEWAY_ADDRESS_ROW){
         /// this is Gateway Address field
-        ipAddress = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
+        gatewayAddress = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
                                                                   CELL_iPHONE_FIELD_Y,
                                                                   CELL_iPHONE_FIELD_WIDTH,
                                                                   CELL_iPHONE_FIELD_HEIGHT)];
-        [ipAddress setDelegate:self];
-        [ipAddress setClearButtonMode:UITextFieldViewModeNever];
-        [ipAddress setPlaceholder:@"Gateway IP Address"];
-        [ipAddress setReturnKeyType:UIReturnKeyDone];
-        [ipAddress setBackgroundColor:[UIColor clearColor]];
-        [ipAddress setUserInteractionEnabled:NO];
-        [ipAddress setText:@"172.16.2.1"];
-        [cell addSubview:ipAddress];
+        [gatewayAddress setDelegate:self];
+        [gatewayAddress setClearButtonMode:UITextFieldViewModeNever];
+        [gatewayAddress setPlaceholder:@"Gateway IP Address"];
+        [gatewayAddress setReturnKeyType:UIReturnKeyDone];
+        [gatewayAddress setBackgroundColor:[UIColor clearColor]];
+        [gatewayAddress setUserInteractionEnabled:NO];
+        [gatewayAddress setText:[EASYLINK getGatewayAddress]];
+
+        [cell addSubview:gatewayAddress];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"Gateway";
@@ -348,8 +391,8 @@ extern BOOL newModuleFound;
  */
 - (void)appEnterInforground:(NSNotification*)notification{
     NSLog(@"%s", __func__);
-    ssidField.text = [easylink_config ssidForConnectedNetwork];
-    ipAddress.text = [easylink_config getGatewayAddress];
+    ssidField.text = [EASYLINK ssidForConnectedNetwork];
+    gatewayAddress.text = [EASYLINK getGatewayAddress];
 }
 
 /*
@@ -358,8 +401,10 @@ extern BOOL newModuleFound;
  */
 - (void)appEnterInBackground:(NSNotification*)notification{
     NSLog(@"%s", __func__);
-    if ( startbutton.selected )
-        [self buttonAction:startbutton]; /// Simply revert the state
+    if ( EasylinkV1Button.selected )
+        [self easyLinkV1ButtonAction:EasylinkV1Button]; /// Simply revert the state
+    if ( EasylinkV2Button.selected )
+        [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
 }
 
 /* 
@@ -372,17 +417,18 @@ extern BOOL newModuleFound;
     NSAssert(verifyConnection != NULL, @"currentNetworkStatus called with NULL verifyConnection Object");
     NetworkStatus netStatus = [verifyConnection currentReachabilityStatus];	
     if ( netStatus == NotReachable ){
-        if ( startbutton.selected ){
-            [self buttonAction:startbutton];
-        }
+        if ( EasylinkV1Button.selected )
+            [self easyLinkV1ButtonAction:EasylinkV1Button]; /// Simply revert the state
+        if ( EasylinkV2Button.selected )
+            [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
         // The operation couldn’t be completed. No route to host
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"EMW ToolBox Alert" message:@"Wifi Not available. Please check your wifi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
         ssidField.text = @"";
-        ipAddress.text = @"";
+        gatewayAddress.text = @"";
     }else {
-        ssidField.text = [easylink_config ssidForConnectedNetwork];
-        ipAddress.text = [easylink_config getGatewayAddress];
+        ssidField.text = [EASYLINK ssidForConnectedNetwork];
+        gatewayAddress.text = [EASYLINK getGatewayAddress];
     }
 }
 

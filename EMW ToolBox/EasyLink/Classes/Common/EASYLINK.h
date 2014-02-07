@@ -17,6 +17,7 @@
 #include <errno.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
+#import "route.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 
 #define EASYLINK_V1 0
@@ -25,9 +26,11 @@
 
 @interface EASYLINK : NSObject{
 @private
+    NSUInteger version;
     AsyncUdpSocket *socket;
-    NSMutableArray *array;
     NSTimer *sendInterval;
+    NSMutableArray *array;
+    NSThread *easyLinkThread;
 }
 
 @property (retain, nonatomic) NSMutableArray *array;
@@ -38,7 +41,7 @@
 - (void)transmitSettings;
 - (void)stopTransmitting;
 - (void)startConfigure:(id)sender;
-- (NSString *)ssidForConnectedNetwork;
-- (NSString *)getGatewayAddress;
++ (NSString *)ssidForConnectedNetwork;
++ (NSString *)getGatewayAddress;
 
 @end

@@ -37,7 +37,7 @@
 // Textfield placement constants.
 #define CELL_IPHONE_FIELD_X                                            130.0
 #define CELL_iPHONE_FIELD_Y                                            8.0
-#define CELL_iPHONE_FIELD_WIDTH                                     120.0
+#define CELL_iPHONE_FIELD_WIDTH                                     170.0
 #define CELL_iPHONE_FIELD_HEIGHT                                    30.0
 
 

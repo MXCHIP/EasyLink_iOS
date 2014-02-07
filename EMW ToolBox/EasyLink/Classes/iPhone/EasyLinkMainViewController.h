@@ -17,12 +17,12 @@
     @private
         IBOutlet UITableView *configTableView, *aboutTableView;
 
-        IBOutlet  UIButton *startbutton;
+        IBOutlet  UIButton *EasylinkV1Button, *EasylinkV2Button;
         IBOutlet UIImageView *spinnerView;
 
         EASYLINK *easylink_config;
     
-        UITextField *ssidField,*passwordField,*ipAddress;
+        UITextField *ssidField,*passwordField,*gatewayAddress;
     
         Reachability *wifiReachability;
 }
@@ -40,6 +40,6 @@
     AP. Nerwork validation is also done here. All exceptions from
     library is handled.
  */
-- (void)startTransmitting;
+- (void)startTransmitting: (int)version;
 
 @end
