@@ -18,14 +18,15 @@
 		3D2AD5A017A247E30026E31E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD59E17A247E30026E31E /* MainStoryboard.storyboard */; };
 		3D2AD5A317A247E30026E31E /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD5A217A247E30026E31E /* browserViewController.m */; };
 		3D2AD5A617A247E30026E31E /* mxchipDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD5A517A247E30026E31E /* mxchipDetailViewController.m */; };
-		3D2AD5AE17A247E30026E31E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */; };
-		3D2AD5AF17A247E30026E31E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58617A247E30026E31E /* UIKit.framework */; };
-		3D2AD5B017A247E30026E31E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58817A247E30026E31E /* Foundation.framework */; };
-		3D2AD5B817A247E30026E31E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD5B617A247E30026E31E /* InfoPlist.strings */; };
-		3D2AD5BB17A247E30026E31E /* EMW_ToolBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD5BA17A247E30026E31E /* EMW_ToolBoxTests.m */; };
+		3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */; };
 		3D55334917A66648008145EB /* EMW3161_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D55334817A66648008145EB /* EMW3161_logo.png */; };
+		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
 		3D88655317A80461001AD56A /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D88655117A80461001AD56A /* spinner.png */; };
 		3D88655417A80461001AD56A /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D88655217A80461001AD56A /* spinner@2x.png */; };
+		3D8E9FD118A8A57800F6618E /* antena.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD018A8A57800F6618E /* antena.png */; };
+		3D8E9FD418A8B12F00F6618E /* Earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD318A8B12F00F6618E /* Earth.png */; };
+		3D8E9FD618A8BD8100F6618E /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD518A8BD8100F6618E /* EMW3162.png */; };
+		3D8E9FD818A8C15F00F6618E /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD718A8C15F00F6618E /* EMW3161.png */; };
 		3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */; };
 		3DAA389B17A5446B003806FE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA37F817A5446A003806FE /* Default-568h@2x.png */; };
 		3DAA38A217A5446B003806FE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA37FF17A5446B003806FE /* Default.png */; };
@@ -34,27 +35,8 @@
 		3DAA38A617A5446B003806FE /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA380317A5446B003806FE /* Icon-72@2x.png */; };
 		3DAA38A817A5446B003806FE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA380517A5446B003806FE /* Icon.png */; };
 		3DAA38A917A5446B003806FE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA380617A5446B003806FE /* Icon@2x.png */; };
-		3DAA391617A5446B003806FE /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA387517A5446B003806FE /* background.png */; };
-		3DAA391717A5446B003806FE /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA387617A5446B003806FE /* background@2x.png */; };
-		3DAA391817A5446B003806FE /* bottom_cell_iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA387717A5446B003806FE /* bottom_cell_iPhone.png */; };
-		3DAA391917A5446B003806FE /* bottom_cell_iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA387817A5446B003806FE /* bottom_cell_iPhone@2x.png */; };
-		3DAA391A17A5446B003806FE /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA387917A5446B003806FE /* Cancel.png */; };
-		3DAA391B17A5446B003806FE /* Cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA387A17A5446B003806FE /* Cancel@2x.png */; };
-		3DAA391C17A5446B003806FE /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA387B17A5446B003806FE /* checkbox.png */; };
-		3DAA391D17A5446B003806FE /* checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA387C17A5446B003806FE /* checkbox@2x.png */; };
-		3DAA392617A5446B003806FE /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA388517A5446B003806FE /* line.png */; };
-		3DAA392717A5446B003806FE /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA388617A5446B003806FE /* line@2x.png */; };
-		3DAA392817A5446B003806FE /* middle_cell_iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA388717A5446B003806FE /* middle_cell_iPhone.png */; };
-		3DAA392917A5446B003806FE /* middle_cell_iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA388817A5446B003806FE /* middle_cell_iPhone@2x.png */; };
-		3DAA393017A5446B003806FE /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA388F17A5446B003806FE /* start.png */; };
-		3DAA393117A5446B003806FE /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA389017A5446B003806FE /* start@2x.png */; };
-		3DAA393217A5446B003806FE /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA389117A5446B003806FE /* stop.png */; };
-		3DAA393317A5446B003806FE /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA389217A5446B003806FE /* stop@2x.png */; };
-		3DAA393617A5446B003806FE /* top_cell_iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA389517A5446B003806FE /* top_cell_iPhone.png */; };
-		3DAA393717A5446B003806FE /* top_cell_iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA389617A5446B003806FE /* top_cell_iPhone@2x.png */; };
 		3DAA393F17A54572003806FE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA393E17A54572003806FE /* Reachability.m */; };
 		3DAA394817A54ED0003806FE /* APManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA394217A54ED0003806FE /* APManager.m */; };
-		3DAA394917A54ED0003806FE /* EMWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA394517A54ED0003806FE /* EMWUtility.m */; };
 		3DAA394A17A54ED0003806FE /* EASYLINK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA394717A54ED0003806FE /* EASYLINK.m */; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA394E17A55486003806FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
@@ -65,29 +47,19 @@
 		3DEF24A117BD0D1600C0A5C7 /* EmspCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF24A017BD0D1600C0A5C7 /* EmspCommands.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3D2AD5B117A247E30026E31E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3D2AD57B17A247E20026E31E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D2AD58217A247E20026E31E;
-			remoteInfo = "EMW ToolBox";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		3D207F42187D2FC700A3CBB7 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncSocket.h"; sourceTree = "<group>"; };
 		3D207F43187D2FC700A3CBB7 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncSocket.m"; sourceTree = "<group>"; };
 		3D207F44187D2FC700A3CBB7 /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncUdpSocket.h; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncUdpSocket.h"; sourceTree = "<group>"; };
 		3D207F45187D2FC700A3CBB7 /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncUdpSocket.m; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncUdpSocket.m"; sourceTree = "<group>"; };
-		3D2AD58317A247E30026E31E /* EMW ToolBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMW ToolBox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D2AD58317A247E30026E31E /* EasyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2AD58617A247E30026E31E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D2AD58817A247E30026E31E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D2AD58A17A247E30026E31E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3D2AD58E17A247E30026E31E /* EMW ToolBox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EMW ToolBox-Info.plist"; sourceTree = "<group>"; };
+		3D2AD58E17A247E30026E31E /* EasyLink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EasyLink-Info.plist"; sourceTree = "<group>"; };
 		3D2AD59017A247E30026E31E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D2AD59217A247E30026E31E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3D2AD59417A247E30026E31E /* EMW ToolBox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EMW ToolBox-Prefix.pch"; sourceTree = "<group>"; };
+		3D2AD59417A247E30026E31E /* EasyLink-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EasyLink-Prefix.pch"; sourceTree = "<group>"; };
 		3D2AD59517A247E30026E31E /* mxchipAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mxchipAppDelegate.h; sourceTree = "<group>"; };
 		3D2AD59617A247E30026E31E /* mxchipAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mxchipAppDelegate.m; sourceTree = "<group>"; };
 		3D2AD59F17A247E30026E31E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -95,15 +67,17 @@
 		3D2AD5A217A247E30026E31E /* browserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = browserViewController.m; sourceTree = "<group>"; };
 		3D2AD5A417A247E30026E31E /* mxchipDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mxchipDetailViewController.h; sourceTree = "<group>"; };
 		3D2AD5A517A247E30026E31E /* mxchipDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mxchipDetailViewController.m; sourceTree = "<group>"; };
-		3D2AD5AC17A247E30026E31E /* EMW ToolBoxTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EMW ToolBoxTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		3D2AD5B517A247E30026E31E /* EMW ToolBoxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EMW ToolBoxTests-Info.plist"; sourceTree = "<group>"; };
-		3D2AD5B717A247E30026E31E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3D2AD5B917A247E30026E31E /* EMW_ToolBoxTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMW_ToolBoxTests.h; sourceTree = "<group>"; };
-		3D2AD5BA17A247E30026E31E /* EMW_ToolBoxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMW_ToolBoxTests.m; sourceTree = "<group>"; };
+		3D4289D918A4D73F0092DD5D /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PulsingHaloLayer.h; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.h"; sourceTree = "<group>"; };
+		3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.m"; sourceTree = "<group>"; };
 		3D55334817A66648008145EB /* EMW3161_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMW3161_logo.png; sourceTree = "<group>"; };
+		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
 		3D88655117A80461001AD56A /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
 		3D88655217A80461001AD56A /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
+		3D8E9FD018A8A57800F6618E /* antena.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = antena.png; path = iPhone/antena.png; sourceTree = "<group>"; };
+		3D8E9FD318A8B12F00F6618E /* Earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Earth.png; path = iPhone/Earth.png; sourceTree = "<group>"; };
+		3D8E9FD518A8BD8100F6618E /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = iPhone/EMW3162.png; sourceTree = "<group>"; };
+		3D8E9FD718A8C15F00F6618E /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = iPhone/EMW3161.png; sourceTree = "<group>"; };
 		3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLinkMainViewController.h; path = EasyLink/Classes/iPhone/EasyLinkMainViewController.h; sourceTree = "<group>"; };
 		3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EasyLinkMainViewController.m; path = EasyLink/Classes/iPhone/EasyLinkMainViewController.m; sourceTree = "<group>"; };
 		3DAA37F817A5446A003806FE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -113,31 +87,11 @@
 		3DAA380317A5446B003806FE /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		3DAA380517A5446B003806FE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3DAA380617A5446B003806FE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		3DAA387517A5446B003806FE /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		3DAA387617A5446B003806FE /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
-		3DAA387717A5446B003806FE /* bottom_cell_iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom_cell_iPhone.png; sourceTree = "<group>"; };
-		3DAA387817A5446B003806FE /* bottom_cell_iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_cell_iPhone@2x.png"; sourceTree = "<group>"; };
-		3DAA387917A5446B003806FE /* Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel.png; sourceTree = "<group>"; };
-		3DAA387A17A5446B003806FE /* Cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cancel@2x.png"; sourceTree = "<group>"; };
-		3DAA387B17A5446B003806FE /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
-		3DAA387C17A5446B003806FE /* checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox@2x.png"; sourceTree = "<group>"; };
-		3DAA388517A5446B003806FE /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
-		3DAA388617A5446B003806FE /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
-		3DAA388717A5446B003806FE /* middle_cell_iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = middle_cell_iPhone.png; sourceTree = "<group>"; };
-		3DAA388817A5446B003806FE /* middle_cell_iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middle_cell_iPhone@2x.png"; sourceTree = "<group>"; };
-		3DAA388F17A5446B003806FE /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
-		3DAA389017A5446B003806FE /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
-		3DAA389117A5446B003806FE /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
-		3DAA389217A5446B003806FE /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop@2x.png"; sourceTree = "<group>"; };
-		3DAA389517A5446B003806FE /* top_cell_iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_cell_iPhone.png; sourceTree = "<group>"; };
-		3DAA389617A5446B003806FE /* top_cell_iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_cell_iPhone@2x.png"; sourceTree = "<group>"; };
 		3DAA393D17A54572003806FE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3DAA393E17A54572003806FE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3DAA394117A54ED0003806FE /* APManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APManager.h; sourceTree = "<group>"; };
 		3DAA394217A54ED0003806FE /* APManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APManager.m; sourceTree = "<group>"; };
 		3DAA394317A54ED0003806FE /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMWHeader.h; sourceTree = "<group>"; };
-		3DAA394417A54ED0003806FE /* EMWUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMWUtility.h; sourceTree = "<group>"; };
-		3DAA394517A54ED0003806FE /* EMWUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMWUtility.m; sourceTree = "<group>"; };
 		3DAA394617A54ED0003806FE /* EASYLINK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EASYLINK.h; path = EasyLink/Classes/Common/EASYLINK.h; sourceTree = "<group>"; };
 		3DAA394717A54ED0003806FE /* EASYLINK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EASYLINK.m; path = EasyLink/Classes/Common/EASYLINK.m; sourceTree = "<group>"; };
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -164,16 +118,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D2AD5A817A247E30026E31E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D2AD5AE17A247E30026E31E /* SenTestingKit.framework in Frameworks */,
-				3D2AD5AF17A247E30026E31E /* UIKit.framework in Frameworks */,
-				3D2AD5B017A247E30026E31E /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -191,9 +135,10 @@
 		3D2AD57A17A247E20026E31E = {
 			isa = PBXGroup;
 			children = (
+				3D71295518AA26430071D553 /* Images.xcassets */,
+				3D4289D818A4D72C0092DD5D /* Animation */,
 				3D207F41187D2F7E00A3CBB7 /* AsyncSocket */,
-				3D2AD58C17A247E30026E31E /* EMW ToolBox */,
-				3D2AD5B317A247E30026E31E /* EMW ToolBoxTests */,
+				3D2AD58C17A247E30026E31E /* MainUI */,
 				3D2AD58517A247E30026E31E /* Frameworks */,
 				3D2AD58417A247E30026E31E /* Products */,
 			);
@@ -202,8 +147,7 @@
 		3D2AD58417A247E30026E31E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3D2AD58317A247E30026E31E /* EMW ToolBox.app */,
-				3D2AD5AC17A247E30026E31E /* EMW ToolBoxTests.octest */,
+				3D2AD58317A247E30026E31E /* EasyLink.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,7 +166,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3D2AD58C17A247E30026E31E /* EMW ToolBox */ = {
+		3D2AD58C17A247E30026E31E /* MainUI */ = {
 			isa = PBXGroup;
 			children = (
 				3D2AD59517A247E30026E31E /* mxchipAppDelegate.h */,
@@ -240,6 +184,7 @@
 				3DAA37E317A542FC003806FE /* EasyLink */,
 				3D2AD58D17A247E30026E31E /* Supporting Files */,
 			);
+			name = MainUI;
 			path = "EMW ToolBox";
 			sourceTree = "<group>";
 		};
@@ -247,31 +192,32 @@
 			isa = PBXGroup;
 			children = (
 				3DAA37F517A5446A003806FE /* Resources */,
-				3D2AD58E17A247E30026E31E /* EMW ToolBox-Info.plist */,
+				3D2AD58E17A247E30026E31E /* EasyLink-Info.plist */,
 				3D2AD58F17A247E30026E31E /* InfoPlist.strings */,
 				3D2AD59217A247E30026E31E /* main.m */,
-				3D2AD59417A247E30026E31E /* EMW ToolBox-Prefix.pch */,
+				3D2AD59417A247E30026E31E /* EasyLink-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3D2AD5B317A247E30026E31E /* EMW ToolBoxTests */ = {
+		3D4289D818A4D72C0092DD5D /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				3D2AD5B917A247E30026E31E /* EMW_ToolBoxTests.h */,
-				3D2AD5BA17A247E30026E31E /* EMW_ToolBoxTests.m */,
-				3D2AD5B417A247E30026E31E /* Supporting Files */,
+				3D4289D918A4D73F0092DD5D /* PulsingHaloLayer.h */,
+				3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */,
 			);
-			path = "EMW ToolBoxTests";
+			name = Animation;
 			sourceTree = "<group>";
 		};
-		3D2AD5B417A247E30026E31E /* Supporting Files */ = {
+		3D8E9FD218A8A85800F6618E /* EasyLinkView */ = {
 			isa = PBXGroup;
 			children = (
-				3D2AD5B517A247E30026E31E /* EMW ToolBoxTests-Info.plist */,
-				3D2AD5B617A247E30026E31E /* InfoPlist.strings */,
+				3D8E9FD718A8C15F00F6618E /* EMW3161.png */,
+				3D8E9FD518A8BD8100F6618E /* EMW3162.png */,
+				3D8E9FD318A8B12F00F6618E /* Earth.png */,
+				3D8E9FD018A8A57800F6618E /* antena.png */,
 			);
-			name = "Supporting Files";
+			name = EasyLinkView;
 			sourceTree = "<group>";
 		};
 		3DAA37E317A542FC003806FE /* EasyLink */ = {
@@ -295,6 +241,7 @@
 		3DAA37F617A5446A003806FE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3D8E9FD218A8A85800F6618E /* EasyLinkView */,
 				3DAA37F717A5446A003806FE /* Common */,
 				3DAA385017A5446B003806FE /* iPhone */,
 			);
@@ -324,24 +271,6 @@
 		3DAA385017A5446B003806FE /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				3DAA387517A5446B003806FE /* background.png */,
-				3DAA387617A5446B003806FE /* background@2x.png */,
-				3DAA387717A5446B003806FE /* bottom_cell_iPhone.png */,
-				3DAA387817A5446B003806FE /* bottom_cell_iPhone@2x.png */,
-				3DAA387917A5446B003806FE /* Cancel.png */,
-				3DAA387A17A5446B003806FE /* Cancel@2x.png */,
-				3DAA387B17A5446B003806FE /* checkbox.png */,
-				3DAA387C17A5446B003806FE /* checkbox@2x.png */,
-				3DAA388517A5446B003806FE /* line.png */,
-				3DAA388617A5446B003806FE /* line@2x.png */,
-				3DAA388717A5446B003806FE /* middle_cell_iPhone.png */,
-				3DAA388817A5446B003806FE /* middle_cell_iPhone@2x.png */,
-				3DAA388F17A5446B003806FE /* start.png */,
-				3DAA389017A5446B003806FE /* start@2x.png */,
-				3DAA389117A5446B003806FE /* stop.png */,
-				3DAA389217A5446B003806FE /* stop@2x.png */,
-				3DAA389517A5446B003806FE /* top_cell_iPhone.png */,
-				3DAA389617A5446B003806FE /* top_cell_iPhone@2x.png */,
 			);
 			path = iPhone;
 			sourceTree = "<group>";
@@ -362,8 +291,6 @@
 				3DAA394117A54ED0003806FE /* APManager.h */,
 				3DAA394217A54ED0003806FE /* APManager.m */,
 				3DAA394317A54ED0003806FE /* EMWHeader.h */,
-				3DAA394417A54ED0003806FE /* EMWUtility.h */,
-				3DAA394517A54ED0003806FE /* EMWUtility.m */,
 			);
 			name = Common;
 			path = EasyLink/Classes/Common;
@@ -372,9 +299,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3D2AD58217A247E20026E31E /* EMW ToolBox */ = {
+		3D2AD58217A247E20026E31E /* EasyLink */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D2AD5BE17A247E30026E31E /* Build configuration list for PBXNativeTarget "EMW ToolBox" */;
+			buildConfigurationList = 3D2AD5BE17A247E30026E31E /* Build configuration list for PBXNativeTarget "EasyLink" */;
 			buildPhases = (
 				3D2AD57F17A247E20026E31E /* Sources */,
 				3D2AD58017A247E20026E31E /* Frameworks */,
@@ -384,29 +311,10 @@
 			);
 			dependencies = (
 			);
-			name = "EMW ToolBox";
+			name = EasyLink;
 			productName = "EMW ToolBox";
-			productReference = 3D2AD58317A247E30026E31E /* EMW ToolBox.app */;
+			productReference = 3D2AD58317A247E30026E31E /* EasyLink.app */;
 			productType = "com.apple.product-type.application";
-		};
-		3D2AD5AB17A247E30026E31E /* EMW ToolBoxTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D2AD5C117A247E30026E31E /* Build configuration list for PBXNativeTarget "EMW ToolBoxTests" */;
-			buildPhases = (
-				3D2AD5A717A247E30026E31E /* Sources */,
-				3D2AD5A817A247E30026E31E /* Frameworks */,
-				3D2AD5A917A247E30026E31E /* Resources */,
-				3D2AD5AA17A247E30026E31E /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3D2AD5B217A247E30026E31E /* PBXTargetDependency */,
-			);
-			name = "EMW ToolBoxTests";
-			productName = "EMW ToolBoxTests";
-			productReference = 3D2AD5AC17A247E30026E31E /* EMW ToolBoxTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -423,7 +331,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3D2AD57E17A247E20026E31E /* Build configuration list for PBXProject "EMW ToolBox" */;
+			buildConfigurationList = 3D2AD57E17A247E20026E31E /* Build configuration list for PBXProject "EasyLink" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -435,8 +343,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3D2AD58217A247E20026E31E /* EMW ToolBox */,
-				3D2AD5AB17A247E30026E31E /* EMW ToolBoxTests */,
+				3D2AD58217A247E20026E31E /* EasyLink */,
 			);
 		};
 /* End PBXProject section */
@@ -447,6 +354,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D2AD59117A247E30026E31E /* InfoPlist.strings in Resources */,
+				3D71295618AA26430071D553 /* Images.xcassets in Resources */,
+				3D8E9FD618A8BD8100F6618E /* EMW3162.png in Resources */,
 				3D2AD5A017A247E30026E31E /* MainStoryboard.storyboard in Resources */,
 				3DAA389B17A5446B003806FE /* Default-568h@2x.png in Resources */,
 				3DAA38A217A5446B003806FE /* Default.png in Resources */,
@@ -455,58 +364,19 @@
 				3DAA38A617A5446B003806FE /* Icon-72@2x.png in Resources */,
 				3DAA38A817A5446B003806FE /* Icon.png in Resources */,
 				3DAA38A917A5446B003806FE /* Icon@2x.png in Resources */,
-				3DAA391617A5446B003806FE /* background.png in Resources */,
-				3DAA391717A5446B003806FE /* background@2x.png in Resources */,
-				3DAA391817A5446B003806FE /* bottom_cell_iPhone.png in Resources */,
-				3DAA391917A5446B003806FE /* bottom_cell_iPhone@2x.png in Resources */,
-				3DAA391A17A5446B003806FE /* Cancel.png in Resources */,
-				3DAA391B17A5446B003806FE /* Cancel@2x.png in Resources */,
-				3DAA391C17A5446B003806FE /* checkbox.png in Resources */,
-				3DAA391D17A5446B003806FE /* checkbox@2x.png in Resources */,
-				3DAA392617A5446B003806FE /* line.png in Resources */,
-				3DAA392717A5446B003806FE /* line@2x.png in Resources */,
-				3DAA392817A5446B003806FE /* middle_cell_iPhone.png in Resources */,
-				3DAA392917A5446B003806FE /* middle_cell_iPhone@2x.png in Resources */,
-				3DAA393017A5446B003806FE /* start.png in Resources */,
-				3DAA393117A5446B003806FE /* start@2x.png in Resources */,
-				3DAA393217A5446B003806FE /* stop.png in Resources */,
-				3DAA393317A5446B003806FE /* stop@2x.png in Resources */,
-				3DAA393617A5446B003806FE /* top_cell_iPhone.png in Resources */,
-				3DAA393717A5446B003806FE /* top_cell_iPhone@2x.png in Resources */,
+				3D8E9FD418A8B12F00F6618E /* Earth.png in Resources */,
+				3D8E9FD118A8A57800F6618E /* antena.png in Resources */,
 				3D55334917A66648008145EB /* EMW3161_logo.png in Resources */,
 				3D88655317A80461001AD56A /* spinner.png in Resources */,
 				3D88655417A80461001AD56A /* spinner@2x.png in Resources */,
 				3DC773B617A8A6710029ACB3 /* EMW3280_logo.png in Resources */,
 				3DC773B717A8A6710029ACB3 /* known_logo.png in Resources */,
 				3DE2417F17F2BC6900327C5C /* EMW3162_logo.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D2AD5A917A247E30026E31E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D2AD5B817A247E30026E31E /* InfoPlist.strings in Resources */,
+				3D8E9FD818A8C15F00F6618E /* EMW3161.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3D2AD5AA17A247E30026E31E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3D2AD57F17A247E20026E31E /* Sources */ = {
@@ -519,32 +389,16 @@
 				3D207F47187D2FC700A3CBB7 /* AsyncUdpSocket.m in Sources */,
 				3D2AD5A617A247E30026E31E /* mxchipDetailViewController.m in Sources */,
 				3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */,
+				3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */,
 				3DAA393F17A54572003806FE /* Reachability.m in Sources */,
 				3DAA394817A54ED0003806FE /* APManager.m in Sources */,
 				3D207F46187D2FC700A3CBB7 /* AsyncSocket.m in Sources */,
-				3DAA394917A54ED0003806FE /* EMWUtility.m in Sources */,
 				3DAA394A17A54ED0003806FE /* EASYLINK.m in Sources */,
 				3DEF24A117BD0D1600C0A5C7 /* EmspCommands.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D2AD5A717A247E30026E31E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D2AD5BB17A247E30026E31E /* EMW_ToolBoxTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3D2AD5B217A247E30026E31E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3D2AD58217A247E20026E31E /* EMW ToolBox */;
-			targetProxy = 3D2AD5B117A247E30026E31E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3D2AD58F17A247E30026E31E /* InfoPlist.strings */ = {
@@ -561,14 +415,6 @@
 				3D2AD59F17A247E30026E31E /* en */,
 			);
 			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
-		3D2AD5B617A247E30026E31E /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D2AD5B717A247E30026E31E /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -600,11 +446,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "F1289078-B7B1-4473-92D4-F631C4CBE5FD";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F1289078-B7B1-4473-92D4-F631C4CBE5FD";
 				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -627,7 +474,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "F1289078-B7B1-4473-92D4-F631C4CBE5FD";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F1289078-B7B1-4473-92D4-F631C4CBE5FD";
@@ -639,17 +486,19 @@
 		3D2AD5BF17A247E30026E31E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EMW ToolBox/EMW ToolBox-Prefix.pch";
-				INFOPLIST_FILE = "EMW ToolBox/EMW ToolBox-Info.plist";
+				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
+				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EasyLink;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -659,61 +508,29 @@
 		3D2AD5C017A247E30026E31E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EMW ToolBox/EMW ToolBox-Prefix.pch";
-				INFOPLIST_FILE = "EMW ToolBox/EMW ToolBox-Info.plist";
+				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
+				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EasyLink;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
-		3D2AD5C217A247E30026E31E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EMW ToolBox.app/EMW ToolBox";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EMW ToolBox/EMW ToolBox-Prefix.pch";
-				INFOPLIST_FILE = "EMW ToolBoxTests/EMW ToolBoxTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		3D2AD5C317A247E30026E31E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EMW ToolBox.app/EMW ToolBox";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EMW ToolBox/EMW ToolBox-Prefix.pch";
-				INFOPLIST_FILE = "EMW ToolBoxTests/EMW ToolBoxTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3D2AD57E17A247E20026E31E /* Build configuration list for PBXProject "EMW ToolBox" */ = {
+		3D2AD57E17A247E20026E31E /* Build configuration list for PBXProject "EasyLink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D2AD5BC17A247E30026E31E /* Debug */,
@@ -722,20 +539,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D2AD5BE17A247E30026E31E /* Build configuration list for PBXNativeTarget "EMW ToolBox" */ = {
+		3D2AD5BE17A247E30026E31E /* Build configuration list for PBXNativeTarget "EasyLink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D2AD5BF17A247E30026E31E /* Debug */,
 				3D2AD5C017A247E30026E31E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D2AD5C117A247E30026E31E /* Build configuration list for PBXNativeTarget "EMW ToolBoxTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D2AD5C217A247E30026E31E /* Debug */,
-				3D2AD5C317A247E30026E31E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

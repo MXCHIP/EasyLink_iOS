@@ -10,19 +10,19 @@
 #import "Reachability.h"
 #include <time.h>
 #import "EMWHeader.h"
-#import "EMWUtility.h"
+//#import "EMWUtility.h"
 #import "EASYLINK.h"
 
 @interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate>{
     @private
         IBOutlet UITableView *configTableView, *aboutTableView;
 
-        IBOutlet  UIButton *EasylinkV1Button, *EasylinkV2Button;
-        IBOutlet UIImageView *spinnerView;
+        IBOutlet UIButton *EasylinkV1Button, *EasylinkV2Button;
+        IBOutlet UIImageView *imagePhoneView, *imageEMW3161View, *imageEMW3162View, *backgroundImage;
 
         EASYLINK *easylink_config;
     
-        UITextField *ssidField,*passwordField,*gatewayAddress;
+        UITextField *ssidField,*passwordField,*userInfoField,*gatewayAddress;
     
         Reachability *wifiReachability;
 }
@@ -41,5 +41,6 @@
     library is handled.
  */
 - (void)startTransmitting: (int)version;
+
 
 @end

@@ -35,12 +35,11 @@
 
 @property (retain, nonatomic) NSMutableArray *array;
 @property (retain, nonatomic) AsyncUdpSocket *socket;
-@property (retain, nonatomic) NSTimer *sendInterval;
 
-- (void)setSettingsWithSsid:(NSString *)bSSID password:(NSString *)bpasswd version: (NSUInteger)ver;
+- (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd;
+- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSString *)userInfo;
 - (void)transmitSettings;
 - (void)stopTransmitting;
-- (void)startConfigure:(id)sender;
 + (NSString *)ssidForConnectedNetwork;
 + (NSString *)getGatewayAddress;
 

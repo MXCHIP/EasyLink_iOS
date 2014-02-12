@@ -310,10 +310,9 @@ bool newModuleFound;
         ipAddress = [[service addresses] objectAtIndex:0];
         
     NSString *detailString = [[NSString alloc] initWithFormat:
-                              @"%@\nIP address:%@ Port:%d",
+                              @"%@\nIP address:%@",
                               [[moduleService objectForKey:@"BonjourService"] hostName],
-                              (ipAddress!=nil)? [ipAddress host]:@"Unknow",
-                              [service port]];
+                              (ipAddress!=nil)? [ipAddress host]:@"Unknow"];
     
     cell.detailTextLabel.text = detailString;
 

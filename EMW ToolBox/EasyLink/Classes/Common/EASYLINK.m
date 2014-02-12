@@ -14,8 +14,7 @@
 static NSUInteger count = 0;
 
 @interface EASYLINK (privates)
-- (void)initEasylinkV1:(NSString *)bSSID password:(NSString *)bpasswd;
-- (void)initEasylinkV2:(NSString *)bSSID password:(NSString *)bpasswd;
+- (void)startConfigure:(id)sender;
 @end
 
 @implementation EASYLINK
@@ -29,64 +28,24 @@ static NSUInteger count = 0;
     return [super init];
 }
 
-- (void)initEasylinkV1:(NSString *)bSSID password:(NSString *)bpasswd{
+- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSString *)userInfo{
     if (bSSID == nil) bSSID = @"";
     if (bpasswd == nil) bpasswd = @"";
-    
-    char tempData[128], PD;
-    NSUInteger sendData;
-    
-    //NSString *mergeString =  [bSSID stringByAppendingString:bpasswd];
-    const NSUInteger header1 = 3;
-    const NSUInteger header2 = 23;
-    NSUInteger bSSIDLength = [bSSID length];
-    NSUInteger bpasswdLength = [bpasswd length];
-    
-    [self.array removeAllObjects];
-    for (NSUInteger idx = 0; idx != 10; ++idx) {
-        [self.array addObject:[NSMutableData dataWithLength:header1]];
-        [self.array addObject:[NSMutableData dataWithLength:header2]];
-    }
-    
-    [self.array addObject:[NSMutableData dataWithLength:1399]];
-    [self.array addObject:[NSMutableData dataWithLength:(28+bSSIDLength)]];
-    
-    for (NSUInteger idx = 0; idx != bSSIDLength; ++idx) {
-        tempData[idx*2] = ([bSSID characterAtIndex:idx]&0xF0)>>4;
-        tempData[idx*2+1] = [bSSID characterAtIndex:idx]&0xF;
-    }
-    
-    //ND= ((PD^CP)&0xF<<4)|CD+0x251
-    for (NSUInteger idx = 0; idx != bSSIDLength*2; ++idx) {
-        PD = (idx == 0)? 0x0:tempData[idx-1];
-        sendData = 0x251 + ((((PD^idx)&0xF)<<4)|tempData[idx]);
-        [self.array addObject:[NSMutableData dataWithLength:sendData]];
-    }
-    
-    [self.array addObject:[NSMutableData dataWithLength:1459]];
-    [self.array addObject:[NSMutableData dataWithLength:(28+bpasswdLength)]];
-    
-    for (NSUInteger idx = 0; idx != bpasswdLength; ++idx) {
-        tempData[idx*2] = ([bpasswd characterAtIndex:idx]&0xF0)>>4;
-        tempData[idx*2+1] = [bpasswd characterAtIndex:idx]&0xF;
-    }
-    
-    //ND= ((PD^CP)&0xF<<4)|CD+0x251
-    for (NSUInteger idx = 0; idx != bpasswdLength*2; ++idx) {
-        PD = (idx == 0)? 0x0:tempData[idx-1];
-        sendData = 0x251 + ((((PD^idx)&0xF)<<4)|tempData[idx]);
-        [self.array addObject:[NSMutableData dataWithLength:sendData]];
-    }
-}
-
-- (void)initEasylinkV2:(NSString *)bSSID password:(NSString *)bpasswd{
-    if (bSSID == nil) bSSID = @"";
-    if (bpasswd == nil) bpasswd = @"";
-    
-    
+    if (userInfo == nil) userInfo = @"";
     NSString *mergeString =  [bSSID stringByAppendingString:bpasswd];
-    const NSUInteger headerLength = 20;
-    const NSUInteger dataBaseLength = 20;
+    version = EASYLINK_V2;
+    
+    const char *bSSID_UTF8 = [bSSID UTF8String];
+    const char *bpasswd_UTF8 = [bpasswd UTF8String];
+    const char *userInfo_UTF8 = [userInfo UTF8String];
+    const char *mergeString_UTF8 = [mergeString UTF8String];
+    
+    NSUInteger bSSID_length = strlen(bSSID_UTF8);
+    NSUInteger bpasswd_length = strlen(bpasswd_UTF8);
+    NSUInteger userInfo_length = strlen(userInfo_UTF8);
+    NSUInteger mergeString_Length = strlen(mergeString_UTF8);
+    
+    NSUInteger headerLength = 20;
     [self.array removeAllObjects];
     
     // 239.118.0.0
@@ -100,39 +59,96 @@ static NSUInteger count = 0;
     // 239.126.ssidlen.passwdlen
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
-    [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", [bSSID length], [bpasswd length]] forKey:@"host"];
+    [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", bSSID_length, bpasswd_length] forKey:@"host"];
     [self.array addObject:dictionary];
+    headerLength++;
     
     // 239.126.mergeString[idx],mergeString[idx+1]
-    for (NSUInteger idx = 0; idx < [mergeString length]; idx += 2) {
-        unichar a = [mergeString characterAtIndex:idx];
-        unichar b = 0;
-        if (idx + 1 != [mergeString length])
-            b = [mergeString characterAtIndex:idx + 1];
+    for (NSUInteger idx = 0; idx < mergeString_Length; idx += 2, headerLength++) {
+        Byte a = mergeString_UTF8[idx];
+        Byte b = 0;
+        if (idx + 1 != mergeString_Length)
+            b = mergeString_UTF8[idx+1];
         
-        NSDictionary *dictionary = [NSMutableDictionary dictionary];
-        [dictionary setValue:[NSMutableData dataWithLength:dataBaseLength + idx / 2 + 1] forKey:@"sendData"];
+        dictionary = [NSMutableDictionary dictionary];
+        
+        [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
+        [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", a, b] forKey:@"host"];
+        [self.array addObject:dictionary];
+    }
+    
+    // 239.126.userinfolen.0
+    dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
+    [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.0", userInfo_length] forKey:@"host"];
+    [self.array addObject:dictionary];
+    headerLength++;
+    
+    // 239.126.userinfo[idx],userinfo[idx+1]
+    for (NSUInteger idx = 0; idx < userInfo_length; idx += 2, headerLength++) {
+        Byte a = userInfo_UTF8[idx];
+        Byte b = 0;
+        if (idx + 1 != userInfo_length)
+            b = userInfo_UTF8[idx+1];
+        
+        dictionary = [NSMutableDictionary dictionary];
+        [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
         [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", a, b] forKey:@"host"];
         [self.array addObject:dictionary];
     }
 }
 
-
-
-- (void)setSettingsWithSsid:(NSString *)bSSID password:(NSString *)bpasswd version: (NSUInteger)ver{
-    switch (ver) {
-        case EASYLINK_V1:
-            version = EASYLINK_V1;
-            [self initEasylinkV1:bSSID password:bpasswd];
-            break;
-        case EASYLINK_V2:
-            version = EASYLINK_V2;
-            [self initEasylinkV2:bSSID password:bpasswd];
-            break;
-        default:
-            version = EASYLINK_V2;
-            [self initEasylinkV2:bSSID password:bpasswd];
-            break;
+- (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd{
+    version = EASYLINK_V1;
+    if (bSSID == nil) bSSID = @"";
+    if (bpasswd == nil) bpasswd = @"";
+    
+    Byte tempData[128], PD;
+    NSUInteger sendData;
+    
+    const NSUInteger header1 = 3;
+    const NSUInteger header2 = 23;
+    
+    const char *bSSID_UTF8 = [bSSID UTF8String];
+    const char *bpasswd_UTF8 = [bpasswd UTF8String];
+    
+    NSUInteger bSSID_length = strlen(bSSID_UTF8);
+    NSUInteger bpasswd_length = strlen(bpasswd_UTF8);
+    
+    [self.array removeAllObjects];
+    for (NSUInteger idx = 0; idx != 10; ++idx) {
+        [self.array addObject:[NSMutableData dataWithLength:header1]];
+        [self.array addObject:[NSMutableData dataWithLength:header2]];
+    }
+    
+    [self.array addObject:[NSMutableData dataWithLength:1399]];
+    [self.array addObject:[NSMutableData dataWithLength:(28+bSSID_length)]];
+    
+    for (NSUInteger idx = 0; idx != bSSID_length; ++idx) {
+        tempData[idx*2] = (bSSID_UTF8[idx]&0xF0)>>4;
+        tempData[idx*2+1] = bSSID_UTF8[idx]&0xF;
+    }
+    
+    //ND= ((PD^CP)&0xF<<4)|CD+0x251
+    for (NSUInteger idx = 0; idx != bSSID_length*2; ++idx) {
+        PD = (idx == 0)? 0x0:tempData[idx-1];
+        sendData = 0x251 + ((((PD^idx)&0xF)<<4)|tempData[idx]);
+        [self.array addObject:[NSMutableData dataWithLength:sendData]];
+    }
+    
+    [self.array addObject:[NSMutableData dataWithLength:1459]];
+    [self.array addObject:[NSMutableData dataWithLength:(28+bpasswd_length)]];
+    
+    for (NSUInteger idx = 0; idx != bpasswd_length; ++idx) {
+        tempData[idx*2] = (bpasswd_UTF8[idx]&0xF0)>>4;
+        tempData[idx*2+1] = bpasswd_UTF8[idx]&0xF;
+    }
+    
+    //ND= ((PD^CP)&0xF<<4)|CD+0x251
+    for (NSUInteger idx = 0; idx != bpasswd_length*2; ++idx) {
+        PD = (idx == 0)? 0x0:tempData[idx-1];
+        sendData = 0x251 + ((((PD^idx)&0xF)<<4)|tempData[idx]);
+        [self.array addObject:[NSMutableData dataWithLength:sendData]];
     }
 }
 
@@ -196,38 +212,8 @@ static NSUInteger count = 0;
     return ssid? ssid:@"";
 }
 
-/*!!!!!!!!!!!!!
- retrieving the IP Address from the connected WiFi
- @return value: the wifi address of currently connected wifi
- */
-//- (NSString *)getGatewayAddress {
-//    NSString *address = @"";
-//    struct ifaddrs *interfaces = NULL;
-//    struct ifaddrs *temp_addr = NULL;
-//    int success = 0;
-//    // retrieve the current interfaces - returns 0 on success
-//    success = getifaddrs(&interfaces);
-//    if (success == 0) {
-//        // Loop through linked list of interfaces
-//        temp_addr = interfaces;
-//        while(temp_addr != NULL) {
-//            if(temp_addr->ifa_addr->sa_family == AF_INET) {
-//                // Check if interface is en0 which is the wifi connection on the iPhone
-//                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-//                    // Get NSString from C String for IP
-//                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_dstaddr)->sin_addr)];
-//                }
-//            }
-//            temp_addr = temp_addr->ifa_next;
-//        }
-//    }
-//    // Free/release memory
-//    freeifaddrs(interfaces);
-//    return address;
-//}
 
 #define CTL_NET         4               /* network, see socket.h */
-
 
 #if defined(BSD) || defined(__APPLE__)
 

@@ -22,8 +22,8 @@
 /// table rows
 #define SSID_ROW                                                               0
 #define PASSWORD_ROW                                                      1
-#define GATEWAY_ADDRESS_ROW                                         2
-#define KEY_ROW                                                                3
+#define USER_INFO_ROW                                       2
+#define GATEWAY_ADDRESS_ROW                                                                3
 #define DEVICE_NAME_ROW                                                  4
 
 #define SECTION_HEIGHT                                                   30.0
