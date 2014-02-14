@@ -21,12 +21,12 @@ static NSUInteger count = 0;
 @synthesize array;
 @synthesize socket;
 
-//-(id)init{
-//    self.array = [NSMutableArray array];
-//    self.socket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
-//    sendInterval = nil;
-//    return [super init];
-//}
+-(id)init{
+    self.array = [NSMutableArray array];
+    self.socket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
+    sendInterval = nil;
+    return [super init];
+}
 
 - (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSString *)userInfo{
     if (bSSID == nil) bSSID = @"";
