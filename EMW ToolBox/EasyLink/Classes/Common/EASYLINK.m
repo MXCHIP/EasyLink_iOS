@@ -21,12 +21,12 @@ static NSUInteger count = 0;
 @synthesize array;
 @synthesize socket;
 
--(id)init{
-    self.array = [NSMutableArray array];
-    self.socket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
-    sendInterval = nil;
-    return [super init];
-}
+//-(id)init{
+//    self.array = [NSMutableArray array];
+//    self.socket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
+//    sendInterval = nil;
+//    return [super init];
+//}
 
 - (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSString *)userInfo{
     if (bSSID == nil) bSSID = @"";
@@ -157,7 +157,7 @@ static NSUInteger count = 0;
     NSTimeInterval delay = 0.01;
     [self stopTransmitting];
     if(version == EASYLINK_V1)
-        delay = 0.005;
+        delay = 0.004;
     
     count = 0;
     sendInterval =[NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(startConfigure:) userInfo:nil repeats:YES];
@@ -174,14 +174,14 @@ static NSUInteger count = 0;
 - (void)startConfigure:(id)sender{
     
     if(version==EASYLINK_V2){
-        NSLog(@"Send data %@, length %d", [[self.array objectAtIndex:count] objectForKey:@"host"],[[[self.array objectAtIndex:count] objectForKey:@"sendData"] length] );
+        //NSLog(@"Send data %@, length %d", [[self.array objectAtIndex:count] objectForKey:@"host"],[[[self.array objectAtIndex:count] objectForKey:@"sendData"] length] );
         [self.socket sendData:[[self.array objectAtIndex:count] objectForKey:@"sendData"] toHost:[[self.array objectAtIndex:count] objectForKey:@"host"] port:65523 withTimeout:10 tag:0];
         ++count;
         if (count == [self.array count]) count = 0;
     }
     else if (version==EASYLINK_V1){
         NSString *host=[EASYLINK getGatewayAddress];
-        NSLog(@"Send data %@, length %d", host, [[self.array objectAtIndex:count] length]);
+        //NSLog(@"Send data %@, length %d", host, [[self.array objectAtIndex:count] length]);
         [self.socket sendData:[self.array objectAtIndex:count] toHost:host port:65523 withTimeout:10 tag:0];
         ++count;
         if (count == [self.array count]) count = 0;
@@ -193,23 +193,25 @@ static NSUInteger count = 0;
  @return value: the SSID of currently connected wifi
  '!!!!!!!!!!*/
 + (NSString*)ssidForConnectedNetwork{
-    NSArray *interfaces = (__bridge NSArray*)CNCopySupportedInterfaces();
+    NSArray *interfaces = (__bridge_transfer NSArray*)CNCopySupportedInterfaces();
     NSDictionary *info = nil;
     for (NSString *ifname in interfaces) {
-        info = (__bridge NSDictionary*)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifname);
+        info = (__bridge_transfer NSDictionary*)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifname);
         if (info && [info count]) {
             break;
         }
         info = nil;
     }
     
-    NSLog(@"SSID == %@  info === %@",[info objectForKey:@"SSID"],info);
-    
     NSString *ssid = nil;
+
     if ( info ){
         ssid = [info objectForKey:@"SSID"];
     }
+    info = nil;
     return ssid? ssid:@"";
+    
+    
 }
 
 

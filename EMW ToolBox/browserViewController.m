@@ -375,14 +375,14 @@ bool newModuleFound;
     }
 }
 
-/*
- Notification method handler when app enter in forground
- @param the fired notification object
- */
-- (void)appEnterInforground:(NSNotification*)notification{
-    NSLog(@"%s", __func__);
-    [self searchForModules];
-}
+///*
+// Notification method handler when app enter in forground
+// @param the fired notification object
+// */
+//- (void)appEnterInforground:(NSNotification*)notification{
+//    NSLog(@"%s", __func__);
+//    [self searchForModules];
+//}
 
 
 

@@ -89,7 +89,7 @@ BOOL configTableMoved = NO;
     // Do any additional setup after loading the view from its nib.
 
     easylink_config = [[EASYLINK alloc] init];
-    self.navigationItem.title = @"EasyLink";
+    //self.navigationItem.title = @"EasyLink";
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     
@@ -142,6 +142,8 @@ BOOL configTableMoved = NO;
     [configTableView.layer setCornerRadius:8.0];
     [configTableView.layer setBorderWidth:1.5];
     [configTableView.layer setBorderColor:colorref];
+    CGColorRelease (colorref);
+    CGColorSpaceRelease(colorSpace);
 
     // wifi notification when changed.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wifiStatusChanged:) name:kReachabilityChangedNotification object:nil];
