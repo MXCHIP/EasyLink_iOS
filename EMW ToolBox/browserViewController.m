@@ -13,7 +13,7 @@
 #include <arpa/inet.h>
 
 #define searchingString @"Searching for MXCHIP Modules..."
-#define kWebServiceType @"_http._tcp"
+#define kWebServiceType @"_easylink._tcp"
 #define kInitialDomain  @"local"
 #define repeatInterval  10.0
 
@@ -185,8 +185,6 @@ bool newModuleFound;
 
 - (void)netServiceBrowser:(NSNetServiceBrowser*)netServiceBrowser didFindService:(NSNetService*)service moreComing:(BOOL)moreComing {
 	// If a service came online, add it to the list and update the table view if no more events are queued.
-    if([[service name] rangeOfString:@"EMW"].location == NSNotFound)
-        return;
     NSMutableDictionary *moduleService = [[NSMutableDictionary alloc] initWithCapacity:15];
     service.delegate = self;
     [moduleService setObject:[service name] forKey:@"Name"];
@@ -281,7 +279,7 @@ bool newModuleFound;
 	}
     
     static NSString *tableCellIdentifier2 = @"ModuleCell";
-    NSString *serviceName;
+    NSString *serviceName, *hostName;
     NSNetService *service;
     BOOL resolving;
 	UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:tableCellIdentifier2];
@@ -293,16 +291,24 @@ bool newModuleFound;
 	NSMutableDictionary *moduleService = [self.services objectAtIndex:indexPath.row];
     serviceName = [moduleService objectForKey:@"Name"];
     service = [moduleService objectForKey:@"BonjourService"];
+    hostName = [service hostName];
     resolving = [[moduleService objectForKey:@"resolving"] boolValue];
     
-    if([serviceName rangeOfString:@"EMW_3161"].location != NSNotFound)
-        cell.imageView.image = [UIImage imageNamed:@"EMW3161_logo.png"];
-    else if([serviceName rangeOfString:@"EMW_3280"].location != NSNotFound)
-        cell.imageView.image = [UIImage imageNamed:@"EMW3280_logo.png"];
-    else if([serviceName rangeOfString:@"EMW_3162"].location != NSNotFound)
-        cell.imageView.image = [UIImage imageNamed:@"EMW3162_logo.png"];
-    else
+    if (resolving == YES){
         cell.imageView.image = [UIImage imageNamed:@"known_logo.png"];
+    }
+    else{
+        if([hostName rangeOfString:@"EMW3161"].location != NSNotFound)
+            cell.imageView.image = [UIImage imageNamed:@"EMW3161_logo.png"];
+        else if([hostName rangeOfString:@"EMW3280"].location != NSNotFound)
+            cell.imageView.image = [UIImage imageNamed:@"EMW3280_logo.png"];
+        else if([hostName rangeOfString:@"EMW3162"].location != NSNotFound)
+            cell.imageView.image = [UIImage imageNamed:@"EMW3162_logo.png"];
+        else
+            cell.imageView.image = [UIImage imageNamed:@"known_logo.png"];
+    }
+    
+
     
     cell.textLabel.text = serviceName;
     cell.textLabel.textColor = [UIColor blackColor];
@@ -311,7 +317,7 @@ bool newModuleFound;
         
     NSString *detailString = [[NSString alloc] initWithFormat:
                               @"%@\nIP address:%@",
-                              [[moduleService objectForKey:@"BonjourService"] hostName],
+                              hostName,
                               (ipAddress!=nil)? [ipAddress host]:@"Unknow"];
     
     cell.detailTextLabel.text = detailString;

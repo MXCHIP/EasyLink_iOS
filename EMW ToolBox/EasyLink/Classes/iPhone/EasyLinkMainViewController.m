@@ -18,9 +18,6 @@ BOOL configTableMoved = NO;
 @interface EasyLinkMainViewController (){
     PulsingHaloLayer *halo[3];
 }
-//@property (nonatomic, strong) PulsingHaloLayer *haloCenter;
-//@property (nonatomic, strong) PulsingHaloLayer *haloLeft;
-//@property (nonatomic, strong) PulsingHaloLayer *haloRight;
 
 @end
 
@@ -264,7 +261,7 @@ BOOL configTableMoved = NO;
         [easylink_config prepareEasyLinkV2:ssid password:passwordKey info:userInfo];
     
     [self sendAction];
-    //[NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
+    [NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
     [self enableUIAccess:NO];
 }
 
