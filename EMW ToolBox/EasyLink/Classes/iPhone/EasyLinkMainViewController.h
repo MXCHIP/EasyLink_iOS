@@ -33,7 +33,7 @@
  The method will return true if it got the ack from the remote device or false if it got aborted by a call to stopTransmitting.
  In case of a failure the method throws an OSFailureException.
  */
-- (void) waitForAckThread: (id)sender;
+- (void) waitForAck: (id)sender;
 
 /*
     This method start the transmitting the data to connected 

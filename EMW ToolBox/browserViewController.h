@@ -12,7 +12,7 @@
     NSMutableArray *_objects;
     IBOutlet UITableView *browserTableView;
 @private    
-    NSMutableArray* _services;
+    NSMutableArray* _services, *_displayServices;
     NSNetServiceBrowser* _netServiceBrowser;
     BOOL _needsActivityIndicator;
     BOOL _currentResolveSuccess;

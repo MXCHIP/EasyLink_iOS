@@ -20,6 +20,7 @@
 #define kProgressIndicatorSize 20.0
 
 bool newModuleFound;
+bool enumerating = NO;
 
 @interface NSMutableDictionary (BrowserViewControllerAdditions)
 - (NSComparisonResult) localizedCaseInsensitiveCompareByName:(NSMutableDictionary*)aService;
@@ -56,6 +57,7 @@ bool newModuleFound;
 @interface browserViewController()
 @property (nonatomic, retain, readwrite) NSNetServiceBrowser* netServiceBrowser;
 @property (nonatomic, retain, readwrite) NSMutableArray* services;
+@property (nonatomic, retain, readwrite) NSMutableArray* displayServices;
 @property (nonatomic, retain, readwrite) NSTimer* timer;
 @property (nonatomic, assign, readwrite) BOOL initialWaitOver;
 
@@ -66,6 +68,7 @@ bool newModuleFound;
 @implementation browserViewController
 @synthesize netServiceBrowser = _netServiceBrowser;
 @synthesize services = _services;
+@synthesize displayServices = _displayServices;
 @dynamic timer;
 @synthesize initialWaitOver = _initialWaitOver;
 
@@ -80,6 +83,7 @@ bool newModuleFound;
     [super viewDidLoad];
 
 	_services = [[NSMutableArray alloc] init];
+    _displayServices = [[NSMutableArray alloc] init];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"Modules" style:UIBarButtonItemStyleBordered target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backItem];
     
@@ -106,7 +110,7 @@ bool newModuleFound;
 
 - (void)initialWaitOver:(NSTimer*)timer {
 	self.initialWaitOver= YES;
-	if (![self.services count])
+	if (![self.displayServices count])
 		[browserTableView reloadData];
 }
 
@@ -120,6 +124,7 @@ bool newModuleFound;
 {
 	[self.netServiceBrowser stop];
 	[self.services removeAllObjects];
+    [self.displayServices removeAllObjects];
     [browserTableView reloadData];
 	[self repeatSearching: self.timer];
 	
@@ -145,7 +150,9 @@ bool newModuleFound;
 
 - (void)sortAndUpdateUI {
 	// Sort the services by name.
+    while(enumerating == YES);
 	[self.services sortUsingSelector:@selector(localizedCaseInsensitiveCompareByName:)];
+    [self.displayServices sortUsingSelector:@selector(localizedCaseInsensitiveCompareByName:)];
 	[browserTableView reloadData];
 }
 
@@ -153,12 +160,12 @@ bool newModuleFound;
 
 - (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)netServiceBrowser
 {
-    NSLog(@"Service Search stoped");
+    //NSLog(@"Service Search stoped");
 }
 
 - (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)netServiceBrowser
 {
-    NSLog(@"Service Search will start");
+    //NSLog(@"Service Search will start");
 }
 
 - (void)netServiceBrowser:(NSNetServiceBrowser*)netServiceBrowser didRemoveService:(NSNetService*)service moreComing:(BOOL)moreComing {
@@ -173,7 +180,14 @@ bool newModuleFound;
             break;
         }
     }
-	
+    
+    for (NSMutableDictionary *object in self.displayServices)
+    {
+        if([[object objectForKey:@"Name"] isEqual:[service name]]){
+            [self.displayServices removeObject:object];
+            break;
+        }
+    }
 	
 	// If moreComing is NO, it means that there are no more messages in the queue from the Bonjour daemon, so we should update the UI.
 	// When moreComing is set, we don't update the UI so that it doesn't 'flash'.
@@ -190,23 +204,23 @@ bool newModuleFound;
     [moduleService setObject:[service name] forKey:@"Name"];
     [moduleService setObject:service forKey:@"BonjourService"];
     [moduleService setObject:@YES forKey:@"resolving"];
+    [service startMonitoring];
     
     
+    enumerating = YES;
     for (NSMutableDictionary *object in self.services)
     {
-        if([[object objectForKey:@"Name"] isEqual:[service name]])
+        if([[object objectForKey:@"Name"] isEqual:[service name]]){
+            enumerating = NO;
             return;
+        }
     }
+    enumerating = NO;
     
-        NSLog(@"service found %@",[service name]);
-        newModuleFound = YES;
-        [self.services addObject:moduleService];
-        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:[self.services indexOfObject:moduleService] inSection:0];
-        if(indexPath.row==0&&self.initialWaitOver== YES) //update a searching row
-            [browserTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        else
-            [browserTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [service resolveWithTimeout:0.0];
+    NSLog(@"service found %@",[service name]);
+    newModuleFound = YES;
+    [self.services addObject:moduleService];
+    [service resolveWithTimeout:0.0];
 }
 
 - (void)repeatSearching:(NSTimer*)timer {
@@ -224,20 +238,112 @@ bool newModuleFound;
 }
 
 
+
+
 - (void)netServiceDidResolveAddress:(NSNetService *)service
 {
+    NSDictionary *oldTxtData, *newTxtData;
+    NSIndexPath* indexPath;
+    NSData *oldMac, *newMac;
+    char oldSeed_Char[10];
+    char newSeed_Char[10];
+    int oldSeed, newSeed;
+    NSMutableDictionary *replaceService = nil;;
+    
+    newTxtData = [NSNetService dictionaryFromTXTRecordData: [service TXTRecordData]];
+    newMac = [newTxtData objectForKey:@"MAC"];
+    [[newTxtData objectForKey:@"Seed"] getBytes: newSeed_Char length:10];
+    newSeed = atoi(newSeed_Char);
+    
+    NSLog(@"==============service info:%@=======================",[service name]);
+
+    while (enumerating == YES);
+    
+    enumerating = YES;
     
     for (NSMutableDictionary *object in self.services)
     {
         if([object objectForKey:@"BonjourService"] == service){
             [object setObject:@NO forKey:@"resolving"];
-            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:[self.services indexOfObject:object] inSection:0];
-            NSLog(@"resolve success! service found at %d,service info:%@,%@,%d,%d",
-                  indexPath.row,[service name],[service hostName],[[service addresses] count], [service port]);
-            [browserTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            for (NSMutableDictionary *displayObject in self.displayServices) {
+                if([displayObject objectForKey:@"BonjourService"] == service){
+                    NSLog(@"Found an old service, %@, same service name, ignore...",
+                          [[displayObject objectForKey:@"BonjourService"] name]);
+                    goto exit;
+                }
+                oldTxtData = [NSNetService dictionaryFromTXTRecordData: [[displayObject objectForKey:@"BonjourService"] TXTRecordData]];
+                oldMac = [oldTxtData objectForKey:@"MAC"];
+
+                if([oldMac isEqualToData:newMac]== YES){
+                    [[oldTxtData objectForKey:@"Seed"] getBytes: oldSeed_Char length:10];
+                    oldSeed = atoi(oldSeed_Char);
+                    NSLog(@"New seed: %d, old seed: %d", newSeed, oldSeed);
+                    if(newSeed>=oldSeed){
+                        NSLog(@"Found an old service, %@, same MAC address, seed updated, replace...",
+                              [[displayObject objectForKey:@"BonjourService"] name]);
+                        indexPath = [NSIndexPath indexPathForRow:[self.displayServices indexOfObject:displayObject] inSection:0];
+                        NSLog(@"Replace index %d...",[self.displayServices indexOfObject:displayObject]);
+                        replaceService = object;
+                    }else{
+                        NSLog(@"Found an old service, %@, same MAC address, old seed, ignore...",
+                              [[displayObject objectForKey:@"BonjourService"] name]);
+                        goto exit;
+                    }
+                }
+            }
+            
+            if(replaceService!=nil){
+                NSLog(@"Replace index %d...",indexPath.row);
+                [self.displayServices replaceObjectAtIndex:indexPath.row withObject:replaceService];
+            }
+            else{
+                [self.displayServices addObject:object];
+            }
+            
+            [self.displayServices sortUsingSelector:@selector(localizedCaseInsensitiveCompareByName:)];
+            indexPath = [NSIndexPath indexPathForRow:[self.displayServices indexOfObject:object] inSection:0];
+            //
+            NSLog(@"resolve success! service found at %d,service info:%@",
+                  indexPath.row,[service name]);
+            if((self.initialWaitOver== YES&&[self.displayServices count]==1)||replaceService!=nil){ //update a searching row
+                NSLog(@"!!!!!");
+                [browserTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            }
+            else
+                [browserTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            
+            
             break;
         }
     }
+exit:
+    NSLog(@"=============================================================");
+    enumerating = NO;
+}
+
+- (void)netService:(NSNetService *)service didUpdateTXTRecordData:(NSData *)data
+{
+    NSDictionary *oldTxtData, *newTxtData;
+    NSData *oldSeed, *newSeed;
+    
+    newTxtData = [NSNetService dictionaryFromTXTRecordData:data];
+    newSeed = [newTxtData objectForKey:@"Seed"];
+    
+    enumerating = YES;
+    for (NSMutableDictionary *object in self.displayServices)
+    {
+        if([object objectForKey:@"BonjourService"] == service){
+            oldTxtData = [NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]];
+            oldSeed = [oldTxtData objectForKey:@"Seed"];
+            if(oldSeed==nil)
+                return;
+            
+            if([oldSeed isEqualToData:newSeed]== NO)
+               newModuleFound = YES;
+            break;
+        }
+    }
+    enumerating = NO;
 }
 
 #pragma mark - Table View
@@ -249,7 +355,7 @@ bool newModuleFound;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSUInteger count = [self.services count];
+	NSUInteger count = [self.displayServices count];
 	if (count == 0 && self.initialWaitOver)
 		return 1;
     
@@ -257,8 +363,9 @@ bool newModuleFound;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSData *ipAddress = nil;
-    NSUInteger count = [self.services count];
+	NSString *displayServiceName;
+    NSData *ipAddress = nil;
+    NSUInteger count = [self.displayServices count];
 
 	if (count == 0) {
         static NSString *tableCellIdentifier = @"Searching";
@@ -279,7 +386,7 @@ bool newModuleFound;
 	}
     
     static NSString *tableCellIdentifier2 = @"ModuleCell";
-    NSString *serviceName, *hostName;
+    NSString *serviceName, *hostName, *macAddress, *hardware;
     NSNetService *service;
     BOOL resolving;
 	UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:tableCellIdentifier2];
@@ -288,36 +395,48 @@ bool newModuleFound;
 	}
     
     // Set up the text for the cell
-	NSMutableDictionary *moduleService = [self.services objectAtIndex:indexPath.row];
+	NSMutableDictionary *moduleService = [self.displayServices objectAtIndex:indexPath.row];
     serviceName = [moduleService objectForKey:@"Name"];
     service = [moduleService objectForKey:@"BonjourService"];
     hostName = [service hostName];
     resolving = [[moduleService objectForKey:@"resolving"] boolValue];
+    NSData *mac = [[NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]] objectForKey:@"MAC"];
+    macAddress = [[NSString alloc] initWithData: mac encoding:NSASCIIStringEncoding];
+    NSData *hd = [[NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]] objectForKey:@"Hardware"];
+    hardware = [[NSString alloc] initWithData: hd encoding:NSASCIIStringEncoding];
+    
+
     
     if (resolving == YES){
         cell.imageView.image = [UIImage imageNamed:@"known_logo.png"];
     }
     else{
-        if([hostName rangeOfString:@"EMW3161"].location != NSNotFound)
+        if([hardware rangeOfString:@"EMW3161"].location != NSNotFound)
             cell.imageView.image = [UIImage imageNamed:@"EMW3161_logo.png"];
-        else if([hostName rangeOfString:@"EMW3280"].location != NSNotFound)
+        else if([hardware rangeOfString:@"EMW3280"].location != NSNotFound)
             cell.imageView.image = [UIImage imageNamed:@"EMW3280_logo.png"];
-        else if([hostName rangeOfString:@"EMW3162"].location != NSNotFound)
+        else if([hardware rangeOfString:@"EMW3162"].location != NSNotFound)
             cell.imageView.image = [UIImage imageNamed:@"EMW3162_logo.png"];
         else
             cell.imageView.image = [UIImage imageNamed:@"known_logo.png"];
     }
     
-
-    
-    cell.textLabel.text = serviceName;
+    NSRange range = [serviceName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"#"]
+                                                 options:NSBackwardsSearch];
+    if(range.location == NSNotFound)
+        range.length = [serviceName length];
+    else
+        range.length = range.location;
+    range.location = 0;
+    displayServiceName = [serviceName substringWithRange:range];
+    cell.textLabel.text = displayServiceName;
     cell.textLabel.textColor = [UIColor blackColor];
     if([[[moduleService objectForKey:@"BonjourService"] addresses] count])
         ipAddress = [[service addresses] objectAtIndex:0];
-        
+    
     NSString *detailString = [[NSString alloc] initWithFormat:
-                              @"%@\nIP address:%@",
-                              hostName,
+                              @"MAC: %@\nIP :%@",
+                              macAddress,
                               (ipAddress!=nil)? [ipAddress host]:@"Unknow"];
     
     cell.detailTextLabel.text = detailString;
@@ -358,7 +477,7 @@ bool newModuleFound;
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// Ignore the selection if there are no services as the searchingForServicesString cell
 	// may be visible and tapping it would do nothing
-	if ([self.services count] == 0)
+	if ([self.displayServices count] == 0)
 		return nil;
 	
 	return indexPath;
@@ -367,6 +486,7 @@ bool newModuleFound;
 - (void)dealloc {
 	// Cleanup any running resolve and free memory
 	self.services = nil;
+    self.displayServices = nil;
 	[self.netServiceBrowser stop];
 	self.netServiceBrowser = nil;
 }
@@ -376,7 +496,7 @@ bool newModuleFound;
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [browserTableView indexPathForSelectedRow];
         [browserTableView deselectRowAtIndexPath:indexPath animated:YES];
-        NSMutableDictionary *object = [self.services objectAtIndex:indexPath.row];
+        NSMutableDictionary *object = [self.displayServices objectAtIndex:indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }

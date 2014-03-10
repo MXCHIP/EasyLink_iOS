@@ -19,6 +19,10 @@ BOOL configTableMoved = NO;
     PulsingHaloLayer *halo[3];
 }
 
+@property (nonatomic, retain, readwrite) NSThread* waitForAckThread;
+
+- (void)repeatSearching:(NSTimer*)timer;
+
 @end
 
 @interface EasyLinkMainViewController (Private)
@@ -67,6 +71,8 @@ BOOL configTableMoved = NO;
 @end
 
 @implementation EasyLinkMainViewController
+
+@synthesize waitForAckThread;
 
 - (void)awakeFromNib
 {
@@ -148,6 +154,8 @@ BOOL configTableMoved = NO;
     wifiReachability = [Reachability reachabilityForLocalWiFi];  //监测Wi-Fi连接状态
 	[wifiReachability startNotifier];
     
+    waitForAckThread = nil;
+    
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];	
     if ( netStatus == NotReachable ) {// No activity if no wifi
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"WiFi not available. Please check your WiFi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -201,6 +209,8 @@ BOOL configTableMoved = NO;
 -(void) sendAction{
     newModuleFound = NO;
     [easylink_config transmitSettings];
+    waitForAckThread = [[NSThread alloc] initWithTarget:self selector:@selector(waitForAck:) object:nil];
+    [waitForAckThread start];
 }
 
 /*
@@ -209,6 +219,8 @@ BOOL configTableMoved = NO;
  */
 -(void) stopAction{
     [easylink_config stopTransmitting];
+    [waitForAckThread cancel];
+    waitForAckThread= nil;
 }
 
 /*
@@ -218,8 +230,9 @@ BOOL configTableMoved = NO;
  In case of a failure the method throws an OSFailureException.
  */
 
-- (void) waitForAckThread: (id)sender{
-    while(1){
+- (void) waitForAck: (id)sender{
+    while([waitForAckThread isCancelled] == NO)
+    {
         if ( newModuleFound==YES ){
             [self stopAction];
             [self enableUIAccess:YES];
@@ -228,8 +241,6 @@ BOOL configTableMoved = NO;
         }
         sleep(1);
     }
-    sleep(1);
-    
 }
 
 
@@ -261,7 +272,7 @@ BOOL configTableMoved = NO;
         [easylink_config prepareEasyLinkV2:ssid password:passwordKey info:userInfo];
     
     [self sendAction];
-    [NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
+
     [self enableUIAccess:NO];
 }
 
@@ -304,6 +315,7 @@ BOOL configTableMoved = NO;
         case 1: /// stop the loop
             [button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
             [EasylinkV2Button setSelected:NO];
+            //[NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
             [self stopAction];
             // Retain the UI access for the user.
             [self enableUIAccess:YES];
