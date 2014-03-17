@@ -59,7 +59,7 @@ static NSUInteger count = 0;
     // 239.126.ssidlen.passwdlen
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
-    [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", bSSID_length, bpasswd_length] forKey:@"host"];
+    [dictionary setValue:[NSString stringWithFormat:@"239.126.%lu.%lu", (unsigned long)bSSID_length, (unsigned long)bpasswd_length] forKey:@"host"];
     [self.array addObject:dictionary];
     headerLength++;
     
@@ -80,7 +80,7 @@ static NSUInteger count = 0;
     // 239.126.userinfolen.0
     dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
-    [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.0", userInfo_length] forKey:@"host"];
+    [dictionary setValue:[NSString stringWithFormat:@"239.126.%lu.0", (unsigned long)userInfo_length] forKey:@"host"];
     [self.array addObject:dictionary];
     headerLength++;
     

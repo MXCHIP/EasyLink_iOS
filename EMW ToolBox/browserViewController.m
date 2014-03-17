@@ -61,8 +61,6 @@ bool enumerating = NO;
 @property (nonatomic, retain, readwrite) NSTimer* timer;
 @property (nonatomic, assign, readwrite) BOOL initialWaitOver;
 
-- (void)repeatSearching:(NSTimer*)timer;
-
 @end
 
 @implementation browserViewController
@@ -225,6 +223,7 @@ bool enumerating = NO;
 
 - (void)repeatSearching:(NSTimer*)timer {
 	if (timer == self.timer) {
+        NSLog(@"Start searching");
         [self.netServiceBrowser stop];
         [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
 	}
@@ -282,7 +281,7 @@ bool enumerating = NO;
                         NSLog(@"Found an old service, %@, same MAC address, seed updated, replace...",
                               [[displayObject objectForKey:@"BonjourService"] name]);
                         indexPath = [NSIndexPath indexPathForRow:[self.displayServices indexOfObject:displayObject] inSection:0];
-                        NSLog(@"Replace index %d...",[self.displayServices indexOfObject:displayObject]);
+                        NSLog(@"Replace index %lu...",(unsigned long)[self.displayServices indexOfObject:displayObject]);
                         replaceService = object;
                     }else{
                         NSLog(@"Found an old service, %@, same MAC address, old seed, ignore...",
@@ -293,7 +292,7 @@ bool enumerating = NO;
             }
             
             if(replaceService!=nil){
-                NSLog(@"Replace index %d...",indexPath.row);
+                NSLog(@"Replace index %ld...",(long)indexPath.row);
                 [self.displayServices replaceObjectAtIndex:indexPath.row withObject:replaceService];
             }
             else{
@@ -303,8 +302,8 @@ bool enumerating = NO;
             [self.displayServices sortUsingSelector:@selector(localizedCaseInsensitiveCompareByName:)];
             indexPath = [NSIndexPath indexPathForRow:[self.displayServices indexOfObject:object] inSection:0];
             //
-            NSLog(@"resolve success! service found at %d,service info:%@",
-                  indexPath.row,[service name]);
+            NSLog(@"resolve success! service found at %ld,service info:%@",
+                  (long)indexPath.row,[service name]);
             if((self.initialWaitOver== YES&&[self.displayServices count]==1)||replaceService!=nil){ //update a searching row
                 NSLog(@"!!!!!");
                 [browserTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];

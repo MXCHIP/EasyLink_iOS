@@ -21,8 +21,6 @@ BOOL configTableMoved = NO;
 
 @property (nonatomic, retain, readwrite) NSThread* waitForAckThread;
 
-- (void)repeatSearching:(NSTimer*)timer;
-
 @end
 
 @interface EasyLinkMainViewController (Private)
@@ -282,46 +280,38 @@ BOOL configTableMoved = NO;
  !!!*/
 - (IBAction)easyLinkV1ButtonAction:(UIButton*)button{
 
-    switch (button.selected) {
-      case 0:
-            [EasylinkV1Button setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
-            [EasylinkV1Button setSelected:YES];
-            [EasylinkV2Button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-            [EasylinkV2Button setSelected:NO];
-            [self startTransmitting: EASYLINK_V1];
-          break;
-      case 1: /// stop the loop
-            [button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-            [EasylinkV1Button setSelected:NO];
-            [self stopAction];
-            // Retain the UI access for the user.
-            [self enableUIAccess:YES];
-            break;
-      default:
-            break;
+    if(button.selected == NO){
+        [EasylinkV1Button setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
+        [EasylinkV1Button setSelected:YES];
+        [EasylinkV2Button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+        [EasylinkV2Button setSelected:NO];
+        [self startTransmitting: EASYLINK_V1];
+    }
+    else{
+        [button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+        [EasylinkV1Button setSelected:NO];
+        [self stopAction];
+        // Retain the UI access for the user.
+        [self enableUIAccess:YES];
     }
 }
 
 - (IBAction)easyLinkV2ButtonAction:(UIButton*)button{
     
-    switch (button.selected) {
-        case 0:
-            [EasylinkV2Button setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
-            [EasylinkV2Button setSelected:YES];
-            [EasylinkV1Button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-            [EasylinkV1Button setSelected:NO];
-            [self startTransmitting: EASYLINK_V2];
-            break;
-        case 1: /// stop the loop
-            [button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-            [EasylinkV2Button setSelected:NO];
-            //[NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
-            [self stopAction];
-            // Retain the UI access for the user.
-            [self enableUIAccess:YES];
-            break;
-        default:
-            break;
+    if(button.selected == NO) {
+        [EasylinkV2Button setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
+        [EasylinkV2Button setSelected:YES];
+        [EasylinkV1Button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+        [EasylinkV1Button setSelected:NO];
+        [self startTransmitting: EASYLINK_V2];
+    }
+    else{
+        [button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+        [EasylinkV2Button setSelected:NO];
+        //[NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
+        [self stopAction];
+        // Retain the UI access for the user.
+        [self enableUIAccess:YES];
     }
 }
 

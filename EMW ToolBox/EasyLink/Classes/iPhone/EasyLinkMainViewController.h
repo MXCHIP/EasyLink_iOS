@@ -15,7 +15,7 @@
 
 @interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate>{
     @private
-        IBOutlet UITableView *configTableView, *aboutTableView;
+        IBOutlet UITableView *configTableView;
 
         IBOutlet UIButton *EasylinkV1Button, *EasylinkV2Button;
         IBOutlet UIImageView *imagePhoneView, *imageEMW3161View, *imageEMW3162View, *backgroundImage;
