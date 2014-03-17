@@ -441,7 +441,7 @@ BOOL configTableMoved = NO;
                                                                        CELL_iPHONE_FIELD_HEIGHT)];
         [userInfoField setDelegate:self];
         [userInfoField setClearButtonMode:UITextFieldViewModeNever];
-        [userInfoField setPlaceholder:@"Custom information"];
+        [userInfoField setPlaceholder:@"Device name"];
         [userInfoField setReturnKeyType:UIReturnKeyDone];
         [userInfoField setBackgroundColor:[UIColor clearColor]];
         //[userInfoField setText:[EASYLINK getGatewayAddress]];
@@ -500,10 +500,12 @@ BOOL configTableMoved = NO;
         [self easyLinkV1ButtonAction:EasylinkV1Button]; /// Simply revert the state
     if ( EasylinkV2Button.selected )
         [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
-/* 
- Notification method handler when status of wifi changes 
+/*
+ Notification method handler when status of wifi changes
  @param the fired notification object
  */
 - (void)wifiStatusChanged:(NSNotification*)notification{

@@ -61,6 +61,18 @@ bool enumerating = NO;
 @property (nonatomic, retain, readwrite) NSTimer* timer;
 @property (nonatomic, assign, readwrite) BOOL initialWaitOver;
 
+/*
+ Notification method handler when app enter in forground
+ @param the fired notification object
+ */
+- (void)appEnterInforground:(NSNotification*)notification;
+
+/*
+ Notification method handler when app enter in background
+ @param the fired notification object
+ */
+- (void)appEnterInBackground:(NSNotification*)notification;
+
 @end
 
 @implementation browserViewController
@@ -94,15 +106,21 @@ bool enumerating = NO;
 	self.netServiceBrowser = aNetServiceBrowser;
                 
 	// Make sure we have a chance to discover devices before showing the user that nothing was found (yet)
-    [self repeatSearching: self.timer];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:repeatInterval target:self selector:@selector(repeatSearching:) userInfo:nil repeats:YES];
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
+    //[self repeatSearching: self.timer];
+    //self.timer = [NSTimer scheduledTimerWithTimeInterval:repeatInterval target:self selector:@selector(repeatSearching:) userInfo:nil repeats:YES];
+    //[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
+    //[self.netServiceBrowser stop];
+    [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
+    
+    //// stoping the process in app backgroud state
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInforground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
 }
 
 
@@ -124,7 +142,8 @@ bool enumerating = NO;
 	[self.services removeAllObjects];
     [self.displayServices removeAllObjects];
     [browserTableView reloadData];
-	[self repeatSearching: self.timer];
+	//[self repeatSearching: self.timer];
+    [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
 	
 }
 
@@ -508,6 +527,22 @@ exit:
 //    NSLog(@"%s", __func__);
 //    [self searchForModules];
 //}
+
+/*
+ Notification method handler when app enter in forground
+ @param the fired notification object
+ */
+- (void)appEnterInforground:(NSNotification*)notification{
+    [self.netServiceBrowser stop];
+    [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];}
+
+/*
+ Notification method handler when app enter in background
+ @param the fired notification object
+ */
+- (void)appEnterInBackground:(NSNotification*)notification{
+    NSLog(@"%s", __func__);
+}
 
 
 
