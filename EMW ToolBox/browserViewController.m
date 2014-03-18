@@ -107,8 +107,9 @@ bool enumerating = NO;
                 
 	// Make sure we have a chance to discover devices before showing the user that nothing was found (yet)
     //[self repeatSearching: self.timer];
-    //self.timer = [NSTimer scheduledTimerWithTimeInterval:repeatInterval target:self selector:@selector(repeatSearching:) userInfo:nil repeats:YES];
-    //[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
+    //self.timer = [NSTimer scheduledTimerWithTimeInterval:repeatInterval target:self selector:@selector(repeatSearching:) userInfo:nil repeats:NO];
+    [browserTableView reloadData];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
     //[self.netServiceBrowser stop];
     [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
     
@@ -138,12 +139,13 @@ bool enumerating = NO;
 
 - (void)searchForModules
 {
-	[self.netServiceBrowser stop];
+	self.initialWaitOver = NO;
+    [self.netServiceBrowser stop];
 	[self.services removeAllObjects];
     [self.displayServices removeAllObjects];
     [browserTableView reloadData];
-	//[self repeatSearching: self.timer];
     [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
 	
 }
 
@@ -519,22 +521,14 @@ exit:
     }
 }
 
-///*
-// Notification method handler when app enter in forground
-// @param the fired notification object
-// */
-//- (void)appEnterInforground:(NSNotification*)notification{
-//    NSLog(@"%s", __func__);
-//    [self searchForModules];
-//}
-
 /*
  Notification method handler when app enter in forground
  @param the fired notification object
  */
 - (void)appEnterInforground:(NSNotification*)notification{
-    [self.netServiceBrowser stop];
-    [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];}
+    
+    [self searchForModules];
+}
 
 /*
  Notification method handler when app enter in background
