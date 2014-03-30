@@ -9,11 +9,13 @@
 #import "EasyLinkMainViewController.h"
 #import "APManager.h"
 #import "PulsingHaloLayer.h"
+#import "EasyLinkFTCTableViewController.h"
 
 #define MOVE_UP_ON_3_5_INCH   (-65)
 
 extern BOOL newModuleFound;
 BOOL configTableMoved = NO;
+
 
 @interface EasyLinkMainViewController (){
     PulsingHaloLayer *halo[3];
@@ -69,7 +71,7 @@ BOOL configTableMoved = NO;
 @end
 
 @implementation EasyLinkMainViewController
-
+@synthesize foundModules;
 @synthesize waitForAckThread;
 
 - (void)awakeFromNib
@@ -85,12 +87,21 @@ BOOL configTableMoved = NO;
 
 #pragma mark - View lifecycle -
 
+//- (void)instantiateViewControllerWithIdentifier{
+//    
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 
-    easylink_config = [[EASYLINK alloc] init];
-    //self.navigationItem.title = @"EasyLink";
+    // Do any additional setup after loading the view from its nib.
+    if( easylink_config == nil){
+        easylink_config = [[EASYLINK alloc]init];
+        [easylink_config startFTCServerWithDelegate:self];
+    }
+    if( self.foundModules == nil)
+        self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
+
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     
@@ -136,7 +147,7 @@ BOOL configTableMoved = NO;
     [EasylinkV1Button.layer setBorderColor:colorref];
     
     [EasylinkV2Button.layer setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor];
-    [EasylinkV2Button.layer setCornerRadius:50.0];
+    [EasylinkV2Button.layer setCornerRadius:10.0];
     [EasylinkV2Button.layer setBorderWidth:1.5];
     [EasylinkV2Button.layer setBorderColor:colorref];
     
@@ -145,7 +156,7 @@ BOOL configTableMoved = NO;
     [configTableView.layer setBorderColor:colorref];
     CGColorRelease (colorref);
     CGColorSpaceRelease(colorSpace);
-
+        
     // wifi notification when changed.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wifiStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
@@ -161,9 +172,10 @@ BOOL configTableMoved = NO;
     }
     
     //// stoping the process in app backgroud state
+    NSLog(@"regisister notificationcenter");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInforground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInforground:) name:UIApplicationDidBecomeActiveNotification object:nil];
     
 }
 
@@ -172,6 +184,13 @@ BOOL configTableMoved = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    if([self.navigationController.viewControllers indexOfObject:self] == NSNotFound){
+        [easylink_config stopTransmitting];
+        [easylink_config closeFTCServer];
+        easylink_config = nil;
+        self.foundModules = nil;
+    }
+    
     [self stopAction];
     // Retain the UI access for the user.
     [self enableUIAccess:YES];
@@ -187,9 +206,14 @@ BOOL configTableMoved = NO;
         halo[idx] =nil;;
     
     [easylink_config stopTransmitting];
+    [easylink_config closeFTCServer];
     easylink_config = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)dealloc {
+    NSLog(@"%s=>dealloc", __func__);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -229,7 +253,7 @@ BOOL configTableMoved = NO;
  */
 
 - (void) waitForAck: (id)sender{
-    while([waitForAckThread isCancelled] == NO)
+    while(![[NSThread currentThread] isCancelled])
     {
         if ( newModuleFound==YES ){
             [self stopAction];
@@ -238,7 +262,8 @@ BOOL configTableMoved = NO;
             break;
         }
         sleep(1);
-    }
+    };
+    NSLog(@"waitForAck exit");
 }
 
 
@@ -264,10 +289,17 @@ BOOL configTableMoved = NO;
     NSString *passwordKey = [passwordField.text length] ? passwordField.text : nil;
     NSString *userInfo = [userInfoField.text length]? userInfoField.text : nil;
     
+    
     if(version == EASYLINK_V1)
         [easylink_config prepareEasyLinkV1:ssid password:passwordKey];
-    else if(version == EASYLINK_V2)
-        [easylink_config prepareEasyLinkV2:ssid password:passwordKey info:userInfo];
+    else if(version == EASYLINK_V2){
+        if(userInfo!=nil){
+            const char *temp = [userInfo cStringUsingEncoding:NSUTF8StringEncoding];
+            [easylink_config prepareEasyLinkV2_withFTC:ssid password:passwordKey info:[NSData dataWithBytes:temp length:strlen(temp)]];
+        }else{
+            [easylink_config prepareEasyLinkV2_withFTC:ssid password:passwordKey info:nil];
+        }
+    }
     
     [self sendAction];
 
@@ -319,59 +351,115 @@ BOOL configTableMoved = NO;
 #pragma mark - UITableview Delegate -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+        return 1;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *tableCellIdentifier;
+    UITableViewCell *cell = nil;
     
-   // NSString *str = [[NSString alloc] initWithFormat:@"%d-%d",indexPath.row,indexPath.section];
-    static NSString *tableCellIdentifier = @"APInfo";
+    if(tableView == configTableView){
+        tableCellIdentifier = @"APInfo";
    
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-    if ( cell == nil ) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+        if ( cell == nil ) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell setBackgroundColor:[UIColor colorWithRed:0.100 green:0.478 blue:1.000 alpha:0.1]];
+            cell = [self prepareCell:cell atIndexPath:indexPath];
+        }
+    }else{
+        tableCellIdentifier = @"New Module";
         
-        [cell setBackgroundColor:[UIColor colorWithRed:0.100 green:0.478 blue:1.000 alpha:0.1]];
-        
-        cell = [self prepareCell:cell
-                     atIndexPath:indexPath];
+        cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+        [cell setBackgroundColor:[UIColor colorWithRed:0.100 green:0.478 blue:1.000 alpha:0.4]];
+        [cell setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.6]];
+        cell.textLabel.text = [[self.foundModules objectAtIndex:indexPath.row] objectForKey:@"N"];
         
     }
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    if(tableView == configTableView)
+        return 3;
+    else
+        return [self.foundModules count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(tableView == foundModuleTableView)
+        return @"UNCONFIGURED DEVICE LIST";
+    else
+        return nil;
+}
+
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    if([self.foundModules count])
+        view.hidden = false;
+    else
+        view.hidden = true;
 }
 
 #pragma mark - UITextfiled delegate -
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    if(configTableMoved == NO){
-        configTableMoved = YES;
-        CGPoint newCenter = CGPointMake(configTableView.center.x, configTableView.center.y-100);
-        [UIView animateWithDuration:0.5
-                         animations:^{configTableView.center = newCenter;}
-                         completion:NULL];
-    }
-    return YES;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if(configTableMoved == YES){
-        configTableMoved = NO;
-        CGPoint newCenter = CGPointMake(configTableView.center.x, configTableView.center.y+100);
-        [UIView animateWithDuration:0.5
-                         animations:^{configTableView.center = newCenter;}
-                         completion:NULL];
-    }
     [textField resignFirstResponder];
     return YES;
 }
 
+#pragma mark - EasyLink delegate -
+
+- (void)onFoundByFTC:(NSNumber *)ftcClientTag currentConfig: (NSData *)config;
+{
+    NSError *err;
+    NSIndexPath* indexPath;
+    NSMutableDictionary *foundModule = nil;
+    
+    foundModule = [NSJSONSerialization JSONObjectWithData:config
+                                                  options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
+                                                    error:&err];
+
+    if (err) {
+        NSLog(@"Unpackage JSON data failed:%@", [err localizedDescription]);
+    }
+    
+    [foundModule setValue:ftcClientTag forKey:@"client"];
+    
+    /*Reloace an old device*/
+    for( NSDictionary *object in self.foundModules){
+        if ([[object objectForKey:@"N"] isEqualToString:[foundModule objectForKey:@"N"]] ){
+            [self.foundModules replaceObjectAtIndex:[self.foundModules indexOfObject:object]
+                                         withObject:foundModule];
+            return;
+        }
+    }
+    /*Add a new device*/
+    if([self.foundModules count]==0){
+        UIView *sectionHead =  [foundModuleTableView headerViewForSection:0];
+        sectionHead.hidden = NO;
+        [sectionHead setNeedsDisplay];
+    }
+
+    [self.foundModules addObject:foundModule];
+    indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
+    [foundModuleTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                withRowAnimation:UITableViewRowAnimationRight];
+
+
+}
+
+#pragma mark - EasyLinkFTCTableViewController delegate-
+
+- (void)onConfigured:(NSMutableDictionary *)configData
+{
+    NSLog(@"configured");
+}
 
 #pragma mark - Private Methods -
 
@@ -413,6 +501,7 @@ BOOL configTableMoved = NO;
         [ssidField setReturnKeyType:UIReturnKeyDone];
         [ssidField setText:[EASYLINK ssidForConnectedNetwork]];
         [cell addSubview:ssidField];
+        [ssidField setText:@"901"];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"SSID";
@@ -429,6 +518,8 @@ BOOL configTableMoved = NO;
         [passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
         [passwordField setBackgroundColor:[UIColor clearColor]];
         [cell addSubview:passwordField];
+        [passwordField setText:@"xuweixuwei"];
+
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"Password";
@@ -444,7 +535,7 @@ BOOL configTableMoved = NO;
         [userInfoField setPlaceholder:@"Device name"];
         [userInfoField setReturnKeyType:UIReturnKeyDone];
         [userInfoField setBackgroundColor:[UIColor clearColor]];
-        //[userInfoField setText:[EASYLINK getGatewayAddress]];
+        [userInfoField setText:@"Hello"];
         
         [cell addSubview:userInfoField];
         
@@ -470,8 +561,6 @@ BOOL configTableMoved = NO;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"Gateway";
     }
-
-
     return cell;
 }
 
@@ -482,7 +571,13 @@ BOOL configTableMoved = NO;
  */
 - (void)appEnterInforground:(NSNotification*)notification{
     NSLog(@"%s", __func__);
-    easylink_config = [[EASYLINK alloc] init];
+    if( easylink_config == nil){
+        easylink_config = [[EASYLINK alloc]init];
+        [easylink_config startFTCServerWithDelegate:self];
+    }
+    if( self.foundModules == nil)
+        self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
+    [foundModuleTableView reloadData];
     ssidField.text = [EASYLINK ssidForConnectedNetwork];
     gatewayAddress.text = [EASYLINK getGatewayAddress];
 }
@@ -495,13 +590,16 @@ BOOL configTableMoved = NO;
     NSLog(@"%s", __func__);
     
     [easylink_config stopTransmitting];
+    [easylink_config closeFTCServer];
     easylink_config = nil;
+    self.foundModules = nil;
+    
     if ( EasylinkV1Button.selected )
         [self easyLinkV1ButtonAction:EasylinkV1Button]; /// Simply revert the state
     if ( EasylinkV2Button.selected )
         [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
     
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    //[self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 /*
@@ -526,6 +624,27 @@ BOOL configTableMoved = NO;
     }else {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
         gatewayAddress.text = [EASYLINK getGatewayAddress];
+    }
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"First Time Configuration"]) {
+        NSIndexPath *indexPath = [foundModuleTableView indexPathForSelectedRow];
+        [foundModuleTableView deselectRowAtIndexPath:indexPath animated:YES];
+        NSMutableDictionary *object = [self.foundModules objectAtIndex:indexPath.row];
+        
+        //[easylink_config stopTransmitting];
+        //easylink_config = nil;
+        if ( EasylinkV1Button.selected )
+            [self easyLinkV1ButtonAction:EasylinkV1Button]; /// Simply revert the state
+        if ( EasylinkV2Button.selected )
+            [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
+        
+        [[segue destinationViewController] setConfigData:object];
+        [[segue destinationViewController] setDelegate:self];
+        
     }
 }
 

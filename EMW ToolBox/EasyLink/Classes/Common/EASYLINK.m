@@ -7,42 +7,156 @@
 //
 
 #import "EASYLINK.h"
-//#import "route.h"
 #import "sys/sysctl.h"
 
 
+CFHTTPMessageRef inComingMessageArray[10];
+
 static NSUInteger count = 0;
 
+
 @interface EASYLINK (privates)
+
 - (void)startConfigure:(id)sender;
+
 @end
 
 @implementation EASYLINK
 @synthesize array;
+@synthesize ftcClients;
 @synthesize socket;
+@synthesize ftcServerSocket;
+//@synthesize firstTimeConfig;
 
 -(id)init{
-    self.array = [NSMutableArray array];
-    self.socket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
-    sendInterval = nil;
-    return [super init];
+    NSLog(@"Init EasyLink");
+    self = [super init];
+    if (self) {
+        // Initialization code
+        self.array = [NSMutableArray array];
+        self.ftcClients = [NSMutableArray arrayWithCapacity:10];
+        self.socket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
+        sendInterval = nil;
+        firstTimeConfig = NO;
+        
+        for(NSUInteger idx = 0; idx!=10; idx++){
+            inComingMessageArray[idx] = nil;
+        }
+        
+
+    }
+    return self;
 }
 
-- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSString *)userInfo{
+-(void)dealloc{
+    NSLog(@"unInit EasyLink");
+    [self closeFTCServer];
+}
+
+- (id)delegate
+{
+	return theDelegate;
+}
+
+- (void)setDelegate:(id)delegate
+{
+    theDelegate = delegate;
+}
+
+
+- (void)startFTCServerWithDelegate:(id)delegate;
+{
+    NSError *err = nil;
+    NSLog(@"Start FTC server");
+    ftcServerSocket = [[AsyncSocket alloc] initWithDelegate:self];
+    [ftcServerSocket acceptOnPort:FTC_PORT error:&err];
+    if (err) {
+        NSLog(@"Setup TCP server failed:%@", [err localizedDescription]);
+    }
+	theDelegate = delegate;
+}
+
+- (void)closeFTCServer
+{
+    for (NSMutableDictionary *object in self.ftcClients)
+    {
+        NSLog(@"Close FTC clients");
+        AsyncSocket *clientSocket = [object objectForKey:@"Socket"];
+        [clientSocket setDelegate:nil];
+        [clientSocket disconnect];
+        clientSocket = nil;
+    }
+    if(self.ftcServerSocket != nil){
+        NSLog(@"Close FTC server");
+        [self.ftcServerSocket setDelegate:nil];
+        [self.ftcServerSocket disconnect];
+        self.ftcServerSocket = nil;
+    }
+    self.ftcClients = nil;
+    theDelegate = nil;
+}
+
+- (BOOL)isFTCServerStarted
+{
+    if(self.ftcServerSocket == nil)
+        return NO;
+    else
+        return YES;
+}
+
+
+- (void)prepareEasyLinkV2_withFTC:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
+{
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    if (userInfo == nil) userInfo = [NSData dataWithBytes:nil length:0];
+    
+    int success = 0;
+    uint32_t address = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String for IP
+                    address = htonl(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr.s_addr);
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // Free/release memory
+    freeifaddrs(interfaces);
+    
+    NSMutableData *userInfoWithIP = [NSMutableData dataWithCapacity:([userInfo length]+sizeof(uint32_t))];
+    [userInfoWithIP appendData:userInfo];
+    [userInfoWithIP appendBytes:(const void *)&address length:sizeof(uint32_t)];
+    
+    [self prepareEasyLinkV2:bSSID password:bpasswd info: userInfoWithIP];
+    firstTimeConfig = YES;
+}
+
+
+- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
+{
     if (bSSID == nil) bSSID = @"";
     if (bpasswd == nil) bpasswd = @"";
-    if (userInfo == nil) userInfo = @"";
+    if (userInfo == nil) userInfo = [NSData dataWithBytes:nil length:0];
     NSString *mergeString =  [bSSID stringByAppendingString:bpasswd];
     version = EASYLINK_V2;
     
     const char *bSSID_UTF8 = [bSSID UTF8String];
     const char *bpasswd_UTF8 = [bpasswd UTF8String];
-    const char *userInfo_UTF8 = [userInfo UTF8String];
+    const char *userInfo_UTF8 = [userInfo bytes];
     const char *mergeString_UTF8 = [mergeString UTF8String];
     
     NSUInteger bSSID_length = strlen(bSSID_UTF8);
     NSUInteger bpasswd_length = strlen(bpasswd_UTF8);
-    NSUInteger userInfo_length = strlen(userInfo_UTF8);
+    NSUInteger userInfo_length = [userInfo length];
     NSUInteger mergeString_Length = strlen(mergeString_UTF8);
     
     NSUInteger headerLength = 20;
@@ -96,15 +210,19 @@ static NSUInteger count = 0;
         [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", a, b] forKey:@"host"];
         [self.array addObject:dictionary];
     }
+    firstTimeConfig = NO;
+
 }
 
-- (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd{
+- (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd
+{
     version = EASYLINK_V1;
     if (bSSID == nil) bSSID = @"";
     if (bpasswd == nil) bpasswd = @"";
     
     Byte tempData[128], PD;
     NSUInteger sendData;
+    firstTimeConfig = NO;
     
     const NSUInteger header1 = 3;
     const NSUInteger header2 = 23;
@@ -158,9 +276,10 @@ static NSUInteger count = 0;
     [self stopTransmitting];
     if(version == EASYLINK_V1)
         delay = 0.004;
-    
     count = 0;
+
     sendInterval =[NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(startConfigure:) userInfo:nil repeats:YES];
+    
 }
 
 - (void)stopTransmitting
@@ -169,10 +288,10 @@ static NSUInteger count = 0;
         [sendInterval invalidate];
         sendInterval = nil;
     }
+
 }
 
 - (void)startConfigure:(id)sender{
-    
     if(version==EASYLINK_V2){
         //NSLog(@"Send data %@, length %d", [[self.array objectAtIndex:count] objectForKey:@"host"],[[[self.array objectAtIndex:count] objectForKey:@"sendData"] length] );
         [self.socket sendData:[[self.array objectAtIndex:count] objectForKey:@"sendData"] toHost:[[self.array objectAtIndex:count] objectForKey:@"host"] port:65523 withTimeout:10 tag:0];
@@ -188,6 +307,92 @@ static NSUInteger count = 0;
     }
 }
 
+- (void)configFTCClient:(NSUInteger)client withConfigurationData:(NSData* )configData
+{
+    NSLog(@"Configured");
+}
+
+
+
+#pragma mark - TCP delegate
+- (void)onSocket:(AsyncSocket *)sock didAcceptNewSocket:(AsyncSocket *)newSocket
+{
+    NSNumber *tag = nil;
+    AsyncSocket *clientSocket = newSocket;
+    NSMutableDictionary *client = [[NSMutableDictionary alloc]initWithCapacity:5];
+    for (NSUInteger idx=0; idx!=10; idx++) {
+        if(inComingMessageArray[idx]==nil){
+            tag = [NSNumber numberWithLong:(long)idx];
+            break;
+        }
+    }
+    inComingMessageArray[[tag longValue]] = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
+    [client setObject:clientSocket forKey:@"Socket"];
+    [client setObject:tag forKey:@"Tag"];
+    //[client setObject:nil forKey:@"Report"];
+    [ftcClients addObject:client];
+    
+    [clientSocket readDataWithTimeout:100 tag:[tag longValue]];
+}
+
+- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err
+{
+    if (err) {
+        NSLog(@"Setup TCP server failed:%@, %@", sock, [err localizedDescription]);
+    }
+}
+
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+    CFHTTPMessageRef inComingMessage;
+    NSUInteger contentLength, currentLength;
+    NSMutableDictionary *client;
+    inComingMessage = inComingMessageArray[tag];
+    
+    for (NSMutableDictionary *object in self.ftcClients)
+    {
+        if( [object objectForKey:@"Socket"] == sock){
+            client = object;
+            break;
+        }
+    }
+    
+    CFHTTPMessageAppendBytes(inComingMessage, [data bytes], [data length]);
+    if (!CFHTTPMessageIsHeaderComplete(inComingMessage)){
+        [sock readDataWithTimeout:100 tag:tag];
+        return;
+    }
+    
+    CFDataRef bodyRef = CFHTTPMessageCopyBody (inComingMessage );
+    NSData *body = (__bridge_transfer NSData*)bodyRef;
+    
+    CFStringRef contentLengthRef = CFHTTPMessageCopyHeaderFieldValue (inComingMessage, CFSTR("Content-Length") );
+    contentLength = [(__bridge_transfer NSString*)contentLengthRef intValue];
+    
+    currentLength = [body length];
+    NSLog(@"%lu/%lu", (unsigned long)currentLength, (unsigned long)contentLength);
+    
+    if(currentLength < contentLength){
+        [sock readDataToLength:(contentLength-currentLength) withTimeout:100 tag:(long)tag];
+        return;
+    }
+    
+    CFURLRef urlRef = CFHTTPMessageCopyRequestURL(inComingMessage);
+    CFStringRef urlPathRef= CFURLCopyPath (urlRef);
+    CFRelease(urlRef);
+    NSString *urlPath= (__bridge_transfer NSString*)urlPathRef;
+    
+    NSLog(@"URL: %@", urlPath);
+
+    if([urlPath rangeOfString:@"/auth-setup"].location != NSNotFound){
+        if([theDelegate respondsToSelector:@selector(onFoundByFTC: currentConfig:)])
+            [theDelegate onFoundByFTC:[client objectForKey:@"Tag"] currentConfig: body];
+    }
+    
+
+}
+
+#pragma mark -
 /*!!!!!!!!!!!!
  retriving the SSID of the connected network
  @return value: the SSID of currently connected wifi

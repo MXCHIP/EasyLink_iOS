@@ -21,6 +21,7 @@
 		3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */; };
 		3D55334917A66648008145EB /* EMW3161_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D55334817A66648008145EB /* EMW3161_logo.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
+		3D7B49CD18E2BB2D0062837A /* FTCSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B49CC18E2BB2D0062837A /* FTCSwitchCell.m */; };
 		3D8E9FD118A8A57800F6618E /* antena.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD018A8A57800F6618E /* antena.png */; };
 		3D8E9FD418A8B12F00F6618E /* Earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD318A8B12F00F6618E /* Earth.png */; };
 		3D8E9FD618A8BD8100F6618E /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD518A8BD8100F6618E /* EMW3162.png */; };
@@ -36,9 +37,11 @@
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
 		3DC773B617A8A6710029ACB3 /* EMW3280_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC773B417A8A6710029ACB3 /* EMW3280_logo.png */; };
 		3DC773B717A8A6710029ACB3 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC773B517A8A6710029ACB3 /* known_logo.png */; };
+		3DD19A6018E00D5600F8E43A /* EasyLinkFTCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */; };
 		3DDB158A18BB0C580053B32D /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB158918BB0C580053B32D /* ExternalAccessory.framework */; };
 		3DE2417F17F2BC6900327C5C /* EMW3162_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE2417E17F2BC6900327C5C /* EMW3162_logo.png */; };
 		3DEF24A117BD0D1600C0A5C7 /* EmspCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF24A017BD0D1600C0A5C7 /* EmspCommands.m */; };
+		3DF345D018E125F60088832E /* FTCStringCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF345CF18E125F60088832E /* FTCStringCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,10 +65,13 @@
 		3D2AD5A417A247E30026E31E /* mxchipDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mxchipDetailViewController.h; sourceTree = "<group>"; };
 		3D2AD5A517A247E30026E31E /* mxchipDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mxchipDetailViewController.m; sourceTree = "<group>"; };
 		3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3D31DA9A18E7A98800385649 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
 		3D4289D918A4D73F0092DD5D /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PulsingHaloLayer.h; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.h"; sourceTree = "<group>"; };
 		3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.m"; sourceTree = "<group>"; };
 		3D55334817A66648008145EB /* EMW3161_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMW3161_logo.png; sourceTree = "<group>"; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
+		3D7B49CB18E2BB2D0062837A /* FTCSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCSwitchCell.h; sourceTree = "<group>"; };
+		3D7B49CC18E2BB2D0062837A /* FTCSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCSwitchCell.m; sourceTree = "<group>"; };
 		3D8E9FD018A8A57800F6618E /* antena.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = antena.png; path = iPhone/antena.png; sourceTree = "<group>"; };
 		3D8E9FD318A8B12F00F6618E /* Earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Earth.png; path = iPhone/Earth.png; sourceTree = "<group>"; };
 		3D8E9FD518A8BD8100F6618E /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = iPhone/EMW3162.png; sourceTree = "<group>"; };
@@ -86,10 +92,14 @@
 		3DAA394F17A554AD003806FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3DC773B417A8A6710029ACB3 /* EMW3280_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3280_logo.png; path = "EMW ToolBox/Resources/Images/Common/EMW3280_logo.png"; sourceTree = SOURCE_ROOT; };
 		3DC773B517A8A6710029ACB3 /* known_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = known_logo.png; path = "EMW ToolBox/Resources/Images/Common/known_logo.png"; sourceTree = SOURCE_ROOT; };
+		3DD19A5E18E00D5600F8E43A /* EasyLinkFTCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLinkFTCTableViewController.h; sourceTree = "<group>"; };
+		3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLinkFTCTableViewController.m; sourceTree = "<group>"; };
 		3DDB158918BB0C580053B32D /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		3DE2417E17F2BC6900327C5C /* EMW3162_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMW3162_logo.png; sourceTree = "<group>"; };
 		3DEF249F17BD0D1600C0A5C7 /* EmspCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmspCommands.h; sourceTree = "<group>"; };
 		3DEF24A017BD0D1600C0A5C7 /* EmspCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmspCommands.m; sourceTree = "<group>"; };
+		3DF345CE18E125F60088832E /* FTCStringCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCStringCell.h; sourceTree = "<group>"; };
+		3DF345CF18E125F60088832E /* FTCStringCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCStringCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +169,7 @@
 		3D2AD58C17A247E30026E31E /* MainUI */ = {
 			isa = PBXGroup;
 			children = (
+				3DF345CD18E125CF0088832E /* FTC CELL */,
 				3D2AD59517A247E30026E31E /* mxchipAppDelegate.h */,
 				3D2AD59617A247E30026E31E /* mxchipAppDelegate.m */,
 				3D2AD59E17A247E30026E31E /* MainStoryboard.storyboard */,
@@ -170,6 +181,8 @@
 				3D2AD5A517A247E30026E31E /* mxchipDetailViewController.m */,
 				3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */,
 				3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */,
+				3DD19A5E18E00D5600F8E43A /* EasyLinkFTCTableViewController.h */,
+				3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */,
 				3DAA393C17A54572003806FE /* Reachability */,
 				3DAA37E317A542FC003806FE /* EasyLink */,
 				3D2AD58D17A247E30026E31E /* Supporting Files */,
@@ -271,12 +284,24 @@
 		3DAA394017A54ED0003806FE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3D31DA9A18E7A98800385649 /* route.h */,
 				3DAA394117A54ED0003806FE /* APManager.h */,
 				3DAA394217A54ED0003806FE /* APManager.m */,
 				3DAA394317A54ED0003806FE /* EMWHeader.h */,
 			);
 			name = Common;
 			path = EasyLink/Classes/Common;
+			sourceTree = "<group>";
+		};
+		3DF345CD18E125CF0088832E /* FTC CELL */ = {
+			isa = PBXGroup;
+			children = (
+				3DF345CE18E125F60088832E /* FTCStringCell.h */,
+				3DF345CF18E125F60088832E /* FTCStringCell.m */,
+				3D7B49CB18E2BB2D0062837A /* FTCSwitchCell.h */,
+				3D7B49CC18E2BB2D0062837A /* FTCSwitchCell.m */,
+			);
+			name = "FTC CELL";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,11 +390,14 @@
 				3D207F47187D2FC700A3CBB7 /* AsyncUdpSocket.m in Sources */,
 				3D2AD5A617A247E30026E31E /* mxchipDetailViewController.m in Sources */,
 				3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */,
+				3DF345D018E125F60088832E /* FTCStringCell.m in Sources */,
 				3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */,
 				3DAA393F17A54572003806FE /* Reachability.m in Sources */,
 				3DAA394817A54ED0003806FE /* APManager.m in Sources */,
+				3DD19A6018E00D5600F8E43A /* EasyLinkFTCTableViewController.m in Sources */,
 				3D207F46187D2FC700A3CBB7 /* AsyncSocket.m in Sources */,
 				3DAA394A17A54ED0003806FE /* EASYLINK.m in Sources */,
+				3D7B49CD18E2BB2D0062837A /* FTCSwitchCell.m in Sources */,
 				3DEF24A117BD0D1600C0A5C7 /* EmspCommands.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

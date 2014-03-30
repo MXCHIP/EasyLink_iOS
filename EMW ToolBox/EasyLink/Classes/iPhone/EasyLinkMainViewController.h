@@ -12,20 +12,24 @@
 #import "EMWHeader.h"
 //#import "EMWUtility.h"
 #import "EASYLINK.h"
+#import "EasyLinkFTCTableViewController.h"
 
-@interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate>{
-    @private
+@interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate, EasyLinkFTCDelegate, EasyLinkFTCDataDelegate>{
+        NSMutableArray *foundModules;
+@private
         IBOutlet UITableView *configTableView;
+        IBOutlet UITableView *foundModuleTableView;
+        UITextField *ssidField,*passwordField,*userInfoField,*gatewayAddress;
 
         IBOutlet UIButton *EasylinkV1Button, *EasylinkV2Button;
         IBOutlet UIImageView *imagePhoneView, *imageEMW3161View, *imageEMW3162View, *backgroundImage;
 
         EASYLINK *easylink_config;
     
-        UITextField *ssidField,*passwordField,*userInfoField,*gatewayAddress;
-    
         Reachability *wifiReachability;
 }
+
+@property (strong, nonatomic) NSMutableArray *foundModules;
 
 /*
  This method waits for an acknowledge from the remote device than it stops the transmit to the remote device and returns with data it got from the remote device.
@@ -41,6 +45,9 @@
     library is handled.
  */
 - (void)startTransmitting: (int)version;
+
+
+
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AsyncUdpSocket.h"
+#import "AsyncSocket.h"
 #import <UIKit/UIKit.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -23,23 +24,61 @@
 #define EASYLINK_V1 0
 #define EASYLINK_V2 1
 
+#define FTC_PORT 8000
+
+@protocol EasyLinkFTCDelegate
+@optional
+
+/**
+ *
+ **/
+- (void)onFoundByFTC:(NSNumber *)client currentConfig: (NSData *)config;
+
+@end
+
+
 
 @interface EASYLINK : NSObject{
 @private
     NSUInteger version;
+    NSMutableArray *array;   //Used for EasyLink transmitting
     AsyncUdpSocket *socket;
+    
+    //Used for EasyLink first time configuration
+    AsyncSocket *ftcServerSocket;
+    NSMutableArray *ftcClients;
+    
     NSTimer *sendInterval;
-    NSMutableArray *array;
     NSThread *easyLinkThread;
+    BOOL firstTimeConfig;
+    id theDelegate;
 }
 
 @property (retain, nonatomic) NSMutableArray *array;
 @property (retain, nonatomic) AsyncUdpSocket *socket;
+@property (retain, nonatomic) AsyncSocket *ftcServerSocket;
+@property (retain, nonatomic) NSArray *ftcClients;
+
 
 - (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd;
-- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSString *)userInfo;
+- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
+- (void)prepareEasyLinkV2_withFTC:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
 - (void)transmitSettings;
 - (void)stopTransmitting;
+
+- (id)delegate;
+- (void)setDelegate:(id)delegate;
+- (void)startFTCServerWithDelegate:(id)delegate;
+- (void)configFTCClient:(NSUInteger)client   withConfigurationData: (NSData* )configData;
+
+- (void)closeFTCServer;
+- (BOOL)isFTCServerStarted;
+
+/**
+ *
+ **/
+- (void)declineFTCClient:(NSMutableDictionary *)ftcClient;
+
 + (NSString *)ssidForConnectedNetwork;
 + (NSString *)getGatewayAddress;
 
