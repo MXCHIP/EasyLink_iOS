@@ -8,6 +8,7 @@
 
 #import "browserViewController.h"
 #import "mxchipDetailViewController.h"
+#include "moduleBrowserCell.h"
 #import <sys/socket.h> 
 #import <netinet/in.h>
 #include <arpa/inet.h>
@@ -17,7 +18,7 @@
 #define kInitialDomain  @"local"
 #define repeatInterval  10.0
 
-#define kProgressIndicatorSize 20.0
+
 
 bool newModuleFound;
 bool enumerating = NO;
@@ -30,27 +31,6 @@ bool enumerating = NO;
 - (NSComparisonResult) localizedCaseInsensitiveCompareByName:(NSMutableDictionary*)aService {
 	return [[self objectForKey:@"Name"] localizedCaseInsensitiveCompare:[aService objectForKey:@"Name"]];
 }
-@end
-
-@implementation NSData (Additions)
-- (NSString *)host
-{
-    struct sockaddr *addr = (struct sockaddr *)[self bytes];
-    if(addr->sa_family == AF_INET) {
-        char *address = inet_ntoa(((struct sockaddr_in *)addr)->sin_addr);
-        if (address)
-            return [NSString stringWithCString: address encoding: NSASCIIStringEncoding];
-    }
-    else if(addr->sa_family == AF_INET6) {
-        struct sockaddr_in6 *addr6 = (struct sockaddr_in6 *)addr;
-        char straddr[INET6_ADDRSTRLEN];
-        inet_ntop(AF_INET6, &(addr6->sin6_addr), straddr,
-                  sizeof(straddr));
-        return [NSString stringWithCString: straddr encoding: NSASCIIStringEncoding];
-    }
-    return nil;
-}
-
 @end
 
 
@@ -383,8 +363,7 @@ exit:
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *displayServiceName;
-    NSData *ipAddress = nil;
+
     NSUInteger count = [self.displayServices count];
 
 	if (count == 0) {
@@ -406,86 +385,13 @@ exit:
 	}
     
     static NSString *tableCellIdentifier2 = @"ModuleCell";
-    NSString *serviceName, *hostName, *macAddress, *hardware;
-    NSNetService *service;
-    BOOL resolving;
-	UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:tableCellIdentifier2];
+
+	moduleBrowserCell *cell = (moduleBrowserCell *)[tableView dequeueReusableCellWithIdentifier:tableCellIdentifier2];
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellIdentifier2];
+		cell = [[moduleBrowserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellIdentifier2];
 	}
     
-    // Set up the text for the cell
-	NSMutableDictionary *moduleService = [self.displayServices objectAtIndex:indexPath.row];
-    serviceName = [moduleService objectForKey:@"Name"];
-    service = [moduleService objectForKey:@"BonjourService"];
-    hostName = [service hostName];
-    resolving = [[moduleService objectForKey:@"resolving"] boolValue];
-    NSData *mac = [[NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]] objectForKey:@"MAC"];
-    macAddress = [[NSString alloc] initWithData: mac encoding:NSASCIIStringEncoding];
-    NSData *hd = [[NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]] objectForKey:@"Hardware"];
-    hardware = [[NSString alloc] initWithData: hd encoding:NSASCIIStringEncoding];
-    
-
-    
-    if (resolving == YES){
-        cell.imageView.image = [UIImage imageNamed:@"known_logo.png"];
-    }
-    else{
-        if([hardware rangeOfString:@"EMW3161"].location != NSNotFound)
-            cell.imageView.image = [UIImage imageNamed:@"EMW3161_logo.png"];
-        else if([hardware rangeOfString:@"EMW3280"].location != NSNotFound)
-            cell.imageView.image = [UIImage imageNamed:@"EMW3280_logo.png"];
-        else if([hardware rangeOfString:@"EMW3162"].location != NSNotFound)
-            cell.imageView.image = [UIImage imageNamed:@"EMW3162_logo.png"];
-        else
-            cell.imageView.image = [UIImage imageNamed:@"known_logo.png"];
-    }
-    
-    NSRange range = [serviceName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"#"]
-                                                 options:NSBackwardsSearch];
-    if(range.location == NSNotFound)
-        range.length = [serviceName length];
-    else
-        range.length = range.location;
-    range.location = 0;
-    displayServiceName = [serviceName substringWithRange:range];
-    cell.textLabel.text = displayServiceName;
-    cell.textLabel.textColor = [UIColor blackColor];
-    if([[[moduleService objectForKey:@"BonjourService"] addresses] count])
-        ipAddress = [[service addresses] objectAtIndex:0];
-    
-    NSString *detailString = [[NSString alloc] initWithFormat:
-                              @"MAC: %@\nIP :%@",
-                              macAddress,
-                              (ipAddress!=nil)? [ipAddress host]:@"Unknow"];
-    
-    cell.detailTextLabel.text = detailString;
-
-    
-	if (resolving == NO){
-
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        if (cell.accessoryView) {
-            cell.accessoryView = nil;
-        }
-    }
-	
-	// Note that the underlying array could have changed, and we want to show the activity indicator on the correct cell
-	else{
-		if (!cell.accessoryView) {
-			CGRect frame = CGRectMake(0.0, 0.0, kProgressIndicatorSize, kProgressIndicatorSize);
-			UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
-			[spinner startAnimating];
-			spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-			[spinner sizeToFit];
-			spinner.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
-										UIViewAutoresizingFlexibleRightMargin |
-										UIViewAutoresizingFlexibleTopMargin |
-										UIViewAutoresizingFlexibleBottomMargin);
-			cell.accessoryView = spinner;
-		}
-	}
-	
+    cell.moduleService = [self.displayServices objectAtIndex:indexPath.row];
 	return cell;
 }
 

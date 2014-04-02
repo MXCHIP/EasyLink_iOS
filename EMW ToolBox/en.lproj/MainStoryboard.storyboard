@@ -32,10 +32,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="v9I-fj-FoW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="334"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="334" id="QPw-Mq-jVc"/>
+                                    <constraint firstAttribute="height" constant="473" id="QPw-Mq-jVc"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Searching" textLabel="9l1-sP-7N3" rowHeight="55" style="IBUITableViewCellStyleDefault" id="xHm-AF-7Qm">
@@ -54,11 +54,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ModuleCell" textLabel="nSk-dp-zRa" detailTextLabel="oU1-3o-zg5" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="OQ3-wP-5u5">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ModuleCell" textLabel="nSk-dp-zRa" detailTextLabel="oU1-3o-zg5" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="OQ3-wP-5u5" customClass="moduleBrowserCell">
                                         <rect key="frame" x="0.0" y="141" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OQ3-wP-5u5" id="wGV-WG-1ig">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="281" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Module Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nSk-dp-zRa">
@@ -75,9 +75,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="dgG-FF-5cW" kind="push" id="Aj0-2Y-zKE"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -95,6 +92,10 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KTQ-qQ-qy8">
+                                <rect key="frame" x="18" y="481" width="284" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>

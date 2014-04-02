@@ -26,6 +26,7 @@
 		3D8E9FD418A8B12F00F6618E /* Earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD318A8B12F00F6618E /* Earth.png */; };
 		3D8E9FD618A8BD8100F6618E /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD518A8BD8100F6618E /* EMW3162.png */; };
 		3D8E9FD818A8C15F00F6618E /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD718A8C15F00F6618E /* EMW3161.png */; };
+		3DA1179A18EBE946009B2E1E /* moduleBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1179918EBE946009B2E1E /* moduleBrowserCell.m */; };
 		3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */; };
 		3DAA389B17A5446B003806FE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA37F817A5446A003806FE /* Default-568h@2x.png */; };
 		3DAA38A217A5446B003806FE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA37FF17A5446B003806FE /* Default.png */; };
@@ -76,6 +77,8 @@
 		3D8E9FD318A8B12F00F6618E /* Earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Earth.png; path = iPhone/Earth.png; sourceTree = "<group>"; };
 		3D8E9FD518A8BD8100F6618E /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = iPhone/EMW3162.png; sourceTree = "<group>"; };
 		3D8E9FD718A8C15F00F6618E /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = iPhone/EMW3161.png; sourceTree = "<group>"; };
+		3DA1179818EBE946009B2E1E /* moduleBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = moduleBrowserCell.h; sourceTree = "<group>"; };
+		3DA1179918EBE946009B2E1E /* moduleBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = moduleBrowserCell.m; sourceTree = "<group>"; };
 		3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLinkMainViewController.h; path = EasyLink/Classes/iPhone/EasyLinkMainViewController.h; sourceTree = "<group>"; };
 		3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EasyLinkMainViewController.m; path = EasyLink/Classes/iPhone/EasyLinkMainViewController.m; sourceTree = "<group>"; };
 		3DAA37F817A5446A003806FE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -169,7 +172,8 @@
 		3D2AD58C17A247E30026E31E /* MainUI */ = {
 			isa = PBXGroup;
 			children = (
-				3DF345CD18E125CF0088832E /* FTC CELL */,
+				3DA1179718EBE2CE009B2E1E /* Browser Cell */,
+				3DF345CD18E125CF0088832E /* FTC Cell */,
 				3D2AD59517A247E30026E31E /* mxchipAppDelegate.h */,
 				3D2AD59617A247E30026E31E /* mxchipAppDelegate.m */,
 				3D2AD59E17A247E30026E31E /* MainStoryboard.storyboard */,
@@ -221,6 +225,15 @@
 				3D8E9FD018A8A57800F6618E /* antena.png */,
 			);
 			name = EasyLinkView;
+			sourceTree = "<group>";
+		};
+		3DA1179718EBE2CE009B2E1E /* Browser Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3DA1179818EBE946009B2E1E /* moduleBrowserCell.h */,
+				3DA1179918EBE946009B2E1E /* moduleBrowserCell.m */,
+			);
+			name = "Browser Cell";
 			sourceTree = "<group>";
 		};
 		3DAA37E317A542FC003806FE /* EasyLink */ = {
@@ -293,7 +306,7 @@
 			path = EasyLink/Classes/Common;
 			sourceTree = "<group>";
 		};
-		3DF345CD18E125CF0088832E /* FTC CELL */ = {
+		3DF345CD18E125CF0088832E /* FTC Cell */ = {
 			isa = PBXGroup;
 			children = (
 				3DF345CE18E125F60088832E /* FTCStringCell.h */,
@@ -301,7 +314,7 @@
 				3D7B49CB18E2BB2D0062837A /* FTCSwitchCell.h */,
 				3D7B49CC18E2BB2D0062837A /* FTCSwitchCell.m */,
 			);
-			name = "FTC CELL";
+			name = "FTC Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +405,7 @@
 				3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */,
 				3DF345D018E125F60088832E /* FTCStringCell.m in Sources */,
 				3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */,
+				3DA1179A18EBE946009B2E1E /* moduleBrowserCell.m in Sources */,
 				3DAA393F17A54572003806FE /* Reachability.m in Sources */,
 				3DAA394817A54ED0003806FE /* APManager.m in Sources */,
 				3DD19A6018E00D5600F8E43A /* EasyLinkFTCTableViewController.m in Sources */,
