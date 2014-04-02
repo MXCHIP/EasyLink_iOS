@@ -112,6 +112,8 @@
 {
     if([theDelegate respondsToSelector:@selector(onConfigured:)])
         [theDelegate onConfigured:self.configData];
+    
+    //[self.navigationController popToViewController:theDelegate animated:YES];
 }
 
 

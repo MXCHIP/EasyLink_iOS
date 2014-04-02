@@ -34,6 +34,11 @@
  **/
 - (void)onFoundByFTC:(NSNumber *)client currentConfig: (NSData *)config;
 
+/**
+ *
+ **/
+- (void)onDisconnectFromFTC:(NSNumber *)client;
+
 @end
 
 
@@ -47,6 +52,7 @@
     //Used for EasyLink first time configuration
     AsyncSocket *ftcServerSocket;
     NSMutableArray *ftcClients;
+    CFMutableArrayRef inCommingMessages;
     
     NSTimer *sendInterval;
     NSThread *easyLinkThread;
@@ -57,7 +63,7 @@
 @property (retain, nonatomic) NSMutableArray *array;
 @property (retain, nonatomic) AsyncUdpSocket *socket;
 @property (retain, nonatomic) AsyncSocket *ftcServerSocket;
-@property (retain, nonatomic) NSArray *ftcClients;
+@property (retain, nonatomic) NSMutableArray *ftcClients;
 
 
 - (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd;
@@ -69,7 +75,7 @@
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
 - (void)startFTCServerWithDelegate:(id)delegate;
-- (void)configFTCClient:(NSUInteger)client   withConfigurationData: (NSData* )configData;
+- (void)configFTCClient:(NSNumber *)client withConfigurationData: (NSData *)configData;
 
 - (void)closeFTCServer;
 - (BOOL)isFTCServerStarted;

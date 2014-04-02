@@ -450,15 +450,36 @@ BOOL configTableMoved = NO;
     indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
     [foundModuleTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                 withRowAnimation:UITableViewRowAnimationRight];
+}
 
+- (void)onDisconnectFromFTC:(NSNumber *)ftcClientTag
+{
+    NSIndexPath* indexPath;
+    /*Reloace an old device*/
+    [self.navigationController popToViewController:self animated:YES];
 
+    for( NSDictionary *object in self.foundModules){
+        if ([[object objectForKey:@"client"] isEqualToNumber:ftcClientTag] ){
+            indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:object] inSection:0];
+            [self.foundModules removeObject: object ];
+            [foundModuleTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                        withRowAnimation:UITableViewRowAnimationLeft];
+        }
+    }
+    
+    if([self.foundModules count]==0){
+        UIView *sectionHead = [foundModuleTableView headerViewForSection:0];
+        sectionHead.hidden = YES;
+        [sectionHead setNeedsDisplay];
+    }
 }
 
 #pragma mark - EasyLinkFTCTableViewController delegate-
 
 - (void)onConfigured:(NSMutableDictionary *)configData
 {
-    NSLog(@"configured");
+    [easylink_config configFTCClient:[configData objectForKey:@"client"]
+               withConfigurationData:nil];
 }
 
 #pragma mark - Private Methods -
@@ -501,7 +522,7 @@ BOOL configTableMoved = NO;
         [ssidField setReturnKeyType:UIReturnKeyDone];
         [ssidField setText:[EASYLINK ssidForConnectedNetwork]];
         [cell addSubview:ssidField];
-        [ssidField setText:@"901"];
+        [ssidField setText:@"William's Airport"];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"SSID";
@@ -518,7 +539,7 @@ BOOL configTableMoved = NO;
         [passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
         [passwordField setBackgroundColor:[UIColor clearColor]];
         [cell addSubview:passwordField];
-        [passwordField setText:@"xuweixuwei"];
+        [passwordField setText:@"mx099555"];
 
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];

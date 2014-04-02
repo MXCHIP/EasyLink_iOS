@@ -31,7 +31,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="v9I-fj-FoW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="v9I-fj-FoW">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="334"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -101,7 +101,7 @@
                             <constraint firstItem="oJ2-l6-zrh" firstAttribute="leading" secondItem="Vps-Y2-BUf" secondAttribute="leading" id="5o4-6g-dPS"/>
                             <constraint firstItem="v9I-fj-FoW" firstAttribute="trailing" secondItem="oJ2-l6-zrh" secondAttribute="trailing" id="PNN-or-wfn"/>
                             <constraint firstItem="oJ2-l6-zrh" firstAttribute="trailing" secondItem="Vps-Y2-BUf" secondAttribute="trailing" id="VoN-wP-UDm"/>
-                            <constraint firstItem="v9I-fj-FoW" firstAttribute="top" secondItem="9dJ-B4-lzh" secondAttribute="bottom" id="pS1-4E-ubl"/>
+                            <constraint firstItem="v9I-fj-FoW" firstAttribute="top" secondItem="9dJ-B4-lzh" secondAttribute="bottom" constant="-64" id="pS1-4E-ubl"/>
                             <constraint firstItem="v9I-fj-FoW" firstAttribute="leading" secondItem="oJ2-l6-zrh" secondAttribute="leading" id="wba-d0-04m"/>
                             <constraint firstItem="oJ2-l6-zrh" firstAttribute="bottom" secondItem="Vps-Y2-BUf" secondAttribute="bottom" id="zUS-Oy-fAn"/>
                         </constraints>

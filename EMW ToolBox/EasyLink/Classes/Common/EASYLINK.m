@@ -9,8 +9,8 @@
 #import "EASYLINK.h"
 #import "sys/sysctl.h"
 
-
-CFHTTPMessageRef inComingMessageArray[10];
+#define MessageCount 100
+CFHTTPMessageRef inComingMessageArray[MessageCount];
 
 static NSUInteger count = 0;
 
@@ -18,6 +18,7 @@ static NSUInteger count = 0;
 @interface EASYLINK (privates)
 
 - (void)startConfigure:(id)sender;
+- (void)closeClient:(NSTimer *)timer;
 
 @end
 
@@ -39,7 +40,7 @@ static NSUInteger count = 0;
         sendInterval = nil;
         firstTimeConfig = NO;
         
-        for(NSUInteger idx = 0; idx!=10; idx++){
+        for(NSUInteger idx = 0; idx<MessageCount; idx++){
             inComingMessageArray[idx] = nil;
         }
         
@@ -92,7 +93,14 @@ static NSUInteger count = 0;
         [self.ftcServerSocket disconnect];
         self.ftcServerSocket = nil;
     }
+    
     self.ftcClients = nil;
+    for(int idx = 0; idx<MessageCount; idx++){
+        if(inComingMessageArray[idx]!=nil){
+           CFRelease(inComingMessageArray[idx]) ;
+           inComingMessageArray[idx] = nil;
+        }
+    }
     theDelegate = nil;
 }
 
@@ -307,9 +315,39 @@ static NSUInteger count = 0;
     }
 }
 
-- (void)configFTCClient:(NSUInteger)client withConfigurationData:(NSData* )configData
+- (void)configFTCClient:(NSNumber *)client withConfigurationData:(NSData* )configData
 {
+    CFHTTPMessageRef httpRespondMessage;
+    NSMutableDictionary *clientDict;
     NSLog(@"Configured");
+    char contentLen[50];
+    
+    for (NSMutableDictionary *object in self.ftcClients){
+        if( [[object objectForKey:@"Tag"] longValue] == [client longValue]){
+            clientDict = object;
+            break;
+        }
+    }
+    
+    httpRespondMessage = CFHTTPMessageCreateResponse ( kCFAllocatorDefault, 200, NULL, kCFHTTPVersion1_1 );
+    CFHTTPMessageSetHeaderFieldValue(httpRespondMessage, CFSTR("Content-Type"), CFSTR("application/json"));
+    
+        snprintf(contentLen, 50, "%lu", (unsigned long)[configData length]);
+        CFStringRef length = CFStringCreateWithCharacters (kCFAllocatorDefault, (unichar *)contentLen, strlen(contentLen));
+        CFHTTPMessageSetHeaderFieldValue(httpRespondMessage, CFSTR("Content-Length"),length);
+        CFHTTPMessageSetBody(httpRespondMessage, (__bridge CFDataRef)configData);
+
+
+    CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRespondMessage );
+    [[clientDict objectForKey:@"Socket"] writeData:(__bridge_transfer NSData*)httpData
+                                       withTimeout:20
+                                               tag:[client longValue]];
+    
+    [NSTimer scheduledTimerWithTimeInterval:2
+                                     target:self
+                                   selector:@selector(closeClient:)
+                                   userInfo:[clientDict objectForKey:@"Socket"]
+                                    repeats:NO];
 }
 
 
@@ -319,18 +357,23 @@ static NSUInteger count = 0;
 {
     NSNumber *tag = nil;
     AsyncSocket *clientSocket = newSocket;
+    //NSLog(@"New socket client");
+    
     NSMutableDictionary *client = [[NSMutableDictionary alloc]initWithCapacity:5];
-    for (NSUInteger idx=0; idx!=10; idx++) {
+    for (NSUInteger idx=0; idx!=MessageCount; idx++) {
         if(inComingMessageArray[idx]==nil){
+            inComingMessageArray[idx] = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
             tag = [NSNumber numberWithLong:(long)idx];
             break;
         }
     }
-    inComingMessageArray[[tag longValue]] = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
+    if(tag == nil)
+        return;
+    
     [client setObject:clientSocket forKey:@"Socket"];
     [client setObject:tag forKey:@"Tag"];
-    //[client setObject:nil forKey:@"Report"];
     [ftcClients addObject:client];
+    NSLog(@"New socket client, %d", [tag intValue]);
     
     [clientSocket readDataWithTimeout:100 tag:[tag longValue]];
 }
@@ -342,21 +385,30 @@ static NSUInteger count = 0;
     }
 }
 
+/**/
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock
+{
+    NSNumber *tag = nil;
+    NSLog(@"TCP disconnect");
+    for (NSDictionary *object in self.ftcClients) {
+        if([object objectForKey:@"Socket"] ==sock){
+            tag = [object objectForKey:@"Tag"];
+            CFRelease(inComingMessageArray[[tag intValue]]);
+            inComingMessageArray[[tag intValue]] = nil;
+            [self.ftcClients removeObject: object];
+            if([theDelegate respondsToSelector:@selector(onDisconnectFromFTC:)])
+                [theDelegate onDisconnectFromFTC:tag];
+        }
+    }
+}
+
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    CFHTTPMessageRef inComingMessage;
+    CFHTTPMessageRef inComingMessage, httpRespondMessage;
     NSUInteger contentLength, currentLength;
     NSMutableDictionary *client;
     inComingMessage = inComingMessageArray[tag];
-    
-    for (NSMutableDictionary *object in self.ftcClients)
-    {
-        if( [object objectForKey:@"Socket"] == sock){
-            client = object;
-            break;
-        }
-    }
-    
+
     CFHTTPMessageAppendBytes(inComingMessage, [data bytes], [data length]);
     if (!CFHTTPMessageIsHeaderComplete(inComingMessage)){
         [sock readDataWithTimeout:100 tag:tag];
@@ -381,15 +433,20 @@ static NSUInteger count = 0;
     CFStringRef urlPathRef= CFURLCopyPath (urlRef);
     CFRelease(urlRef);
     NSString *urlPath= (__bridge_transfer NSString*)urlPathRef;
-    
     NSLog(@"URL: %@", urlPath);
-
-    if([urlPath rangeOfString:@"/auth-setup"].location != NSNotFound){
-        if([theDelegate respondsToSelector:@selector(onFoundByFTC: currentConfig:)])
-            [theDelegate onFoundByFTC:[client objectForKey:@"Tag"] currentConfig: body];
-    }
     
+    if([urlPath rangeOfString:@"/auth-setup"].location != NSNotFound){
+        httpRespondMessage = CFHTTPMessageCreateResponse ( kCFAllocatorDefault, 202, NULL, kCFHTTPVersion1_1 );
+        CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRespondMessage );
+        [sock writeData:(__bridge_transfer NSData*)httpData withTimeout:20 tag:[[client objectForKey:@"Tag"] longValue]];
+        if([theDelegate respondsToSelector:@selector(onFoundByFTC: currentConfig:)])
+            [theDelegate onFoundByFTC:[NSNumber numberWithLong:tag] currentConfig: body];
+    }
+}
 
+- (void)closeClient:(NSTimer *)timer
+{
+    [(AsyncSocket *)[timer userInfo] disconnect];
 }
 
 #pragma mark -
