@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface browserViewController : UIViewController <NSNetServiceBrowserDelegate, NSNetServiceDelegate>{
     NSMutableArray *_objects;
     IBOutlet UITableView *browserTableView;
+    IBOutlet UISlider *ledControllerSlider;
 @private    
     NSMutableArray* _services, *_displayServices;
+    NSMutableArray* selectedModule;
     NSNetServiceBrowser* _netServiceBrowser;
     BOOL _needsActivityIndicator;
     BOOL _currentResolveSuccess;
@@ -21,6 +24,8 @@
 
 - (void)searchForModules;
 - (IBAction)refreshService:(UIBarButtonItem*)button;
+- (IBAction)senddata:(UIButton*)button;
+- (IBAction)valueChanged:(UISlider*)slider;
 
 
 @end

@@ -522,7 +522,7 @@ BOOL configTableMoved = NO;
         [ssidField setReturnKeyType:UIReturnKeyDone];
         [ssidField setText:[EASYLINK ssidForConnectedNetwork]];
         [cell addSubview:ssidField];
-        [ssidField setText:@"William's Airport"];
+        //[ssidField setText:@"William's Airport"];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"SSID";
@@ -539,7 +539,7 @@ BOOL configTableMoved = NO;
         [passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
         [passwordField setBackgroundColor:[UIColor clearColor]];
         [cell addSubview:passwordField];
-        [passwordField setText:@"mx099555"];
+        //[passwordField setText:@"mx099555"];
 
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
@@ -556,7 +556,7 @@ BOOL configTableMoved = NO;
         [userInfoField setPlaceholder:@"Device name"];
         [userInfoField setReturnKeyType:UIReturnKeyDone];
         [userInfoField setBackgroundColor:[UIColor clearColor]];
-        [userInfoField setText:@"Hello"];
+        [userInfoField setText:@"LED"];
         
         [cell addSubview:userInfoField];
         

@@ -19,7 +19,7 @@
             </objects>
             <point key="canvasLocation" x="-1211" y="-264"/>
         </scene>
-        <!--Browser View Controller - MXCHIP Wi-Fi Modules-->
+        <!--Browser View Controller - My Wi-Fi devices-->
         <scene sceneID="Wgs-mM-lMu">
             <objects>
                 <viewController id="Az7-It-nhv" customClass="browserViewController" sceneMemberID="viewController">
@@ -54,11 +54,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ModuleCell" textLabel="nSk-dp-zRa" detailTextLabel="oU1-3o-zg5" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="OQ3-wP-5u5" customClass="moduleBrowserCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ModuleCell" textLabel="nSk-dp-zRa" detailTextLabel="oU1-3o-zg5" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="OQ3-wP-5u5" customClass="moduleBrowserCell">
                                         <rect key="frame" x="0.0" y="141" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OQ3-wP-5u5" id="wGV-WG-1ig">
-                                            <rect key="frame" x="0.0" y="0.0" width="281" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Module Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nSk-dp-zRa">
@@ -92,9 +92,12 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KTQ-qQ-qy8">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="KTQ-qQ-qy8">
                                 <rect key="frame" x="18" y="481" width="284" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="valueChanged:" destination="Az7-It-nhv" eventType="valueChanged" id="Wy9-g7-KOy"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -107,7 +110,7 @@
                             <constraint firstItem="oJ2-l6-zrh" firstAttribute="bottom" secondItem="Vps-Y2-BUf" secondAttribute="bottom" id="zUS-Oy-fAn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="MXCHIP Wi-Fi Modules" id="7MB-EJ-5cT">
+                    <navigationItem key="navigationItem" title="My Wi-Fi devices" id="7MB-EJ-5cT">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="7hh-fn-dIy">
                             <connections>
                                 <action selector="refreshService:" destination="Az7-It-nhv" id="Evq-1U-L0E"/>
@@ -116,6 +119,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="browserTableView" destination="v9I-fj-FoW" id="ZEn-MN-EgK"/>
+                        <outlet property="ledControllerSlider" destination="KTQ-qQ-qy8" id="xjg-eY-LnM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7od-lB-pOa" userLabel="First Responder" sceneMemberID="firstResponder"/>

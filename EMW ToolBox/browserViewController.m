@@ -23,6 +23,27 @@
 bool newModuleFound;
 bool enumerating = NO;
 
+@implementation NSData (Additions)
+- (NSString *)host
+{
+    struct sockaddr *addr = (struct sockaddr *)[self bytes];
+    if(addr->sa_family == AF_INET) {
+        char *address = inet_ntoa(((struct sockaddr_in *)addr)->sin_addr);
+        if (address)
+            return [NSString stringWithCString: address encoding: NSASCIIStringEncoding];
+    }
+    else if(addr->sa_family == AF_INET6) {
+        struct sockaddr_in6 *addr6 = (struct sockaddr_in6 *)addr;
+        char straddr[INET6_ADDRSTRLEN];
+        inet_ntop(AF_INET6, &(addr6->sin6_addr), straddr,
+                  sizeof(straddr));
+        return [NSString stringWithCString: straddr encoding: NSASCIIStringEncoding];
+    }
+    return nil;
+}
+
+@end
+
 @interface NSMutableDictionary (BrowserViewControllerAdditions)
 - (NSComparisonResult) localizedCaseInsensitiveCompareByName:(NSMutableDictionary*)aService;
 @end
@@ -74,8 +95,10 @@ bool enumerating = NO;
 
 	_services = [[NSMutableArray alloc] init];
     _displayServices = [[NSMutableArray alloc] init];
+    selectedModule = [[NSMutableArray alloc] initWithCapacity:100];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"Modules" style:UIBarButtonItemStyleBordered target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backItem];
+    [ledControllerSlider setUserInteractionEnabled: NO];
     
     NSNetServiceBrowser *aNetServiceBrowser = [[NSNetServiceBrowser alloc] init];
 	if(!aNetServiceBrowser) {
@@ -89,6 +112,7 @@ bool enumerating = NO;
     //[self repeatSearching: self.timer];
     //self.timer = [NSTimer scheduledTimerWithTimeInterval:repeatInterval target:self selector:@selector(repeatSearching:) userInfo:nil repeats:NO];
     [browserTableView reloadData];
+    browserTableView.allowsMultipleSelection = YES;
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
     //[self.netServiceBrowser stop];
     [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
@@ -122,11 +146,21 @@ bool enumerating = NO;
 	self.initialWaitOver = NO;
     [self.netServiceBrowser stop];
 	[self.services removeAllObjects];
+    for(NSMutableDictionary *object in self.displayServices){
+        if([object objectForKey:@"Socket"]!=nil){
+            [[object objectForKey:@"Socket"] disconnect];
+            [[object objectForKey:@"Socket"] setDelegate:nil];
+            [object removeObjectForKey:@"Socket"];
+        }
+    }
     [self.displayServices removeAllObjects];
+    [selectedModule removeAllObjects];
     [browserTableView reloadData];
+    [ledControllerSlider setUserInteractionEnabled: NO];
     [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
 	
+    //UIColor
 }
 
 - (NSTimer *)timer {
@@ -238,6 +272,51 @@ bool enumerating = NO;
 }
 
 
+-(void) replaceDisaplyObjectAtIndex:(NSUInteger)idx withObject:(id)object
+{
+    AsyncSocket *socket;
+    NSError *err;
+    NSData *ipAddress = nil;
+    
+    NSNetService *service = [object objectForKey:@"BonjourService"];
+    if([[service addresses] count])
+        ipAddress = [[service addresses] objectAtIndex:0];
+    
+    NSMutableDictionary *displayService = nil;
+    displayService = [self.displayServices objectAtIndex:idx];
+    socket = [displayService objectForKey:@"Socket"];
+    [socket disconnect];
+    [socket setDelegate:nil];
+    [displayService removeObjectForKey:@"Socket"];
+
+    [object setObject:@YES forKey:@"Connecting"];
+    socket = [[AsyncSocket alloc] initWithDelegate:self];
+    [socket connectToHost:[ipAddress host] onPort:service.port error:&err];
+    [object setObject:socket forKey:@"Socket"];
+    
+    
+    [self.displayServices replaceObjectAtIndex:idx withObject:object];
+}
+
+-(void) addDisaplyObject:(id)object
+{
+    AsyncSocket *socket;
+    NSError *err;
+    NSData *ipAddress = nil;
+    
+    NSNetService *service = [object objectForKey:@"BonjourService"];
+    if([[service addresses] count])
+        ipAddress = [[service addresses] objectAtIndex:0];
+    
+    [object setObject:@YES forKey:@"Connecting"];
+    socket = [[AsyncSocket alloc] initWithDelegate:self];
+    [socket connectToHost:[ipAddress host] onPort:service.port error:&err];
+    [object setObject:socket forKey:@"Socket"];
+    
+    
+    [self.displayServices addObject:object];
+}
+
 
 
 - (void)netServiceDidResolveAddress:(NSNetService *)service
@@ -293,11 +372,12 @@ bool enumerating = NO;
             }
             
             if(replaceService!=nil){
+                //AsyncSocket *socket
                 NSLog(@"Replace index %ld...",(long)indexPath.row);
-                [self.displayServices replaceObjectAtIndex:indexPath.row withObject:replaceService];
+                [self replaceDisaplyObjectAtIndex:indexPath.row withObject:replaceService];
             }
             else{
-                [self.displayServices addObject:object];
+                [self addDisaplyObject:object];
             }
             
             [self.displayServices sortUsingSelector:@selector(localizedCaseInsensitiveCompareByName:)];
@@ -409,6 +489,49 @@ exit:
 	return indexPath;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //moduleBrowserCell *cell;
+    NSLog(@"tableview selected");
+    moduleBrowserCell *cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:indexPath];
+    if (![[cell.moduleService objectForKey:@"Socket"] isConnected] ){
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
+    else{
+        [selectedModule addObject:cell.moduleService];
+    }
+    [ledControllerSlider setUserInteractionEnabled: YES];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"tableview unselected");
+     moduleBrowserCell *cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:indexPath];
+    [selectedModule removeObject:cell.moduleService];
+    if ([selectedModule count]==0) {
+        [ledControllerSlider setUserInteractionEnabled: NO];
+    }
+}
+
+
+- (IBAction)valueChanged:(UISlider*)slider
+{
+    char value = slider.value;
+    for(NSMutableDictionary *object in selectedModule){
+        [[object objectForKey:@"Socket"] writeData: [NSData dataWithBytes:&value length:1]
+                                       withTimeout:5 tag:0];
+    }
+}
+
+- (IBAction)senddata:(UIButton*)button
+{
+    for(NSMutableDictionary *object in selectedModule){
+        [[object objectForKey:@"Socket"] writeData: [@"Hello" dataUsingEncoding:NSUTF8StringEncoding]
+                                       withTimeout:5 tag:0];
+    }
+}
+
 - (void)dealloc {
 	// Cleanup any running resolve and free memory
 	self.services = nil;
@@ -416,6 +539,100 @@ exit:
 	[self.netServiceBrowser stop];
 	self.netServiceBrowser = nil;
 }
+
+#pragma mark - AsyncSocket delegate
+
+- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+{
+    NSUInteger index;
+    moduleBrowserCell *cell;
+    
+    for (NSMutableDictionary *object in self.displayServices){
+        if([object objectForKey:@"Socket"] == sock ){
+            index = [self.displayServices indexOfObject:object];
+            break;
+        }
+    }
+    
+    cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    cell.accessoryView = nil;
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    [cell.moduleService setObject:@NO forKey:@"Connecting"];
+    [sock readDataToLength:1 withTimeout:5 tag:1];
+}
+
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+    CGFloat hue,saturation,brightness,alpha;
+    NSUInteger index;
+    char inData;
+    moduleBrowserCell *cell;
+    
+    [data getBytes:&inData length:1];
+    
+    for (NSMutableDictionary *object in self.displayServices){
+        if([object objectForKey:@"Socket"] == sock ){
+            index = [self.displayServices indexOfObject:object];
+            break;
+        }
+    }
+    
+    cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    [cell.lightStrengthView.backgroundColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    brightness = inData/100;
+    
+    cell.lightStrengthView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+    
+    [sock readDataToLength:1 withTimeout:5 tag:1];
+}
+
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock
+{
+    NSUInteger index;
+    moduleBrowserCell *cell;
+    AsyncSocket *socket;
+    NSError *err;
+    NSData *ipAddress = nil;
+    
+    NSLog(@"disconnected");
+    
+    for (NSMutableDictionary *object in self.displayServices){
+        if([object objectForKey:@"Socket"] == sock ){
+            index = [self.displayServices indexOfObject:object];
+            [selectedModule removeObject:object];
+            [browserTableView  deselectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES];
+             break;
+        }
+    }
+    
+    if ([selectedModule count]==0) {
+        [ledControllerSlider setUserInteractionEnabled: NO];
+    }
+    
+    [sock setDelegate:nil];
+    
+    
+    cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    
+    if(cell){
+        [cell startActivityIndicator:YES];
+        if([[cell.moduleService objectForKey:@"Connecting"]  isEqual: @NO]){
+            [cell.moduleService removeObjectForKey:@"Socket"];
+            
+            NSNetService *service = [cell.moduleService objectForKey:@"BonjourService"];
+            if([[service addresses] count])
+                ipAddress = [[service addresses] objectAtIndex:0];
+            
+            socket = [[AsyncSocket alloc] initWithDelegate:self];
+            [socket connectToHost:[ipAddress host] onPort:service.port error:&err];
+            [cell.moduleService setObject:socket forKey:@"Socket"];
+            [cell.moduleService setObject:@YES forKey:@"Connecting"];
+            
+        }
+    }
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

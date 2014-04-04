@@ -36,6 +36,7 @@
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA394E17A55486003806FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
+		3DBBAB8A18ED003E00406463 /* Philips Wi-Fi LED.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DBBAB8918ED003E00406463 /* Philips Wi-Fi LED.png */; };
 		3DC773B617A8A6710029ACB3 /* EMW3280_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC773B417A8A6710029ACB3 /* EMW3280_logo.png */; };
 		3DC773B717A8A6710029ACB3 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC773B517A8A6710029ACB3 /* known_logo.png */; };
 		3DD19A6018E00D5600F8E43A /* EasyLinkFTCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */; };
@@ -93,6 +94,7 @@
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3DAA394D17A55486003806FE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3DAA394F17A554AD003806FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3DBBAB8918ED003E00406463 /* Philips Wi-Fi LED.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Philips Wi-Fi LED.png"; path = "EMW ToolBox/Resources/Images/iPhone/Philips Wi-Fi LED.png"; sourceTree = SOURCE_ROOT; };
 		3DC773B417A8A6710029ACB3 /* EMW3280_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3280_logo.png; path = "EMW ToolBox/Resources/Images/Common/EMW3280_logo.png"; sourceTree = SOURCE_ROOT; };
 		3DC773B517A8A6710029ACB3 /* known_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = known_logo.png; path = "EMW ToolBox/Resources/Images/Common/known_logo.png"; sourceTree = SOURCE_ROOT; };
 		3DD19A5E18E00D5600F8E43A /* EasyLinkFTCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLinkFTCTableViewController.h; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		3DAA37F717A5446A003806FE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3DBBAB8918ED003E00406463 /* Philips Wi-Fi LED.png */,
 				3DE2417E17F2BC6900327C5C /* EMW3162_logo.png */,
 				3DC773B417A8A6710029ACB3 /* EMW3280_logo.png */,
 				3D55334817A66648008145EB /* EMW3161_logo.png */,
@@ -352,7 +355,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3D2AD57E17A247E20026E31E /* Build configuration list for PBXProject "EasyLink" */;
+			buildConfigurationList = 3D2AD57E17A247E20026E31E /* Build configuration list for PBXProject "MICO" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -374,6 +377,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DBBAB8A18ED003E00406463 /* Philips Wi-Fi LED.png in Resources */,
 				3D2AD59117A247E30026E31E /* InfoPlist.strings in Resources */,
 				3D71295618AA26430071D553 /* Images.xcassets in Resources */,
 				3D8E9FD618A8BD8100F6618E /* EMW3162.png in Resources */,
@@ -550,7 +554,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3D2AD57E17A247E20026E31E /* Build configuration list for PBXProject "EasyLink" */ = {
+		3D2AD57E17A247E20026E31E /* Build configuration list for PBXProject "MICO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D2AD5BC17A247E30026E31E /* Debug */,

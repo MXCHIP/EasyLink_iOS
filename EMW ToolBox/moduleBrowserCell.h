@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AsyncSocket.h"
 
 @interface moduleBrowserCell : UITableViewCell{
     NSMutableDictionary *_moduleService;
+    IBOutlet UIImageView *lightStrengthView;
+    AsyncSocket *socket;
 }
 
 @property (nonatomic, retain, readwrite) NSMutableDictionary *moduleService;
+@property (nonatomic, retain, readwrite) IBOutlet UIImageView *lightStrengthView;
+
+- (void)startActivityIndicator: (BOOL) enable;
 
 @end

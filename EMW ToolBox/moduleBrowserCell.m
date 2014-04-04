@@ -10,7 +10,7 @@
 #import <sys/socket.h>
 #import <netinet/in.h>
 #include <arpa/inet.h>
-#import "AsyncSocket.h"
+
 
 #define kProgressIndicatorSize 20.0
 
@@ -52,8 +52,19 @@
     // Initialization code
 }
 
+- (void)closeClient:(NSTimer *)timer
+{
+    //[self setSelected:NO animated:(BOOL)YES];
+    self.accessoryView = nil;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
+    if(selected==YES){
+        NSLog(@"selected");
+    }else{
+        NSLog(@"unselected");
+    }
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
@@ -88,21 +99,25 @@
             self.imageView.image = [UIImage imageNamed:@"EMW3280_logo.png"];
         else if([hardware isEqualToString:@"EMW3162"])
             self.imageView.image = [UIImage imageNamed:@"EMW3162_logo.png"];
+        else if([hardware isEqualToString:@"Philips Wi-Fi LED"])
+            self.imageView.image = [UIImage imageNamed:@"Philips Wi-Fi LED.png"];
         else
             self.imageView.image = [UIImage imageNamed:@"known_logo.png"];
     }
     
     NSRange range = [serviceName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"#"]
                                                  options:NSBackwardsSearch];
+    
     if(range.location == NSNotFound)
         range.length = [serviceName length];
     else
         range.length = range.location;
     range.location = 0;
     displayServiceName = [serviceName substringWithRange:range];
+    self.textLabel.backgroundColor = [UIColor clearColor];
     self.textLabel.text = displayServiceName;
     self.textLabel.textColor = [UIColor blackColor];
-    if([[[_moduleService objectForKey:@"BonjourService"] addresses] count])
+    if([[service addresses] count])
         ipAddress = [[service addresses] objectAtIndex:0];
     
     NSString *detailString = [[NSString alloc] initWithFormat:
@@ -110,40 +125,43 @@
                               macAddress,
                               (ipAddress!=nil)? [ipAddress host]:@"Unknow"];
     
+    self.detailTextLabel.backgroundColor = [UIColor clearColor];
     self.detailTextLabel.text = detailString;
+    [self startActivityIndicator: YES];
     
-    
-	if (resolving == NO){
-        //cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        self.accessoryType = UITableViewCellAccessoryCheckmark;
-        if (self.accessoryView) {
-            self.accessoryView = nil;
-        }
-    }
-	// Note that the underlying array could have changed, and we want to show the activity indicator on the correct cell
-	else{
-		if (!self.accessoryView) {
-			CGRect frame = CGRectMake(0.0, 0.0, kProgressIndicatorSize, kProgressIndicatorSize);
-			UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
-			[spinner startAnimating];
-			spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-			[spinner sizeToFit];
-			spinner.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
-										UIViewAutoresizingFlexibleRightMargin |
-										UIViewAutoresizingFlexibleTopMargin |
-										UIViewAutoresizingFlexibleBottomMargin);
-			self.accessoryView = spinner;
-		}
-	}
-
-//    self.textLabel.text = [self.ftcConfig objectForKey:@"N"];
-//    self.contentSwitch.on = [[self.ftcConfig valueForKey:@"C"] boolValue];
-//    
-//    if ([[self.ftcConfig objectForKey:@"P"] isEqualToString:@"RO"]) {
-//        [self.contentSwitch setUserInteractionEnabled:NO];
+//    if (!self.accessoryView) {
+//        CGRect frame = CGRectMake(0.0, 0.0, kProgressIndicatorSize, kProgressIndicatorSize);
+//        UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+//        [spinner startAnimating];
+//        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+//        [spinner sizeToFit];
+//        spinner.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+//                                    UIViewAutoresizingFlexibleRightMargin |
+//                                    UIViewAutoresizingFlexibleTopMargin |
+//                                    UIViewAutoresizingFlexibleBottomMargin);
+//        self.accessoryView = spinner;
 //    }
-    
-    
 }
+
+- (void)startActivityIndicator: (BOOL) enable
+{
+    if(enable == YES){
+        CGRect frame = CGRectMake(0.0, 0.0, kProgressIndicatorSize, kProgressIndicatorSize);
+        UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+        [spinner startAnimating];
+        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        [spinner sizeToFit];
+        spinner.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                    UIViewAutoresizingFlexibleRightMargin |
+                                    UIViewAutoresizingFlexibleTopMargin |
+                                    UIViewAutoresizingFlexibleBottomMargin);
+        self.accessoryView = spinner;
+        
+    }else{
+        self.accessoryView = nil;
+    }
+        
+}
+
 
 @end
