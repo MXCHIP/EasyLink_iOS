@@ -27,7 +27,17 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    self.contentText.delegate = self;
+
+}
+
+- (void)prepareForReuse{
+//    if(moved == YES){
+//        CGPoint newCenter = CGPointMake(self.contentText.center.x+40, self.contentText.center.y);
+//        self.contentText.center = newCenter;
+//        moved = NO;
+//    }
+    
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -39,43 +49,41 @@
 
 - (void)setFtcConfig:(NSMutableDictionary *)newFtcConfig {
 	_ftcConfig = newFtcConfig;
-    NSString *content = [self.ftcConfig objectForKey:@"C"];
+    NSString *contentString;
+    NSNumber *contentNumber;
+    
     self.textLabel.text = [self.ftcConfig objectForKey:@"N"];
-    if([self.textLabel.text isEqualToString:@"Device Name"]){
-        NSRange range = [content rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"#"]
-                                                 options:NSBackwardsSearch];
-        if(range.location == NSNotFound){
-            nameSuffix = nil;
-            range.length = [content length];
-        }else{
-            range.length = [content length] - range.location;
-            nameSuffix = [content substringWithRange:range];
-            range.length = range.location;
-        }
-        range.location = 0;
-        self.contentText.text = [content substringWithRange:range];
-    }else{
-        self.contentText.text = content;
+    if([[self.ftcConfig objectForKey:@"T"] isEqualToString:@"string"]){ //string
+        contentString = [self.ftcConfig objectForKey:@"C"];
+        self.contentText.text = contentString;
+    }else{ //number
+        contentNumber = [self.ftcConfig objectForKey:@"C"];
+        self.contentText.text = [contentNumber stringValue];
     }
     
+    /*Readonly cell*/
     if ([[self.ftcConfig objectForKey:@"P"] isEqualToString:@"RO"]) {
         [self.contentText setUserInteractionEnabled:NO];
         [self.contentText setTextColor:[UIColor grayColor]];
+        return;
     }
+    [contentText setDelegate:self];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if([self.textLabel.text isEqualToString:@"Device Name"]){
-        [self.ftcConfig setObject:[textField.text stringByAppendingString: nameSuffix]
-                           forKey:self.textLabel.text];
-    }else{
-        [self.ftcConfig setObject:textField.text forKey:self.textLabel.text];
-    }
-    
     [textField resignFirstResponder];
     return YES;
 }
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+//    //Replace the string manually in the textbox
+//    textField.text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+//    //perform any logic here now that you are sure the textbox text has changed
+//    //[self didChangeTextInTextField:textField];
+//    NSLog(@"Value changed!");
+//    return NO; //this make iOS not to perform any action
+//}
 
 
 

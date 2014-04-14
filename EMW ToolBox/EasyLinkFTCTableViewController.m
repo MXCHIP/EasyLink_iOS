@@ -8,6 +8,9 @@
 
 #import "EasyLinkFTCTableViewController.h"
 #import "FTCStringCell.h"
+#import "FTCStringSelectCell.h"
+#import "FTCSwitchCell.h"
+#import "FTCSubMenuCell.h"
 
 @interface EasyLinkFTCTableViewController ()
 
@@ -49,6 +52,28 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    /*Return from a select cell, update the select cell and add the new valuw to the config data*/
+    if(selectCellIndexPath != nil){
+        NSUInteger sectionRow = [ selectCellIndexPath indexAtPosition: 0 ];
+        NSUInteger contentRow = [ selectCellIndexPath indexAtPosition: 1 ];
+        NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
+        NSMutableDictionary *content = [array objectAtIndex: contentRow];
+        
+        FTCStringSelectCell *cell = (FTCStringSelectCell *)[configTableView cellForRowAtIndexPath:selectCellIndexPath];
+        if([[content objectForKey:@"T"] isEqualToString:@"number" ])
+            cell.contentText.text = [[content objectForKey:@"C"] stringValue];
+        else
+            cell.contentText.text = [content objectForKey:@"C"];
+
+        NSLog(@"Select cell changed");
+        selectCellIndexPath = nil;
+        [self editingChanged: cell.contentText];
+
+    }
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,25 +122,100 @@
     NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
     NSMutableDictionary *content = [array objectAtIndex: contentRow];
     
-    if([[content objectForKey:@"T"] isEqualToString:@"string"]){
-        tableCellIdentifier= @"ConfigCell";
+    if([[content objectForKey:@"T"] isEqualToString:@"string"]||
+       [[content objectForKey:@"T"] isEqualToString:@"number"]){
+        if([content objectForKey:@"S"]==nil)
+            tableCellIdentifier= @"ConfigCell";
+        else
+            tableCellIdentifier= @"SelectCell";
     }else if([[content objectForKey:@"T"] isEqualToString:@"switch"]){
         tableCellIdentifier = @"SwitchCell";
+    }else if([[content objectForKey:@"T"] isEqualToString:@"menu"]){
+        tableCellIdentifier = @"SubMenuCell";
     }
+        
     cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
     cell.ftcConfig  = content;
 
     return cell;
 }
 
+#pragma mark - "Confirm" Button action
 - (IBAction)applyNewConfigData
 {
     if([theDelegate respondsToSelector:@selector(onConfigured:)])
         [theDelegate onConfigured:self.configData];
     
-    //[self.navigationController popToViewController:theDelegate animated:YES];
 }
 
+#pragma mark - Segue action
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"Sub menu"]) {
+        NSIndexPath *indexPath = [configTableView indexPathForSelectedRow];
+        NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
+        NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
+        NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
+        NSMutableDictionary *content = [array objectAtIndex: contentRow];
+        
+        [configTableView deselectRowAtIndexPath:indexPath animated:YES];
+        [content setObject:[self.configData objectForKey:@"client"] forKey:@"client"];
+        [content setObject:[self.configData objectForKey:@"update"] forKey:@"update"];
+        [[segue destinationViewController] setConfigData: content];
+        [[segue destinationViewController] setDelegate:theDelegate];
+    }
+    
+    if ([[segue identifier] isEqualToString:@"Select Table"]) {
+        selectCellIndexPath = [configTableView indexPathForSelectedRow];
+        NSUInteger sectionRow = [ selectCellIndexPath indexAtPosition: 0 ];
+        NSUInteger contentRow = [ selectCellIndexPath indexAtPosition: 1 ];
+        NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
+        NSMutableDictionary *content = [array objectAtIndex: contentRow];
+        
+        [configTableView deselectRowAtIndexPath:selectCellIndexPath animated:YES];
+        [[segue destinationViewController] setConfigData: content];
+        
+    }
+}
+
+#pragma mark - Switch button action on the cell
+
+- (IBAction)switchChanged: (UISwitch *)switcher
+{
+    FTCSwitchCell *cell;
+    NSIndexPath *indexPath;
+    NSLog(@"Value changed!");
+    cell = (FTCSwitchCell *)switcher.superview.superview.superview;
+    indexPath = [configTableView indexPathForCell:cell];
+    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
+    NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
+    NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
+    NSMutableDictionary *content = [array objectAtIndex: contentRow];
+    NSMutableDictionary *updateSetting = [self.configData objectForKey:@"update"];
+    [updateSetting setObject:(switcher.on)? @YES:@NO forKey:[content objectForKey:@"N"]];
+}
+
+#pragma mark - textField content changed on the cell
+- (IBAction)editingChanged: (UITextField *)textField
+{
+    FTCStringCell *cell;
+    NSIndexPath *indexPath;
+    NSLog(@"Value changed!");
+    cell = (FTCStringCell *)textField.superview.superview.superview;
+    indexPath = [configTableView indexPathForCell:cell];
+    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
+    NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
+    NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
+    NSMutableDictionary *content = [array objectAtIndex: contentRow];
+    NSMutableDictionary *updateSetting = [self.configData objectForKey:@"update"];
+    if([[content objectForKey:@"T"] isEqualToString:@"string"])
+        [updateSetting setObject:textField.text forKey:[content objectForKey:@"N"]];
+    else{
+        NSInteger value = [textField.text intValue];
+        [updateSetting setObject:[NSNumber numberWithLong:value] forKey:[content objectForKey:@"N"]];
+    }
+}
 
 
 /*

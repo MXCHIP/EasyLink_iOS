@@ -85,7 +85,7 @@ bool enumerating = NO;
 
 - (void)awakeFromNib
 {
-    sleep(2);
+    sleep(1);
     [super awakeFromNib];
 }
 

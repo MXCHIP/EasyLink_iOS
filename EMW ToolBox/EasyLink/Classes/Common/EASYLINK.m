@@ -340,10 +340,14 @@ static NSUInteger count = 0;
 
     CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRespondMessage );
     [[clientDict objectForKey:@"Socket"] writeData:(__bridge_transfer NSData*)httpData
-                                       withTimeout:20
+                                       withTimeout:-1
                                                tag:[client longValue]];
     
-    [NSTimer scheduledTimerWithTimeInterval:2
+    /*Recv data that server can send FIN+ACK when client disconnect*/
+    [[clientDict objectForKey:@"Socket"] readDataWithTimeout:-1
+                                                         tag:[client longValue]];
+    
+    closeFTCClientTimer = [NSTimer scheduledTimerWithTimeInterval:5
                                      target:self
                                    selector:@selector(closeClient:)
                                    userInfo:[clientDict objectForKey:@"Socket"]
@@ -389,17 +393,28 @@ static NSUInteger count = 0;
 - (void)onSocketDidDisconnect:(AsyncSocket *)sock
 {
     NSNumber *tag = nil;
+    NSDictionary *disconnnectedClient;
     NSLog(@"TCP disconnect");
+    
+    /*Stop the timeout counter for closing a client after send the config data.*/
+    if([closeFTCClientTimer userInfo] == sock){
+        [closeFTCClientTimer invalidate];
+    }
+    
+    /*Remove resources*/
     for (NSDictionary *object in self.ftcClients) {
         if([object objectForKey:@"Socket"] ==sock){
             tag = [object objectForKey:@"Tag"];
-            CFRelease(inComingMessageArray[[tag intValue]]);
-            inComingMessageArray[[tag intValue]] = nil;
-            [self.ftcClients removeObject: object];
-            if([theDelegate respondsToSelector:@selector(onDisconnectFromFTC:)])
-                [theDelegate onDisconnectFromFTC:tag];
+            disconnnectedClient = object;
+            break;
         }
     }
+    
+    CFRelease(inComingMessageArray[[tag intValue]]);
+    inComingMessageArray[[tag intValue]] = nil;
+    [self.ftcClients removeObject: disconnnectedClient];
+    if([theDelegate respondsToSelector:@selector(onDisconnectFromFTC:)])
+        [theDelegate onDisconnectFromFTC:tag];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
@@ -428,6 +443,7 @@ static NSUInteger count = 0;
         [sock readDataToLength:(contentLength-currentLength) withTimeout:100 tag:(long)tag];
         return;
     }
+
     
     CFURLRef urlRef = CFHTTPMessageCopyRequestURL(inComingMessage);
     CFStringRef urlPathRef= CFURLCopyPath (urlRef);
@@ -442,6 +458,11 @@ static NSUInteger count = 0;
         if([theDelegate respondsToSelector:@selector(onFoundByFTC: currentConfig:)])
             [theDelegate onFoundByFTC:[NSNumber numberWithLong:tag] currentConfig: body];
     }
+}
+
+- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
+{
+    NSLog(@"Send complete!");
 }
 
 - (void)closeClient:(NSTimer *)timer

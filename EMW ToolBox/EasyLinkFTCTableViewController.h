@@ -13,12 +13,14 @@
 /**
  *
  **/
-- (void)onConfigured:(NSMutableDictionary *)configData;
+- (void)onConfigured:(NSMutableDictionary *)updateSettings;
 @end
 
 @interface EasyLinkFTCTableViewController : UITableViewController{
     IBOutlet UITableView *configTableView;
     id theDelegate;
+@private
+    NSIndexPath *selectCellIndexPath;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *configData;
@@ -29,6 +31,7 @@
 
 - (IBAction)applyNewConfigData;
 
-
+- (IBAction)switchChanged: (UISwitch *)switcher;
+- (IBAction)editingChanged: (UITextField *)textField;
 
 @end

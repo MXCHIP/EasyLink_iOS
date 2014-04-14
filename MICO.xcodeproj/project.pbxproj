@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D179B5818F3E5A3003C02F9 /* FTCStringSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D179B5718F3E5A3003C02F9 /* FTCStringSelectCell.m */; };
+		3D179B5B18F3F1C8003C02F9 /* FTCSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D179B5A18F3F1C8003C02F9 /* FTCSelectViewController.m */; };
 		3D207F46187D2FC700A3CBB7 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D207F43187D2FC700A3CBB7 /* AsyncSocket.m */; };
 		3D207F47187D2FC700A3CBB7 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D207F45187D2FC700A3CBB7 /* AsyncUdpSocket.m */; };
 		3D2AD58717A247E30026E31E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58617A247E30026E31E /* UIKit.framework */; };
@@ -21,11 +23,13 @@
 		3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */; };
 		3D55334917A66648008145EB /* EMW3161_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D55334817A66648008145EB /* EMW3161_logo.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
+		3D7ACE8718FACAF600747F32 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7ACE8618FACAF600747F32 /* CustomIOS7AlertView.m */; };
 		3D7B49CD18E2BB2D0062837A /* FTCSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B49CC18E2BB2D0062837A /* FTCSwitchCell.m */; };
 		3D8E9FD118A8A57800F6618E /* antena.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD018A8A57800F6618E /* antena.png */; };
 		3D8E9FD418A8B12F00F6618E /* Earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD318A8B12F00F6618E /* Earth.png */; };
 		3D8E9FD618A8BD8100F6618E /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD518A8BD8100F6618E /* EMW3162.png */; };
 		3D8E9FD818A8C15F00F6618E /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E9FD718A8C15F00F6618E /* EMW3161.png */; };
+		3D92995618EEB66300DE2560 /* FTCSubMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92995518EEB66300DE2560 /* FTCSubMenuCell.m */; };
 		3DA1179A18EBE946009B2E1E /* moduleBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1179918EBE946009B2E1E /* moduleBrowserCell.m */; };
 		3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */; };
 		3DAA389B17A5446B003806FE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA37F817A5446A003806FE /* Default-568h@2x.png */; };
@@ -47,6 +51,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D179B5618F3E5A3003C02F9 /* FTCStringSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCStringSelectCell.h; sourceTree = "<group>"; };
+		3D179B5718F3E5A3003C02F9 /* FTCStringSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCStringSelectCell.m; sourceTree = "<group>"; };
+		3D179B5918F3F1C8003C02F9 /* FTCSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCSelectViewController.h; sourceTree = "<group>"; };
+		3D179B5A18F3F1C8003C02F9 /* FTCSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCSelectViewController.m; sourceTree = "<group>"; };
 		3D207F42187D2FC700A3CBB7 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncSocket.h"; sourceTree = "<group>"; };
 		3D207F43187D2FC700A3CBB7 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncSocket.m"; sourceTree = "<group>"; };
 		3D207F44187D2FC700A3CBB7 /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncUdpSocket.h; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncUdpSocket.h"; sourceTree = "<group>"; };
@@ -72,12 +80,16 @@
 		3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.m"; sourceTree = "<group>"; };
 		3D55334817A66648008145EB /* EMW3161_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMW3161_logo.png; sourceTree = "<group>"; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
+		3D7ACE8518FACAF600747F32 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomIOS7AlertView.h; path = "EMW ToolBox/CustomIOS7AlertView/CustomIOS7AlertView.h"; sourceTree = "<group>"; };
+		3D7ACE8618FACAF600747F32 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomIOS7AlertView.m; path = "EMW ToolBox/CustomIOS7AlertView/CustomIOS7AlertView.m"; sourceTree = "<group>"; };
 		3D7B49CB18E2BB2D0062837A /* FTCSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCSwitchCell.h; sourceTree = "<group>"; };
 		3D7B49CC18E2BB2D0062837A /* FTCSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCSwitchCell.m; sourceTree = "<group>"; };
 		3D8E9FD018A8A57800F6618E /* antena.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = antena.png; path = iPhone/antena.png; sourceTree = "<group>"; };
 		3D8E9FD318A8B12F00F6618E /* Earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Earth.png; path = iPhone/Earth.png; sourceTree = "<group>"; };
 		3D8E9FD518A8BD8100F6618E /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = iPhone/EMW3162.png; sourceTree = "<group>"; };
 		3D8E9FD718A8C15F00F6618E /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = iPhone/EMW3161.png; sourceTree = "<group>"; };
+		3D92995418EEB66300DE2560 /* FTCSubMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCSubMenuCell.h; sourceTree = "<group>"; };
+		3D92995518EEB66300DE2560 /* FTCSubMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCSubMenuCell.m; sourceTree = "<group>"; };
 		3DA1179818EBE946009B2E1E /* moduleBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = moduleBrowserCell.h; sourceTree = "<group>"; };
 		3DA1179918EBE946009B2E1E /* moduleBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = moduleBrowserCell.m; sourceTree = "<group>"; };
 		3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLinkMainViewController.h; path = EasyLink/Classes/iPhone/EasyLinkMainViewController.h; sourceTree = "<group>"; };
@@ -139,6 +151,7 @@
 		3D2AD57A17A247E20026E31E = {
 			isa = PBXGroup;
 			children = (
+				3D7ACE8418FACAD400747F32 /* ViewTemplate */,
 				3D71295518AA26430071D553 /* Images.xcassets */,
 				3D4289D818A4D72C0092DD5D /* Animation */,
 				3D207F41187D2F7E00A3CBB7 /* AsyncSocket */,
@@ -216,6 +229,15 @@
 				3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */,
 			);
 			name = Animation;
+			sourceTree = "<group>";
+		};
+		3D7ACE8418FACAD400747F32 /* ViewTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				3D7ACE8518FACAF600747F32 /* CustomIOS7AlertView.h */,
+				3D7ACE8618FACAF600747F32 /* CustomIOS7AlertView.m */,
+			);
+			name = ViewTemplate;
 			sourceTree = "<group>";
 		};
 		3D8E9FD218A8A85800F6618E /* EasyLinkView */ = {
@@ -314,8 +336,14 @@
 			children = (
 				3DF345CE18E125F60088832E /* FTCStringCell.h */,
 				3DF345CF18E125F60088832E /* FTCStringCell.m */,
+				3D179B5618F3E5A3003C02F9 /* FTCStringSelectCell.h */,
+				3D179B5718F3E5A3003C02F9 /* FTCStringSelectCell.m */,
 				3D7B49CB18E2BB2D0062837A /* FTCSwitchCell.h */,
 				3D7B49CC18E2BB2D0062837A /* FTCSwitchCell.m */,
+				3D92995418EEB66300DE2560 /* FTCSubMenuCell.h */,
+				3D92995518EEB66300DE2560 /* FTCSubMenuCell.m */,
+				3D179B5918F3F1C8003C02F9 /* FTCSelectViewController.h */,
+				3D179B5A18F3F1C8003C02F9 /* FTCSelectViewController.m */,
 			);
 			name = "FTC Cell";
 			sourceTree = "<group>";
@@ -404,12 +432,16 @@
 				3D2AD59317A247E30026E31E /* main.m in Sources */,
 				3D2AD59717A247E30026E31E /* mxchipAppDelegate.m in Sources */,
 				3D2AD5A317A247E30026E31E /* browserViewController.m in Sources */,
+				3D92995618EEB66300DE2560 /* FTCSubMenuCell.m in Sources */,
 				3D207F47187D2FC700A3CBB7 /* AsyncUdpSocket.m in Sources */,
 				3D2AD5A617A247E30026E31E /* mxchipDetailViewController.m in Sources */,
+				3D179B5B18F3F1C8003C02F9 /* FTCSelectViewController.m in Sources */,
 				3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */,
+				3D7ACE8718FACAF600747F32 /* CustomIOS7AlertView.m in Sources */,
 				3DF345D018E125F60088832E /* FTCStringCell.m in Sources */,
 				3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */,
 				3DA1179A18EBE946009B2E1E /* moduleBrowserCell.m in Sources */,
+				3D179B5818F3E5A3003C02F9 /* FTCStringSelectCell.m in Sources */,
 				3DAA393F17A54572003806FE /* Reachability.m in Sources */,
 				3DAA394817A54ED0003806FE /* APManager.m in Sources */,
 				3DD19A6018E00D5600F8E43A /* EasyLinkFTCTableViewController.m in Sources */,
@@ -516,7 +548,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",
@@ -538,7 +570,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",

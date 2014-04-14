@@ -167,7 +167,7 @@ BOOL configTableMoved = NO;
     
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];	
     if ( netStatus == NotReachable ) {// No activity if no wifi
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"WiFi not available. Please check your WiFi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"WiFi not available. Please check your WiFi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
     }
     
@@ -275,13 +275,13 @@ BOOL configTableMoved = NO;
 - (void)startTransmitting: (int)version {
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     if ( netStatus == NotReachable ){// No activity if no wifi
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"WiFi not available. Please check your WiFi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"WiFi not available. Please check your WiFi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
         return;
     }
     
     if([userInfoField.text length]>0&&version == EASYLINK_V1){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Custom information cannot be delivered by EasyLink V1" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Custom information cannot be delivered by EasyLink V1" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
     }
 
@@ -420,6 +420,7 @@ BOOL configTableMoved = NO;
     NSError *err;
     NSIndexPath* indexPath;
     NSMutableDictionary *foundModule = nil;
+    NSMutableDictionary *updateSettings;
     
     foundModule = [NSJSONSerialization JSONObjectWithData:config
                                                   options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
@@ -430,6 +431,8 @@ BOOL configTableMoved = NO;
     }
     
     [foundModule setValue:ftcClientTag forKey:@"client"];
+    updateSettings = [NSMutableDictionary dictionaryWithCapacity:10];
+    [foundModule setValue:updateSettings forKey:@"update"];
     
     /*Reloace an old device*/
     for( NSDictionary *object in self.foundModules){
@@ -455,16 +458,26 @@ BOOL configTableMoved = NO;
 - (void)onDisconnectFromFTC:(NSNumber *)ftcClientTag
 {
     NSIndexPath* indexPath;
+    NSDictionary *disconnectedClient;
     /*Reloace an old device*/
     [self.navigationController popToViewController:self animated:YES];
 
     for( NSDictionary *object in self.foundModules){
         if ([[object objectForKey:@"client"] isEqualToNumber:ftcClientTag] ){
             indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:object] inSection:0];
-            [self.foundModules removeObject: object ];
-            [foundModuleTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                        withRowAnimation:UITableViewRowAnimationLeft];
+            disconnectedClient = object;
+            break;
         }
+    }
+    
+    if(disconnectedClient != nil){
+        [self.foundModules removeObject: disconnectedClient ];
+        [foundModuleTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                    withRowAnimation:UITableViewRowAnimationLeft];
+    }
+
+    if(customAlertView != nil){
+        [customAlertView close];
     }
     
     if([self.foundModules count]==0){
@@ -478,8 +491,43 @@ BOOL configTableMoved = NO;
 
 - (void)onConfigured:(NSMutableDictionary *)configData
 {
+    NSError *err;
+    
+    //alertView = [[UIAlertView alloc] initWithTitle:@"Please wait..." message:@"Updating Wi-Fi module configuration" delegate:Nil cancelButtonTitle:nil otherButtonTitles: nil];
+    customAlertView = [[CustomIOS7AlertView alloc] init];
+    
+    UIView *demoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 140)];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(demoView.frame.size.width/2-130, 20, 260, 25)];
+    title.text = @"Please wait...";
+    title.font= [UIFont boldSystemFontOfSize:19.0];
+    title.textAlignment = NSTextAlignmentCenter;
+    [demoView addSubview:title];
+    
+    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(demoView.frame.size.width/2-130, 50, 260, 25)];
+    content.text = @"Setting Wi-Fi module";
+    content.font= [UIFont systemFontOfSize:16.0];
+    content.textAlignment = NSTextAlignmentCenter;
+    [demoView addSubview:content];
+    
+    CGRect frame = CGRectMake(0, 0, 50, 50);
+    UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+    [spinner startAnimating];
+    spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [spinner sizeToFit];
+    [spinner setColor: [UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
+    spinner.frame = CGRectMake(demoView.frame.size.width/2-17, 80, 50, 50);
+    [demoView addSubview:spinner];
+    [customAlertView setContainerView:demoView];
+    
+
+    [customAlertView setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
+
+    [customAlertView setUseMotionEffects:true];
+    [customAlertView show];
+    
     [easylink_config configFTCClient:[configData objectForKey:@"client"]
-               withConfigurationData:nil];
+               withConfigurationData:[NSJSONSerialization dataWithJSONObject:[configData objectForKey:@"update"] options:0 error:&err]];
 }
 
 #pragma mark - Private Methods -
@@ -638,7 +686,7 @@ BOOL configTableMoved = NO;
         if ( EasylinkV2Button.selected )
             [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
         // The operation couldn’t be completed. No route to host
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"EMW ToolBox Alert" message:@"Wifi Not available. Please check your wifi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alertView = [[UIAlertView alloc] initWithTitle:@"EMW ToolBox Alert" message:@"Wifi Not available. Please check your wifi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
         ssidField.text = @"";
         gatewayAddress.text = @"";

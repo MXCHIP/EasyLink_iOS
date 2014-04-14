@@ -45,6 +45,7 @@
 
 @interface EASYLINK : NSObject{
 @private
+    NSTimer *closeFTCClientTimer;
     NSUInteger version;
     NSMutableArray *array;   //Used for EasyLink transmitting
     AsyncUdpSocket *socket;
