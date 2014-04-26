@@ -564,7 +564,7 @@ exit:
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    CGFloat hue,saturation,brightness,alpha;
+    //CGFloat hue,saturation,brightness,alpha;
     NSUInteger index;
     char inData;
     moduleBrowserCell *cell;
@@ -579,10 +579,10 @@ exit:
     }
     
     cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    [cell.lightStrengthView.backgroundColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
-    brightness = inData/100;
+    //[cell.lightStrengthView.backgroundColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    //brightness = inData/100;
     
-    cell.lightStrengthView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+    //cell.lightStrengthView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
     
     [sock readDataToLength:1 withTimeout:5 tag:1];
 }
@@ -595,7 +595,7 @@ exit:
     NSError *err;
     NSData *ipAddress = nil;
     
-    NSLog(@"disconnected");
+    //NSLog(@"disconnected");
     
     for (NSMutableDictionary *object in self.displayServices){
         if([object objectForKey:@"Socket"] == sock ){

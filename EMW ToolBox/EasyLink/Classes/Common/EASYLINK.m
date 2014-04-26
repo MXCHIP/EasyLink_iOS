@@ -113,10 +113,37 @@ static NSUInteger count = 0;
 }
 
 
-- (void)prepareEasyLinkV2_withFTC:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
+//- (void)prepareEasyLinkV2_withFTC:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
+- (void)prepareEasyLinkV2_withFTC:(NSArray *)wlanConfigArray info: (NSData *)userInfo
 {
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
+    in_addr_t ip, netmask, gateway, dns1, dns2;
+    bool dhcp;
+    NSUInteger idx ;
+    
+    NSString *wlanConfig[8] = {nil};
+    
+    NSString *bSSID, *bpasswd;
+    char seperate = '#';
+    
+    for(idx = 0; idx < [wlanConfigArray count]; idx++){
+        wlanConfig[idx] = [wlanConfigArray objectAtIndex:idx];
+    }
+    
+    bSSID = wlanConfig[INDEX_SSID];
+    bpasswd = wlanConfig[INDEX_PASSWORD];
+
+    
+    ip = wlanConfig[INDEX_IP]==nil? -1:htonl(inet_addr([ wlanConfig[INDEX_IP] cStringUsingEncoding:NSASCIIStringEncoding]));
+    netmask = wlanConfig[INDEX_NETMASK]==nil? -1:htonl(inet_addr([wlanConfig[INDEX_NETMASK] cStringUsingEncoding:NSASCIIStringEncoding]));
+    gateway = wlanConfig[INDEX_GATEWAY]==nil? -1:htonl(inet_addr([wlanConfig[INDEX_GATEWAY] cStringUsingEncoding:NSASCIIStringEncoding]));
+    dns1 = wlanConfig[INDEX_DNS1]==nil? -1:htonl(inet_addr([wlanConfig[INDEX_DNS1] cStringUsingEncoding:NSASCIIStringEncoding]));
+    dns2 = wlanConfig[INDEX_DNS2]==nil? -1:htonl(inet_addr([wlanConfig[INDEX_DNS2] cStringUsingEncoding:NSASCIIStringEncoding]));
+    dhcp = [wlanConfig[INDEX_DHCP] boolValue];
+    if(dhcp==YES)
+        ip = -1;
+    
     if (userInfo == nil) userInfo = [NSData dataWithBytes:nil length:0];
     
     int success = 0;
@@ -140,9 +167,17 @@ static NSUInteger count = 0;
     // Free/release memory
     freeifaddrs(interfaces);
     
-    NSMutableData *userInfoWithIP = [NSMutableData dataWithCapacity:([userInfo length]+sizeof(uint32_t))];
+    NSMutableData *userInfoWithIP = [NSMutableData dataWithCapacity:200];
     [userInfoWithIP appendData:userInfo];
+    [userInfoWithIP appendData:[NSData dataWithBytes:&seperate length:1]];
     [userInfoWithIP appendBytes:(const void *)&address length:sizeof(uint32_t)];
+    if(dhcp == NO){
+        [userInfoWithIP appendBytes:&ip length:sizeof(uint32_t)];
+        [userInfoWithIP appendBytes:&netmask length:sizeof(uint32_t)];
+        [userInfoWithIP appendBytes:&gateway length:sizeof(uint32_t)];
+        [userInfoWithIP appendBytes:&dns1 length:sizeof(uint32_t)];
+        [userInfoWithIP appendBytes:&dns2 length:sizeof(uint32_t)];
+    }
     
     [self prepareEasyLinkV2:bSSID password:bpasswd info: userInfoWithIP];
     firstTimeConfig = YES;
@@ -159,7 +194,7 @@ static NSUInteger count = 0;
     
     const char *bSSID_UTF8 = [bSSID UTF8String];
     const char *bpasswd_UTF8 = [bpasswd UTF8String];
-    const char *userInfo_UTF8 = [userInfo bytes];
+    const uint8_t *userInfo_UTF8 = [userInfo bytes];
     const char *mergeString_UTF8 = [mergeString UTF8String];
     
     NSUInteger bSSID_length = strlen(bSSID_UTF8);
@@ -315,6 +350,29 @@ static NSUInteger count = 0;
     }
 }
 
+- (void)closeFTCClient:(NSNumber *)client
+{
+    NSMutableDictionary *clientDict;
+    for (NSMutableDictionary *object in self.ftcClients){
+        if( [[object objectForKey:@"Tag"] longValue] == [client longValue]){
+            clientDict = object;
+            break;
+        }
+    }
+    
+    NSLog(@"Close FTC client %d", [client intValue]);
+    AsyncSocket *clientSocket = [clientDict objectForKey:@"Socket"];
+    //[clientSocket setDelegate:nil];
+    [clientSocket disconnect];
+    //clientSocket = nil;
+    
+    if(inComingMessageArray[[client intValue]] != nil){
+        CFRelease(inComingMessageArray[[client intValue]]) ;
+        inComingMessageArray[[client intValue]] = nil;
+    }
+}
+
+
 - (void)configFTCClient:(NSNumber *)client withConfigurationData:(NSData* )configData
 {
     CFHTTPMessageRef httpRespondMessage;
@@ -333,7 +391,8 @@ static NSUInteger count = 0;
     CFHTTPMessageSetHeaderFieldValue(httpRespondMessage, CFSTR("Content-Type"), CFSTR("application/json"));
     
         snprintf(contentLen, 50, "%lu", (unsigned long)[configData length]);
-        CFStringRef length = CFStringCreateWithCharacters (kCFAllocatorDefault, (unichar *)contentLen, strlen(contentLen));
+        CFStringRef length = CFStringCreateWithCString(kCFAllocatorDefault, contentLen, kCFStringEncodingASCII);
+        //CFStringRef length = CFStringCreateWithCharacters (kCFAllocatorDefault, (unichar *)contentLen, strlen(contentLen));
         CFHTTPMessageSetHeaderFieldValue(httpRespondMessage, CFSTR("Content-Length"),length);
         CFHTTPMessageSetBody(httpRespondMessage, (__bridge CFDataRef)configData);
 
@@ -352,6 +411,46 @@ static NSUInteger count = 0;
                                    selector:@selector(closeClient:)
                                    userInfo:[clientDict objectForKey:@"Socket"]
                                     repeats:NO];
+}
+
+- (void)otaFTCClient:(NSNumber *)client withOTAData: (NSData *)otaData
+{
+    CFHTTPMessageRef httpRespondMessage;
+    NSMutableDictionary *clientDict;
+    NSLog(@"Configured");
+    char contentLen[50];
+    
+    for (NSMutableDictionary *object in self.ftcClients){
+        if( [[object objectForKey:@"Tag"] longValue] == [client longValue]){
+            clientDict = object;
+            break;
+        }
+    }
+    
+    httpRespondMessage = CFHTTPMessageCreateResponse ( kCFAllocatorDefault, 200, NULL, kCFHTTPVersion1_1 );
+    CFHTTPMessageSetHeaderFieldValue(httpRespondMessage, CFSTR("Content-Type"), CFSTR("application/ota-stream"));
+    
+    snprintf(contentLen, 50, "%lu", (unsigned long)[otaData length]);
+    CFStringRef length = CFStringCreateWithCString(kCFAllocatorDefault, contentLen, kCFStringEncodingASCII);
+    //CFStringRef CFStringCreateWithCharacters (kCFAllocatorDefault, (unichar *)contentLen, strlen(contentLen));
+    CFHTTPMessageSetHeaderFieldValue(httpRespondMessage, CFSTR("Content-Length"),length);
+    CFHTTPMessageSetBody(httpRespondMessage, (__bridge CFDataRef)otaData);
+    
+    
+    CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRespondMessage );
+    [[clientDict objectForKey:@"Socket"] writeData:(__bridge_transfer NSData*)httpData
+                                       withTimeout:-1
+                                               tag:[client longValue]];
+    
+    /*Recv data that server can send FIN+ACK when client disconnect*/
+    [[clientDict objectForKey:@"Socket"] readDataWithTimeout:-1
+                                                         tag:[client longValue]];
+    
+    closeFTCClientTimer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                           target:self
+                                                         selector:@selector(closeClient:)
+                                                         userInfo:[clientDict objectForKey:@"Socket"]
+                                                          repeats:NO];
 }
 
 
@@ -495,6 +594,67 @@ static NSUInteger count = 0;
     return ssid? ssid:@"";
     
     
+}
+
+/*!!!!!!!!!!!!!
+ retrieving the IP Address from the connected WiFi
+ @return value: the wifi address of currently connected wifi
+ */
++ (NSString *)getIPAddress {
+    NSString *address = @"";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String for IP
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                    
+                    //                    NSLog(@"subnet mask == %@",[NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_netmask)->sin_addr)]);
+                    //
+                    //                    NSLog(@"dest mask == %@",[NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_dstaddr)->sin_addr)]);
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // Free/release memory
+    freeifaddrs(interfaces);
+    return address;
+}
+
++ (NSString *)getNetMask{
+    NSString *address = @"";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String for IP
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_netmask)->sin_addr)];
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // Free/release memory
+    freeifaddrs(interfaces);
+    return address;
+
 }
 
 

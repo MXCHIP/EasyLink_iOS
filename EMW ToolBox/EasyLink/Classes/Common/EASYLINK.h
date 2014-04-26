@@ -21,8 +21,19 @@
 #import "route.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 
-#define EASYLINK_V1 0
-#define EASYLINK_V2 1
+#define EASYLINK_V1         0
+#define EASYLINK_V2         1
+
+/*wlanConfigArray content index*/
+#define INDEX_SSID          0
+#define INDEX_PASSWORD      1
+#define INDEX_DHCP          2
+#define INDEX_IP            3
+#define INDEX_NETMASK       4
+#define INDEX_GATEWAY       5
+#define INDEX_DNS1          6
+#define INDEX_DNS2          7
+
 
 #define FTC_PORT 8000
 
@@ -68,8 +79,10 @@
 
 
 - (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd;
+
 - (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
-- (void)prepareEasyLinkV2_withFTC:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
+- (void)prepareEasyLinkV2_withFTC:(NSArray *)wlanConfigArray info: (NSData *)userInfo;
+
 - (void)transmitSettings;
 - (void)stopTransmitting;
 
@@ -77,16 +90,19 @@
 - (void)setDelegate:(id)delegate;
 - (void)startFTCServerWithDelegate:(id)delegate;
 - (void)configFTCClient:(NSNumber *)client withConfigurationData: (NSData *)configData;
-
+- (void)otaFTCClient:(NSNumber *)client withOTAData: (NSData *)otaData;
+- (void)closeFTCClient:(NSNumber *)client;
 - (void)closeFTCServer;
 - (BOOL)isFTCServerStarted;
 
 /**
- *
+ * Tools
  **/
-- (void)declineFTCClient:(NSMutableDictionary *)ftcClient;
 
 + (NSString *)ssidForConnectedNetwork;
++ (NSString *)getIPAddress;
++ (NSString *)getNetMask;
+
 + (NSString *)getGatewayAddress;
 
 @end

@@ -20,10 +20,18 @@
 #define TABLEVIEW_OFFSET                                               120.0
 
 /// table rows
+#define DHCP_ROW                                                            0
+#define LOCAL_IP_ROW                                                        1
+#define NETMASK_ROW                                                       2
+#define GATEWAY_ROW                                                      3
+#define DNS_ROW                                                     4
+
+
+
 #define SSID_ROW                                                               0
 #define PASSWORD_ROW                                                      1
 #define USER_INFO_ROW                                       2
-#define GATEWAY_ADDRESS_ROW                                                                3
+#define IP_ADDRESS_ROW                                                                3
 #define DEVICE_NAME_ROW                                                  4
 
 #define SECTION_HEIGHT                                                   30.0
@@ -39,6 +47,12 @@
 #define CELL_iPHONE_FIELD_Y                                            8.0
 #define CELL_iPHONE_FIELD_WIDTH                                     170.0
 #define CELL_iPHONE_FIELD_HEIGHT                                    30.0
+
+// Textfield placement constants.
+#define CELL_IPHONE_SWITCH_X                                            251.0
+#define CELL_iPHONE_SWITCH_Y                                            6.0
+#define CELL_iPHONE_SWITCH_WIDTH                                     60.0
+#define CELL_iPHONE_SWITCH_HEIGHT                                    30.0
 
 
 // Group Id overlay view border constants.

@@ -11,6 +11,8 @@
 #import "FTCStringSelectCell.h"
 #import "FTCSwitchCell.h"
 #import "FTCSubMenuCell.h"
+#import "CustomIOS7AlertView.h"
+#import "EasyLinkOTATableViewController.h"
 
 @interface EasyLinkFTCTableViewController ()
 
@@ -18,6 +20,7 @@
 
 @implementation EasyLinkFTCTableViewController
 @synthesize configData = _configData;
+@synthesize otaPath;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -57,7 +60,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     /*Return from a select cell, update the select cell and add the new valuw to the config data*/
     if(selectCellIndexPath != nil){
-        NSUInteger sectionRow = [ selectCellIndexPath indexAtPosition: 0 ];
+        NSUInteger sectionRow = [ selectCellIndexPath indexAtPosition: 0 ]-hasOTA;
         NSUInteger contentRow = [ selectCellIndexPath indexAtPosition: 1 ];
         NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
         NSMutableDictionary *content = [array objectAtIndex: contentRow];
@@ -84,11 +87,23 @@
 
 - (void)setConfigData:(NSMutableDictionary *)newConfigData
 {
+    NSString *protocol;
+    NSString *hardwareVersion;
+    
     if (_configData != newConfigData) {
         _configData = newConfigData;
         
         // Update the view.
         self.configMenu = [newConfigData objectForKey:@"C"];
+        protocol = [newConfigData objectForKey:@"PO"];
+        hardwareVersion = [newConfigData objectForKey:@"HD"];
+        
+        currentVersion = [newConfigData objectForKey:@"FW"];
+        if( protocol!=nil&&hardwareVersion!=nil) {
+            hasOTA = true;
+        }
+        else
+            hasOTA = false;
         [configTableView reloadData];
     }
 }
@@ -98,18 +113,24 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [self.configMenu count];
+    return [self.configMenu count]+hasOTA;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[[self.configMenu objectAtIndex:section] objectForKey:@"C"] count];
+    if(section == 0&&hasOTA)
+        return 1;
+    else
+        return [[[self.configMenu objectAtIndex:(section-hasOTA)] objectForKey:@"C"] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [[self.configMenu objectAtIndex:section] objectForKey:@"N"];
+    if(section == 0&&hasOTA)
+        return @"";
+    else
+        return [[self.configMenu objectAtIndex:(section-hasOTA)] objectForKey:@"N"];
 }
 
 
@@ -117,7 +138,17 @@
 {
     FTCStringCell *cell;
     NSString *tableCellIdentifier;
-    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
+    
+    /*Display OTA cell*/
+    if([ indexPath indexAtPosition: 0 ] == 0&&hasOTA){
+        tableCellIdentifier= @"OTACell";
+        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+        cell.detailTextLabel.text = currentVersion;
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
+        return cell;
+    }
+    
+    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ]-hasOTA;
     NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
     NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
     NSMutableDictionary *content = [array objectAtIndex: contentRow];
@@ -128,15 +159,18 @@
             tableCellIdentifier= @"ConfigCell";
         else
             tableCellIdentifier= @"SelectCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+        cell.ftcConfig  = content;
     }else if([[content objectForKey:@"T"] isEqualToString:@"switch"]){
         tableCellIdentifier = @"SwitchCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+        cell.ftcConfig  = content;
     }else if([[content objectForKey:@"T"] isEqualToString:@"menu"]){
         tableCellIdentifier = @"SubMenuCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+        cell.textLabel.text = [content objectForKey:@"N"];
     }
-        
-    cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-    cell.ftcConfig  = content;
-
+    
     return cell;
 }
 
@@ -145,7 +179,6 @@
 {
     if([theDelegate respondsToSelector:@selector(onConfigured:)])
         [theDelegate onConfigured:self.configData];
-    
 }
 
 #pragma mark - Segue action
@@ -154,28 +187,39 @@
 {
     if ([[segue identifier] isEqualToString:@"Sub menu"]) {
         NSIndexPath *indexPath = [configTableView indexPathForSelectedRow];
-        NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
+        NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ]-hasOTA;
         NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
         NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
         NSMutableDictionary *content = [array objectAtIndex: contentRow];
         
         [configTableView deselectRowAtIndexPath:indexPath animated:YES];
+        /*Add client and update content in sub menu*/
         [content setObject:[self.configData objectForKey:@"client"] forKey:@"client"];
         [content setObject:[self.configData objectForKey:@"update"] forKey:@"update"];
         [[segue destinationViewController] setConfigData: content];
+        [[[segue destinationViewController] navigationItem] setTitle: [content objectForKey:@"N"]];
         [[segue destinationViewController] setDelegate:theDelegate];
     }
     
     if ([[segue identifier] isEqualToString:@"Select Table"]) {
         selectCellIndexPath = [configTableView indexPathForSelectedRow];
-        NSUInteger sectionRow = [ selectCellIndexPath indexAtPosition: 0 ];
+        NSUInteger sectionRow = [ selectCellIndexPath indexAtPosition: 0 ]-hasOTA;
         NSUInteger contentRow = [ selectCellIndexPath indexAtPosition: 1 ];
         NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
         NSMutableDictionary *content = [array objectAtIndex: contentRow];
         
         [configTableView deselectRowAtIndexPath:selectCellIndexPath animated:YES];
         [[segue destinationViewController] setConfigData: content];
-        
+        [[[segue destinationViewController] navigationItem] setTitle:[content objectForKey:@"N"]];
+    }
+    
+    if ([[segue identifier] isEqualToString:@"OTA"]) {
+        [[segue destinationViewController] setProtocol:[self.configData objectForKey:@"PO"]];
+        [[segue destinationViewController] setClient:[self.configData objectForKey:@"client"]];
+        [[segue destinationViewController] setHardwareVersion: [self.configData objectForKey:@"HD"]];
+        [[segue destinationViewController] setFirmwareVersion: [self.configData objectForKey:@"FW"]];
+        [[segue destinationViewController] setRfVersion: [self.configData objectForKey:@"RF"]];
+        [[segue destinationViewController] setDelegate:theDelegate];
     }
 }
 
@@ -188,7 +232,7 @@
     NSLog(@"Value changed!");
     cell = (FTCSwitchCell *)switcher.superview.superview.superview;
     indexPath = [configTableView indexPathForCell:cell];
-    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
+    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ]-hasOTA;
     NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
     NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
     NSMutableDictionary *content = [array objectAtIndex: contentRow];
@@ -204,7 +248,7 @@
     NSLog(@"Value changed!");
     cell = (FTCStringCell *)textField.superview.superview.superview;
     indexPath = [configTableView indexPathForCell:cell];
-    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
+    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ]-hasOTA;
     NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
     NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
     NSMutableDictionary *content = [array objectAtIndex: contentRow];

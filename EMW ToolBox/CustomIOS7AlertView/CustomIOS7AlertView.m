@@ -132,7 +132,7 @@ CGFloat buttonSpacerHeight = 0;
 // Default button behaviour
 - (void)customIOS7dialogButtonTouchUpInside: (CustomIOS7AlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Button Clicked! %d, %d", buttonIndex, [alertView tag]);
+    NSLog(@"Button Clicked! %d, %ld", buttonIndex, (long)[alertView tag]);
     [self close];
 }
 
@@ -239,7 +239,7 @@ CGFloat buttonSpacerHeight = 0;
         [closeButton setTitle:[buttonTitles objectAtIndex:i] forState:UIControlStateNormal];
         [closeButton setTitleColor:[UIColor colorWithRed:0.0f green:0.5f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
         [closeButton setTitleColor:[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:0.5f] forState:UIControlStateHighlighted];
-        [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
+        [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [closeButton.layer setCornerRadius:kCustomIOS7AlertViewCornerRadius];
 
         [container addSubview:closeButton];

@@ -14,18 +14,20 @@
 #import "EASYLINK.h"
 #import "EasyLinkFTCTableViewController.h"
 #import "CustomIOS7AlertView.h"
+#import "EasyLinkOTATableViewController.h"
 
-@interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate, EasyLinkFTCDelegate, EasyLinkFTCDataDelegate>{
+@interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate, EasyLinkFTCDelegate, EasyLinkFTCDataDelegate, EasyLinkOTADelegate>{
         NSMutableArray *foundModules;
 @private
         IBOutlet UITableView *configTableView;
         IBOutlet UITableView *foundModuleTableView;
-        UITextField *ssidField,*passwordField,*userInfoField,*gatewayAddress;
+        UITextField *ssidField,*passwordField,*userInfoField,*ipAddress;
 
         IBOutlet UIButton *EasylinkV1Button, *EasylinkV2Button;
         IBOutlet UIImageView *imagePhoneView, *imageEMW3161View, *imageEMW3162View, *backgroundImage;
         UIAlertView *alertView;
         CustomIOS7AlertView *customAlertView;
+        NSMutableDictionary *deviceIPConfig;
 
         EASYLINK *easylink_config;
     

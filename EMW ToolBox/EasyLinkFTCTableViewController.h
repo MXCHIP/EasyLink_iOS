@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GRRequestsManager.h"
 
 @protocol EasyLinkFTCDataDelegate
 @optional
@@ -16,15 +17,19 @@
 - (void)onConfigured:(NSMutableDictionary *)updateSettings;
 @end
 
-@interface EasyLinkFTCTableViewController : UITableViewController{
+@interface EasyLinkFTCTableViewController : UITableViewController<GRRequestsManagerDelegate>{
     IBOutlet UITableView *configTableView;
     id theDelegate;
 @private
     NSIndexPath *selectCellIndexPath;
+    bool hasOTA;
+    NSString *currentVersion;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *configData;
 @property (strong, nonatomic) NSArray *configMenu;
+@property (strong, nonatomic) NSString *otaPath;
+@property (nonatomic, strong) GRRequestsManager *requestsManager;
 
 - (id)delegate;
 - (void)setDelegate:(id)delegate;

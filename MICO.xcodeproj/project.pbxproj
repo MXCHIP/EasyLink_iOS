@@ -46,8 +46,20 @@
 		3DD19A6018E00D5600F8E43A /* EasyLinkFTCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */; };
 		3DDB158A18BB0C580053B32D /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB158918BB0C580053B32D /* ExternalAccessory.framework */; };
 		3DE2417F17F2BC6900327C5C /* EMW3162_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE2417E17F2BC6900327C5C /* EMW3162_logo.png */; };
+		3DE5C6C618FCFCB7008436EB /* GRRequestsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6AF18FCFCB7008436EB /* GRRequestsManager.m */; };
+		3DE5C6C718FCFCB7008436EB /* GRCreateDirectoryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6B318FCFCB7008436EB /* GRCreateDirectoryRequest.m */; };
+		3DE5C6C818FCFCB7008436EB /* GRDeleteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6B518FCFCB7008436EB /* GRDeleteRequest.m */; };
+		3DE5C6C918FCFCB7008436EB /* GRDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6B718FCFCB7008436EB /* GRDownloadRequest.m */; };
+		3DE5C6CA18FCFCB7008436EB /* GRListingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6B918FCFCB7008436EB /* GRListingRequest.m */; };
+		3DE5C6CB18FCFCB7008436EB /* GRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6BB18FCFCB7008436EB /* GRRequest.m */; };
+		3DE5C6CC18FCFCB7008436EB /* GRUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6BE18FCFCB7008436EB /* GRUploadRequest.m */; };
+		3DE5C6CD18FCFCB7008436EB /* GRError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6C118FCFCB7008436EB /* GRError.m */; };
+		3DE5C6CE18FCFCB7008436EB /* GRQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6C318FCFCB7008436EB /* GRQueue.m */; };
+		3DE5C6CF18FCFCB7008436EB /* GRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6C518FCFCB7008436EB /* GRStreamInfo.m */; };
+		3DE5C6D218FD373D008436EB /* EasyLinkOTATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6D118FD373D008436EB /* EasyLinkOTATableViewController.m */; };
 		3DEF24A117BD0D1600C0A5C7 /* EmspCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF24A017BD0D1600C0A5C7 /* EmspCommands.m */; };
 		3DF345D018E125F60088832E /* FTCStringCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF345CF18E125F60088832E /* FTCStringCell.m */; };
+		3DFEF5FA1903C37300798682 /* easyLinkIpConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEF5F91903C37300798682 /* easyLinkIpConfigTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,10 +125,36 @@
 		3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLinkFTCTableViewController.m; sourceTree = "<group>"; };
 		3DDB158918BB0C580053B32D /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		3DE2417E17F2BC6900327C5C /* EMW3162_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMW3162_logo.png; sourceTree = "<group>"; };
+		3DE5C6AE18FCFCB7008436EB /* GRRequestsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRRequestsManager.h; path = "EMW ToolBox/GoldRaccoonFTPClient/GRRequestsManager.h"; sourceTree = "<group>"; };
+		3DE5C6AF18FCFCB7008436EB /* GRRequestsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GRRequestsManager.m; path = "EMW ToolBox/GoldRaccoonFTPClient/GRRequestsManager.m"; sourceTree = "<group>"; };
+		3DE5C6B018FCFCB7008436EB /* GRRequestsManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRRequestsManagerProtocol.h; path = "EMW ToolBox/GoldRaccoonFTPClient/GRRequestsManagerProtocol.h"; sourceTree = "<group>"; };
+		3DE5C6B218FCFCB7008436EB /* GRCreateDirectoryRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRCreateDirectoryRequest.h; sourceTree = "<group>"; };
+		3DE5C6B318FCFCB7008436EB /* GRCreateDirectoryRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRCreateDirectoryRequest.m; sourceTree = "<group>"; };
+		3DE5C6B418FCFCB7008436EB /* GRDeleteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDeleteRequest.h; sourceTree = "<group>"; };
+		3DE5C6B518FCFCB7008436EB /* GRDeleteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDeleteRequest.m; sourceTree = "<group>"; };
+		3DE5C6B618FCFCB7008436EB /* GRDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDownloadRequest.h; sourceTree = "<group>"; };
+		3DE5C6B718FCFCB7008436EB /* GRDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDownloadRequest.m; sourceTree = "<group>"; };
+		3DE5C6B818FCFCB7008436EB /* GRListingRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRListingRequest.h; sourceTree = "<group>"; };
+		3DE5C6B918FCFCB7008436EB /* GRListingRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRListingRequest.m; sourceTree = "<group>"; };
+		3DE5C6BA18FCFCB7008436EB /* GRRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRRequest.h; sourceTree = "<group>"; };
+		3DE5C6BB18FCFCB7008436EB /* GRRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRRequest.m; sourceTree = "<group>"; };
+		3DE5C6BC18FCFCB7008436EB /* GRRequestProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRRequestProtocol.h; sourceTree = "<group>"; };
+		3DE5C6BD18FCFCB7008436EB /* GRUploadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRUploadRequest.h; sourceTree = "<group>"; };
+		3DE5C6BE18FCFCB7008436EB /* GRUploadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadRequest.m; sourceTree = "<group>"; };
+		3DE5C6C018FCFCB7008436EB /* GRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRError.h; sourceTree = "<group>"; };
+		3DE5C6C118FCFCB7008436EB /* GRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRError.m; sourceTree = "<group>"; };
+		3DE5C6C218FCFCB7008436EB /* GRQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRQueue.h; sourceTree = "<group>"; };
+		3DE5C6C318FCFCB7008436EB /* GRQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRQueue.m; sourceTree = "<group>"; };
+		3DE5C6C418FCFCB7008436EB /* GRStreamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRStreamInfo.h; sourceTree = "<group>"; };
+		3DE5C6C518FCFCB7008436EB /* GRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRStreamInfo.m; sourceTree = "<group>"; };
+		3DE5C6D018FD373D008436EB /* EasyLinkOTATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLinkOTATableViewController.h; sourceTree = "<group>"; };
+		3DE5C6D118FD373D008436EB /* EasyLinkOTATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLinkOTATableViewController.m; sourceTree = "<group>"; };
 		3DEF249F17BD0D1600C0A5C7 /* EmspCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmspCommands.h; sourceTree = "<group>"; };
 		3DEF24A017BD0D1600C0A5C7 /* EmspCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmspCommands.m; sourceTree = "<group>"; };
 		3DF345CE18E125F60088832E /* FTCStringCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCStringCell.h; sourceTree = "<group>"; };
 		3DF345CF18E125F60088832E /* FTCStringCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCStringCell.m; sourceTree = "<group>"; };
+		3DFEF5F81903C37300798682 /* easyLinkIpConfigTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easyLinkIpConfigTableViewController.h; sourceTree = "<group>"; };
+		3DFEF5F91903C37300798682 /* easyLinkIpConfigTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = easyLinkIpConfigTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +175,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D041FC018FC078100D5563F /* GoldRaccoonFTPClient */ = {
+			isa = PBXGroup;
+			children = (
+				3DE5C6AE18FCFCB7008436EB /* GRRequestsManager.h */,
+				3DE5C6AF18FCFCB7008436EB /* GRRequestsManager.m */,
+				3DE5C6B018FCFCB7008436EB /* GRRequestsManagerProtocol.h */,
+				3DE5C6B118FCFCB7008436EB /* Requests */,
+				3DE5C6BF18FCFCB7008436EB /* Utils */,
+			);
+			name = GoldRaccoonFTPClient;
+			sourceTree = "<group>";
+		};
 		3D207F41187D2F7E00A3CBB7 /* AsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,8 +201,9 @@
 		3D2AD57A17A247E20026E31E = {
 			isa = PBXGroup;
 			children = (
-				3D7ACE8418FACAD400747F32 /* ViewTemplate */,
+				3D041FC018FC078100D5563F /* GoldRaccoonFTPClient */,
 				3D71295518AA26430071D553 /* Images.xcassets */,
+				3D7ACE8418FACAD400747F32 /* ViewTemplate */,
 				3D4289D818A4D72C0092DD5D /* Animation */,
 				3D207F41187D2F7E00A3CBB7 /* AsyncSocket */,
 				3D2AD58C17A247E30026E31E /* MainUI */,
@@ -188,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				3DA1179718EBE2CE009B2E1E /* Browser Cell */,
-				3DF345CD18E125CF0088832E /* FTC Cell */,
+				3DF345CD18E125CF0088832E /* First Time Configuration */,
 				3D2AD59517A247E30026E31E /* mxchipAppDelegate.h */,
 				3D2AD59617A247E30026E31E /* mxchipAppDelegate.m */,
 				3D2AD59E17A247E30026E31E /* MainStoryboard.storyboard */,
@@ -200,8 +251,6 @@
 				3D2AD5A517A247E30026E31E /* mxchipDetailViewController.m */,
 				3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */,
 				3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */,
-				3DD19A5E18E00D5600F8E43A /* EasyLinkFTCTableViewController.h */,
-				3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */,
 				3DAA393C17A54572003806FE /* Reachability */,
 				3DAA37E317A542FC003806FE /* EasyLink */,
 				3D2AD58D17A247E30026E31E /* Supporting Files */,
@@ -331,9 +380,50 @@
 			path = EasyLink/Classes/Common;
 			sourceTree = "<group>";
 		};
-		3DF345CD18E125CF0088832E /* FTC Cell */ = {
+		3DE5C6B118FCFCB7008436EB /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				3DE5C6B218FCFCB7008436EB /* GRCreateDirectoryRequest.h */,
+				3DE5C6B318FCFCB7008436EB /* GRCreateDirectoryRequest.m */,
+				3DE5C6B418FCFCB7008436EB /* GRDeleteRequest.h */,
+				3DE5C6B518FCFCB7008436EB /* GRDeleteRequest.m */,
+				3DE5C6B618FCFCB7008436EB /* GRDownloadRequest.h */,
+				3DE5C6B718FCFCB7008436EB /* GRDownloadRequest.m */,
+				3DE5C6B818FCFCB7008436EB /* GRListingRequest.h */,
+				3DE5C6B918FCFCB7008436EB /* GRListingRequest.m */,
+				3DE5C6BA18FCFCB7008436EB /* GRRequest.h */,
+				3DE5C6BB18FCFCB7008436EB /* GRRequest.m */,
+				3DE5C6BC18FCFCB7008436EB /* GRRequestProtocol.h */,
+				3DE5C6BD18FCFCB7008436EB /* GRUploadRequest.h */,
+				3DE5C6BE18FCFCB7008436EB /* GRUploadRequest.m */,
+			);
+			name = Requests;
+			path = "EMW ToolBox/GoldRaccoonFTPClient/Requests";
+			sourceTree = "<group>";
+		};
+		3DE5C6BF18FCFCB7008436EB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3DE5C6C018FCFCB7008436EB /* GRError.h */,
+				3DE5C6C118FCFCB7008436EB /* GRError.m */,
+				3DE5C6C218FCFCB7008436EB /* GRQueue.h */,
+				3DE5C6C318FCFCB7008436EB /* GRQueue.m */,
+				3DE5C6C418FCFCB7008436EB /* GRStreamInfo.h */,
+				3DE5C6C518FCFCB7008436EB /* GRStreamInfo.m */,
+			);
+			name = Utils;
+			path = "EMW ToolBox/GoldRaccoonFTPClient/Utils";
+			sourceTree = "<group>";
+		};
+		3DF345CD18E125CF0088832E /* First Time Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3DD19A5E18E00D5600F8E43A /* EasyLinkFTCTableViewController.h */,
+				3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */,
+				3DE5C6D018FD373D008436EB /* EasyLinkOTATableViewController.h */,
+				3DE5C6D118FD373D008436EB /* EasyLinkOTATableViewController.m */,
+				3DFEF5F81903C37300798682 /* easyLinkIpConfigTableViewController.h */,
+				3DFEF5F91903C37300798682 /* easyLinkIpConfigTableViewController.m */,
 				3DF345CE18E125F60088832E /* FTCStringCell.h */,
 				3DF345CF18E125F60088832E /* FTCStringCell.m */,
 				3D179B5618F3E5A3003C02F9 /* FTCStringSelectCell.h */,
@@ -345,7 +435,7 @@
 				3D179B5918F3F1C8003C02F9 /* FTCSelectViewController.h */,
 				3D179B5A18F3F1C8003C02F9 /* FTCSelectViewController.m */,
 			);
-			name = "FTC Cell";
+			name = "First Time Configuration";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,11 +519,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DE5C6CF18FCFCB7008436EB /* GRStreamInfo.m in Sources */,
+				3DE5C6CB18FCFCB7008436EB /* GRRequest.m in Sources */,
+				3DE5C6C918FCFCB7008436EB /* GRDownloadRequest.m in Sources */,
 				3D2AD59317A247E30026E31E /* main.m in Sources */,
 				3D2AD59717A247E30026E31E /* mxchipAppDelegate.m in Sources */,
 				3D2AD5A317A247E30026E31E /* browserViewController.m in Sources */,
 				3D92995618EEB66300DE2560 /* FTCSubMenuCell.m in Sources */,
 				3D207F47187D2FC700A3CBB7 /* AsyncUdpSocket.m in Sources */,
+				3DE5C6CC18FCFCB7008436EB /* GRUploadRequest.m in Sources */,
 				3D2AD5A617A247E30026E31E /* mxchipDetailViewController.m in Sources */,
 				3D179B5B18F3F1C8003C02F9 /* FTCSelectViewController.m in Sources */,
 				3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */,
@@ -441,8 +535,16 @@
 				3DF345D018E125F60088832E /* FTCStringCell.m in Sources */,
 				3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */,
 				3DA1179A18EBE946009B2E1E /* moduleBrowserCell.m in Sources */,
+				3DE5C6C718FCFCB7008436EB /* GRCreateDirectoryRequest.m in Sources */,
 				3D179B5818F3E5A3003C02F9 /* FTCStringSelectCell.m in Sources */,
+				3DE5C6C618FCFCB7008436EB /* GRRequestsManager.m in Sources */,
+				3DE5C6D218FD373D008436EB /* EasyLinkOTATableViewController.m in Sources */,
+				3DE5C6C818FCFCB7008436EB /* GRDeleteRequest.m in Sources */,
+				3DE5C6CD18FCFCB7008436EB /* GRError.m in Sources */,
+				3DFEF5FA1903C37300798682 /* easyLinkIpConfigTableViewController.m in Sources */,
 				3DAA393F17A54572003806FE /* Reachability.m in Sources */,
+				3DE5C6CA18FCFCB7008436EB /* GRListingRequest.m in Sources */,
+				3DE5C6CE18FCFCB7008436EB /* GRQueue.m in Sources */,
 				3DAA394817A54ED0003806FE /* APManager.m in Sources */,
 				3DD19A6018E00D5600F8E43A /* EasyLinkFTCTableViewController.m in Sources */,
 				3D207F46187D2FC700A3CBB7 /* AsyncSocket.m in Sources */,

@@ -28,7 +28,7 @@
 @property (nonatomic, retain) NSArray *buttonTitles;
 @property (nonatomic, assign) BOOL useMotionEffects;
 
-@property (copy) void (^onButtonTouchUpInside)(CustomIOS7AlertView *alertView, int buttonIndex) ;
+@property (copy) void (^onButtonTouchUpInside)(CustomIOS7AlertView *alertView, NSInteger buttonIndex) ;
 
 - (id)init;
 
