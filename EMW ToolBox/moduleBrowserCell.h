@@ -13,10 +13,12 @@
     NSMutableDictionary *_moduleService;
     IBOutlet UIImageView *lightStrengthView;
     AsyncSocket *socket;
+    UIView *checkMarkView;
 }
 
 @property (nonatomic, retain, readwrite) NSMutableDictionary *moduleService;
 
 - (void)startActivityIndicator: (BOOL) enable;
+- (void)startCheckIndicator: (BOOL) enable;
 
 @end

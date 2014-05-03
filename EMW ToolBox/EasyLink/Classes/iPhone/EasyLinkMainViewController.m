@@ -96,6 +96,14 @@ BOOL configTableMoved = NO;
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath = [paths objectAtIndex:0];
+    apInforRecordFile = [docPath stringByAppendingPathComponent:@"ApInforRecord.plist"];
+    apInforRecord = [[NSMutableDictionary alloc] initWithContentsOfFile:apInforRecordFile];
+    if(apInforRecord == nil)
+        apInforRecord = [NSMutableDictionary dictionaryWithCapacity:10];    
+    
     if( easylink_config == nil){
         easylink_config = [[EASYLINK alloc]init];
         [easylink_config startFTCServerWithDelegate:self];
@@ -109,6 +117,8 @@ BOOL configTableMoved = NO;
     [deviceIPConfig setObject:[EASYLINK getNetMask] forKey:@"NetMask"];
     [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
     [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
+    
+    
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     
@@ -247,8 +257,8 @@ BOOL configTableMoved = NO;
 -(void) sendAction{
     newModuleFound = NO;
     [easylink_config transmitSettings];
-    waitForAckThread = [[NSThread alloc] initWithTarget:self selector:@selector(waitForAck:) object:nil];
-    [waitForAckThread start];
+    //waitForAckThread = [[NSThread alloc] initWithTarget:self selector:@selector(waitForAck:) object:nil];
+    //[waitForAckThread start];
 }
 
 /*
@@ -257,8 +267,8 @@ BOOL configTableMoved = NO;
  */
 -(void) stopAction{
     [easylink_config stopTransmitting];
-    [waitForAckThread cancel];
-    waitForAckThread= nil;
+    //[waitForAckThread cancel];
+    //waitForAckThread= nil;
 }
 
 /*
@@ -485,7 +495,7 @@ BOOL configTableMoved = NO;
     foundModule = [NSJSONSerialization JSONObjectWithData:config
                                                   options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
                                                     error:&err];
-    NSLog(@"Recv JSON data, length: %d", [config length]);
+    NSLog(@"Recv JSON data, length: %lu", (unsigned long)[config length]);
 
     if (err) {
         NSString *temp = [[NSString alloc] initWithData:config encoding:NSASCIIStringEncoding];
@@ -501,7 +511,7 @@ BOOL configTableMoved = NO;
     updateSettings = [NSMutableDictionary dictionaryWithCapacity:10];
     [foundModule setValue:updateSettings forKey:@"update"];
     
-    /*Reloace an old device*/
+    /*Replace an old device*/
     for( NSDictionary *object in self.foundModules){
         if ([[object objectForKey:@"N"] isEqualToString:[foundModule objectForKey:@"N"]] ){
             [easylink_config closeFTCClient:[object objectForKey:@"client"]];
@@ -518,6 +528,19 @@ BOOL configTableMoved = NO;
     indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
     [foundModuleTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                 withRowAnimation:UITableViewRowAnimationRight];
+    
+    /*Correct AP info input, save to file*/
+    if([[apInforRecord objectForKey:ssidField.text] isEqualToString:passwordField.text] == NO){
+        [apInforRecord setObject:passwordField.text forKey:ssidField.text];
+        [apInforRecord writeToFile:apInforRecordFile atomically:YES];
+    }
+    
+    if(otaAlertView != nil){
+        [otaAlertView close];
+        otaAlertView = nil;
+    }
+
+    
 }
 
 - (void)onDisconnectFromFTC:(NSNumber *)ftcClientTag
@@ -543,6 +566,29 @@ BOOL configTableMoved = NO;
 
     if(customAlertView != nil){
         [customAlertView close];
+        customAlertView = nil;
+    }
+    
+    
+    if(otaAlertView != nil){
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        paragraphStyle.lineSpacing = 5.0f;
+        NSDictionary *attributes = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:paragraphStyle,
+                                                                        nil]
+                                                               forKeys:[NSArray arrayWithObjects:NSParagraphStyleAttributeName,
+                                                                        nil]];
+        NSAttributedString *contentText =  [[NSAttributedString alloc] initWithString:@"OTA processing..."
+                                                                           attributes:attributes];
+        
+        for(UIView *object in [[otaAlertView containerView] subviews]){
+            if(object.tag == 0x1001){
+                [(UILabel *)object setAttributedText:contentText];
+                [(UILabel *)object setNumberOfLines: 2];
+                break;
+            }
+        }
     }
     
     if([self.foundModules count]==0){
@@ -599,7 +645,7 @@ BOOL configTableMoved = NO;
 
 - (void)onStartOTA:(NSString *)otaFilePath toFTCClient:(NSNumber *)client
 {
-    customAlertView = [[CustomIOS7AlertView alloc] init];
+    otaAlertView = [[CustomIOS7AlertView alloc] init];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 170)];
     
@@ -609,7 +655,7 @@ BOOL configTableMoved = NO;
     title.textAlignment = NSTextAlignmentCenter;
     [alertContentView addSubview:title];
     
-    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 50, 260, 50)];
+    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 65, 260, 25)];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
@@ -619,11 +665,12 @@ BOOL configTableMoved = NO;
                                                                     nil]
                                                            forKeys:[NSArray arrayWithObjects:NSParagraphStyleAttributeName,
                                                                     nil]];
-    NSAttributedString *contentText =  [[NSAttributedString alloc] initWithString:@"Sending OTA data to module, please wait the module to reboot"
+    NSAttributedString *contentText =  [[NSAttributedString alloc] initWithString:@"Sending OTA data to module..."
                                                                        attributes:attributes];
     
     content.attributedText = contentText;
     content.numberOfLines = 2;
+    [content setTag:0x1001];
     [alertContentView addSubview:content];
     
     CGRect frame = CGRectMake(0, 0, 50, 50);
@@ -634,19 +681,21 @@ BOOL configTableMoved = NO;
     [spinner setColor: [UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
     spinner.frame = CGRectMake(alertContentView.frame.size.width/2-17, 110, 50, 50);
     [alertContentView addSubview:spinner];
-    [customAlertView setContainerView:alertContentView];
+    [otaAlertView setContainerView:alertContentView];
     
-    [customAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel",nil]];
-    [customAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, int buttonIndex) {
+    [otaAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel",nil]];
+    __weak EASYLINK *_easylink_config = easylink_config;
+    __weak CustomIOS7AlertView *_otaAlertView = otaAlertView;
+    [otaAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, NSInteger buttonIndex) {
       //  self.requestsManager = nil;
-        [easylink_config closeFTCClient: client];
+    [_easylink_config closeFTCClient: client];
       //  [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
-        NSLog(@"Block: Button at position %d is clicked on alertView %ld.", buttonIndex, (long)[customIOS7AlertView tag]);
-        [customIOS7AlertView close];
+        NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[customIOS7AlertView tag]);
+        [_otaAlertView close];
     }];
     
-    [customAlertView setUseMotionEffects:true];
-    [customAlertView show];
+    [otaAlertView setUseMotionEffects:true];
+    [otaAlertView show];
     
     [easylink_config otaFTCClient:client withOTAData: [NSData dataWithContentsOfFile:otaFilePath]];
 }
@@ -707,7 +756,9 @@ BOOL configTableMoved = NO;
         [passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
         [passwordField setBackgroundColor:[UIColor clearColor]];
         [cell addSubview:passwordField];
-        //[passwordField setText:@"mx099555"];
+        NSString *password = [apInforRecord objectForKey:ssidField.text];
+        if(password == nil) password = @"";
+        [passwordField setText:password];
 
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
@@ -778,6 +829,10 @@ BOOL configTableMoved = NO;
     [deviceIPConfig setObject:[EASYLINK getNetMask] forKey:@"NetMask"];
     [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
     [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
+    
+    NSString *password = [apInforRecord objectForKey:ssidField.text];
+    if(password == nil) password = @"";
+    [passwordField setText: password];
 }
 
 /*
@@ -818,10 +873,12 @@ BOOL configTableMoved = NO;
         alertView = [[UIAlertView alloc] initWithTitle:@"EMW ToolBox Alert" message:@"Wifi Not available. Please check your wifi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
         ssidField.text = @"";
-        ipAddress.text = @"";
+        passwordField.text = @"";
     }else {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
-        ipAddress.text = @"Auto";
+        NSString *password = [apInforRecord objectForKey:ssidField.text];
+        if(password == nil) password = @"";
+        [passwordField setText:password];
         
         [deviceIPConfig setObject:@YES forKey:@"DHCP"];
         [deviceIPConfig setObject:[EASYLINK getIPAddress] forKey:@"IP"];

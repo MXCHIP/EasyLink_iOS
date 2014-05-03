@@ -66,7 +66,7 @@
         NSMutableDictionary *content = [array objectAtIndex: contentRow];
         
         FTCStringSelectCell *cell = (FTCStringSelectCell *)[configTableView cellForRowAtIndexPath:selectCellIndexPath];
-        if([[content objectForKey:@"T"] isEqualToString:@"number" ])
+        if([[content objectForKey:@"C"] isKindOfClass:[NSNumber class]])
             cell.contentText.text = [[content objectForKey:@"C"] stringValue];
         else
             cell.contentText.text = [content objectForKey:@"C"];
@@ -153,23 +153,55 @@
     NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
     NSMutableDictionary *content = [array objectAtIndex: contentRow];
     
-    if([[content objectForKey:@"T"] isEqualToString:@"string"]||
-       [[content objectForKey:@"T"] isEqualToString:@"number"]){
+    if([[content objectForKey:@"C"] isKindOfClass:[NSArray class]]){             //Sub menu
+        tableCellIdentifier = @"SubMenuCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+        cell.textLabel.text = [content objectForKey:@"N"];
+    }else if([[content objectForKey:@"C"] isKindOfClass:[NSNumber class]]){     //Number cell
+        const char * pObjCType = [(NSNumber *)[content objectForKey:@"C"] objCType];
+        if(strcmp(pObjCType, @encode(BOOL))==0){
+            tableCellIdentifier = @"SwitchCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+            cell.ftcConfig  = content;
+        }
+        else{
+            if([content objectForKey:@"S"]==nil)
+                tableCellIdentifier= @"ConfigCell";
+            else
+                tableCellIdentifier= @"SelectCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+            cell.ftcConfig  = content;
+        }
+    }else{                                                                      //String cell
         if([content objectForKey:@"S"]==nil)
             tableCellIdentifier= @"ConfigCell";
         else
             tableCellIdentifier= @"SelectCell";
         cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
         cell.ftcConfig  = content;
-    }else if([[content objectForKey:@"T"] isEqualToString:@"switch"]){
-        tableCellIdentifier = @"SwitchCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-        cell.ftcConfig  = content;
-    }else if([[content objectForKey:@"T"] isEqualToString:@"menu"]){
-        tableCellIdentifier = @"SubMenuCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-        cell.textLabel.text = [content objectForKey:@"N"];
     }
+        
+        
+        
+        
+        
+//    if([[content objectForKey:@"T"] isEqualToString:@"string"]||
+//       [[content objectForKey:@"T"] isEqualToString:@"number"]){
+//        if([content objectForKey:@"S"]==nil)
+//            tableCellIdentifier= @"ConfigCell";
+//        else
+//            tableCellIdentifier= @"SelectCell";
+//        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+//        cell.ftcConfig  = content;
+//    }else if([[content objectForKey:@"T"] isEqualToString:@"switch"]){
+//        tableCellIdentifier = @"SwitchCell";
+//        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+//        cell.ftcConfig  = content;
+//    }else if([[content objectForKey:@"T"] isEqualToString:@"menu"]){
+//        tableCellIdentifier = @"SubMenuCell";
+//        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+//        cell.textLabel.text = [content objectForKey:@"N"];
+//    }
     
     return cell;
 }
@@ -253,7 +285,7 @@
     NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
     NSMutableDictionary *content = [array objectAtIndex: contentRow];
     NSMutableDictionary *updateSetting = [self.configData objectForKey:@"update"];
-    if([[content objectForKey:@"T"] isEqualToString:@"string"])
+    if([[content objectForKey:@"C"] isKindOfClass:[NSString class]])
         [updateSetting setObject:textField.text forKey:[content objectForKey:@"N"]];
     else{
         NSInteger value = [textField.text intValue];

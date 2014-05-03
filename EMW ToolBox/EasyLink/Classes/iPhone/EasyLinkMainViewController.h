@@ -26,8 +26,10 @@
         IBOutlet UIButton *EasylinkV1Button, *EasylinkV2Button;
         IBOutlet UIImageView *imagePhoneView, *imageEMW3161View, *imageEMW3162View, *backgroundImage;
         UIAlertView *alertView;
-        CustomIOS7AlertView *customAlertView;
+        CustomIOS7AlertView *customAlertView, *otaAlertView;
         NSMutableDictionary *deviceIPConfig;
+        NSMutableDictionary *apInforRecord;
+        NSString *apInforRecordFile;
 
         EASYLINK *easylink_config;
     

@@ -36,22 +36,22 @@
 
 - (void)start
 {
-    SInt32 errorcode;
+    //SInt32 errorcode;
     
     if ([self.dataSource hostnameForRequest:self] == nil) {
         [self.streamInfo streamError:self errorCode:kGRFTPClientHostnameIsNil];
         return;
     }
     
-    if (CFURLDestroyResource(( __bridge CFURLRef) self.fullURLWithEscape, &errorcode)) {
-        // successful
-        [self.streamInfo streamComplete:self];
-    }
-    
-    else {
-        // unsuccessful        
-        [self.streamInfo streamError:self errorCode:kGRFTPClientCantDeleteFileOrDirectory];
-    }
+//    if (CFURLDestroyResource(( __bridge CFURLRef) self.fullURLWithEscape, &errorcode)) {
+//        // successful
+//        [self.streamInfo streamComplete:self];
+//    }
+//    
+//    else {
+//        // unsuccessful        
+//        [self.streamInfo streamError:self errorCode:kGRFTPClientCantDeleteFileOrDirectory];
+//    }
 }
 
 @end

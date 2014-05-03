@@ -50,12 +50,16 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    CGRect cellFrame = self.contentView.frame;
+    CGRect frame = CGRectMake(283, (cellFrame.size.height)/2-32, 25, 25);
+    checkMarkView = [[UIView alloc] initWithFrame:frame];
+    [self.contentView addSubview:checkMarkView];
 }
 
 - (void)closeClient:(NSTimer *)timer
 {
     //[self setSelected:NO animated:(BOOL)YES];
-    self.accessoryView = nil;
+    //self.accessoryView = nil;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -86,7 +90,7 @@
     resolving = [[_moduleService objectForKey:@"resolving"] boolValue];
     NSData *mac = [[NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]] objectForKey:@"MAC"];
     macAddress = [[NSString alloc] initWithData: mac encoding:NSASCIIStringEncoding];
-    NSData *hd = [[NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]] objectForKey:@"Hardware"];
+    NSData *hd = [[NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]] objectForKey:@"Model"];
     hardware = [[NSString alloc] initWithData: hd encoding:NSASCIIStringEncoding];
     
     if (resolving == YES){
@@ -127,24 +131,38 @@
     
     self.detailTextLabel.backgroundColor = [UIColor clearColor];
     self.detailTextLabel.text = detailString;
-    [self startActivityIndicator: YES];
     
-//    if (!self.accessoryView) {
-//        CGRect frame = CGRectMake(0.0, 0.0, kProgressIndicatorSize, kProgressIndicatorSize);
-//        UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
-//        [spinner startAnimating];
-//        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-//        [spinner sizeToFit];
-//        spinner.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
-//                                    UIViewAutoresizingFlexibleRightMargin |
-//                                    UIViewAutoresizingFlexibleTopMargin |
-//                                    UIViewAutoresizingFlexibleBottomMargin);
-//        self.accessoryView = spinner;
-//    }
+    [self startCheckIndicator:YES];
+    self.accessoryType = UITableViewCellAccessoryDetailButton;
+    [self startActivityIndicator: YES];
 }
 
 - (void)startActivityIndicator: (BOOL) enable
 {
+    for(UIView *subview in [checkMarkView subviews])
+        [subview removeFromSuperview];
+    
+    if(enable == YES){
+        CGRect frame = CGRectMake(0.0, 0.0, kProgressIndicatorSize, kProgressIndicatorSize);
+        UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+        [spinner setBackgroundColor:[UIColor whiteColor]];
+        [spinner startAnimating];
+        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        [spinner sizeToFit];
+        spinner.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                    UIViewAutoresizingFlexibleRightMargin |
+                                    UIViewAutoresizingFlexibleTopMargin |
+                                    UIViewAutoresizingFlexibleBottomMargin);
+        [checkMarkView addSubview:spinner];
+
+    }
+}
+
+- (void)startCheckIndicator: (BOOL) enable
+{
+    for(UIView *subview in [checkMarkView subviews])
+        [subview removeFromSuperview];
+    
     if(enable == YES){
         CGRect frame = CGRectMake(0.0, 0.0, kProgressIndicatorSize, kProgressIndicatorSize);
         UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
@@ -155,13 +173,10 @@
                                     UIViewAutoresizingFlexibleRightMargin |
                                     UIViewAutoresizingFlexibleTopMargin |
                                     UIViewAutoresizingFlexibleBottomMargin);
-        self.accessoryView = spinner;
-        
-    }else{
-        self.accessoryView = nil;
+        [checkMarkView addSubview:spinner];
     }
-        
 }
+
 
 
 @end

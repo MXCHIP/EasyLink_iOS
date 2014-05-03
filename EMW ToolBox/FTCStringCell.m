@@ -30,16 +30,6 @@
 
 }
 
-- (void)prepareForReuse{
-//    if(moved == YES){
-//        CGPoint newCenter = CGPointMake(self.contentText.center.x+40, self.contentText.center.y);
-//        self.contentText.center = newCenter;
-//        moved = NO;
-//    }
-    
-
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -53,7 +43,7 @@
     NSNumber *contentNumber;
     
     self.textLabel.text = [self.ftcConfig objectForKey:@"N"];
-    if([[self.ftcConfig objectForKey:@"T"] isEqualToString:@"string"]){ //string
+    if([[self.ftcConfig objectForKey:@"C"] isKindOfClass:[NSString class]]){ //string
         contentString = [self.ftcConfig objectForKey:@"C"];
         self.contentText.text = contentString;
     }else{ //number

@@ -71,7 +71,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Secection" forIndexPath:indexPath];
     
-    if([[self.configData objectForKey:@"T"] isEqualToString:@"number"]){
+    if([[self.configData objectForKey:@"C"] isKindOfClass:[NSNumber class]]){
         cell.textLabel.text = [[self.selectMenu objectAtIndex:indexPath.row] stringValue];
         if([[self.selectMenu objectAtIndex:indexPath.row] isEqual:[self.configData objectForKey:@"C"]]){
             cell.accessoryType = UITableViewCellAccessoryCheckmark;

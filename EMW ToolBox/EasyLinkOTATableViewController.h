@@ -50,4 +50,5 @@
 @property (strong, nonatomic) NSNumber *client;
 @property (nonatomic, strong) GRRequestsManager *requestsManager;
 
+
 @end

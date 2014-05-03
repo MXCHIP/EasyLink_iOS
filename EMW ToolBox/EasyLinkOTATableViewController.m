@@ -24,7 +24,6 @@
 @synthesize firmwareListCurrentState;
 @synthesize client;
 
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -101,11 +100,12 @@
     [customAlertView setContainerView:alertContentView];
         
     [customAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel",nil]];
-    [customAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *alertView, int buttonIndex) {
-        self.requestsManager = nil;
-        
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
-        NSLog(@"Block: Button at position %d is clicked on alertView %ld.", buttonIndex, (long)[alertView tag]);
+    __block GRRequestsManager *_requestsManager = self.requestsManager;
+    __weak UINavigationController *_nav = self.navigationController;
+    [customAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *alertView, NSInteger buttonIndex) {
+        _requestsManager = nil;
+        [_nav popToViewController:[_nav.viewControllers objectAtIndex:2] animated:YES];
+        NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[alertView tag]);
         [alertView close];
     }];
     

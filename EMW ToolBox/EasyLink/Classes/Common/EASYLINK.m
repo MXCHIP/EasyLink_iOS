@@ -496,9 +496,13 @@ static NSUInteger count = 0;
     NSLog(@"TCP disconnect");
     
     /*Stop the timeout counter for closing a client after send the config data.*/
-    if([closeFTCClientTimer userInfo] == sock){
-        [closeFTCClientTimer invalidate];
+    if(closeFTCClientTimer != nil){
+        if([closeFTCClientTimer userInfo] == sock){
+            [closeFTCClientTimer invalidate];
+            closeFTCClientTimer = nil;
+        }
     }
+    
     
     /*Remove resources*/
     for (NSDictionary *object in self.ftcClients) {
@@ -557,6 +561,9 @@ static NSUInteger count = 0;
         if([theDelegate respondsToSelector:@selector(onFoundByFTC: currentConfig:)])
             [theDelegate onFoundByFTC:[NSNumber numberWithLong:tag] currentConfig: body];
     }
+    
+    /*Recv data that server can send FIN+ACK when client disconnect*/
+    [sock readDataWithTimeout:-1 tag:(long)tag];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
@@ -567,6 +574,8 @@ static NSUInteger count = 0;
 - (void)closeClient:(NSTimer *)timer
 {
     [(AsyncSocket *)[timer userInfo] disconnect];
+    [timer invalidate];
+    timer = nil;
 }
 
 #pragma mark -

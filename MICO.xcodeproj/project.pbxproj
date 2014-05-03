@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D179B5818F3E5A3003C02F9 /* FTCStringSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D179B5718F3E5A3003C02F9 /* FTCStringSelectCell.m */; };
 		3D179B5B18F3F1C8003C02F9 /* FTCSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D179B5A18F3F1C8003C02F9 /* FTCSelectViewController.m */; };
+		3D1F0D861910C9DE0030A828 /* bonjourDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F0D851910C9DE0030A828 /* bonjourDetailTableViewController.m */; };
 		3D207F46187D2FC700A3CBB7 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D207F43187D2FC700A3CBB7 /* AsyncSocket.m */; };
 		3D207F47187D2FC700A3CBB7 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D207F45187D2FC700A3CBB7 /* AsyncUdpSocket.m */; };
 		3D2AD58717A247E30026E31E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58617A247E30026E31E /* UIKit.framework */; };
@@ -19,7 +20,6 @@
 		3D2AD59717A247E30026E31E /* mxchipAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD59617A247E30026E31E /* mxchipAppDelegate.m */; };
 		3D2AD5A017A247E30026E31E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD59E17A247E30026E31E /* MainStoryboard.storyboard */; };
 		3D2AD5A317A247E30026E31E /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD5A217A247E30026E31E /* browserViewController.m */; };
-		3D2AD5A617A247E30026E31E /* mxchipDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD5A517A247E30026E31E /* mxchipDetailViewController.m */; };
 		3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */; };
 		3D55334917A66648008145EB /* EMW3161_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D55334817A66648008145EB /* EMW3161_logo.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
@@ -56,7 +56,7 @@
 		3DE5C6CD18FCFCB7008436EB /* GRError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6C118FCFCB7008436EB /* GRError.m */; };
 		3DE5C6CE18FCFCB7008436EB /* GRQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6C318FCFCB7008436EB /* GRQueue.m */; };
 		3DE5C6CF18FCFCB7008436EB /* GRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6C518FCFCB7008436EB /* GRStreamInfo.m */; };
-		3DE5C6D218FD373D008436EB /* EasyLinkOTATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6D118FD373D008436EB /* EasyLinkOTATableViewController.m */; };
+		3DE5C6D218FD373D008436EB /* easyLinkOTATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6D118FD373D008436EB /* easyLinkOTATableViewController.m */; };
 		3DEF24A117BD0D1600C0A5C7 /* EmspCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF24A017BD0D1600C0A5C7 /* EmspCommands.m */; };
 		3DF345D018E125F60088832E /* FTCStringCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF345CF18E125F60088832E /* FTCStringCell.m */; };
 		3DFEF5FA1903C37300798682 /* easyLinkIpConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEF5F91903C37300798682 /* easyLinkIpConfigTableViewController.m */; };
@@ -67,6 +67,8 @@
 		3D179B5718F3E5A3003C02F9 /* FTCStringSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCStringSelectCell.m; sourceTree = "<group>"; };
 		3D179B5918F3F1C8003C02F9 /* FTCSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCSelectViewController.h; sourceTree = "<group>"; };
 		3D179B5A18F3F1C8003C02F9 /* FTCSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCSelectViewController.m; sourceTree = "<group>"; };
+		3D1F0D841910C9DE0030A828 /* bonjourDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bonjourDetailTableViewController.h; sourceTree = "<group>"; };
+		3D1F0D851910C9DE0030A828 /* bonjourDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bonjourDetailTableViewController.m; sourceTree = "<group>"; };
 		3D207F42187D2FC700A3CBB7 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncSocket.h"; sourceTree = "<group>"; };
 		3D207F43187D2FC700A3CBB7 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncSocket.m"; sourceTree = "<group>"; };
 		3D207F44187D2FC700A3CBB7 /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncUdpSocket.h; path = "EMW ToolBox/CocoaAsyncSocket-7.3.3/RunLoop/AsyncUdpSocket.h"; sourceTree = "<group>"; };
@@ -84,8 +86,6 @@
 		3D2AD59F17A247E30026E31E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3D2AD5A117A247E30026E31E /* browserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = browserViewController.h; sourceTree = "<group>"; };
 		3D2AD5A217A247E30026E31E /* browserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = browserViewController.m; sourceTree = "<group>"; };
-		3D2AD5A417A247E30026E31E /* mxchipDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mxchipDetailViewController.h; sourceTree = "<group>"; };
-		3D2AD5A517A247E30026E31E /* mxchipDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mxchipDetailViewController.m; sourceTree = "<group>"; };
 		3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3D31DA9A18E7A98800385649 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
 		3D4289D918A4D73F0092DD5D /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PulsingHaloLayer.h; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.h"; sourceTree = "<group>"; };
@@ -147,8 +147,8 @@
 		3DE5C6C318FCFCB7008436EB /* GRQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRQueue.m; sourceTree = "<group>"; };
 		3DE5C6C418FCFCB7008436EB /* GRStreamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRStreamInfo.h; sourceTree = "<group>"; };
 		3DE5C6C518FCFCB7008436EB /* GRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRStreamInfo.m; sourceTree = "<group>"; };
-		3DE5C6D018FD373D008436EB /* EasyLinkOTATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLinkOTATableViewController.h; sourceTree = "<group>"; };
-		3DE5C6D118FD373D008436EB /* EasyLinkOTATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLinkOTATableViewController.m; sourceTree = "<group>"; };
+		3DE5C6D018FD373D008436EB /* easyLinkOTATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easyLinkOTATableViewController.h; sourceTree = "<group>"; };
+		3DE5C6D118FD373D008436EB /* easyLinkOTATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = easyLinkOTATableViewController.m; sourceTree = "<group>"; };
 		3DEF249F17BD0D1600C0A5C7 /* EmspCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmspCommands.h; sourceTree = "<group>"; };
 		3DEF24A017BD0D1600C0A5C7 /* EmspCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmspCommands.m; sourceTree = "<group>"; };
 		3DF345CE18E125F60088832E /* FTCStringCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCStringCell.h; sourceTree = "<group>"; };
@@ -247,8 +247,8 @@
 				3DEF24A017BD0D1600C0A5C7 /* EmspCommands.m */,
 				3D2AD5A117A247E30026E31E /* browserViewController.h */,
 				3D2AD5A217A247E30026E31E /* browserViewController.m */,
-				3D2AD5A417A247E30026E31E /* mxchipDetailViewController.h */,
-				3D2AD5A517A247E30026E31E /* mxchipDetailViewController.m */,
+				3D1F0D841910C9DE0030A828 /* bonjourDetailTableViewController.h */,
+				3D1F0D851910C9DE0030A828 /* bonjourDetailTableViewController.m */,
 				3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */,
 				3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */,
 				3DAA393C17A54572003806FE /* Reachability */,
@@ -420,8 +420,10 @@
 			children = (
 				3DD19A5E18E00D5600F8E43A /* EasyLinkFTCTableViewController.h */,
 				3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */,
-				3DE5C6D018FD373D008436EB /* EasyLinkOTATableViewController.h */,
-				3DE5C6D118FD373D008436EB /* EasyLinkOTATableViewController.m */,
+				3D179B5918F3F1C8003C02F9 /* FTCSelectViewController.h */,
+				3D179B5A18F3F1C8003C02F9 /* FTCSelectViewController.m */,
+				3DE5C6D018FD373D008436EB /* easyLinkOTATableViewController.h */,
+				3DE5C6D118FD373D008436EB /* easyLinkOTATableViewController.m */,
 				3DFEF5F81903C37300798682 /* easyLinkIpConfigTableViewController.h */,
 				3DFEF5F91903C37300798682 /* easyLinkIpConfigTableViewController.m */,
 				3DF345CE18E125F60088832E /* FTCStringCell.h */,
@@ -432,8 +434,6 @@
 				3D7B49CC18E2BB2D0062837A /* FTCSwitchCell.m */,
 				3D92995418EEB66300DE2560 /* FTCSubMenuCell.h */,
 				3D92995518EEB66300DE2560 /* FTCSubMenuCell.m */,
-				3D179B5918F3F1C8003C02F9 /* FTCSelectViewController.h */,
-				3D179B5A18F3F1C8003C02F9 /* FTCSelectViewController.m */,
 			);
 			name = "First Time Configuration";
 			sourceTree = "<group>";
@@ -528,17 +528,17 @@
 				3D92995618EEB66300DE2560 /* FTCSubMenuCell.m in Sources */,
 				3D207F47187D2FC700A3CBB7 /* AsyncUdpSocket.m in Sources */,
 				3DE5C6CC18FCFCB7008436EB /* GRUploadRequest.m in Sources */,
-				3D2AD5A617A247E30026E31E /* mxchipDetailViewController.m in Sources */,
 				3D179B5B18F3F1C8003C02F9 /* FTCSelectViewController.m in Sources */,
 				3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */,
 				3D7ACE8718FACAF600747F32 /* CustomIOS7AlertView.m in Sources */,
 				3DF345D018E125F60088832E /* FTCStringCell.m in Sources */,
 				3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */,
+				3D1F0D861910C9DE0030A828 /* bonjourDetailTableViewController.m in Sources */,
 				3DA1179A18EBE946009B2E1E /* moduleBrowserCell.m in Sources */,
 				3DE5C6C718FCFCB7008436EB /* GRCreateDirectoryRequest.m in Sources */,
 				3D179B5818F3E5A3003C02F9 /* FTCStringSelectCell.m in Sources */,
 				3DE5C6C618FCFCB7008436EB /* GRRequestsManager.m in Sources */,
-				3DE5C6D218FD373D008436EB /* EasyLinkOTATableViewController.m in Sources */,
+				3DE5C6D218FD373D008436EB /* easyLinkOTATableViewController.m in Sources */,
 				3DE5C6C818FCFCB7008436EB /* GRDeleteRequest.m in Sources */,
 				3DE5C6CD18FCFCB7008436EB /* GRError.m in Sources */,
 				3DFEF5FA1903C37300798682 /* easyLinkIpConfigTableViewController.m in Sources */,

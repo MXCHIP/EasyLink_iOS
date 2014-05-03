@@ -24,7 +24,6 @@
 
 - (void)searchForModules;
 - (IBAction)refreshService:(UIBarButtonItem*)button;
-- (IBAction)senddata:(UIButton*)button;
 - (IBAction)valueChanged:(UISlider*)slider;
 
 
