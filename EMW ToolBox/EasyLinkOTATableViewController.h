@@ -38,6 +38,7 @@
     NSString *localOTAFilePath;
 }
 
+
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
 
