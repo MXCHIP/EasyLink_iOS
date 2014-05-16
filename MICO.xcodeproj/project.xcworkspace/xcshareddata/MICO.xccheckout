@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>60EB960F-9CF5-4E24-9802-8758369FA417</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MICO</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4D6B8A3F-48CC-4E1C-9813-21295295041A</key>
+		<string>https://github.com/neooxu/EasyLink.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MICO.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4D6B8A3F-48CC-4E1C-9813-21295295041A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/neooxu/EasyLink.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4D6B8A3F-48CC-4E1C-9813-21295295041A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4D6B8A3F-48CC-4E1C-9813-21295295041A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>EMW ToolBox</string>
+		</dict>
+	</array>
+</dict>
+</plist>

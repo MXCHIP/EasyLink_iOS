@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MJRefresh.h"
 
 
-@interface browserViewController : UIViewController <NSNetServiceBrowserDelegate, NSNetServiceDelegate>{
+@interface browserViewController : UIViewController <NSNetServiceBrowserDelegate,
+NSNetServiceDelegate, MJRefreshBaseViewDelegate>{
     NSMutableArray *_objects;
     IBOutlet UITableView *browserTableView;
     IBOutlet UISlider *ledControllerSlider;
 @private    
     NSMutableArray* _services, *_displayServices;
-    NSMutableArray* selectedModule;
     NSNetServiceBrowser* _netServiceBrowser;
     BOOL _needsActivityIndicator;
     BOOL _currentResolveSuccess;
@@ -24,7 +25,6 @@
 
 - (void)searchForModules;
 - (IBAction)refreshService:(UIBarButtonItem*)button;
-- (IBAction)valueChanged:(UISlider*)slider;
 
 
 @end

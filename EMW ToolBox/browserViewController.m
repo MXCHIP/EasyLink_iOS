@@ -19,7 +19,6 @@
 #define repeatInterval  10.0
 
 
-
 bool newModuleFound;
 bool enumerating = NO;
 
@@ -85,7 +84,7 @@ bool enumerating = NO;
 
 - (void)awakeFromNib
 {
-    sleep(1);
+    //sleep(1);
     [super awakeFromNib];
 }
 
@@ -95,8 +94,10 @@ bool enumerating = NO;
     
 	_services = [[NSMutableArray alloc] init];
     _displayServices = [[NSMutableArray alloc] init];
-    selectedModule = [[NSMutableArray alloc] initWithCapacity:100];
-    [ledControllerSlider setUserInteractionEnabled: NO];
+
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = browserTableView;
+    header.delegate = self;
     
     NSNetServiceBrowser *aNetServiceBrowser = [[NSNetServiceBrowser alloc] init];
 	if(!aNetServiceBrowser) {
@@ -108,7 +109,7 @@ bool enumerating = NO;
                 
 	// Make sure we have a chance to discover devices before showing the user that nothing was found (yet)
     [browserTableView reloadData];
-    browserTableView.allowsMultipleSelection = YES;
+    browserTableView.allowsMultipleSelection = NO;
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
     //[self.netServiceBrowser stop];
     [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
@@ -122,6 +123,11 @@ bool enumerating = NO;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    NSIndexPath *indexPath;
+    indexPath = [browserTableView indexPathForSelectedRow];
+    if(indexPath != nil)
+       [browserTableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 
@@ -150,11 +156,12 @@ bool enumerating = NO;
         }
     }
     [self.displayServices removeAllObjects];
-    [selectedModule removeAllObjects];
     [browserTableView reloadData];
-    [ledControllerSlider setUserInteractionEnabled: NO];
+    
     [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
+    
+    //[browserTableView reloadData];
 	
     //UIColor
 }
@@ -200,7 +207,7 @@ bool enumerating = NO;
 - (void)netServiceBrowser:(NSNetServiceBrowser*)netServiceBrowser didRemoveService:(NSNetService*)service moreComing:(BOOL)moreComing {
 	// If a service went away, stop resolving it if it's currently being resolved,
 	// remove it from the list and update the table view if no more events are queued.
-
+    NSLog(@"Remove service");
     for (NSMutableDictionary *object in self.services)
     {
         if([[object objectForKey:@"Name"] isEqual:[service name]]){
@@ -215,23 +222,30 @@ bool enumerating = NO;
         if([[object objectForKey:@"Name"] isEqual:[service name]]){
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.displayServices indexOfObject:object] inSection:0];
+            NSIndexPath *currentSelectedIndexPath = [browserTableView indexPathForSelectedRow];
+
+            if(currentSelectedIndexPath!=nil && indexPath.row == currentSelectedIndexPath.row){
+                
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Disconnected" message:@"Please check the power and Wi-Fi connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alertView show];
+            }
             [self.displayServices removeObject:object];
-            [[object objectForKey:@"Socket"] close];
-            [selectedModule removeObject:object];
+            
             if([self.displayServices count]== 0){
                 [browserTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
             }else
                 [browserTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
             break;
+            
         }
     }
-	
-	// If moreComing is NO, it means that there are no more messages in the queue from the Bonjour daemon, so we should update the UI.
-	// When moreComing is set, we don't update the UI so that it doesn't 'flash'.
-//	if (!moreComing) {
-//		[self sortAndUpdateUI];
-//	}
 }
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 
 - (void)netServiceBrowser:(NSNetServiceBrowser*)netServiceBrowser didFindService:(NSNetService*)service moreComing:(BOOL)moreComing {
@@ -265,54 +279,6 @@ bool enumerating = NO;
 - (void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict {
 	[browserTableView reloadData];
 }
-
-
--(void) replaceDisaplyObjectAtIndex:(NSUInteger)idx withObject:(id)object
-{
-    AsyncSocket *socket;
-    NSError *err;
-    NSData *ipAddress = nil;
-    
-    NSNetService *service = [object objectForKey:@"BonjourService"];
-    if([[service addresses] count])
-        ipAddress = [[service addresses] objectAtIndex:0];
-    
-    NSMutableDictionary *displayService = nil;
-    displayService = [self.displayServices objectAtIndex:idx];
-    socket = [displayService objectForKey:@"Socket"];
-    [socket disconnect];
-    [socket setDelegate:nil];
-    [displayService removeObjectForKey:@"Socket"];
-
-    [object setObject:@YES forKey:@"Connecting"];
-    socket = [[AsyncSocket alloc] initWithDelegate:self];
-    [socket connectToHost:[ipAddress host] onPort:service.port error:&err];
-    [object setObject:socket forKey:@"Socket"];
-    
-    
-    [self.displayServices replaceObjectAtIndex:idx withObject:object];
-}
-
--(void) addDisaplyObject:(id)object
-{
-    AsyncSocket *socket;
-    NSError *err;
-    NSData *ipAddress = nil;
-    
-    NSNetService *service = [object objectForKey:@"BonjourService"];
-    if([[service addresses] count])
-        ipAddress = [[service addresses] objectAtIndex:0];
-    
-    [object setObject:@YES forKey:@"Connecting"];
-    socket = [[AsyncSocket alloc] initWithDelegate:self];
-    [socket connectToHost:[ipAddress host] onPort:service.port error:&err];
-    [object setObject:socket forKey:@"Socket"];
-    
-    
-    [self.displayServices addObject:object];
-}
-
-
 
 - (void)netServiceDidResolveAddress:(NSNetService *)service
 {
@@ -369,10 +335,10 @@ bool enumerating = NO;
             if(replaceService!=nil){
                 //AsyncSocket *socket
                 NSLog(@"Replace index %ld...",(long)indexPath.row);
-                [self replaceDisaplyObjectAtIndex:indexPath.row withObject:replaceService];
+                [self.displayServices replaceObjectAtIndex:indexPath.row withObject:replaceService];
             }
             else{
-                [self addDisaplyObject:object];
+                [self.displayServices addObject:object];
             }
             
             [self.displayServices sortUsingSelector:@selector(localizedCaseInsensitiveCompareByName:)];
@@ -440,6 +406,7 @@ exit:
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     NSUInteger count = [self.displayServices count];
+    NSNetService *service;
 
 	if (count == 0) {
         static NSString *tableCellIdentifier = @"Searching";
@@ -467,69 +434,49 @@ exit:
 	}
     
     cell.moduleService = [self.displayServices objectAtIndex:indexPath.row];
+    service = [cell.moduleService objectForKey:@"BonjourService"];
+    
+    if([[NSNetService dictionaryFromTXTRecordData: [service TXTRecordData]] objectForKey:@"Protocol"]!=nil){
+        
+    }
 	return cell;
 }
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)path
+{
+// Ignore the selection if there are no services as the searchingForServicesString cell
+// may be visible and tapping it would do nothing
+    NSNetService *service;
+    NSString *protocol;
+    if([self.displayServices count] == 0){
+        return nil;
+    }
+    moduleBrowserCell *cell = (moduleBrowserCell *)[tableView cellForRowAtIndexPath:path];
+    service = [cell.moduleService objectForKey:@"BonjourService"];
+    protocol = [[NSString alloc] initWithData:[[NSNetService dictionaryFromTXTRecordData: [service TXTRecordData]] objectForKey:@"Protocol"] encoding:NSUTF8StringEncoding];
+    
+    if ([protocol isEqualToString:@"com.mxchip.ha"]==YES)
+        return path;
+    else if ([protocol isEqualToString:@"com.mxchip.spp"]==YES)
+        return path;
+    else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot talk to me!" message:@"Needs a compatiable data protocol." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+        return nil;
+    }
+    
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
         return 80;
 }
 
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	// Ignore the selection if there are no services as the searchingForServicesString cell
-	// may be visible and tapping it would do nothing
-	if ([self.displayServices count] == 0)
-		return nil;
-	
-	return indexPath;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //moduleBrowserCell *cell;
-    NSLog(@"tableview selected");
-    moduleBrowserCell *cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:indexPath];
-    if (![[cell.moduleService objectForKey:@"Socket"] isConnected] ){
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        return;
-    }
-    else{
-        [selectedModule addObject:cell.moduleService];
-    }
-    [ledControllerSlider setUserInteractionEnabled: YES];
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"tableview unselected");
-     moduleBrowserCell *cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:indexPath];
-    [selectedModule removeObject:cell.moduleService];
-    if ([selectedModule count]==0) {
-        [ledControllerSlider setUserInteractionEnabled: NO];
-    }
-}
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Detail selected");
-}
-
-
-- (IBAction)valueChanged:(UISlider*)slider
-{
-    char value = slider.value;
-    for(NSMutableDictionary *object in selectedModule){
-        [[object objectForKey:@"Socket"] writeData: [NSData dataWithBytes:&value length:1]
-                                       withTimeout:5 tag:0];
-    }
-}
-
-- (IBAction)senddata:(UIButton*)button
-{
-    for(NSMutableDictionary *object in selectedModule){
-        [[object objectForKey:@"Socket"] writeData: [@"Hello" dataUsingEncoding:NSUTF8StringEncoding]
-                                       withTimeout:5 tag:0];
-    }
 }
 
 - (void)dealloc {
@@ -540,99 +487,60 @@ exit:
 	self.netServiceBrowser = nil;
 }
 
-#pragma mark - AsyncSocket delegate
-
-- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+#pragma mark - 刷新控件的代理方法
+#pragma mark 开始进入刷新状态
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
 {
-    NSUInteger index;
-    moduleBrowserCell *cell;
+    NSLog(@"%@----开始进入刷新状态", refreshView.class);
+    [self searchForModules];
+    // 2.2秒后刷新表格UI
+    [self performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:1.0];
     
-    for (NSMutableDictionary *object in self.displayServices){
-        if([object objectForKey:@"Socket"] == sock ){
-            index = [self.displayServices indexOfObject:object];
-            break;
-        }
-    }
-    
-    cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    [cell startActivityIndicator: NO];
-    
-    [cell.moduleService setObject:@NO forKey:@"Connecting"];
-    [sock readDataToLength:1 withTimeout:5 tag:1];
 }
 
-- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+#pragma mark 刷新完毕
+- (void)refreshViewEndRefreshing:(MJRefreshBaseView *)refreshView
 {
-    //CGFloat hue,saturation,brightness,alpha;
-    NSUInteger index;
-    char inData;
-    moduleBrowserCell *cell;
-    
-    [data getBytes:&inData length:1];
-    
-    for (NSMutableDictionary *object in self.displayServices){
-        if([object objectForKey:@"Socket"] == sock ){
-            index = [self.displayServices indexOfObject:object];
-            break;
-        }
-    }
-    
-    cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    //[cell.lightStrengthView.backgroundColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
-    //brightness = inData/100;
-    
-    //cell.lightStrengthView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
-    
-    [sock readDataToLength:1 withTimeout:5 tag:1];
+    NSLog(@"%@----刷新完毕", refreshView.class);
 }
 
-- (void)onSocketDidDisconnect:(AsyncSocket *)sock
+#pragma mark 监听刷新状态的改变
+- (void)refreshView:(MJRefreshBaseView *)refreshView stateChange:(MJRefreshState)state
 {
-    NSUInteger index;
-    moduleBrowserCell *cell;
-    NSError *err;
-    NSData *ipAddress = nil;
-    
-    NSLog(@"disconnected");
-    
-    for (NSMutableDictionary *object in self.displayServices){
-        if([object objectForKey:@"Socket"] == sock ){
-            index = [self.displayServices indexOfObject:object];
-            [selectedModule removeObject:object];
-            [browserTableView  deselectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES];
-             break;
-        }
-    }
-    
-    if ([selectedModule count]==0) {
-        [ledControllerSlider setUserInteractionEnabled: NO];
-    }
-    
-    
-    cell = (moduleBrowserCell *)[browserTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    
-    if(cell){
-        [cell startActivityIndicator:YES];
-        cell.accessoryType = UITableViewCellAccessoryDetailButton;
-            [cell.moduleService removeObjectForKey:@"Socket"];
-            NSLog(@"reconnect");
-            NSNetService *service = [cell.moduleService objectForKey:@"BonjourService"];
-            if([[service addresses] count])
-                ipAddress = [[service addresses] objectAtIndex:0];
+    switch (state) {
+        case MJRefreshStateNormal:
+            NSLog(@"%@----切换到：普通状态", refreshView.class);
+            break;
             
-            [sock connectToHost:[ipAddress host] onPort:service.port error:&err];
-            [cell.moduleService setObject:sock forKey:@"Socket"];
-            [cell.moduleService setObject:@YES forKey:@"Connecting"];
-
+        case MJRefreshStatePulling:
+            NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
+            break;
+            
+        case MJRefreshStateRefreshing:
+            NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
+            break;
+        default:
+            break;
     }
+}
+
+#pragma mark 刷新表格并且结束正在刷新状态
+- (void)doneWithView:(MJRefreshBaseView *)refreshView
+{
+    // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+    [refreshView endRefreshing];
 }
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"Bonjour detail"]) {
-        [browserTableView indexPathForCell:sender];
+        NSIndexPath *indexPath = [browserTableView indexPathForCell:sender];
+        NSNetService *bonjourService = [[self.displayServices objectAtIndex:indexPath.row] objectForKey:@"BonjourService"];
+        [[segue destinationViewController] setService: bonjourService];
+    }
+    
+    if ([[segue identifier] isEqualToString:@"Talk"]) {
         NSIndexPath *indexPath = [browserTableView indexPathForCell:sender];
         NSNetService *bonjourService = [[self.displayServices objectAtIndex:indexPath.row] objectForKey:@"BonjourService"];
         [[segue destinationViewController] setService: bonjourService];

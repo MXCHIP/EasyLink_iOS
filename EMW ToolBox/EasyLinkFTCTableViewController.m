@@ -180,28 +180,6 @@
         cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
         cell.ftcConfig  = content;
     }
-        
-        
-        
-        
-        
-//    if([[content objectForKey:@"T"] isEqualToString:@"string"]||
-//       [[content objectForKey:@"T"] isEqualToString:@"number"]){
-//        if([content objectForKey:@"S"]==nil)
-//            tableCellIdentifier= @"ConfigCell";
-//        else
-//            tableCellIdentifier= @"SelectCell";
-//        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-//        cell.ftcConfig  = content;
-//    }else if([[content objectForKey:@"T"] isEqualToString:@"switch"]){
-//        tableCellIdentifier = @"SwitchCell";
-//        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-//        cell.ftcConfig  = content;
-//    }else if([[content objectForKey:@"T"] isEqualToString:@"menu"]){
-//        tableCellIdentifier = @"SubMenuCell";
-//        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-//        cell.textLabel.text = [content objectForKey:@"N"];
-//    }
     
     return cell;
 }

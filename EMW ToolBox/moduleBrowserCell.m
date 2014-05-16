@@ -132,9 +132,9 @@
     self.detailTextLabel.backgroundColor = [UIColor clearColor];
     self.detailTextLabel.text = detailString;
     
-    [self startCheckIndicator:YES];
+    //[self startCheckIndicator:YES];
     self.accessoryType = UITableViewCellAccessoryDetailButton;
-    [self startActivityIndicator: YES];
+    //[self startActivityIndicator: YES];
 }
 
 - (void)startActivityIndicator: (BOOL) enable
