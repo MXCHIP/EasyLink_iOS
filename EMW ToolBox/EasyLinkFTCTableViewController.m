@@ -159,7 +159,7 @@
         cell.textLabel.text = [content objectForKey:@"N"];
     }else if([[content objectForKey:@"C"] isKindOfClass:[NSNumber class]]){     //Number cell
         const char * pObjCType = [(NSNumber *)[content objectForKey:@"C"] objCType];
-        if(strcmp(pObjCType, @encode(BOOL))==0){
+        if(strcmp(pObjCType, @encode(char))==0){ //Same as Bool type
             tableCellIdentifier = @"SwitchCell";
             cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
             cell.ftcConfig  = content;

@@ -20,6 +20,7 @@
     BOOL autoSending;
     NSUInteger currentSendIndex;
     NSTimer *autoSendTimer;
+    id commandSender;
 }
 
 @property (strong, nonatomic) NSString *protocol;

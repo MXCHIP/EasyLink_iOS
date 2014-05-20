@@ -239,8 +239,9 @@ unsigned int str2hex(unsigned char *ibuf, unsigned char *obuf,
     
 
     
-    if([messageArray count] >= MAX_MESSAGE_COUNT){
-        NSUInteger needsDeleteCount = [messageArray count] - MAX_MESSAGE_COUNT;
+    if([messageArray count] > MAX_MESSAGE_COUNT){
+        //NSUInteger needsDeleteCount = [messageArray count] - MAX_MESSAGE_COUNT;
+        NSUInteger needsDeleteCount = MAX_MESSAGE_COUNT;
         NSRange range = NSMakeRange(0,needsDeleteCount);
         [messageArray removeObjectsAtIndexes: [NSIndexSet indexSetWithIndexesInRange:range]];
         [self.timestamps removeObjectsAtIndexes: [NSIndexSet indexSetWithIndexesInRange:range]];
@@ -270,8 +271,9 @@ exit:
                                                              forKeys: [NSArray arrayWithObjects:@"Text", @"IsRecv", nil]]];
     [self.timestamps addObject:[NSDate date]];
     
-    if([messageArray count] >= MAX_MESSAGE_COUNT){
-        NSUInteger needsDeleteCount = [messageArray count] - MAX_MESSAGE_COUNT;
+    if([messageArray count] > MAX_MESSAGE_COUNT){
+        //NSUInteger needsDeleteCount = [messageArray count] - MAX_MESSAGE_COUNT;
+        NSUInteger needsDeleteCount = MAX_MESSAGE_COUNT;
         NSRange range = NSMakeRange(0,needsDeleteCount);
         [self.messageArray removeObjectsAtIndexes: [NSIndexSet indexSetWithIndexesInRange:range]];
         [self.timestamps removeObjectsAtIndexes: [NSIndexSet indexSetWithIndexesInRange:range]];
@@ -287,8 +289,9 @@ exit:
                                                              forKeys: [NSArray arrayWithObjects:@"Text", @"IsRecv", nil]]];
     [self.timestamps addObject:[NSDate date]];
     
-    if([messageArray count] >= MAX_MESSAGE_COUNT){
-        NSUInteger needsDeleteCount = [messageArray count] - MAX_MESSAGE_COUNT;
+    if([messageArray count] > MAX_MESSAGE_COUNT){
+        //NSUInteger needsDeleteCount = [messageArray count] - MAX_MESSAGE_COUNT;
+        NSUInteger needsDeleteCount = MAX_MESSAGE_COUNT;
         NSRange range = NSMakeRange(0,needsDeleteCount);
         [self.messageArray removeObjectsAtIndexes: [NSIndexSet indexSetWithIndexesInRange:range]];
         [self.timestamps removeObjectsAtIndexes: [NSIndexSet indexSetWithIndexesInRange:range]];
