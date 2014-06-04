@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AsyncSocket.h"
+#import "CustomIOS7AlertView.h"
 
 @interface bonjourDetailTableViewController : UITableViewController{
     IBOutlet UITableView *bonjourDetailTable;
@@ -18,8 +20,15 @@
     NSString *_port;
     NSMutableArray *_majourInfo;
     NSMutableArray *_txtRecordArray;
+    AsyncSocket *configSocket;
+    CustomIOS7AlertView *customAlertView;
+    CFHTTPMessageRef inComingMessage;
+    NSMutableDictionary *configData;
 }
 
 @property (strong, nonatomic) NSNetService *service;
+
+- (IBAction)edit:(UIBarButtonItem *)sender;
+
 
 @end
