@@ -320,6 +320,38 @@ static NSUInteger count = 0;
     if(version == EASYLINK_V1)
         delay = 0.004;
     count = 0;
+    
+    
+    if(version == EASYLINK_V2){
+        CFSocketRef tempSocket;
+        tempSocket = CFSocketCreate(kCFAllocatorDefault,
+                                    PF_INET,
+                                    SOCK_DGRAM,
+                                    IPPROTO_UDP,
+                                    kCFSocketNoCallBack,
+                                    NULL,
+                                    NULL);
+        uint8_t loop = 0x1;
+        setsockopt(CFSocketGetNative(tempSocket), SOL_SOCKET, IP_MULTICAST_LOOP, &loop, sizeof(uint8_t));
+        NSString *ipAddressStr = [EASYLINK getIPAddress];
+        NSString *multicastAddressStr;
+        struct in_addr interface;
+        interface.s_addr= inet_addr([ipAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
+        
+        struct ip_mreq mreq;
+        mreq.imr_interface = interface;
+        NSDictionary *object;
+        for(object in self.array){
+            multicastAddressStr = [object objectForKey:@"host"];
+            mreq.imr_multiaddr.s_addr =  inet_addr([multicastAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
+            setsockopt(CFSocketGetNative(tempSocket),IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq));
+        }
+        for(object in self.array){
+            multicastAddressStr = [object objectForKey:@"host"];
+            mreq.imr_multiaddr.s_addr =  inet_addr([multicastAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
+            setsockopt(CFSocketGetNative(tempSocket),IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq));
+        }
+    }
 
     sendInterval =[NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(startConfigure:) userInfo:nil repeats:YES];
     
