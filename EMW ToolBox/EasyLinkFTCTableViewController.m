@@ -44,6 +44,7 @@
 
 - (void)dealloc{
     theDelegate = nil;
+    NSLog(@"FTC tableview dealloced!");
 }
 
 - (void)viewDidLoad

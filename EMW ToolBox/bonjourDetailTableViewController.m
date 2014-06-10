@@ -39,6 +39,9 @@
 @interface bonjourDetailTableViewController ()
 
 -(void)showConnectingAlert;
+-(void)sendUpdateData;
+-(void)sendOtaData;
+
 
 @end
 
@@ -58,6 +61,11 @@
 {
     [super viewDidLoad];
     
+    currentState = eState_start;
+    
+    //// stoping the process in app backgroud state
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -65,9 +73,26 @@
     // self.navigationItem.rightBarButt onItem = self.editButtonItem;
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    if([self.navigationController.viewControllers indexOfObject:self] == NSNotFound){
+        if(configSocket){
+            [configSocket disconnect];
+            [configSocket setDelegate:nil];
+            configSocket = nil;
+        }
+    }
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
 - (void)dealloc
 {
-    CFRelease(inComingMessage);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSLog(@"%@ dealloced", [self class]);
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -170,15 +195,12 @@
 {
     
     NSError *err;
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     configSocket = [[AsyncSocket alloc] initWithDelegate:self];
     
-    inComingMessage = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
     [configSocket connectToHost:_address onPort:8000 withTimeout:4.0 error:&err];
+    currentState = eState_ReadConfig;
     [self showConnectingAlert];
-        
-    //[self performSegueWithIdentifier:@"Configuration" sender:sender];
 }
 
 
@@ -192,13 +214,32 @@
         customAlertView = nil;
     }
     
-    [sock readDataWithTimeout:-1 tag:0];
+    inComingMessage = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
     
+    if(currentState == eState_ReadConfig){
+        CFURLRef urlRef = CFURLCreateWithString(kCFAllocatorDefault, CFSTR("/config-read"), NULL);
+        CFHTTPMessageRef httpRequestMessage = CFHTTPMessageCreateRequest (kCFAllocatorDefault,
+                                                                          CFSTR("GET"),
+                                                                          urlRef,
+                                                                          kCFHTTPVersion1_1);
+        CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRequestMessage );
+        [sock writeData:(__bridge NSData*)httpData withTimeout:-1 tag:0];
+        CFRelease(httpData);
+        CFRelease(httpRequestMessage);
+        CFRelease(urlRef);
+        
+        [sock readDataWithTimeout:-1 tag:0];
+    }
+    else if (currentState == eState_WriteConfig){
+        [self sendUpdateData];
+    }
+    else if (currentState == eState_SendOTAData){
+        [self sendOtaData];
+    }
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    //CFHTTPMessageRef httpRespondMessage;
     NSError *err;
     UIAlertView *alertView;
     NSMutableDictionary *updateSettings;
@@ -231,8 +272,7 @@
     NSString *urlPath= (__bridge_transfer NSString*)urlPathRef;
     NSLog(@"URL: %@", urlPath);
     
-    if([urlPath rangeOfString:@"/auth-setup"].location != NSNotFound){
-        
+    if(currentState == eState_ReadConfig){
         configData = [NSJSONSerialization JSONObjectWithData:body
                                                       options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
                                                         error:&err];
@@ -250,17 +290,28 @@
         updateSettings = [NSMutableDictionary dictionaryWithCapacity:10];
         [configData setValue:updateSettings forKey:@"update"];
         [self performSegueWithIdentifier:@"Configuration" sender:nil];
-        
-//        httpRespondMessage = CFHTTPMessageCreateResponse ( kCFAllocatorDefault, 202, NULL, kCFHTTPVersion1_1 );
-//        CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRespondMessage );
-//        [sock writeData:(__bridge_transfer NSData*)httpData withTimeout:20 tag:[[client objectForKey:@"Tag"] longValue]];
-//        if([theDelegate respondsToSelector:@selector(onFoundByFTC: currentConfig:)])
-//            [theDelegate onFoundByFTC:[NSNumber numberWithLong:tag] currentConfig: body];
+    }
+    else if(currentState == eState_WriteConfig){
+        if(customAlertView){
+            [customAlertView close];
+            customAlertView = nil;
+        }
+        if(CFHTTPMessageGetResponseStatusCode(inComingMessage) == 200){
+            alertView = [[UIAlertView alloc] initWithTitle:@"Update module success!" message:nil delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alertView show];
+        }
+        else{
+            alertView = [[UIAlertView alloc] initWithTitle:@"Update module failed!" message:nil delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alertView show];
+        }
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [configSocket disconnect];
     }
     else{
         [configSocket disconnect];
         alertView = [[UIAlertView alloc] initWithTitle:@"Get unrecognized data!" message:nil delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
+
     }
     
     /*Recv data that server can send FIN+ACK when client disconnect*/
@@ -280,12 +331,23 @@
 
 - (void)onSocketDidDisconnect:(AsyncSocket *)sock
 {
-    NSError *err;
     NSLog(@"disconnected");
-    if(inComingMessage) CFRelease(inComingMessage);
+    if(inComingMessage) {
+        CFRelease(inComingMessage);
+        inComingMessage = NULL;
+    }
     
-    //if(isInforground == YES)
-    //    [socket connectToHost:_address onPort:_port error:&err];
+    if(otaAlertView != nil){
+        [otaAlertView close];
+        otaAlertView = nil;
+    }
+    sock = nil;
+    if(currentState == eState_SendOTAData){
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
+    currentState = eState_start;
+    
 }
 
 -(void)showConnectingAlert
@@ -334,13 +396,195 @@
         [_tempsocket disconnect];
         NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[alertView tag]);
         [alertView close];
+        alertView = nil;
     }];
     
     [customAlertView setUseMotionEffects:true];
     [customAlertView show];
 }
 
+#pragma mark - EasyLinkFTCTableViewController delegate
 
+- (void)onConfigured:(NSMutableDictionary *)data
+{
+    NSError *err;
+    UIAlertView *alertView;
+    
+    if([[data objectForKey:@"update"] count]== 0) {
+        [self.navigationController popToViewController:self animated:YES];
+        return;
+    }
+    
+    updateData = [NSJSONSerialization dataWithJSONObject:[data objectForKey:@"update"]options:0 error:&err];
+    if (err) {
+        alertView = [[UIAlertView alloc] initWithTitle:@"Get unrecognized data!" message:nil delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+    
+    customAlertView = [[CustomIOS7AlertView alloc] init];
+    
+    UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 140)];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 20, 260, 25)];
+    title.text = @"Please wait...";
+    title.font= [UIFont boldSystemFontOfSize:19.0];
+    title.textAlignment = NSTextAlignmentCenter;
+    [alertContentView addSubview:title];
+    
+    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 50, 260, 25)];
+    content.text = @"Setting Wi-Fi module";
+    content.font= [UIFont systemFontOfSize:16.0];
+    content.textAlignment = NSTextAlignmentCenter;
+    [alertContentView addSubview:content];
+    
+    CGRect frame = CGRectMake(0, 0, 50, 50);
+    UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+    [spinner startAnimating];
+    spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [spinner sizeToFit];
+    [spinner setColor: [UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
+    spinner.frame = CGRectMake(alertContentView.frame.size.width/2-17, 80, 50, 50);
+    [alertContentView addSubview:spinner];
+    [customAlertView setContainerView:alertContentView];
+    
+    
+    [customAlertView setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
+    
+    [customAlertView setUseMotionEffects:true];
+    [customAlertView show];
+    
+    currentState = eState_WriteConfig;
+    if([configSocket isConnected] == true){
+       [self sendUpdateData];
+    }else{
+        inComingMessage = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
+        configSocket = [[AsyncSocket alloc] initWithDelegate:self];
+        [configSocket connectToHost:_address onPort:8000 withTimeout:4.0 error:&err];
+    }
+}
+
+- (void)onStartOTA:(NSString *)otaFilePath toFTCClient:(NSNumber *)client
+{
+    NSError *err;
+    otaAlertView = [[CustomIOS7AlertView alloc] init];
+    
+    UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 170)];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 20, 260, 25)];
+    title.text = @"Please wait...";
+    title.font= [UIFont boldSystemFontOfSize:19.0];
+    title.textAlignment = NSTextAlignmentCenter;
+    [alertContentView addSubview:title];
+    
+    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 65, 260, 25)];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    paragraphStyle.lineSpacing = 5.0f;
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:paragraphStyle,
+                                                                    nil]
+                                                           forKeys:[NSArray arrayWithObjects:NSParagraphStyleAttributeName,
+                                                                    nil]];
+    NSAttributedString *contentText =  [[NSAttributedString alloc] initWithString:@"Sending OTA data to module..."
+                                                                       attributes:attributes];
+    
+    content.attributedText = contentText;
+    content.numberOfLines = 2;
+    [content setTag:0x1001];
+    [alertContentView addSubview:content];
+    
+    CGRect frame = CGRectMake(0, 0, 50, 50);
+    UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+    [spinner startAnimating];
+    spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [spinner sizeToFit];
+    [spinner setColor: [UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
+    spinner.frame = CGRectMake(alertContentView.frame.size.width/2-17, 110, 50, 50);
+    [alertContentView addSubview:spinner];
+    [otaAlertView setContainerView:alertContentView];
+    
+    [otaAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel",nil]];
+    __weak AsyncSocket *_configSocket = configSocket;
+    __weak CustomIOS7AlertView *_otaAlertView = otaAlertView;
+    [otaAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, NSInteger buttonIndex) {
+        //  self.requestsManager = nil;
+        [_configSocket disconnect];
+        [_configSocket setDelegate:nil];
+        //  [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+        NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[customIOS7AlertView tag]);
+        [_otaAlertView close];
+    }];
+    
+    [otaAlertView setUseMotionEffects:true];
+    [otaAlertView show];
+    
+    otaData = [NSData dataWithContentsOfFile:otaFilePath];
+
+    currentState = eState_SendOTAData;
+    if([configSocket isConnected] == true){
+        [self sendOtaData];
+    }else{
+        inComingMessage = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
+        configSocket = [[AsyncSocket alloc] initWithDelegate:self];
+        [configSocket connectToHost:_address onPort:8000 withTimeout:4.0 error:&err];
+    }
+}
+
+-(void)sendOtaData
+{
+    NSLog(@"Sending OTA data");
+    char contentLen[50];
+    
+    CFURLRef urlRef = CFURLCreateWithString(kCFAllocatorDefault, CFSTR("/OTA"), NULL);
+    CFHTTPMessageRef  httpRequestMessage = CFHTTPMessageCreateRequest ( kCFAllocatorDefault,
+                                                                       CFSTR("POST"), urlRef, kCFHTTPVersion1_1 );
+    CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Content-Type"), CFSTR("application/ota-stream"));
+    
+    snprintf(contentLen, 50, "%lu", (unsigned long)[otaData length]);
+    
+    CFStringRef length = CFStringCreateWithCString(kCFAllocatorDefault, contentLen, kCFStringEncodingASCII);
+    CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Content-Length"),length);
+    CFHTTPMessageSetBody(httpRequestMessage, (__bridge CFDataRef)otaData);
+    
+    CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRequestMessage );
+    [configSocket writeData:(__bridge NSData*)httpData withTimeout:-1 tag:0];
+    CFRelease(httpData);
+    CFRelease(httpRequestMessage);
+    CFRelease(urlRef);
+    CFRelease(length);
+    
+    /*Recv data that server can send FIN+ACK when client disconnect*/
+    [configSocket readDataWithTimeout:-1 tag:0];
+}
+
+
+-(void)sendUpdateData
+{
+    NSLog(@"Send config data.");
+    char contentLen[50];
+    
+    CFURLRef urlRef = CFURLCreateWithString(kCFAllocatorDefault, CFSTR("/config-write"), NULL);
+    CFHTTPMessageRef httpRequestMessage = CFHTTPMessageCreateRequest (kCFAllocatorDefault,
+                                                                      CFSTR("POST"),
+                                                                      urlRef,
+                                                                      kCFHTTPVersion1_1);
+    CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Content-Type"), CFSTR("application/json"));
+    snprintf(contentLen, 50, "%lu", (unsigned long)[updateData length]);
+    CFStringRef length = CFStringCreateWithCString(kCFAllocatorDefault, contentLen, kCFStringEncodingASCII);
+    CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Content-Length"),length);
+    CFHTTPMessageSetBody(httpRequestMessage, (__bridge CFDataRef)updateData);
+    
+    CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRequestMessage );
+    [configSocket writeData:(__bridge NSData*)httpData withTimeout:-1 tag:0];
+    CFRelease(httpData);
+    CFRelease(httpRequestMessage);
+    CFRelease(urlRef);
+    CFRelease(length);
+    
+    [configSocket readDataWithTimeout:-1 tag:0];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -379,15 +623,27 @@
 }
 */
 
+/*
+ Notification method handler when app enter in background
+ @param the fired notification object
+ */
+- (void)appEnterInBackground:(NSNotification*)notification{
+    NSLog(@"%s", __func__);
+    
+    [configSocket disconnect];
+    [configSocket setDelegate:nil];
+    configSocket = nil;
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
 
 #pragma mark - Navigation
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
      if ([[segue identifier] isEqualToString:@"Configuration"]) {
- 
         [[segue destinationViewController] setConfigData:configData];
-         [[segue destinationViewController] setDelegate:self];
+        [[segue destinationViewController] setDelegate:self];
      }
  }
 

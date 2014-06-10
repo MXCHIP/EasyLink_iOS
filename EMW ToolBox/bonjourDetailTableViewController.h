@@ -10,6 +10,14 @@
 #import "AsyncSocket.h"
 #import "CustomIOS7AlertView.h"
 
+typedef enum
+{
+    eState_start                        = -1,
+    eState_ReadConfig                   = 0,
+    eState_WriteConfig                  = 1,
+    eState_SendOTAData                  = 2
+} _ConfigState_t;
+
 @interface bonjourDetailTableViewController : UITableViewController{
     IBOutlet UITableView *bonjourDetailTable;
 @private
@@ -21,9 +29,12 @@
     NSMutableArray *_majourInfo;
     NSMutableArray *_txtRecordArray;
     AsyncSocket *configSocket;
-    CustomIOS7AlertView *customAlertView;
+    CustomIOS7AlertView *customAlertView, *otaAlertView;
     CFHTTPMessageRef inComingMessage;
     NSMutableDictionary *configData;
+    NSData *updateData;
+    NSData *otaData;
+    _ConfigState_t currentState;
 }
 
 @property (strong, nonatomic) NSNetService *service;
