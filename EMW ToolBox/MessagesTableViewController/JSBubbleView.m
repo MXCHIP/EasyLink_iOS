@@ -220,16 +220,20 @@ CGFloat const kJSAvatarSize = 50.0f;
 					attributes = [NSDictionary dictionaryWithDictionary:dict];
 				}
 				
-				[self.text drawInRect:textFrame
-					   withAttributes:attributes];
+				[self.text drawInRect:textFrame withAttributes:attributes];
 			}
 			else
 			{
 				CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), textColor.CGColor);
-				[self.text drawInRect:textFrame
-							 withFont:[JSBubbleView font]
-						lineBreakMode:NSLineBreakByWordWrapping
-							alignment:NSTextAlignmentLeft];
+                NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+                paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                paragraphStyle.alignment = NSTextAlignmentLeft;
+                
+                NSDictionary* attributes = @{NSFontAttributeName: [JSBubbleView font],
+                                             NSParagraphStyleAttributeName: paragraphStyle};
+                
+				[self.text drawInRect:textFrame withAttributes:attributes];
+
 				CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor blackColor].CGColor);
 			}
 		}
@@ -262,10 +266,14 @@ CGFloat const kJSAvatarSize = 50.0f;
 			}
 			else
 			{
-				[self.text drawInRect:textFrame
-							 withFont:[JSBubbleView font]
-						lineBreakMode:NSLineBreakByWordWrapping
-							alignment:NSTextAlignmentLeft];
+                NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+                paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                paragraphStyle.alignment = NSTextAlignmentLeft;
+                
+                NSDictionary* attributes = @{NSFontAttributeName: [JSBubbleView font],
+                                             NSParagraphStyleAttributeName: paragraphStyle};
+                
+				[self.text drawInRect:textFrame withAttributes:attributes];
 			}
 		}
 	}
@@ -366,9 +374,14 @@ CGFloat const kJSAvatarSize = 50.0f;
     CGFloat height = MAX([JSBubbleView numberOfLinesForMessage:txt],
                          [txt numberOfLines]) * [JSMessageInputView textViewLineHeight];
     
-    return [txt sizeWithFont:[JSBubbleView font]
-           constrainedToSize:CGSizeMake(width - kJSAvatarSize, height + kJSAvatarSize)
-               lineBreakMode:NSLineBreakByWordWrapping];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentLeft;
+    
+    NSDictionary* attributes = @{NSFontAttributeName: [JSBubbleView font],
+                                 NSParagraphStyleAttributeName: paragraphStyle};
+    
+    return [txt boundingRectWithSize:CGSizeMake(width - kJSAvatarSize, height + kJSAvatarSize) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
 }
 
 + (CGSize)bubbleSizeForText:(NSString *)txt

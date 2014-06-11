@@ -169,10 +169,10 @@ static id<JSMessageInputViewDelegate> __delegate;
 {
     CGRect prevFrame = self.textView.frame;
     
-    int numLines = MAX([self.textView numberOfLinesOfText],
+    NSUInteger numLines = MAX([self.textView numberOfLinesOfText],
                        [self.textView.text numberOfLines]);
 
-    NSLog(@"number line == %d",numLines);
+    NSLog(@"number line == %lu",(unsigned long)numLines);
     
     self.textView.frame = CGRectMake(prevFrame.origin.x,
                                      prevFrame.origin.y,

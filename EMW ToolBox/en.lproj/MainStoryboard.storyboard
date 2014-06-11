@@ -38,7 +38,7 @@
                                 <segue destination="vQt-8p-yEe" kind="modal" id="S19-Ej-j2O"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="Her-8z-KUQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Her-8z-KUQ">
                             <connections>
                                 <segue destination="Wtb-2v-kgF" kind="push" id="Lqc-we-ByK"/>
                             </connections>
@@ -239,7 +239,7 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" id="gFp-Qs-nAX">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" style="done" id="2UW-Ky-CDy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="2UW-Ky-CDy">
                             <connections>
                                 <action selector="reOrderCommand:" destination="t7a-Zl-X1X" id="m6W-eT-2zY"/>
                             </connections>
@@ -273,7 +273,7 @@
                                 <rect key="frame" x="0.0" y="176" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Cancel" id="LrE-Z8-Zqv"/>
+                                    <barButtonItem systemItem="cancel" id="LrE-Z8-Zqv"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="MNJ-mC-7SW"/>
                                     <barButtonItem title="UTF-8" width="50" id="Cgc-KQ-vgB">
                                         <connections>
@@ -281,7 +281,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="x17-tC-wU2"/>
-                                    <barButtonItem title="OK" id="rDL-3Q-ou7">
+                                    <barButtonItem systemItem="done" id="rDL-3Q-ou7">
                                         <connections>
                                             <action selector="finishEditing:" destination="UoQ-nK-33v" id="HTU-a6-Q5T"/>
                                         </connections>
@@ -363,7 +363,7 @@
             </objects>
             <point key="canvasLocation" x="1042" y="1116"/>
         </scene>
-        <!--Bonjour Detail Table View Controller - Bonjour-->
+        <!--Bonjour Detail Table View Controller - Detail-->
         <scene sceneID="pkt-HU-dZV">
             <objects>
                 <tableViewController id="P88-QW-iPm" customClass="bonjourDetailTableViewController" sceneMemberID="viewController">
@@ -426,7 +426,7 @@
                             <outlet property="delegate" destination="P88-QW-iPm" id="1WF-8p-Axa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bonjour" id="jv3-O6-dON">
+                    <navigationItem key="navigationItem" title="Detail" id="jv3-O6-dON">
                         <barButtonItem key="backBarButtonItem" title=" " id="9uI-hE-QzI"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="yjC-HR-TcD">
                             <connections>
@@ -492,7 +492,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem width="246" style="plain" systemItem="fixedSpace" id="Ada-wn-I57"/>
-                                    <barButtonItem title="Item" systemItem="done" id="TC5-DO-M6E">
+                                    <barButtonItem style="done" systemItem="done" id="TC5-DO-M6E">
                                         <connections>
                                             <action selector="dismiss:" destination="vQt-8p-yEe" id="FUj-cy-xZh"/>
                                         </connections>
@@ -511,7 +511,7 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="qS2-Zp-6iO"/>
-                        <barButtonItem title="Item" systemItem="done" id="iAy-ZG-4Bw">
+                        <barButtonItem systemItem="done" id="iAy-ZG-4Bw">
                             <connections>
                                 <action selector="dismiss:" destination="vQt-8p-yEe" id="SZk-lO-ucJ"/>
                             </connections>
@@ -520,7 +520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9F-vl-FWI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-354" y="-1591"/>
+            <point key="canvasLocation" x="-344" y="-1548"/>
         </scene>
         <!--Easy Link Main View Controller - EasyLink-->
         <scene sceneID="c3i-g7-lJd">
@@ -764,12 +764,12 @@
             <objects>
                 <tableViewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="A0u-3J-hpE" customClass="EasyLinkFTCTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="XT5-cE-PAA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OTACell" textLabel="BZh-6i-PBJ" detailTextLabel="ht1-s2-beS" style="IBUITableViewCellStyleValue1" id="b8A-dQ-x0I" customClass="FTCStringSelectCell">
-                                <rect key="frame" x="0.0" y="99" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="119" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b8A-dQ-x0I" id="SAR-rU-Dm6">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -797,7 +797,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConfigCell" id="WV3-pb-GjQ" customClass="FTCStringCell">
-                                <rect key="frame" x="0.0" y="143" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="163" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WV3-pb-GjQ" id="f55-us-vZZ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -819,7 +819,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SwitchCell" id="JXq-kb-DXW" customClass="FTCSwitchCell">
-                                <rect key="frame" x="0.0" y="187" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="207" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JXq-kb-DXW" id="Yw1-8e-Znl">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -839,7 +839,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubMenuCell" textLabel="E8H-aY-H2F" style="IBUITableViewCellStyleDefault" id="raD-z0-edo">
-                                <rect key="frame" x="0.0" y="231" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="251" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="raD-z0-edo" id="iso-bF-hRU">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -859,7 +859,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectCell" id="2xD-Fr-Mmg" customClass="FTCStringSelectCell">
-                                <rect key="frame" x="0.0" y="275" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="295" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2xD-Fr-Mmg" id="Prp-TM-6NS">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -889,7 +889,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Configuration" id="H0Z-hv-fBX">
                         <barButtonItem key="backBarButtonItem" title="Back" id="HcB-OW-7zU"/>
-                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="hbK-o1-Lf3">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="hbK-o1-Lf3">
                             <connections>
                                 <action selector="applyNewConfigData" destination="A0u-3J-hpE" id="B7n-3r-zWi"/>
                             </connections>
@@ -908,12 +908,12 @@
             <objects>
                 <tableViewController id="6Lk-UM-wL4" customClass="EasyLinkOTATableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Trl-Pv-1kN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Firmware list" editingAccessoryType="detailDisclosureButton" textLabel="LeR-eT-NGR" detailTextLabel="byP-xr-0eM" style="IBUITableViewCellStyleValue1" id="PJX-lo-tl7">
-                                <rect key="frame" x="0.0" y="99" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="119" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PJX-lo-tl7" id="IeX-Zv-crY">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -937,7 +937,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="update" editingAccessoryType="detailDisclosureButton" id="hr1-WN-6dF">
-                                <rect key="frame" x="0.0" y="143" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="163" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hr1-WN-6dF" id="dIX-tu-na3">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -974,12 +974,12 @@
             <objects>
                 <tableViewController id="Wz9-lg-QIR" customClass="FTCSelectViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="4hm-zb-yNf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Secection" id="mCE-cQ-0Ef">
-                                <rect key="frame" x="0.0" y="99" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="119" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mCE-cQ-0Ef" id="GQZ-jO-XxP">
                                     <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
@@ -1015,7 +1015,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1Ll-OQ-cMg"/>
-        <segue reference="C4e-vJ-7ar"/>
+        <segue reference="XYA-rN-Qaw"/>
+        <segue reference="oDM-0K-J4z"/>
     </inferredMetricsTieBreakers>
 </document>

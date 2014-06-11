@@ -72,7 +72,7 @@ OSStatus check_sum_ha(void *inData, uint32_t inLen)
         outCData->datalen = dataLength;
         memcpy(&outCData->data, [data bytes], dataLength);
         uint16_t *check = (uint16_t *)(&outCData->data + dataLength);
-        *check = _calc_sum_ha((void *)[data bytes], dataLength);
+        *check = _calc_sum_ha((void *)[data bytes], (uint32_t)dataLength);
         outData = [NSData dataWithBytes:outCData length:cmdLength];
         free(outCData);
         return outData;

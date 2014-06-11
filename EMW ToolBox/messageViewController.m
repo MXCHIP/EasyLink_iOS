@@ -221,8 +221,7 @@ unsigned int str2hex(unsigned char *ibuf, unsigned char *obuf,
         }
         hexInASCII[idx2] = 0x0;
         
-        
-        NSUInteger len = str2hex((uint8_t *)hexInASCII, (uint8_t *)hexData,[inputHexString length]);
+        NSUInteger len = str2hex((uint8_t *)hexInASCII, (uint8_t *)hexData,(unsigned int)[inputHexString length]);
         if(len==0) goto exit;
         
         inputData = [NSData dataWithBytes:hexData length:len];

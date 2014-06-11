@@ -103,7 +103,7 @@
 -(void)showConnectingAlert
 {
     customAlertView = [[CustomIOS7AlertView alloc] init];
-    NSString *alertContent = [NSString stringWithFormat:@"Connecting to %@ on port %d ...", _address, _port];
+    NSString *alertContent = [NSString stringWithFormat:@"Connecting to %@ on port %ld ...", _address, (long)_port];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 170)];
     

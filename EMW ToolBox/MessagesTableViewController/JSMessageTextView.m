@@ -172,10 +172,15 @@
         
         [self.placeHolderTextColor set];
         
-        [self.placeHolder drawInRect:placeHolderRect
-                            withFont:self.font
-                       lineBreakMode:NSLineBreakByTruncatingTail
-                           alignment:self.textAlignment];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+        paragraphStyle.alignment = self.textAlignment;
+        
+        NSDictionary* attributes = @{NSFontAttributeName: self.font,
+                                     NSParagraphStyleAttributeName: paragraphStyle};
+        
+        [self.text drawInRect:placeHolderRect withAttributes:attributes];
+
     }
 }
 
