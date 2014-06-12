@@ -23,8 +23,8 @@
         IBOutlet UITableView *foundModuleTableView;
         UITextField *ssidField,*passwordField,*userInfoField,*ipAddress;
 
-        IBOutlet UIButton *EasylinkV1Button, *EasylinkV2Button;
-        IBOutlet UIImageView *imagePhoneView, *imageEMW3161View, *imageEMW3162View, *backgroundImage;
+        IBOutlet UIButton *EasylinkV2Button;
+        IBOutlet UIImageView *imagePhoneView;
         UIAlertView *alertView;
         CustomIOS7AlertView *customAlertView, *otaAlertView;
         NSMutableDictionary *deviceIPConfig;

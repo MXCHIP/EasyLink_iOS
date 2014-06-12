@@ -77,7 +77,7 @@
 - (void)setModuleService:(NSMutableDictionary *)newModuleService {
 	_moduleService = newModuleService;
     
-    NSString *serviceName, *hostName, *macAddress, *hardware;
+    NSString *serviceName, *hostName, *macAddress, *module;
     NSNetService *service;
     BOOL resolving;
     NSString *displayServiceName;
@@ -91,23 +91,18 @@
     NSData *mac = [[NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]] objectForKey:@"MAC"];
     macAddress = [[NSString alloc] initWithData: mac encoding:NSASCIIStringEncoding];
     NSData *hd = [[NSNetService dictionaryFromTXTRecordData:[service TXTRecordData]] objectForKey:@"Model"];
-    hardware = [[NSString alloc] initWithData: hd encoding:NSASCIIStringEncoding];
+    module = [[NSString alloc] initWithData: hd encoding:NSASCIIStringEncoding];
     
     if (resolving == YES){
         self.imageView.image = [UIImage imageNamed:@"known_logo.png"];
     }
     else{
-        if([hardware isEqualToString:@"EMW3161"])
-            self.imageView.image = [UIImage imageNamed:@"EMW3161_logo.png"];
-        else if([hardware isEqualToString:@"EMW3280"])
-            self.imageView.image = [UIImage imageNamed:@"EMW3280_logo.png"];
-        else if([hardware isEqualToString:@"EMW3162"])
-            self.imageView.image = [UIImage imageNamed:@"EMW3162_logo.png"];
-        else if([hardware isEqualToString:@"Philips Wi-Fi LED"])
-            self.imageView.image = [UIImage imageNamed:@"Philips Wi-Fi LED.png"];
-        else
+        self.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", module]];
+        if(self.imageView.image==nil)
             self.imageView.image = [UIImage imageNamed:@"known_logo.png"];
     }
+    
+    self.imageView.contentMode = UIViewContentModeScaleToFill;
     
     NSRange range = [serviceName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"#"]
                                                  options:NSBackwardsSearch];

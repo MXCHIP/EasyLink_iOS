@@ -11,6 +11,8 @@
 @interface messageViewController : JSMessagesViewController{
 }
 @property (strong, nonatomic) NSString *messageRecordFileName;
+@property (strong, nonatomic) UIImage *inComingAvatarImage;
+@property (strong, nonatomic) UIImage *outGoingAvatarImage;
 
 - (void)recvInComingData: (NSData *)data;
 - (void)recvOutputData: (NSData *)data;

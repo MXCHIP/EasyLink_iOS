@@ -19,7 +19,7 @@ BOOL configTableMoved = NO;
 
 
 @interface EasyLinkMainViewController (){
-    PulsingHaloLayer *halo[3];
+    PulsingHaloLayer *halo;
 }
 
 @property (nonatomic, retain, readwrite) NSThread* waitForAckThread;
@@ -34,6 +34,7 @@ BOOL configTableMoved = NO;
 
 - (IBAction)easyLinkV1ButtonAction:(UIButton*)button;
 - (IBAction)easyLinkV2ButtonAction:(UIButton*)button;
+- (void)handleSingleTapPhoneImage:(UIGestureRecognizer *)gestureRecognizer;
 
 /* 
  Prepare a cell that is created with respect to the indexpath 
@@ -125,48 +126,26 @@ BOOL configTableMoved = NO;
     if( screenBounds.size.height == 480.0){
         imagePhoneView.center = CGPointMake(imagePhoneView.center.x, imagePhoneView.center.y+MOVE_UP_ON_3_5_INCH/2);
         imagePhoneView.transform =  CGAffineTransformMakeTranslation(0, MOVE_UP_ON_3_5_INCH);
-        
-         
-        imageEMW3161View.center = CGPointMake(imageEMW3161View.center.x, imageEMW3161View.center.y+MOVE_UP_ON_3_5_INCH/2);
-        imageEMW3161View.transform =  CGAffineTransformMakeTranslation(0, MOVE_UP_ON_3_5_INCH);
-
-        imageEMW3162View.center = CGPointMake(imageEMW3162View.center.x, imageEMW3162View.center.y+MOVE_UP_ON_3_5_INCH/2);
-        imageEMW3162View.transform =  CGAffineTransformMakeTranslation(0, MOVE_UP_ON_3_5_INCH);
-        
-        backgroundImage.transform =  CGAffineTransformMakeTranslation(0, 200.0);
-
     }
     
-    halo[0] = [PulsingHaloLayer layer];
-    halo[0].position = CGPointMake(imageEMW3161View.center.x, imageEMW3161View.center.y);
-    halo[0].backgroundColor = [UIColor colorWithRed:0 green:122.0/255 blue:1.0 alpha:1.0].CGColor;
-    [self.view.layer insertSublayer:halo[0] above:imagePhoneView.layer];
-    halo[0].radius = 100;
+    halo = [PulsingHaloLayer layer];
+    halo.position = CGPointMake(screenBounds.size.width/2, imagePhoneView.center.y-25);
+    [self.view.layer insertSublayer:halo above:imagePhoneView.layer];
+    halo.radius = 400;
+    halo.backgroundColor = [UIColor colorWithRed:0 green:122.0/255 blue:1.0 alpha:1.0].CGColor;
     
-    halo[1] = [PulsingHaloLayer layer];
-    halo[1].position = CGPointMake(imagePhoneView.center.x+20, imagePhoneView.center.y-25);
-    [self.view.layer insertSublayer:halo[1] above:imagePhoneView.layer];
-    halo[1].radius = 200;
-    halo[1].backgroundColor = [UIColor colorWithRed:0 green:122.0/255 blue:1.0 alpha:1.0].CGColor;
-    
-    halo[2] = [PulsingHaloLayer layer];
-    halo[2].position = CGPointMake(imageEMW3162View.center.x, imageEMW3162View.center.y);
-    [self.view.layer insertSublayer:halo[2] above:imagePhoneView.layer];
-    halo[2].radius = 100;
-    halo[2].backgroundColor = [UIColor colorWithRed:0 green:122.0/255 blue:1.0 alpha:1.0].CGColor;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapPhoneImage:)];
+    [imagePhoneView addGestureRecognizer:singleTap];
+
 
     //按钮加边框
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 0, 122.0/255, 1, 1 });
-    [EasylinkV1Button.layer setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor];
-    [EasylinkV1Button.layer setCornerRadius:50.0];
-    [EasylinkV1Button.layer setBorderWidth:1.5];
-    [EasylinkV1Button.layer setBorderColor:colorref];
     
-    [EasylinkV2Button.layer setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor];
-    [EasylinkV2Button.layer setCornerRadius:10.0];
-    [EasylinkV2Button.layer setBorderWidth:1.5];
-    [EasylinkV2Button.layer setBorderColor:colorref];
+//    [EasylinkV2Button.layer setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor];
+//    [EasylinkV2Button.layer setCornerRadius:10.0];
+//    [EasylinkV2Button.layer setBorderWidth:1.5];
+//    [EasylinkV2Button.layer setBorderColor:colorref];
     
     [configTableView.layer setCornerRadius:8.0];
     [configTableView.layer setBorderWidth:1.5];
@@ -228,8 +207,6 @@ BOOL configTableMoved = NO;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    for(int idx = 0; idx<3; idx++)
-        halo[idx] =nil;;
     
     [easylink_config stopTransmitting];
     [easylink_config closeFTCServer];
@@ -348,37 +325,42 @@ BOOL configTableMoved = NO;
   This is the button action, where we need to start or stop the request 
  @param: button ... tag value defines the action !!!!!!!!!
  !!!*/
-- (IBAction)easyLinkV1ButtonAction:(UIButton*)button{
-
-    if(button.selected == NO){
-        [EasylinkV1Button setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
-        [EasylinkV1Button setSelected:YES];
-        [EasylinkV2Button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-        [EasylinkV2Button setSelected:NO];
-        [self startTransmitting: EASYLINK_V1];
-    }
-    else{
-        [button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-        [EasylinkV1Button setSelected:NO];
-        [self stopAction];
-        // Retain the UI access for the user.
-        [self enableUIAccess:YES];
-    }
+- (void)handleSingleTapPhoneImage:(UIGestureRecognizer *)gestureRecognizer
+{
+    [self easyLinkV2ButtonAction:EasylinkV2Button];
 }
 
 - (IBAction)easyLinkV2ButtonAction:(UIButton*)button{
     
     if(button.selected == NO) {
-        [EasylinkV2Button setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
+        CATransition *animation = [CATransition animation];
+        animation.delegate = self;
+        animation.duration = 0.5 ;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = kCATransitionFade;
+            
+        [imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhoneStarted.png"]];
         [EasylinkV2Button setSelected:YES];
-        [EasylinkV1Button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-        [EasylinkV1Button setSelected:NO];
+            
+        [[imagePhoneView layer] addAnimation:animation forKey:@"animation"];
+        [[EasylinkV2Button layer] addAnimation:animation forKey:@"animation"];
+        
         [self startTransmitting: EASYLINK_V2];
     }
     else{
-        [button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-        [EasylinkV2Button setSelected:NO];
+        //[button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
         //[NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
+        CATransition *animation = [CATransition animation];
+        animation.delegate = self;
+        animation.duration = 0.5 ;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = kCATransitionFade;
+        
+        [imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhone.png"]];
+        [EasylinkV2Button setSelected:NO];
+        
+        [[imagePhoneView layer] addAnimation:animation forKey:@"animation"];
+        [[EasylinkV2Button layer] addAnimation:animation forKey:@"animation"];
         [self stopAction];
         // Retain the UI access for the user.
         [self enableUIAccess:YES];
@@ -711,13 +693,9 @@ BOOL configTableMoved = NO;
     passwordField.userInteractionEnabled = isEnable;
     userInfoField.userInteractionEnabled = isEnable;
     
-    for(int idx = 0; idx<3; idx++){
-//        if(isEnable == NO)
-//            halo[idx].radius = 200;
-//        else
-//            halo[idx].radius = 60;
-        [halo[idx] startAnimation: !isEnable];
-    }
+
+    [halo startAnimation: !isEnable];
+
 }
 
 /* 
@@ -779,7 +757,7 @@ BOOL configTableMoved = NO;
         [cell addSubview:userInfoField];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
-        cell.textLabel.text = @"Extra data";
+        cell.textLabel.text = @"Extra Data";
     }
     else if ( indexPath.row == IP_ADDRESS_ROW){
         /// this is Gateway Address field
@@ -801,7 +779,7 @@ BOOL configTableMoved = NO;
         [cell addSubview:ipAddress];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
-        cell.textLabel.text = @"IP address";
+        cell.textLabel.text = @"IP Address";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -847,8 +825,6 @@ BOOL configTableMoved = NO;
     easylink_config = nil;
     self.foundModules = nil;
     
-    if ( EasylinkV1Button.selected )
-        [self easyLinkV1ButtonAction:EasylinkV1Button]; /// Simply revert the state
     if ( EasylinkV2Button.selected )
         [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
     
@@ -865,8 +841,6 @@ BOOL configTableMoved = NO;
     NSAssert(verifyConnection != NULL, @"currentNetworkStatus called with NULL verifyConnection Object");
     NetworkStatus netStatus = [verifyConnection currentReachabilityStatus];	
     if ( netStatus == NotReachable ){
-        if ( EasylinkV1Button.selected )
-            [self easyLinkV1ButtonAction:EasylinkV1Button]; /// Simply revert the state
         if ( EasylinkV2Button.selected )
             [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
         // The operation couldn’t be completed. No route to host
@@ -898,8 +872,6 @@ BOOL configTableMoved = NO;
         
         //[easylink_config stopTransmitting];
         //easylink_config = nil;
-        if ( EasylinkV1Button.selected )
-            [self easyLinkV1ButtonAction:EasylinkV1Button]; /// Simply revert the state
         if ( EasylinkV2Button.selected )
             [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
         

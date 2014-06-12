@@ -70,6 +70,14 @@
         
         _protocol = [[NSString alloc] initWithData:[txtRecordDict objectForKey:@"Protocol"]
                                           encoding:NSUTF8StringEncoding];
+        _module = [[NSString alloc] initWithData: [txtRecordDict objectForKey:@"Model"]
+                                         encoding:NSASCIIStringEncoding];
+        
+        message.inComingAvatarImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", _module]];
+        if(message.inComingAvatarImage==nil)
+            message.inComingAvatarImage = [UIImage imageNamed:@"known_logo.png"];
+        
+        message.outGoingAvatarImage = [UIImage imageNamed:@"demo-avatar-ai.png"];
 
         _name = [newService name];
         

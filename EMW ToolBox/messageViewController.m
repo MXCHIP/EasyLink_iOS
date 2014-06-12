@@ -72,6 +72,8 @@ unsigned int str2hex(unsigned char *ibuf, unsigned char *obuf,
 
 
 @implementation messageViewController
+@synthesize inComingAvatarImage;
+@synthesize outGoingAvatarImage;
 @synthesize messageArray;
 @synthesize fileContent;
 @synthesize messageRecordFileName = _messageRecordFileName;
@@ -436,12 +438,12 @@ exit:
 
 - (UIImage *)avatarImageForIncomingMessage
 {
-    return [UIImage imageNamed:@"demo-avatar-jobs"];
+    return inComingAvatarImage;
 }
 
 - (UIImage *)avatarImageForOutgoingMessage
 {
-    return [UIImage imageNamed:@"demo-avatar-woz"];
+    return outGoingAvatarImage;
 }
 
 - (id)dataForRowAtIndexPath:(NSIndexPath *)indexPath{

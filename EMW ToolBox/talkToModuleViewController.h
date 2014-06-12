@@ -22,6 +22,7 @@
     NSString *_name;
     NSString *_mac;
     NSString *_protocol;
+    NSString *_module;
     NSInteger _port;
     NSMutableArray *_txtRecordArray;
     CustomIOS7AlertView *customAlertView;

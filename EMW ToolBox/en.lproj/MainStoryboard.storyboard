@@ -534,36 +534,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Earth.png" translatesAutoresizingMaskIntoConstraints="NO" id="BK3-Fh-MUg">
-                                <rect key="frame" x="0.0" y="-232" width="800" height="800"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-Fd-JoQ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="68" image="EMW3161.png" translatesAutoresizingMaskIntoConstraints="NO" id="96u-xT-9GC">
-                                <rect key="frame" x="234" y="346" width="44" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="MOK-PT-Lvf"/>
-                                    <constraint firstAttribute="height" constant="68" id="WpB-is-0kP"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="52" placeholderIntrinsicHeight="75" image="EMW3162.png" translatesAutoresizingMaskIntoConstraints="NO" id="y3f-AZ-t9F">
-                                <rect key="frame" x="230" y="440" width="52" height="75"/>
+                                <color key="backgroundColor" red="0.77055027173913038" green="0.77055027173913038" blue="0.77055027173913038" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQy-Do-Sjg">
+                                <rect key="frame" x="7" y="270" width="306" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="CC3-X6-ZJ2"/>
-                                    <constraint firstAttribute="width" constant="52" id="o3t-FW-B0c"/>
+                                    <constraint firstAttribute="width" constant="306" id="22g-kJ-37J"/>
+                                    <constraint firstAttribute="height" constant="60" id="Tb7-AE-huU"/>
                                 </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="182" placeholderIntrinsicHeight="216" image="antena.png" translatesAutoresizingMaskIntoConstraints="NO" id="V25-5q-HoP">
-                                <rect key="frame" x="0.0" y="332" width="182" height="216"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Start EasyLink on my iPhone">
+                                    <color key="titleColor" red="0.0" green="0.47843140363693237" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="Now, start EasyLink on my device"/>
+                                <connections>
+                                    <action selector="easyLinkV2ButtonAction:" destination="Wtb-2v-kgF" eventType="touchUpInside" id="daA-tK-y9d"/>
+                                </connections>
+                            </button>
+                            <imageView autoresizesSubviews="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="182" placeholderIntrinsicHeight="216" image="EasyLinkPhone.png" highlightedImage="EasyLinkPhoneStarted.png" translatesAutoresizingMaskIntoConstraints="NO" id="V25-5q-HoP">
+                                <rect key="frame" x="84" y="363" width="152" height="186"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="182" id="HjD-vo-Q8H"/>
-                                    <constraint firstAttribute="height" constant="216" id="ShE-Es-bTV"/>
+                                    <constraint firstAttribute="height" constant="186" id="Bcp-R6-82x"/>
+                                    <constraint firstAttribute="width" constant="152" id="S7e-VR-n35"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WqK-QA-90X">
-                                <rect key="frame" x="7" y="85" width="306" height="177"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WqK-QA-90X">
+                                <rect key="frame" x="7" y="85" width="307" height="177"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="177" id="yzl-Ug-CE5"/>
@@ -571,34 +573,34 @@
                                 <color key="separatorColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SSID" id="1A2-YL-TnF">
-                                        <rect key="frame" x="0.0" y="22" width="306" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="307" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1A2-YL-TnF" id="wNU-Tj-pGW">
-                                            <rect key="frame" x="0.0" y="0.0" width="306" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="307" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="password" id="Tca-Wf-ko1">
-                                        <rect key="frame" x="0.0" y="66" width="306" height="44"/>
+                                        <rect key="frame" x="0.0" y="66" width="307" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tca-Wf-ko1" id="Ey9-Us-LWW">
-                                            <rect key="frame" x="0.0" y="0.0" width="306" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="307" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userInfo" id="nZV-Si-pPp">
-                                        <rect key="frame" x="0.0" y="110" width="306" height="44"/>
+                                        <rect key="frame" x="0.0" y="110" width="307" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nZV-Si-pPp" id="iUs-f1-MOh">
-                                            <rect key="frame" x="0.0" y="0.0" width="306" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="307" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="gateway" id="xBt-Ni-RbZ">
-                                        <rect key="frame" x="0.0" y="154" width="306" height="44"/>
+                                        <rect key="frame" x="0.0" y="154" width="307" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xBt-Ni-RbZ" id="F0i-5C-jiY">
-                                            <rect key="frame" x="0.0" y="0.0" width="306" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="307" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -609,28 +611,8 @@
                                     <outlet property="delegate" destination="Wtb-2v-kgF" id="epu-O9-gqH"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQy-Do-Sjg">
-                                <rect key="frame" x="71" y="270" width="178" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="178" id="22g-kJ-37J"/>
-                                    <constraint firstAttribute="height" constant="60" id="Tb7-AE-huU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Find New Devices">
-                                    <color key="titleColor" red="0.0" green="0.47843140363693237" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="easyLinkV2ButtonAction:" destination="Wtb-2v-kgF" eventType="touchUpInside" id="daA-tK-y9d"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3Ty-Yb-d9O">
-                                <rect key="frame" x="7" y="341" width="306" height="227"/>
+                                <rect key="frame" x="7" y="338" width="306" height="224"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -674,20 +656,13 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="y3f-AZ-t9F" firstAttribute="leading" secondItem="V25-5q-HoP" secondAttribute="trailing" constant="48" id="005-uc-CJb"/>
-                            <constraint firstItem="96u-xT-9GC" firstAttribute="centerX" secondItem="y3f-AZ-t9F" secondAttribute="centerX" id="0v3-St-oHW"/>
-                            <constraint firstItem="V25-5q-HoP" firstAttribute="top" secondItem="SBj-Dq-LXZ" secondAttribute="bottom" constant="268" id="3Kz-JE-Ew5"/>
-                            <constraint firstItem="V25-5q-HoP" firstAttribute="top" secondItem="kQy-Do-Sjg" secondAttribute="bottom" constant="2" id="5mq-Zr-4gC"/>
                             <constraint firstItem="WqK-QA-90X" firstAttribute="top" secondItem="SBj-Dq-LXZ" secondAttribute="bottom" constant="21" id="9Gp-MU-2Vl"/>
                             <constraint firstItem="WqK-QA-90X" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leading" constant="7" id="Ia4-jg-RTy"/>
-                            <constraint firstItem="X3q-19-P2H" firstAttribute="top" secondItem="BK3-Fh-MUg" secondAttribute="bottom" id="Ira-0S-Uu9"/>
-                            <constraint firstItem="V25-5q-HoP" firstAttribute="leading" secondItem="BK3-Fh-MUg" secondAttribute="leading" id="MEK-gh-RZE"/>
-                            <constraint firstItem="BK3-Fh-MUg" firstAttribute="top" secondItem="Pgy-D5-0yK" secondAttribute="top" constant="-232" id="Pp6-cF-gXN"/>
+                            <constraint firstItem="V25-5q-HoP" firstAttribute="centerX" secondItem="g7x-Fd-JoQ" secondAttribute="centerX" id="Klg-hh-FxA"/>
                             <constraint firstItem="WqK-QA-90X" firstAttribute="centerX" secondItem="Pgy-D5-0yK" secondAttribute="centerX" id="Qp0-Jm-VCw"/>
+                            <constraint firstItem="V25-5q-HoP" firstAttribute="centerX" secondItem="kQy-Do-Sjg" secondAttribute="centerX" id="WI1-h5-RYM"/>
                             <constraint firstItem="kQy-Do-Sjg" firstAttribute="centerX" secondItem="WqK-QA-90X" secondAttribute="centerX" id="Y6y-hU-l0C"/>
-                            <constraint firstItem="y3f-AZ-t9F" firstAttribute="top" secondItem="96u-xT-9GC" secondAttribute="bottom" constant="26" id="bF2-mu-92g"/>
-                            <constraint firstItem="BK3-Fh-MUg" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leading" id="fDv-69-57e"/>
-                            <constraint firstItem="96u-xT-9GC" firstAttribute="top" secondItem="V25-5q-HoP" secondAttribute="top" constant="14" id="hTY-DJ-heo"/>
+                            <constraint firstItem="X3q-19-P2H" firstAttribute="top" secondItem="V25-5q-HoP" secondAttribute="bottom" constant="19" id="gXu-Rm-P2v"/>
                             <constraint firstItem="kQy-Do-Sjg" firstAttribute="top" secondItem="WqK-QA-90X" secondAttribute="bottom" constant="8" id="pbh-sR-yQw"/>
                         </constraints>
                     </view>
@@ -696,11 +671,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="EasylinkV2Button" destination="kQy-Do-Sjg" id="IoA-R3-IGv"/>
-                        <outlet property="backgroundImage" destination="BK3-Fh-MUg" id="pU8-Jt-4bk"/>
                         <outlet property="configTableView" destination="WqK-QA-90X" id="l2w-q4-gdQ"/>
                         <outlet property="foundModuleTableView" destination="3Ty-Yb-d9O" id="FDv-z9-NDu"/>
-                        <outlet property="imageEMW3161View" destination="y3f-AZ-t9F" id="7vi-XP-jns"/>
-                        <outlet property="imageEMW3162View" destination="96u-xT-9GC" id="i7u-dE-1pI"/>
                         <outlet property="imagePhoneView" destination="V25-5q-HoP" id="iCR-zu-1JO"/>
                         <segue destination="gaq-Gk-fOw" kind="push" identifier="IP config" id="B3Q-tS-47y"/>
                     </connections>
@@ -1003,11 +975,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EMW3161.png" width="200" height="228"/>
-        <image name="EMW3162.png" width="295" height="477"/>
-        <image name="Earth.png" width="800" height="800"/>
+        <image name="EasyLinkPhone.png" width="1045" height="1888"/>
+        <image name="EasyLinkPhoneStarted.png" width="1045" height="1888"/>
         <image name="UnderConstruction.png" width="320" height="256"/>
-        <image name="antena.png" width="467" height="539"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
