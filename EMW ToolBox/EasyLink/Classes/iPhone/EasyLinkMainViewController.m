@@ -89,10 +89,6 @@ BOOL configTableMoved = NO;
 
 #pragma mark - View lifecycle -
 
-//- (void)instantiateViewControllerWithIdentifier{
-//    
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -113,13 +109,6 @@ BOOL configTableMoved = NO;
         self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
     
     deviceIPConfig = [[NSMutableDictionary alloc] initWithCapacity:5];
-    [deviceIPConfig setObject:@YES forKey:@"DHCP"];
-    [deviceIPConfig setObject:[EASYLINK getIPAddress] forKey:@"IP"];
-    [deviceIPConfig setObject:[EASYLINK getNetMask] forKey:@"NetMask"];
-    [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
-    [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
-    
-    
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     
@@ -161,10 +150,16 @@ BOOL configTableMoved = NO;
     
     waitForAckThread = nil;
     
-    NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];	
+    NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     if ( netStatus == NotReachable ) {// No activity if no wifi
         alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"WiFi not available. Please check your WiFi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
+    }else{
+        [deviceIPConfig setObject:@YES forKey:@"DHCP"];
+        [deviceIPConfig setObject:[EASYLINK getIPAddress] forKey:@"IP"];
+        [deviceIPConfig setObject:[EASYLINK getNetMask] forKey:@"NetMask"];
+        [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
+        [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
     }
     
     //// stoping the process in app backgroud state
@@ -480,9 +475,10 @@ BOOL configTableMoved = NO;
     NSLog(@"Recv JSON data, length: %lu", (unsigned long)[config length]);
 
     if (err) {
+#ifdef DEBUG
         NSString *temp = [[NSString alloc] initWithData:config encoding:NSASCIIStringEncoding];
-        
         NSLog(@"Unpackage JSON data failed:%@, %@", [err localizedDescription], temp);
+#endif
         
         alertView = [[UIAlertView alloc] initWithTitle:@"EMW ToolBox Alert" message:@"JSON data err" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
@@ -802,11 +798,18 @@ BOOL configTableMoved = NO;
     [foundModuleTableView reloadData];
     ssidField.text = [EASYLINK ssidForConnectedNetwork];
     ipAddress.text = @"Automatic";
-    [deviceIPConfig setObject:@YES forKey:@"DHCP"];
-    [deviceIPConfig setObject:[EASYLINK getIPAddress] forKey:@"IP"];
-    [deviceIPConfig setObject:[EASYLINK getNetMask] forKey:@"NetMask"];
-    [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
-    [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
+    
+    NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
+    if ( netStatus == NotReachable ) {// No activity if no wifi
+        alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"WiFi not available. Please check your WiFi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+    }else{
+        [deviceIPConfig setObject:@YES forKey:@"DHCP"];
+        [deviceIPConfig setObject:[EASYLINK getIPAddress] forKey:@"IP"];
+        [deviceIPConfig setObject:[EASYLINK getNetMask] forKey:@"NetMask"];
+        [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
+        [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
+    }
     
     NSString *password = [apInforRecord objectForKey:ssidField.text];
     if(password == nil) password = @"";

@@ -93,7 +93,8 @@
 - (void)otaFTCClient:(NSNumber *)client withOTAData: (NSData *)otaData;
 - (void)closeFTCClient:(NSNumber *)client;
 - (void)closeFTCServer;
-- (BOOL)isFTCServerStarted;
+
+
 
 /**
  * Tools

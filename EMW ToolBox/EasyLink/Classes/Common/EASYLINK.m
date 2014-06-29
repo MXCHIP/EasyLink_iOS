@@ -19,6 +19,7 @@ static NSUInteger count = 0;
 
 - (void)startConfigure:(id)sender;
 - (void)closeClient:(NSTimer *)timer;
+- (BOOL)isFTCServerStarted;
 
 @end
 

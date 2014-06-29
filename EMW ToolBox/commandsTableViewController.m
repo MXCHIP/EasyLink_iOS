@@ -69,26 +69,18 @@ error:
    
     bgv = [[UIView alloc]init];
     [bgv setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
-        
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    commandSender = self.parentViewController;
-}
+
 
 - (void)dealloc{
-    NSLog(@"command dealloc");
+    NSLog(@"Command dealloc");
 }
 
 - (void)setProtocol:(NSString *)newProtocol
 {
-        if (_protocol != newProtocol) {
+    if (_protocol != newProtocol) {
         _protocol = newProtocol;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docPath = [paths objectAtIndex:0];
@@ -192,8 +184,8 @@ error:
                                   animated:YES
                             scrollPosition:UITableViewScrollPositionMiddle];
     
-    if([commandSender respondsToSelector:@selector(sendData: from:)]){
-        [commandSender performSelector:@selector(sendData: from:)
+    if([self.parentViewController respondsToSelector:@selector(sendData: from:)]){
+        [self.parentViewController performSelector:@selector(sendData: from:)
                                         withObject:[commandDetail objectForKey:Key_Content]
                                         withObject:self ];
     }
@@ -271,8 +263,8 @@ error:
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 
-    if([commandSender respondsToSelector:@selector(sendData: from:)]){
-        [commandSender performSelector:@selector(sendData: from:)
+    if([self.parentViewController respondsToSelector:@selector(sendData: from:)]){
+        [self.parentViewController performSelector:@selector(sendData: from:)
                                         withObject:[commandDetail objectForKey:Key_Content]
                                         withObject:self ];
     }

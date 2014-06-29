@@ -107,7 +107,7 @@
         _service = newService;
         
         // Update the view.
-        self.navigationItem.title = @"Bonjour";
+        self.navigationItem.title = @"Details";
     
         _txtRecordArray = [NSMutableArray arrayWithCapacity:20];
         _txtRecord = [NSNetService dictionaryFromTXTRecordData: [newService TXTRecordData]];
@@ -255,7 +255,7 @@
     NSData *body = (__bridge_transfer NSData*)bodyRef;
     
     CFStringRef contentLengthRef = CFHTTPMessageCopyHeaderFieldValue (inComingMessage, CFSTR("Content-Length") );
-    contentLength = [(__bridge_transfer NSString*)contentLengthRef intValue];
+    contentLength = [(__bridge NSString*)contentLengthRef intValue];
     
     currentLength = [body length];
     NSLog(@"%lu/%lu", (unsigned long)currentLength, (unsigned long)contentLength);
@@ -265,12 +265,14 @@
         return;
     }
     
-    
+#ifdef DEBUG
     CFURLRef urlRef = CFHTTPMessageCopyRequestURL(inComingMessage);
     CFStringRef urlPathRef= CFURLCopyPath (urlRef);
-    CFRelease(urlRef);
-    NSString *urlPath= (__bridge_transfer NSString*)urlPathRef;
+    NSString *urlPath= (__bridge NSString*)urlPathRef;
     NSLog(@"URL: %@", urlPath);
+    CFRelease(urlRef);
+    CFRelease(urlPathRef);
+#endif
     
     if(currentState == eState_ReadConfig){
         configData = [NSJSONSerialization JSONObjectWithData:body
@@ -279,8 +281,10 @@
         NSLog(@"Recv JSON data, length: %lu", (unsigned long)[body length]);
         
         if (err) {
+#ifdef DEBUG
             NSString *temp = [[NSString alloc] initWithData:body encoding:NSASCIIStringEncoding];
             NSLog(@"Unpackage JSON data failed:%@, %@", [err localizedDescription], temp);
+#endif
             alertView = [[UIAlertView alloc] initWithTitle:@"Get unrecognized data!" message:nil delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alertView show];
             return;
@@ -409,11 +413,6 @@
 {
     NSError *err;
     UIAlertView *alertView;
-    
-    if([[data objectForKey:@"update"] count]== 0) {
-        [self.navigationController popToViewController:self animated:YES];
-        return;
-    }
     
     updateData = [NSJSONSerialization dataWithJSONObject:[data objectForKey:@"update"]options:0 error:&err];
     if (err) {

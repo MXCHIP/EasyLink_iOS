@@ -82,6 +82,11 @@ extern unsigned int str2hex(unsigned char *ibuf, unsigned char *obuf,
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)dealloc
+{
+    NSLog(@"Add Command dealloc");
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

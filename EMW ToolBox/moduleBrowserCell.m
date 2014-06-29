@@ -102,7 +102,7 @@
             self.imageView.image = [UIImage imageNamed:@"known_logo.png"];
     }
     
-    self.imageView.contentMode = UIViewContentModeScaleToFill;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     NSRange range = [serviceName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"#"]
                                                  options:NSBackwardsSearch];

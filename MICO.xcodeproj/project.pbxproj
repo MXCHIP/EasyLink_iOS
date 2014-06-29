@@ -16,8 +16,6 @@
 		3D0D3031191B4A6900C5B57A /* Right Reveal Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D3026191B4A6900C5B57A /* Right Reveal Icon@2x.png */; };
 		3D0D3035191B4C7D00C5B57A /* talkToModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D3034191B4C7D00C5B57A /* talkToModuleViewController.m */; };
 		3D0D3038191B5F0F00C5B57A /* commandsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D3037191B5F0F00C5B57A /* commandsTableViewController.m */; };
-		3D0D303B191B630A00C5B57A /* demo-avatar-jobs.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D3039191B630A00C5B57A /* demo-avatar-jobs.png */; };
-		3D0D303C191B630A00C5B57A /* demo-avatar-woz.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D303A191B630A00C5B57A /* demo-avatar-woz.png */; };
 		3D179B5818F3E5A3003C02F9 /* FTCStringSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D179B5718F3E5A3003C02F9 /* FTCStringSelectCell.m */; };
 		3D179B5B18F3F1C8003C02F9 /* FTCSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D179B5A18F3F1C8003C02F9 /* FTCSelectViewController.m */; };
 		3D1F0D861910C9DE0030A828 /* bonjourDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F0D851910C9DE0030A828 /* bonjourDetailTableViewController.m */; };
@@ -46,6 +44,7 @@
 		3D677D0E1925B3E400E4A486 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D677D091925B3E400E4A486 /* MJRefreshHeaderView.m */; };
 		3D677D101925DF3200E4A486 /* UnderConstruction@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D677D0F1925DF3200E4A486 /* UnderConstruction@2x.png */; };
 		3D677D131925EB8600E4A486 /* guideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D677D121925EB8600E4A486 /* guideViewController.m */; };
+		3D6D4768194AB04900F267E5 /* easycloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6D4767194AB04900F267E5 /* easycloud.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
 		3D7ACE8718FACAF600747F32 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7ACE8618FACAF600747F32 /* CustomIOS7AlertView.m */; };
 		3D7B49CD18E2BB2D0062837A /* FTCSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B49CC18E2BB2D0062837A /* FTCSwitchCell.m */; };
@@ -164,8 +163,6 @@
 		3D0D3034191B4C7D00C5B57A /* talkToModuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = talkToModuleViewController.m; sourceTree = "<group>"; };
 		3D0D3036191B5F0F00C5B57A /* commandsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commandsTableViewController.h; sourceTree = "<group>"; };
 		3D0D3037191B5F0F00C5B57A /* commandsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commandsTableViewController.m; sourceTree = "<group>"; };
-		3D0D3039191B630A00C5B57A /* demo-avatar-jobs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "demo-avatar-jobs.png"; sourceTree = "<group>"; };
-		3D0D303A191B630A00C5B57A /* demo-avatar-woz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "demo-avatar-woz.png"; sourceTree = "<group>"; };
 		3D179B5618F3E5A3003C02F9 /* FTCStringSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCStringSelectCell.h; sourceTree = "<group>"; };
 		3D179B5718F3E5A3003C02F9 /* FTCStringSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCStringSelectCell.m; sourceTree = "<group>"; };
 		3D179B5918F3F1C8003C02F9 /* FTCSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCSelectViewController.h; sourceTree = "<group>"; };
@@ -214,6 +211,7 @@
 		3D677D0F1925DF3200E4A486 /* UnderConstruction@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnderConstruction@2x.png"; sourceTree = "<group>"; };
 		3D677D111925EB8600E4A486 /* guideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guideViewController.h; sourceTree = "<group>"; };
 		3D677D121925EB8600E4A486 /* guideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = guideViewController.m; sourceTree = "<group>"; };
+		3D6D4767194AB04900F267E5 /* easycloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = easycloud.png; sourceTree = "<group>"; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
 		3D7ACE8518FACAF600747F32 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomIOS7AlertView.h; path = "EMW ToolBox/CustomIOS7AlertView/CustomIOS7AlertView.h"; sourceTree = "<group>"; };
 		3D7ACE8618FACAF600747F32 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomIOS7AlertView.m; path = "EMW ToolBox/CustomIOS7AlertView/CustomIOS7AlertView.m"; sourceTree = "<group>"; };
@@ -648,6 +646,7 @@
 		3DAA37F717A5446A003806FE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3D6D4767194AB04900F267E5 /* easycloud.png */,
 				3D65ABAD1949603900C8BD14 /* EasyLinkPhoneStarted.png */,
 				3D65ABAB19495DD500C8BD14 /* EasyLinkPhone.png */,
 				3D65ABA919494E1F00C8BD14 /* demo-avatar-ai.png */,
@@ -655,8 +654,6 @@
 				3D65ABA6194944F000C8BD14 /* EMW3162.png */,
 				3D65ABA119493E1E00C8BD14 /* EMW3280.png */,
 				3D677D0F1925DF3200E4A486 /* UnderConstruction@2x.png */,
-				3D0D3039191B630A00C5B57A /* demo-avatar-jobs.png */,
-				3D0D303A191B630A00C5B57A /* demo-avatar-woz.png */,
 				3DBBAB8918ED003E00406463 /* Philips Wi-Fi LED.png */,
 				3DC773B517A8A6710029ACB3 /* known_logo.png */,
 				3DAA37F817A5446A003806FE /* Default-568h@2x.png */,
@@ -940,7 +937,6 @@
 				3DAEA00E19191B600082D846 /* bubble-default-outgoing-green@2x.png in Resources */,
 				3D65ABAE1949603900C8BD14 /* EasyLinkPhoneStarted.png in Resources */,
 				3DAEA02919191B600082D846 /* input-bar.png in Resources */,
-				3D0D303B191B630A00C5B57A /* demo-avatar-jobs.png in Resources */,
 				3D65ABA419493E1E00C8BD14 /* EMW3280.png in Resources */,
 				3DAEA00719191B600082D846 /* bubble-default-incoming-green.png in Resources */,
 				3DAEA02419191B600082D846 /* bubble-square-outgoing@2x.png in Resources */,
@@ -951,7 +947,6 @@
 				3DAA38A217A5446B003806FE /* Default.png in Resources */,
 				3DAEA00919191B600082D846 /* bubble-default-incoming-selected.png in Resources */,
 				3DAEA02819191B600082D846 /* input-bar-flat@2x.png in Resources */,
-				3D0D303C191B630A00C5B57A /* demo-avatar-woz.png in Resources */,
 				3DAEA03319191B600082D846 /* messageReceived.aiff in Resources */,
 				3D8E9FD418A8B12F00F6618E /* Earth.png in Resources */,
 				3DAEA02219191B600082D846 /* bubble-square-outgoing-selected@2x.png in Resources */,
@@ -964,6 +959,7 @@
 				3DC773B717A8A6710029ACB3 /* known_logo.png in Resources */,
 				3D0D3030191B4A6900C5B57A /* Right Reveal Icon.png in Resources */,
 				3DAEA01419191B600082D846 /* bubble-flat-incoming-selected@2x.png in Resources */,
+				3D6D4768194AB04900F267E5 /* easycloud.png in Resources */,
 				3DAEA00B19191B600082D846 /* bubble-default-incoming.png in Resources */,
 				3DAEA01919191B600082D846 /* bubble-flat-outgoing-selected.png in Resources */,
 				3DAEA02C19191B600082D846 /* input-field@2x.png in Resources */,
@@ -1145,8 +1141,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 徐 Xu (V5BL6E6DEP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 徐 Xu (V5BL6E6DEP)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
@@ -1156,7 +1152,8 @@
 					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",
 				);
 				PRODUCT_NAME = EasyLink;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "E6173018-9332-4EE5-9DC3-6EE23AF4174A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E6173018-9332-4EE5-9DC3-6EE23AF4174A";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1167,8 +1164,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 徐 Xu (V5BL6E6DEP)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
@@ -1178,8 +1174,8 @@
 					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",
 				);
 				PRODUCT_NAME = EasyLink;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2D3C4C35-D9A3-410F-BA3A-6613642CBE85";
+				PROVISIONING_PROFILE = "E6173018-9332-4EE5-9DC3-6EE23AF4174A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E6173018-9332-4EE5-9DC3-6EE23AF4174A";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
