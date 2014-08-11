@@ -18,7 +18,6 @@
 #define kInitialDomain  @"local"
 #define repeatInterval  10.0
 
-
 bool newModuleFound;
 bool enumerating = NO;
 
