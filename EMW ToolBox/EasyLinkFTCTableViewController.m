@@ -135,6 +135,12 @@
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40.0;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FTCStringCell *cell;
@@ -241,7 +247,7 @@
     FTCSwitchCell *cell;
     NSIndexPath *indexPath;
     NSLog(@"Value changed!");
-    cell = (FTCSwitchCell *)switcher.superview.superview.superview;
+    cell = (FTCSwitchCell *)switcher.superview.superview;
     indexPath = [configTableView indexPathForCell:cell];
     NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ]-hasOTA;
     NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
@@ -257,7 +263,7 @@
     FTCStringCell *cell;
     NSIndexPath *indexPath;
     NSLog(@"Value changed!");
-    cell = (FTCStringCell *)textField.superview.superview.superview;
+    cell = (FTCStringCell *)textField.superview.superview;
     indexPath = [configTableView indexPathForCell:cell];
     NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ]-hasOTA;
     NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];

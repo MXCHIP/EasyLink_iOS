@@ -35,12 +35,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EMW ToolBox/browserViewController.m"
-            timestampString = "422094135.793454"
+            timestampString = "430047984.054816"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "-netServiceBrowser:didRemoveService:moreComing:"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "-netServiceBrowser:didFindService:moreComing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
