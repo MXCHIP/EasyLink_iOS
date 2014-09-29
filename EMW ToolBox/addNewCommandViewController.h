@@ -26,6 +26,7 @@
 - (void)setDelegate:(id)delegate;
 
 - (IBAction)finishEditing: (UIBarButtonItem *)button;
+- (IBAction)cancel: (UIBarButtonItem *)button;
 - (IBAction)typeChanged: (UIBarButtonItem *)button;
 
 - (void)setSubject: (NSString *)inSubject withDetail:(NSData *)inDetail  forType: (NSString *) inType;

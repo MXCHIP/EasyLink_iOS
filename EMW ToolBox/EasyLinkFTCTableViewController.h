@@ -36,7 +36,4 @@
 
 - (IBAction)applyNewConfigData;
 
-- (IBAction)switchChanged: (UISwitch *)switcher;
-- (IBAction)editingChanged: (UITextField *)textField;
-
 @end

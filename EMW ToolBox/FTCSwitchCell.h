@@ -10,12 +10,18 @@
 
 @interface FTCSwitchCell : UITableViewCell{
     NSMutableDictionary *_ftcConfig;
+    id theDelegate;
 @private
     IBOutlet UISwitch *contentSwitch;
 }
 
-
+@property (nonatomic, readwrite) NSUInteger sectionRow;
+@property (nonatomic, readwrite) NSUInteger contentRow;
 @property (nonatomic, retain, readwrite) NSMutableDictionary *ftcConfig;
 @property (nonatomic, retain, readwrite) UISwitch *contentSwitch;
+
+- (id)delegate;
+- (void)setDelegate:(id)delegate;
+- (IBAction)switchChanged: (UISwitch *)switcher;
 
 @end

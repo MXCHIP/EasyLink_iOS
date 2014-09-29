@@ -64,15 +64,7 @@ error:
     self.title = @"Commands";
     editing = NO;
     autoSending = NO;
-    
-
-   
-    bgv = [[UIView alloc]init];
-    [bgv setBackgroundColor:[UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
-    
 }
-
-
 
 - (void)dealloc{
     NSLog(@"Command dealloc");
@@ -139,9 +131,6 @@ error:
                                  @"Interval 0.5 seconds", @"Interval 1 seconds", @"Interval 5 seconds", @"Interval 20 seconds",nil];
         [action showInView:self.view];
         
-        //autoSendTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(autoSend:) userInfo:nil repeats:YES];
-        //sender.title = @"Stop";
-        //autoSending = YES;
     }else{
         NSUInteger index = (--currentSendIndex)%[self.commandList count];
         [commandTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]
@@ -279,8 +268,6 @@ error:
     }
 }
 
-
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger row = [indexPath row];
@@ -324,7 +311,7 @@ error:
     // Pass the selected object to the new view controller.
     if ([[segue identifier] isEqualToString:@"Add command"]) {
         indexNeedsChange = [self.commandList count];
-        [[segue destinationViewController] setDelegate:self];
+        [(addNewCommandViewController *)[segue destinationViewController] setDelegate:self];
         NSString *emptyCommand = @"Empty";
         [[segue destinationViewController] setSubject: @"New Command"
                                            withDetail:[emptyCommand dataUsingEncoding:NSUTF8StringEncoding]
@@ -344,9 +331,8 @@ error:
 
         
         indexNeedsChange = indexPath.row;
-        [[segue destinationViewController] setDelegate:self];
-    }
-    
+        [(addNewCommandViewController *)[segue destinationViewController] setDelegate:self];
+    }    
 }
 
 

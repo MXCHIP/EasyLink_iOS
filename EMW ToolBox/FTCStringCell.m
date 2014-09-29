@@ -12,6 +12,8 @@
 @implementation FTCStringCell
 @synthesize ftcConfig = _ftcConfig;
 @synthesize contentText;
+@synthesize sectionRow;
+@synthesize contentRow;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -22,6 +24,16 @@
         
     }
     return self;
+}
+
+- (id)delegate
+{
+    return theDelegate;
+}
+
+- (void)setDelegate:(id)delegate
+{
+    theDelegate = delegate;
 }
 
 - (void)awakeFromNib
@@ -66,6 +78,26 @@
     return YES;
 }
 
+//- (IBAction)editingChanged: (UITextField *)textField
+//{
+//    FTCStringCell *cell;
+//    NSIndexPath *indexPath;
+//    NSLog(@"Value changed!");
+//    cell = (FTCStringCell *)textField.superview.superview;
+//    indexPath = [configTableView indexPathForCell:cell];
+//    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ]-hasOTA;
+//    NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
+//    NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
+//    NSMutableDictionary *content = [array objectAtIndex: contentRow];
+//    NSMutableDictionary *updateSetting = [self.configData objectForKey:@"update"];
+//    if([[content objectForKey:@"C"] isKindOfClass:[NSString class]])
+//        [updateSetting setObject:textField.text forKey:[content objectForKey:@"N"]];
+//    else{
+//        NSInteger value = [textField.text intValue];
+//        [updateSetting setObject:[NSNumber numberWithLong:value] forKey:[content objectForKey:@"N"]];
+//    }
+//}
+
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 //    //Replace the string manually in the textbox
 //    textField.text = [textField.text stringByReplacingCharactersInRange:range withString:string];
@@ -74,6 +106,15 @@
 //    NSLog(@"Value changed!");
 //    return NO; //this make iOS not to perform any action
 //}
+
+- (IBAction)editingChanged:  (UITextField *)textField
+{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:contentRow inSection:sectionRow];
+    if( [theDelegate respondsToSelector:@selector(editingChanged:AtIndexPath:)]){
+        [theDelegate performSelector:@selector(editingChanged:AtIndexPath:) withObject:textField.text withObject:indexpath];
+    }
+    
+}
 
 
 

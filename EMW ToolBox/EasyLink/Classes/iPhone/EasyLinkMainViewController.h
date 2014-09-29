@@ -17,23 +17,24 @@
 #import "EasyLinkOTATableViewController.h"
 
 @interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate, EasyLinkFTCDelegate, EasyLinkFTCDataDelegate, EasyLinkOTADelegate>{
-        NSMutableArray *foundModules;
+    NSMutableArray *foundModules;
 @private
-        IBOutlet UITableView *configTableView;
-        IBOutlet UITableView *foundModuleTableView;
-        UITextField *ssidField,*passwordField,*userInfoField,*ipAddress;
+    IBOutlet UITableView *configTableView;
+    IBOutlet UITableView *foundModuleTableView;
+    UITextField *ssidField,*bssidField,*passwordField,*userInfoField,*ipAddress;
 
-        IBOutlet UIButton *EasylinkV2Button;
-        IBOutlet UIImageView *imagePhoneView;
-        UIAlertView *alertView;
-        CustomIOS7AlertView *customAlertView, *otaAlertView;
-        NSMutableDictionary *deviceIPConfig;
-        NSMutableDictionary *apInforRecord;
-        NSString *apInforRecordFile;
+    IBOutlet UIButton *EasylinkV2Button;
+    IBOutlet UIImageView *imagePhoneView;
+    UIAlertView *alertView;
+    CustomIOS7AlertView *customAlertView, *otaAlertView;
+    NSMutableDictionary *deviceIPConfig;
+    NSMutableDictionary *apInforRecord;
+    NSString *apInforRecordFile;
 
-        EASYLINK *easylink_config;
-    
-        Reachability *wifiReachability;
+    EASYLINK *easylink_config;
+    CustomIOS7AlertView *easyLinkSendingView;
+
+    Reachability *wifiReachability;
 }
 
 @property (strong, nonatomic) NSMutableArray *foundModules;

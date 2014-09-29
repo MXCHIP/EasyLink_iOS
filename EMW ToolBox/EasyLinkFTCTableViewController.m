@@ -61,10 +61,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     /*Return from a select cell, update the select cell and add the new valuw to the config data*/
     if(selectCellIndexPath != nil){
-        NSUInteger sectionRow = [ selectCellIndexPath indexAtPosition: 0 ]-hasOTA;
-        NSUInteger contentRow = [ selectCellIndexPath indexAtPosition: 1 ];
-        NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
-        NSMutableDictionary *content = [array objectAtIndex: contentRow];
+
+        NSArray *array =[[self.configMenu objectAtIndex:[ selectCellIndexPath indexAtPosition: 0 ]-hasOTA] objectForKey:@"C"];
+        NSMutableDictionary *content = [array objectAtIndex: [ selectCellIndexPath indexAtPosition: 1 ]];
         
         FTCStringSelectCell *cell = (FTCStringSelectCell *)[configTableView cellForRowAtIndexPath:selectCellIndexPath];
         if([[content objectForKey:@"C"] isKindOfClass:[NSNumber class]])
@@ -73,9 +72,9 @@
             cell.contentText.text = [content objectForKey:@"C"];
 
         NSLog(@"Select cell changed");
+        
+        [self editingChanged: cell.contentText.text AtIndexPath:[NSIndexPath indexPathForRow:cell.contentRow inSection:cell.sectionRow]];
         selectCellIndexPath = nil;
-        [self editingChanged: cell.contentText];
-
     }
     [super viewWillAppear:animated];
 }
@@ -143,7 +142,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FTCStringCell *cell;
+    UITableViewCell *cell;
+    FTCStringCell *ftcStringcell;
+    FTCSwitchCell *ftcSwitchcell;
+    FTCStringSelectCell *ftcStringSelectCell;
+    FTCSubMenuCell *ftcSubMenuCell;
+    
     NSString *tableCellIdentifier;
     
     /*Display OTA cell*/
@@ -162,33 +166,61 @@
     
     if([[content objectForKey:@"C"] isKindOfClass:[NSArray class]]){             //Sub menu
         tableCellIdentifier = @"SubMenuCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-        cell.textLabel.text = [content objectForKey:@"N"];
+        ftcSubMenuCell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+        ftcSubMenuCell.textLabel.text = [content objectForKey:@"N"];
+        return ftcSubMenuCell;
     }else if([[content objectForKey:@"C"] isKindOfClass:[NSNumber class]]){     //Number cell
         const char * pObjCType = [(NSNumber *)[content objectForKey:@"C"] objCType];
         if(strcmp(pObjCType, @encode(char))==0){ //Same as Bool type
             tableCellIdentifier = @"SwitchCell";
-            cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-            cell.ftcConfig  = content;
+            ftcSwitchcell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+            ftcSwitchcell.ftcConfig  = content;
+            ftcSwitchcell.sectionRow = sectionRow;
+            ftcSwitchcell.contentRow = contentRow;
+            [ftcSwitchcell setDelegate:self];
+            return ftcSwitchcell;
         }
         else{
-            if([content objectForKey:@"S"]==nil)
+            if([content objectForKey:@"S"]==nil){
                 tableCellIdentifier= @"ConfigCell";
-            else
+                ftcStringcell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+                ftcStringcell.ftcConfig  = content;
+                ftcStringcell.sectionRow = sectionRow;
+                ftcStringcell.contentRow = contentRow;
+                [ftcStringcell setDelegate:self];
+                return ftcStringcell;
+            }
+            else{
                 tableCellIdentifier= @"SelectCell";
-            cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-            cell.ftcConfig  = content;
+                ftcStringSelectCell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+                ftcStringSelectCell.ftcConfig  = content;
+                ftcStringSelectCell.sectionRow = sectionRow;
+                ftcStringSelectCell.contentRow = contentRow;
+                [ftcStringSelectCell setDelegate:self];
+                return ftcStringSelectCell;
+            }
         }
     }else{                                                                      //String cell
-        if([content objectForKey:@"S"]==nil)
+        if([content objectForKey:@"S"]==nil){
             tableCellIdentifier= @"ConfigCell";
-        else
+            ftcStringcell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+            ftcStringcell.ftcConfig  = content;
+            ftcStringcell.sectionRow = sectionRow;
+            ftcStringcell.contentRow = contentRow;
+            [ftcStringcell setDelegate:self];
+            return ftcStringcell;
+        }
+        else{
             tableCellIdentifier= @"SelectCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
-        cell.ftcConfig  = content;
+            ftcStringSelectCell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+            ftcStringSelectCell.ftcConfig  = content;
+            ftcStringSelectCell.sectionRow = sectionRow;
+            ftcStringSelectCell.contentRow = contentRow;
+            [ftcStringSelectCell setDelegate:self];
+            return ftcStringSelectCell;
+        }
     }
-    
-    return cell;
+    return nil;
 }
 
 #pragma mark - "Confirm" Button action
@@ -242,41 +274,46 @@
 
 #pragma mark - Switch button action on the cell
 
-- (IBAction)switchChanged: (UISwitch *)switcher
+- (void) switchChanged: (NSNumber *)onoff AtIndexPath:(NSIndexPath *)indexPath
 {
-    FTCSwitchCell *cell;
-    NSIndexPath *indexPath;
     NSLog(@"Value changed!");
-    cell = (FTCSwitchCell *)switcher.superview.superview;
-    indexPath = [configTableView indexPathForCell:cell];
-    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ]-hasOTA;
+    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
     NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
     NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
     NSMutableDictionary *content = [array objectAtIndex: contentRow];
     NSMutableDictionary *updateSetting = [self.configData objectForKey:@"update"];
-    [updateSetting setObject:(switcher.on)? @YES:@NO forKey:[content objectForKey:@"N"]];
+    [updateSetting setObject:(onoff.boolValue == YES)? @YES:@NO forKey:[content objectForKey:@"N"]];
 }
 
+
+
 #pragma mark - textField content changed on the cell
-- (IBAction)editingChanged: (UITextField *)textField
+
+- (void)editingChanged: (NSString *)textString AtIndexPath:(NSIndexPath *)indexPath
 {
-    FTCStringCell *cell;
-    NSIndexPath *indexPath;
     NSLog(@"Value changed!");
-    cell = (FTCStringCell *)textField.superview.superview;
-    indexPath = [configTableView indexPathForCell:cell];
-    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ]-hasOTA;
+    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
     NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
     NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
     NSMutableDictionary *content = [array objectAtIndex: contentRow];
     NSMutableDictionary *updateSetting = [self.configData objectForKey:@"update"];
     if([[content objectForKey:@"C"] isKindOfClass:[NSString class]])
-        [updateSetting setObject:textField.text forKey:[content objectForKey:@"N"]];
-    else{
-        NSInteger value = [textField.text intValue];
-        [updateSetting setObject:[NSNumber numberWithLong:value] forKey:[content objectForKey:@"N"]];
+        [updateSetting setObject:textString forKey:[content objectForKey:@"N"]];
+    else {
+        const char *pObjCType = [(NSNumber *)[content objectForKey:@"C"] objCType];
+        if( strcmp(pObjCType, @encode(int)) == 0 )
+            [updateSetting setObject: [NSNumber numberWithInt:[textString intValue]] forKey:[content objectForKey:@"N"]];
+        else if( strcmp(pObjCType, @encode(long long)) == 0 )
+            [updateSetting setObject: [NSNumber numberWithLongLong:[textString longLongValue]] forKey:[content objectForKey:@"N"]];
+        else if( strcmp(pObjCType, @encode(NSInteger)) == 0 )
+            [updateSetting setObject: [NSNumber numberWithInteger:[textString integerValue]] forKey:[content objectForKey:@"N"]];
+        else if( strcmp(pObjCType, @encode(float)) == 0)
+            [updateSetting setObject: [NSNumber numberWithFloat:[textString floatValue]] forKey:[content objectForKey:@"N"]];
+        else if( strcmp(pObjCType, @encode(double)) == 0 )
+            [updateSetting setObject: [NSNumber numberWithDouble:[textString doubleValue]] forKey:[content objectForKey:@"N"]];
     }
 }
+
 
 
 /*

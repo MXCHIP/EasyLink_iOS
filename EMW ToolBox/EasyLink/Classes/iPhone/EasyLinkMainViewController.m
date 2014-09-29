@@ -131,10 +131,10 @@ BOOL configTableMoved = NO;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 0, 122.0/255, 1, 1 });
     
-//    [EasylinkV2Button.layer setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor];
-//    [EasylinkV2Button.layer setCornerRadius:10.0];
-//    [EasylinkV2Button.layer setBorderWidth:1.5];
-//    [EasylinkV2Button.layer setBorderColor:colorref];
+    //[EasylinkV2Button.layer setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor];
+    [EasylinkV2Button.layer setCornerRadius:10.0];
+    [EasylinkV2Button.layer setBorderWidth:1.5];
+    [EasylinkV2Button.layer setBorderColor:colorref];
     
     [configTableView.layer setCornerRadius:8.0];
     [configTableView.layer setBorderWidth:1.5];
@@ -298,18 +298,14 @@ BOOL configTableMoved = NO;
     
     wlanConfigArray = [NSArray arrayWithObjects: ssid, passwordKey, dhcp, ipString, netmaskString, gatewayString, dnsString, nil];
 
-    
-    
-    if(version == EASYLINK_V1)
-        [easylink_config prepareEasyLinkV1:ssid password:passwordKey];
-    else if(version == EASYLINK_V2){
-        if(userInfo!=nil){
-            const char *temp = [userInfo cStringUsingEncoding:NSUTF8StringEncoding];
-            [easylink_config prepareEasyLinkV2_withFTC:wlanConfigArray info:[NSData dataWithBytes:temp length:strlen(temp)]];
-        }else{
-            [easylink_config prepareEasyLinkV2_withFTC:wlanConfigArray info:nil];
-        }
+
+    if(userInfo!=nil){
+        const char *temp = [userInfo cStringUsingEncoding:NSUTF8StringEncoding];
+        [easylink_config prepareEasyLink_withFTC:wlanConfigArray info:[NSData dataWithBytes:temp length:strlen(temp)] version:version ];
+    }else{
+        [easylink_config prepareEasyLink_withFTC:wlanConfigArray info:nil version:version];
     }
+
     
     [self sendAction];
 
@@ -326,40 +322,150 @@ BOOL configTableMoved = NO;
 }
 
 - (IBAction)easyLinkV2ButtonAction:(UIButton*)button{
+    [halo startAnimation: NO];
     
-    if(button.selected == NO) {
-        CATransition *animation = [CATransition animation];
-        animation.delegate = self;
-        animation.duration = 0.5 ;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-        animation.type = kCATransitionFade;
-            
-        [imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhoneStarted.png"]];
-        [EasylinkV2Button setSelected:YES];
-            
-        [[imagePhoneView layer] addAnimation:animation forKey:@"animation"];
-        [[EasylinkV2Button layer] addAnimation:animation forKey:@"animation"];
+    CATransition *animation = [CATransition animation];
+    animation.delegate = self;
+    animation.duration = 0.5 ;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.type = kCATransitionFade;
+
+    [imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhoneStarted.png"]];
+    //[EasylinkV2Button setSelected:YES];
+
+    [[imagePhoneView layer] addAnimation:animation forKey:@"animation"];
+    
+    /*Pop up a Easylink sending dialog*/
+    easyLinkSendingView = [[CustomIOS7AlertView alloc] init];
+    
+    UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 300)];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 20, 260, 25)];
+    title.text = @"Transmitting Data...";
+    title.font= [UIFont boldSystemFontOfSize:19.0];
+    title.textAlignment = NSTextAlignmentCenter;
+    [alertContentView addSubview:title];
+    
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    paragraphStyle.lineSpacing = 5.0f;
+    
+    UIFont *font = [UIFont systemFontOfSize:12.0];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:paragraphStyle,
+                                                                    font,
+                                                                    nil]
+                                                           forKeys:[NSArray arrayWithObjects:NSParagraphStyleAttributeName,
+                                                                    NSFontAttributeName,
+                                                                    nil]];
+    
+    /*Add spin controller*/
+    CGRect frame = CGRectMake(0, 0, 50, 50);
+    UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+    spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [spinner sizeToFit];
+    [spinner setColor: [UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
+    spinner.frame = CGRectMake(alertContentView.frame.size.width/2-25, 180, 50, 80);
+    [alertContentView addSubview:spinner];
+    [easyLinkSendingView setContainerView:alertContentView];
+    
+    /*EasyLink button image*/
+    UIImageView *easyLinkButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-38, 82, 76, 76)];
+    easyLinkButtonView.image = [UIImage imageNamed:@"EASYLINK_BUTTON.png" ];
+    [alertContentView addSubview:easyLinkButtonView];
+    
+    /*EasyLink pres image*/
+    UIImageView *buttonPressView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2+80, 110, 120, 120)];
+    buttonPressView.image = [UIImage imageNamed:@"EASYLINK_PRESS.png" ];
+    [alertContentView addSubview:buttonPressView];
+    
+    /*Bulb image*/
+    UIImageView *micoSysLedBeforeView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-90, 195, 30, 50)];
+    micoSysLedBeforeView.image = [UIImage imageNamed:@"MICO_SYS_LED_OFF.png"];
+    micoSysLedBeforeView.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"MICO_SYS_LED_OFF.png"],
+                                            [UIImage imageNamed:@"MICO_SYS_LED_ON.png" ],nil];
+    micoSysLedBeforeView.animationDuration = 0.2;
+    [alertContentView addSubview:micoSysLedBeforeView];
+    
+    UIImageView *micoSysLedAfterView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2+60, 195, 30, 50)];
+    micoSysLedAfterView.image = [UIImage imageNamed:@"MICO_SYS_LED_OFF.png"];
+    micoSysLedAfterView.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"MICO_SYS_LED_OFF.png"],
+                                            [UIImage imageNamed:@"MICO_SYS_LED_ON.png" ],nil];
+    micoSysLedAfterView.animationDuration = 1;
+    [alertContentView addSubview:micoSysLedAfterView];
+    
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         [buttonPressView setFrame:CGRectMake(alertContentView.frame.size.width/2-15, 130, 35, 35)];
+                     }
+                     completion:^(BOOL finished){
+                         [micoSysLedBeforeView startAnimating];
+                         [spinner startAnimating];
+                         [micoSysLedAfterView performSelector:@selector(startAnimating) withObject:nil afterDelay: 0];
+                     }];
+
+    /*Add Line 1*/
+    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 20, 260, 100)];
+    NSAttributedString *contentText =  [[NSAttributedString alloc] initWithString:@"First, press EasyLink button on your device."
+                                                                       attributes:attributes];
+    content.attributedText = contentText;
+    content.numberOfLines = 1;
+    [alertContentView addSubview:content];
+    
+    /*Add Line 2*/
+    content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 120, 260, 100)];
+    contentText =  [[NSAttributedString alloc] initWithString:@"Wait until system led is changed on device." attributes:attributes];
+    
+    content.attributedText = contentText;
+    content.numberOfLines = 1;
+    [alertContentView addSubview:content];
+    
+    /*Add Line 3*/
+    content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 220, 260, 100)];
+    contentText =  [[NSAttributedString alloc] initWithString:@"Press the \"Next\" button to scan new devices" attributes:attributes];
+    
+    content.attributedText = contentText;
+    content.numberOfLines = 1;
+    [alertContentView addSubview:content];
+    
+    [easyLinkSendingView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel", @"Next", nil]];
+    __weak EasyLinkMainViewController *_self = self;
+    __weak UIImageView *_imagePhoneView = imagePhoneView;
+    __weak PulsingHaloLayer *_halo = halo;
+    [easyLinkSendingView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, NSInteger buttonIndex) {
+        if(buttonIndex == 0){
+            [_halo startAnimation:NO];
+            [_imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhone.png"]];
+            [button setTitle:@"START" forState:UIControlStateNormal];
+            [_self enableUIAccess:YES];
+        }else{
+            [button setTitle:@"SCANING" forState:UIControlStateNormal];
+            [_halo startAnimation: YES];
+        }
+        [button setBackgroundColor:[UIColor clearColor]];
+        [_self stopAction];
         
+        //[_imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhone.png"]];
+        NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[customIOS7AlertView tag]);
+        [customIOS7AlertView close];
+    }];
+    
+    [easyLinkSendingView setUseMotionEffects:true];
+    [easyLinkSendingView show];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    bool useEasyLinkV2Only = [defaults boolForKey:@"easylinkv2_only_preference"];
+    NSLog(@"Preference %d", useEasyLinkV2Only);
+
+    if(useEasyLinkV2Only == YES)
         [self startTransmitting: EASYLINK_V2];
-    }
-    else{
-        //[button setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-        //[NSThread detachNewThreadSelector:@selector(waitForAckThread:) toTarget:self withObject:nil];
-        CATransition *animation = [CATransition animation];
-        animation.delegate = self;
-        animation.duration = 0.5 ;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-        animation.type = kCATransitionFade;
-        
-        [imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhone.png"]];
-        [EasylinkV2Button setSelected:NO];
-        
-        [[imagePhoneView layer] addAnimation:animation forKey:@"animation"];
-        [[EasylinkV2Button layer] addAnimation:animation forKey:@"animation"];
-        [self stopAction];
-        // Retain the UI access for the user.
-        [self enableUIAccess:YES];
-    }
+    else
+        [self startTransmitting: EASYLINK_PLUS];
 }
 
 
@@ -417,7 +523,7 @@ BOOL configTableMoved = NO;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if(tableView == foundModuleTableView)
-        return @"Device ready for configuration or update";
+        return @"Press the new device to continue...";
     else
         return nil;
 }
@@ -688,9 +794,9 @@ BOOL configTableMoved = NO;
     ssidField.userInteractionEnabled = isEnable;
     passwordField.userInteractionEnabled = isEnable;
     userInfoField.userInteractionEnabled = isEnable;
+    ipAddress.userInteractionEnabled = isEnable;
     
-
-    [halo startAnimation: !isEnable];
+    //[halo startAnimation: !isEnable];
 
 }
 
@@ -701,7 +807,10 @@ BOOL configTableMoved = NO;
  */
 -(UITableViewCell *) prepareCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    if ( indexPath.row == SSID_ROW ){/// this is SSID row 
+    if ( indexPath.row == SSID_ROW ){/// this is SSID row
+        NSString *SSID = [[EASYLINK infoForConnectedNetwork] objectForKey:@"SSID"];
+        if(SSID == nil) SSID = @"";
+        
         ssidField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
                                                                   CELL_iPHONE_FIELD_Y,
                                                                   CELL_iPHONE_FIELD_WIDTH,
@@ -711,13 +820,12 @@ BOOL configTableMoved = NO;
         [ssidField setPlaceholder:@"SSID"];
         [ssidField setBackgroundColor:[UIColor clearColor]];
         [ssidField setReturnKeyType:UIReturnKeyDone];
-        [ssidField setText:[EASYLINK ssidForConnectedNetwork]];
+        [ssidField setText:SSID];
         [cell addSubview:ssidField];
-        //[ssidField setText:@"William's Airport"];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"SSID";
-    }else if(indexPath.row == PASSWORD_ROW ){// this is password field 
+    }else if(indexPath.row == PASSWORD_ROW ){// this is password field
         passwordField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
                                                                       CELL_iPHONE_FIELD_Y,
                                                                       CELL_iPHONE_FIELD_WIDTH,
@@ -788,32 +896,33 @@ BOOL configTableMoved = NO;
  @param the fired notification object
  */
 - (void)appEnterInforground:(NSNotification*)notification{
-    NSLog(@"%s", __func__);
-    if( easylink_config == nil){
-        easylink_config = [[EASYLINK alloc]init];
-        [easylink_config startFTCServerWithDelegate:self];
-    }
-    if( self.foundModules == nil)
-        self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
-    [foundModuleTableView reloadData];
-    ssidField.text = [EASYLINK ssidForConnectedNetwork];
-    ipAddress.text = @"Automatic";
+//    NSLog(@"%s", __func__);
+//    if( easylink_config == nil){
+//        easylink_config = [[EASYLINK alloc]init];
+//        [easylink_config startFTCServerWithDelegate:self];
+//    }
+//    if( self.foundModules == nil)
+//        self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
+//    [foundModuleTableView reloadData];
+//    ssidField.text = [EASYLINK ssidForConnectedNetwork];
+//    ipAddress.text = @"Automatic";
+//    
+//    NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
+//    if ( netStatus == NotReachable ) {// No activity if no wifi
+//        alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"WiFi not available. Please check your WiFi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alertView show];
+//    }else{
+//        [deviceIPConfig setObject:@YES forKey:@"DHCP"];
+//        [deviceIPConfig setObject:[EASYLINK getIPAddress] forKey:@"IP"];
+//        [deviceIPConfig setObject:[EASYLINK getNetMask] forKey:@"NetMask"];
+//        [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
+//        [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
+//    }
+//    
+//    NSString *password = [apInforRecord objectForKey:ssidField.text];
+//    if(password == nil) password = @"";
+//    [passwordField setText: password];
     
-    NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
-    if ( netStatus == NotReachable ) {// No activity if no wifi
-        alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"WiFi not available. Please check your WiFi connection" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alertView show];
-    }else{
-        [deviceIPConfig setObject:@YES forKey:@"DHCP"];
-        [deviceIPConfig setObject:[EASYLINK getIPAddress] forKey:@"IP"];
-        [deviceIPConfig setObject:[EASYLINK getNetMask] forKey:@"NetMask"];
-        [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
-        [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
-    }
-    
-    NSString *password = [apInforRecord objectForKey:ssidField.text];
-    if(password == nil) password = @"";
-    [passwordField setText: password];
 }
 
 /*
@@ -828,10 +937,9 @@ BOOL configTableMoved = NO;
     easylink_config = nil;
     self.foundModules = nil;
     
-    if ( EasylinkV2Button.selected )
-        [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
+    [easyLinkSendingView close];
     
-    //[self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 /*
@@ -879,14 +987,13 @@ BOOL configTableMoved = NO;
             [self easyLinkV2ButtonAction:EasylinkV2Button]; /// Simply revert the state
         
         [[segue destinationViewController] setConfigData:object];
-        [[segue destinationViewController] setDelegate:self];
+        [(EasyLinkFTCTableViewController *)[segue destinationViewController] setDelegate:self];
         
     }
     else if ([[segue identifier] isEqualToString:@"IP config"]) {
         [[segue destinationViewController] setDeviceIPConfig: deviceIPConfig];
     }
 }
-
 
 
 @end

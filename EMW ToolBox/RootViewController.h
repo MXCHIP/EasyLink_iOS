@@ -15,4 +15,6 @@
     HMSegmentedControl *sceneSegment;
 }
 
+- (IBAction) guideButtonPressed: (UIBarButtonItem *) button;
+
 @end

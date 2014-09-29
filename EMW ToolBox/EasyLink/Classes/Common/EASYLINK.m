@@ -12,34 +12,43 @@
 #define MessageCount 100
 CFHTTPMessageRef inComingMessageArray[MessageCount];
 
-static NSUInteger count = 0;
-
-
 @interface EASYLINK (privates)
 
-- (void)startConfigure:(id)sender;
+- (void)broadcastStartConfigure:(id)sender;
+- (void)multicastStartConfigure:(id)sender;
 - (void)closeClient:(NSTimer *)timer;
 - (BOOL)isFTCServerStarted;
+- (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd;
+- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
+- (void)prepareEasyLinkPlus:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
 
 @end
 
 @implementation EASYLINK
-@synthesize array;
+@synthesize multicastArray;
+@synthesize broadcastArray;
 @synthesize ftcClients;
-@synthesize socket;
+@synthesize multicastSocket;
+@synthesize broadcastSocket;
 @synthesize ftcServerSocket;
-//@synthesize firstTimeConfig;
 
 -(id)init{
     NSLog(@"Init EasyLink");
     self = [super init];
+    NSError *err;
     if (self) {
         // Initialization code
-        self.array = [NSMutableArray array];
+        self.broadcastArray = [NSMutableArray array];
+        self.multicastArray = [NSMutableArray array];
+        
         self.ftcClients = [NSMutableArray arrayWithCapacity:10];
-        self.socket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
-        sendInterval = nil;
-        firstTimeConfig = NO;
+        self.broadcastSocket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
+        [self.broadcastSocket enableBroadcast:YES error:&err];
+        
+        self.multicastSocket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
+        
+        multicastSendInterval = nil;
+        broadcastSendInterval = nil;
         
         for(NSUInteger idx = 0; idx<MessageCount; idx++){
             inComingMessageArray[idx] = nil;
@@ -115,7 +124,7 @@ static NSUInteger count = 0;
 
 
 //- (void)prepareEasyLinkV2_withFTC:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
-- (void)prepareEasyLinkV2_withFTC:(NSArray *)wlanConfigArray info: (NSData *)userInfo
+- (void)prepareEasyLink_withFTC:(NSArray *)wlanConfigArray info: (NSData *)userInfo version: (NSUInteger)ver
 {
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
@@ -123,7 +132,7 @@ static NSUInteger count = 0;
     bool dhcp;
     NSUInteger idx ;
     
-    NSString *wlanConfig[8] = {nil};
+    NSString *wlanConfig[20] = {nil};
     
     NSString *bSSID, *bpasswd;
     char seperate = '#';
@@ -132,9 +141,10 @@ static NSUInteger count = 0;
         wlanConfig[idx] = [wlanConfigArray objectAtIndex:idx];
     }
     
+    version = ver;
+    
     bSSID = wlanConfig[INDEX_SSID];
     bpasswd = wlanConfig[INDEX_PASSWORD];
-
     
     ip = wlanConfig[INDEX_IP]==nil? -1:htonl(inet_addr([ wlanConfig[INDEX_IP] cStringUsingEncoding:NSASCIIStringEncoding]));
     netmask = wlanConfig[INDEX_NETMASK]==nil? -1:htonl(inet_addr([wlanConfig[INDEX_NETMASK] cStringUsingEncoding:NSASCIIStringEncoding]));
@@ -181,7 +191,8 @@ static NSUInteger count = 0;
     }
     
     [self prepareEasyLinkV2:bSSID password:bpasswd info: userInfoWithIP];
-    firstTimeConfig = YES;
+    [self prepareEasyLinkPlus:bSSID password:bpasswd info: userInfoWithIP];
+
 }
 
 
@@ -191,7 +202,6 @@ static NSUInteger count = 0;
     if (bpasswd == nil) bpasswd = @"";
     if (userInfo == nil) userInfo = [NSData dataWithBytes:nil length:0];
     NSString *mergeString =  [bSSID stringByAppendingString:bpasswd];
-    version = EASYLINK_V2;
     
     const char *bSSID_UTF8 = [bSSID UTF8String];
     const char *bpasswd_UTF8 = [bpasswd UTF8String];
@@ -204,21 +214,21 @@ static NSUInteger count = 0;
     NSUInteger mergeString_Length = strlen(mergeString_UTF8);
     
     NSUInteger headerLength = 20;
-    [self.array removeAllObjects];
+    [self.multicastArray removeAllObjects];
     
     // 239.118.0.0
     for (NSUInteger idx = 0; idx != 5; ++idx) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
         [dictionary setValue:@"239.118.0.0" forKey:@"host"];
-        [self.array addObject:dictionary];
+        [self.multicastArray addObject:dictionary];
     }
     
     // 239.126.ssidlen.passwdlen
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
     [dictionary setValue:[NSString stringWithFormat:@"239.126.%lu.%lu", (unsigned long)bSSID_length, (unsigned long)bpasswd_length] forKey:@"host"];
-    [self.array addObject:dictionary];
+    [self.multicastArray addObject:dictionary];
     headerLength++;
     
     // 239.126.mergeString[idx],mergeString[idx+1]
@@ -232,14 +242,14 @@ static NSUInteger count = 0;
         
         [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
         [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", a, b] forKey:@"host"];
-        [self.array addObject:dictionary];
+        [self.multicastArray addObject:dictionary];
     }
     
     // 239.126.userinfolen.0
     dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
     [dictionary setValue:[NSString stringWithFormat:@"239.126.%lu.0", (unsigned long)userInfo_length] forKey:@"host"];
-    [self.array addObject:dictionary];
+    [self.multicastArray addObject:dictionary];
     headerLength++;
     
     // 239.126.userinfo[idx],userinfo[idx+1]
@@ -252,135 +262,143 @@ static NSUInteger count = 0;
         dictionary = [NSMutableDictionary dictionary];
         [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
         [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", a, b] forKey:@"host"];
-        [self.array addObject:dictionary];
+        [self.multicastArray addObject:dictionary];
     }
-    firstTimeConfig = NO;
-
 }
 
-- (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd
+- (void)prepareEasyLinkPlus:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
 {
-    version = EASYLINK_V1;
     if (bSSID == nil) bSSID = @"";
     if (bpasswd == nil) bpasswd = @"";
-    
-    Byte tempData[128], PD;
-    NSUInteger sendData;
-    firstTimeConfig = NO;
-    
-    const NSUInteger header1 = 3;
-    const NSUInteger header2 = 23;
+    if (userInfo == nil) userInfo = [NSData dataWithBytes:nil length:0];
     
     const char *bSSID_UTF8 = [bSSID UTF8String];
+    NSUInteger bssid_length = [bSSID length];
     const char *bpasswd_UTF8 = [bpasswd UTF8String];
+    NSUInteger bpasswd_length = [bpasswd length];
+    const uint8_t *userInfo_UTF8 = [userInfo bytes];
+    NSUInteger userInfo_length = [userInfo length];
+    //UInt8 intnum;
+    UInt16 chechSum = 0;
     
-    NSUInteger bSSID_length = strlen(bSSID_UTF8);
-    NSUInteger bpasswd_length = strlen(bpasswd_UTF8);
+    NSUInteger totalLen = 0x5 + bssid_length + bpasswd_length + userInfo_length;
     
-    [self.array removeAllObjects];
-    for (NSUInteger idx = 0; idx != 10; ++idx) {
-        [self.array addObject:[NSMutableData dataWithLength:header1]];
-        [self.array addObject:[NSMutableData dataWithLength:header2]];
+    NSUInteger addedConst[4] = {0x100, 0x200, 0x300, 0x400};
+    NSUInteger addedConstIdx = 0;
+    
+    [self.broadcastArray removeAllObjects];
+    /*0x5AA|0x5AB|0x5AC|Total len|BSSID[3]|BSSID[4]|BSSID[5]|Key len|Key|User info|Checksum high|Checksum low*/
+    
+    [self.broadcastArray addObject:[NSMutableData dataWithLength:0x5AA]];
+    [self.broadcastArray addObject:[NSMutableData dataWithLength:0x5AB]];
+    [self.broadcastArray addObject:[NSMutableData dataWithLength:0x5AC]];
+    
+    /*Total len*/
+    [self.broadcastArray addObject:[NSMutableData dataWithLength:( totalLen + addedConst[(addedConstIdx++)%4] )]];
+    chechSum += totalLen;
+    
+    /*SSID len*/
+    [self.broadcastArray addObject:[NSMutableData dataWithLength:( bssid_length + addedConst[(addedConstIdx++)%4] )]];
+    chechSum += bssid_length;
+    
+    /*Key len*/
+    [self.broadcastArray addObject:[NSMutableData dataWithLength:( bpasswd_length + addedConst[(addedConstIdx++)%4] )]];
+    chechSum += bpasswd_length;
+    
+    /*SSID*/
+    for (NSUInteger idx = 0; idx != bssid_length; ++idx) {
+        [self.broadcastArray addObject:[NSMutableData dataWithLength:( bSSID_UTF8[idx] + addedConst[(addedConstIdx++)%4] )]];
+        chechSum += bSSID_UTF8[idx];
     }
-    
-    [self.array addObject:[NSMutableData dataWithLength:1399]];
-    [self.array addObject:[NSMutableData dataWithLength:(28+bSSID_length)]];
-    
-    for (NSUInteger idx = 0; idx != bSSID_length; ++idx) {
-        tempData[idx*2] = (bSSID_UTF8[idx]&0xF0)>>4;
-        tempData[idx*2+1] = bSSID_UTF8[idx]&0xF;
-    }
-    
-    //ND= ((PD^CP)&0xF<<4)|CD+0x251
-    for (NSUInteger idx = 0; idx != bSSID_length*2; ++idx) {
-        PD = (idx == 0)? 0x0:tempData[idx-1];
-        sendData = 0x251 + ((((PD^idx)&0xF)<<4)|tempData[idx]);
-        [self.array addObject:[NSMutableData dataWithLength:sendData]];
-    }
-    
-    [self.array addObject:[NSMutableData dataWithLength:1459]];
-    [self.array addObject:[NSMutableData dataWithLength:(28+bpasswd_length)]];
-    
+
+    /*Key*/
     for (NSUInteger idx = 0; idx != bpasswd_length; ++idx) {
-        tempData[idx*2] = (bpasswd_UTF8[idx]&0xF0)>>4;
-        tempData[idx*2+1] = bpasswd_UTF8[idx]&0xF;
+        [self.broadcastArray addObject:[NSMutableData dataWithLength:( bpasswd_UTF8[idx] + addedConst[(addedConstIdx++)%4] )]];
+        chechSum += bpasswd_UTF8[idx];
     }
     
-    //ND= ((PD^CP)&0xF<<4)|CD+0x251
-    for (NSUInteger idx = 0; idx != bpasswd_length*2; ++idx) {
-        PD = (idx == 0)? 0x0:tempData[idx-1];
-        sendData = 0x251 + ((((PD^idx)&0xF)<<4)|tempData[idx]);
-        [self.array addObject:[NSMutableData dataWithLength:sendData]];
+
+    /*User info*/
+    for (NSUInteger idx = 0; idx != userInfo_length; ++idx) {
+        [self.broadcastArray addObject:[NSMutableData dataWithLength:( userInfo_UTF8[idx] + addedConst[(addedConstIdx++)%4] )]];
+        chechSum += userInfo_UTF8[idx];
     }
+    
+    /*Checksum high*/
+    [self.broadcastArray addObject:[NSMutableData dataWithLength:( ((chechSum&0xFF00)>>8) + addedConst[(addedConstIdx++)%4] )]];
+    
+    /*Checksum low*/
+    [self.broadcastArray addObject:[NSMutableData dataWithLength:( (chechSum&0x00FF) + addedConst[(addedConstIdx++)%4] )]];
 }
 
 - (void)transmitSettings
 {
-    NSTimeInterval delay = 0.01;
-    [self stopTransmitting];
-    if(version == EASYLINK_V1)
-        delay = 0.004;
-    count = 0;
+    multicastCount = 0;
+    broadcastcount = 0;
     
+    CFSocketRef tempSocket;
+    tempSocket = CFSocketCreate(kCFAllocatorDefault,
+                                PF_INET,
+                                SOCK_DGRAM,
+                                IPPROTO_UDP,
+                                kCFSocketNoCallBack,
+                                NULL,
+                                NULL);
+    uint8_t loop = 0x1;
+    setsockopt(CFSocketGetNative(tempSocket), SOL_SOCKET, IP_MULTICAST_LOOP, &loop, sizeof(uint8_t));
+    NSString *ipAddressStr = [EASYLINK getIPAddress];
+    NSString *multicastAddressStr;
+    struct in_addr interface;
+    interface.s_addr= inet_addr([ipAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
     
-    if(version == EASYLINK_V2){
-        CFSocketRef tempSocket;
-        tempSocket = CFSocketCreate(kCFAllocatorDefault,
-                                    PF_INET,
-                                    SOCK_DGRAM,
-                                    IPPROTO_UDP,
-                                    kCFSocketNoCallBack,
-                                    NULL,
-                                    NULL);
-        uint8_t loop = 0x1;
-        setsockopt(CFSocketGetNative(tempSocket), SOL_SOCKET, IP_MULTICAST_LOOP, &loop, sizeof(uint8_t));
-        NSString *ipAddressStr = [EASYLINK getIPAddress];
-        NSString *multicastAddressStr;
-        struct in_addr interface;
-        interface.s_addr= inet_addr([ipAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
-        
-        struct ip_mreq mreq;
-        mreq.imr_interface = interface;
-        NSDictionary *object;
-        for(object in self.array){
-            multicastAddressStr = [object objectForKey:@"host"];
-            mreq.imr_multiaddr.s_addr =  inet_addr([multicastAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
-            setsockopt(CFSocketGetNative(tempSocket),IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq));
-        }
-        for(object in self.array){
-            multicastAddressStr = [object objectForKey:@"host"];
-            mreq.imr_multiaddr.s_addr =  inet_addr([multicastAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
-            setsockopt(CFSocketGetNative(tempSocket),IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq));
-        }
+    struct ip_mreq mreq;
+    mreq.imr_interface = interface;
+    NSDictionary *object;
+    for(object in self.multicastArray){
+        multicastAddressStr = [object objectForKey:@"host"];
+        mreq.imr_multiaddr.s_addr =  inet_addr([multicastAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
+        setsockopt(CFSocketGetNative(tempSocket),IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq));
+    }
+    for(object in self.multicastArray){
+        multicastAddressStr = [object objectForKey:@"host"];
+        mreq.imr_multiaddr.s_addr =  inet_addr([multicastAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
+        setsockopt(CFSocketGetNative(tempSocket),IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq));
     }
 
-    sendInterval =[NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(startConfigure:) userInfo:nil repeats:YES];
+    if(version == EASYLINK_PLUS){
+        broadcastSendInterval =[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(broadcastStartConfigure:) userInfo:nil repeats:YES];
+        multicastSendInterval =[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(multicastStartConfigure:) userInfo:nil repeats:YES];
+    }else{
+        multicastSendInterval =[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(multicastStartConfigure:) userInfo:nil repeats:YES];
+    }
+        
+    
     
 }
 
 - (void)stopTransmitting
 {
-    if(sendInterval != nil){
-        [sendInterval invalidate];
-        sendInterval = nil;
+    if(broadcastSendInterval != nil){
+        [broadcastSendInterval invalidate];
+        broadcastSendInterval = nil;
+    }
+    if(multicastSendInterval != nil){
+        [multicastSendInterval invalidate];
+        multicastSendInterval = nil;
     }
 
 }
 
-- (void)startConfigure:(id)sender{
-    if(version==EASYLINK_V2){
-        //NSLog(@"Send data %@, length %d", [[self.array objectAtIndex:count] objectForKey:@"host"],[[[self.array objectAtIndex:count] objectForKey:@"sendData"] length] );
-        [self.socket sendData:[[self.array objectAtIndex:count] objectForKey:@"sendData"] toHost:[[self.array objectAtIndex:count] objectForKey:@"host"] port:65523 withTimeout:10 tag:0];
-        ++count;
-        if (count == [self.array count]) count = 0;
-    }
-    else if (version==EASYLINK_V1){
-        NSString *host=[EASYLINK getGatewayAddress];
-        //NSLog(@"Send data %@, length %d", host, [[self.array objectAtIndex:count] length]);
-        [self.socket sendData:[self.array objectAtIndex:count] toHost:host port:65523 withTimeout:10 tag:0];
-        ++count;
-        if (count == [self.array count]) count = 0;
-    }
+- (void)broadcastStartConfigure:(id)sender{
+    [self.broadcastSocket sendData:[self.broadcastArray objectAtIndex:broadcastcount] toHost:[EASYLINK getBroadcastAddress] port:65523 withTimeout:10 tag:0];
+    ++broadcastcount;
+    if (broadcastcount == [self.broadcastArray count]) broadcastcount = 0;
+}
+
+- (void)multicastStartConfigure:(id)sender{
+    [self.multicastSocket sendData:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"sendData"] toHost:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"host"] port:65523 withTimeout:10 tag:0];
+    ++multicastCount;
+    if (multicastCount == [self.multicastArray count]) multicastCount = 0;
 }
 
 - (void)closeFTCClient:(NSNumber *)client
@@ -634,8 +652,20 @@ static NSUInteger count = 0;
     }
     info = nil;
     return ssid? ssid:@"";
-    
-    
+}
+
++ (NSDictionary *)infoForConnectedNetwork
+{
+    NSArray *interfaces = (__bridge_transfer NSArray*)CNCopySupportedInterfaces();
+    NSDictionary *info = nil;
+    for (NSString *ifname in interfaces) {
+        info = (__bridge_transfer NSDictionary*)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifname);
+        if (info && [info count]) {
+            break;
+        }
+        info = nil;
+    }
+    return info;
 }
 
 /*!!!!!!!!!!!!!
@@ -688,6 +718,34 @@ static NSUInteger count = 0;
                 if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
                     // Get NSString from C String for IP
                     address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_netmask)->sin_addr)];
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // Free/release memory
+    freeifaddrs(interfaces);
+    return address;
+    
+}
+
+
++ (NSString *)getBroadcastAddress{
+    NSString *address = @"";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String for IP
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_dstaddr)->sin_addr)];
                 }
             }
             temp_addr = temp_addr->ifa_next;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface easyLinkIpConfigTableViewController : UITableViewController<UITextFieldDelegate>{
+@interface easyLinkIpConfigTableViewController : UITableViewController<UITextFieldDelegate, UINavigationBarDelegate > {
 @private
     IBOutlet  UITableView *ipConfigTable;
     UITextField *ipAddressField,*netMaskField,*gatewayField,*dnsServerField;

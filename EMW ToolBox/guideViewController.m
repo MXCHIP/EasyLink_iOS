@@ -27,6 +27,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSURL *url =[NSURL URLWithString:@"www.mxchip.com"];
+    NSURLRequest *request =[NSURLRequest requestWithURL:url];
+    [webView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning

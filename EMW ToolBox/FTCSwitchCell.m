@@ -11,6 +11,8 @@
 @implementation FTCSwitchCell
 @synthesize ftcConfig = _ftcConfig;
 @synthesize contentSwitch;
+@synthesize sectionRow;
+@synthesize contentRow;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,6 +27,17 @@
 {
     // Initialization code
 }
+
+- (id)delegate
+{
+    return theDelegate;
+}
+
+- (void)setDelegate:(id)delegate
+{
+    theDelegate = delegate;
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -42,5 +55,27 @@
         [self.contentSwitch setUserInteractionEnabled:NO];
     }
 }
+
+//- (void) switchChanged: (bool)onoff AtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSLog(@"Value changed!");
+//    NSUInteger sectionRow = [ indexPath indexAtPosition: 0 ];
+//    NSUInteger contentRow = [ indexPath indexAtPosition: 1 ];
+//    NSArray *array =[[self.configMenu objectAtIndex:sectionRow] objectForKey:@"C"];
+//    NSMutableDictionary *content = [array objectAtIndex: contentRow];
+//    NSMutableDictionary *updateSetting = [self.configData objectForKey:@"update"];
+//    [updateSetting setObject:(onoff == YES)? @YES:@NO forKey:[content objectForKey:@"N"]];
+//}
+
+- (IBAction)switchChanged: (UISwitch *)switcher
+{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:contentRow inSection:sectionRow];
+    NSNumber *onoff = [NSNumber numberWithBool:switcher.on];
+    if( [theDelegate respondsToSelector:@selector(switchChanged:AtIndexPath:)]){
+        [theDelegate performSelector:@selector(switchChanged:AtIndexPath:) withObject:onoff withObject:indexpath];
+    }
+
+}
+
 
 @end

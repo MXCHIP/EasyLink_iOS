@@ -1,8 +1,8 @@
 //
-//  talkToModuleViewController.m
+//  RootViewController.m
 //  MICO
 //
-//  Created by William Xu on 14-5-8.
+//  Created by William Xu on 14-5-15.
 //  Copyright (c) 2014年 MXCHIP Co;Ltd. All rights reserved.
 //
 
@@ -10,15 +10,13 @@
 #import "messageViewController.h"
 #import "Protocols.h"
 
-
 @interface talkToModuleViewController ()
 
--(void)showConnectingAlert;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 @end
 
 @implementation talkToModuleViewController
-@synthesize socket = _socket;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,35 +27,108 @@
     return self;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
+    sleep(1);
     [super awakeFromNib];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    // Segmented control with scrolling
+    sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Talk", @"Command"]];
+    sceneSegment.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    sceneSegment.frame = CGRectMake(0, 44 + 20, 320, 40);
+    sceneSegment.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    sceneSegment.selectionIndicatorHeight = 2.0f;
+    sceneSegment.backgroundColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.8 alpha:1];
+    sceneSegment.textColor = [UIColor whiteColor];
+    sceneSegment.selectedTextColor = [UIColor whiteColor];
+    sceneSegment.selectionIndicatorColor = [UIColor colorWithRed:0.5 green:0.8 blue:1 alpha:1];
+    sceneSegment.selectionStyle = HMSegmentedControlSelectionStyleBox;
+    sceneSegment.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
+    sceneSegment.scrollEnabled = YES;
+    [sceneSegment addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:sceneSegment];
     
-    self.useNavigationBarButtonItemsOfCurrentViewController = YES;
-    self.useToolbarItemsOfCurrentViewController = YES;
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 104, 320, 300)]; //20+44+40 (status+nav+segcontrol)
+    self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.contentSize = CGSizeMake(640, 300);
+    self.scrollView.delegate = self;
+    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, 320, 300) animated:YES];
+    [self.view addSubview:self.scrollView];
     
-    NSMutableArray *initialViewController = [NSMutableArray array];
+    
+    NSError *err;
+
+    // Do any additional setup after loading the view.
+    socket = [[AsyncSocket alloc] initWithDelegate:self];
+    [socket connectToHost:_address onPort:_port error:&err];
+    
+    [self showConnectingAlert];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInforground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+//    
+//    isInforground = YES;
+    
     message = [self.storyboard instantiateViewControllerWithIdentifier:@"message view"];
     commandVC = [self.storyboard instantiateViewControllerWithIdentifier:@"command view"];
     
-    [initialViewController addObject:message];
-    [initialViewController addObject:commandVC];
+    message.inComingAvatarImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", _module]];
+    if(message.inComingAvatarImage==nil)
+        message.inComingAvatarImage = [UIImage imageNamed:@"known_logo.png"];
     
+    message.outGoingAvatarImage = [UIImage imageNamed:@"demo-avatar-ai.png"];
+    
+    _name = [self.service name];
+    
+    [commandVC setProtocol:_protocol];
+    
+    NSDictionary *txtRecordDict = [NSNetService dictionaryFromTXTRecordData: [self.service TXTRecordData]];
+    message.messageRecordFileName = [[NSString alloc] initWithData:[txtRecordDict objectForKey:@"MAC"]
+                                                          encoding:NSUTF8StringEncoding];
 
-    self.viewController = initialViewController;
+
+    
+    /*Talk view*/
+    message.view.frame = CGRectMake(0, 0, 320, 300 );
+    [message willMoveToParentViewController:self];
+    [self.scrollView addSubview:message.view];
+    [self addChildViewController:message];
+    [message didMoveToParentViewController:self];
+    
+    
+    /*command view*/
+    commandVC.view.frame = CGRectMake(320, 0, 320, 300);
+    
+    [commandVC willMoveToParentViewController:self];
+    [self.scrollView addSubview:commandVC.view];
+    [self addChildViewController:commandVC];
+    [commandVC didMoveToParentViewController:self];
+
 }
 
-- (void)dealloc{
-    self.viewController = nil;
-    [message releaseDelegate];
-    NSLog(@"dealloc <== talk to module");
-}
-
-- (void) viewWillDisappear:(BOOL)animated
+- (void)viewDidUnLoad
 {
-    [super viewWillDisappear:animated];
-    [customAlertView close];
-    socket.delegate = nil;
-    [socket disconnect];
+    
+}
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+	NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    [self.scrollView scrollRectToVisible:CGRectMake(segmentedControl.selectedSegmentIndex*320, 0, 320, 500) animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)setService:(NSNetService *)newService
@@ -72,41 +143,11 @@
         _protocol = [[NSString alloc] initWithData:[txtRecordDict objectForKey:@"Protocol"]
                                           encoding:NSUTF8StringEncoding];
         _module = [[NSString alloc] initWithData: [txtRecordDict objectForKey:@"Model"]
-                                         encoding:NSASCIIStringEncoding];
+                                        encoding:NSASCIIStringEncoding];
         
-        message.inComingAvatarImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", _module]];
-        if(message.inComingAvatarImage==nil)
-            message.inComingAvatarImage = [UIImage imageNamed:@"known_logo.png"];
-        
-        message.outGoingAvatarImage = [UIImage imageNamed:@"demo-avatar-ai.png"];
-
-        _name = [newService name];
-        
-        [commandVC setProtocol:_protocol];
-        
-        message.messageRecordFileName = [[NSString alloc] initWithData:[txtRecordDict objectForKey:@"MAC"]
-                                                               encoding:NSUTF8StringEncoding];
         
         
     }
-}
-
-- (void)viewDidLoad
-{
-    NSError *err;
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    socket = [[AsyncSocket alloc] initWithDelegate:self];
-    [socket connectToHost:_address onPort:_port error:&err];
-    
-    [self showConnectingAlert];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInforground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-    
-    isInforground = YES;
-
 }
 
 -(void)showConnectingAlert
@@ -163,12 +204,6 @@
     [customAlertView show];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - AsyncSocket delegate
 
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
@@ -187,9 +222,9 @@
     for(NSData *data in inDaraArray){
         [message recvInComingData: data];
     }
-
+    
     [sock readDataWithTimeout:-1 tag:0];
-
+    
 }
 
 - (void)sendData: (NSData *)data from: (UIView *)sender
@@ -199,7 +234,7 @@
     if([sender isKindOfClass: [commandsTableViewController class]]){
         [message recvOutputData:data];
     }
-
+    
     NSLog(@"Send data.....");
     if([socket isConnected])
         [socket writeData:outData withTimeout:5 tag:0];
@@ -213,6 +248,15 @@
         [socket connectToHost:_address onPort:_port error:&err];
 }
 
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger page = scrollView.contentOffset.x / pageWidth;
+    
+    [sceneSegment setSelectedSegmentIndex:page animated:YES];
+}
 
 /*
 #pragma mark - Navigation

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface guideViewController : UIViewController
+@interface guideViewController : UIViewController{
+    IBOutlet UIWebView *webView;
+}
 
 - (IBAction) dismiss: (UIBarButtonItem *)button;
 @end

@@ -23,6 +23,7 @@
 
 #define EASYLINK_V1         0
 #define EASYLINK_V2         1
+#define EASYLINK_PLUS       2
 
 /*wlanConfigArray content index*/
 #define INDEX_SSID          0
@@ -56,32 +57,35 @@
 
 @interface EASYLINK : NSObject{
 @private
+    NSUInteger broadcastcount;
+    NSUInteger multicastCount;
     NSTimer *closeFTCClientTimer;
     NSUInteger version;
-    NSMutableArray *array;   //Used for EasyLink transmitting
-    AsyncUdpSocket *socket;
+    NSMutableArray *multicastArray, *broadcastArray;   //Used for EasyLink transmitting
+    AsyncUdpSocket *multicastSocket, *broadcastSocket;
     
     //Used for EasyLink first time configuration
     AsyncSocket *ftcServerSocket;
     NSMutableArray *ftcClients;
     CFMutableArrayRef inCommingMessages;
     
-    NSTimer *sendInterval;
+    NSTimer *multicastSendInterval;
+    NSTimer *broadcastSendInterval;
     NSThread *easyLinkThread;
     BOOL firstTimeConfig;
     id theDelegate;
 }
 
-@property (retain, nonatomic) NSMutableArray *array;
-@property (retain, nonatomic) AsyncUdpSocket *socket;
+@property (retain, nonatomic) NSMutableArray *multicastArray;
+@property (retain, nonatomic) NSMutableArray *broadcastArray;
+@property (retain, nonatomic) AsyncUdpSocket *multicastSocket;
+@property (retain, nonatomic) AsyncUdpSocket *broadcastSocket;
 @property (retain, nonatomic) AsyncSocket *ftcServerSocket;
 @property (retain, nonatomic) NSMutableArray *ftcClients;
 
 
-- (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd;
 
-- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
-- (void)prepareEasyLinkV2_withFTC:(NSArray *)wlanConfigArray info: (NSData *)userInfo;
+- (void)prepareEasyLink_withFTC:(NSArray *)wlanConfigArray info: (NSData *)userInfo version: (NSUInteger)ver;
 
 - (void)transmitSettings;
 - (void)stopTransmitting;
@@ -101,8 +105,10 @@
  **/
 
 + (NSString *)ssidForConnectedNetwork;
++ (NSDictionary *)infoForConnectedNetwork;
 + (NSString *)getIPAddress;
 + (NSString *)getNetMask;
++ (NSString *)getBroadcastAddress;
 
 + (NSString *)getGatewayAddress;
 

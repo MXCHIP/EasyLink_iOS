@@ -230,10 +230,17 @@ extern unsigned int str2hex(unsigned char *ibuf, unsigned char *obuf,
     UIViewController * parent = [self.view containingViewController];
     if([parent isKindOfClass:[UINavigationController class]])
         parent = [(UINavigationController *)parent  topViewController];
-    if ([parent respondsToSelector:@selector(dismissSemiModalView)]) {
+    if ([parent respondsToSelector:@selector(dismissSemiModalView)])
         [parent dismissSemiModalView];
-    }
+}
 
+- (IBAction)cancel: (UIBarButtonItem *)button
+{
+    UIViewController * parent = [self.view containingViewController];
+    if([parent isKindOfClass:[UINavigationController class]])
+        parent = [(UINavigationController *)parent  topViewController];
+    if ([parent respondsToSelector:@selector(dismissSemiModalView)])
+        [parent dismissSemiModalView];
 }
 
 - (IBAction)typeChanged: (UIBarButtonItem *)button

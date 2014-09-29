@@ -642,7 +642,7 @@
  {
      if ([[segue identifier] isEqualToString:@"Configuration"]) {
         [[segue destinationViewController] setConfigData:configData];
-        [[segue destinationViewController] setDelegate:self];
+        [(EasyLinkFTCTableViewController *)[segue destinationViewController] setDelegate:self];
      }
  }
 

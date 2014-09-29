@@ -94,6 +94,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction) guideButtonPressed: (UIButton *) button
+{
+    NSString *textURL = @"http://www.mxchip.com/mico/begin/micoapis/";
+    NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", textURL]];
+    [[UIApplication sharedApplication] openURL:cleanURL];
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

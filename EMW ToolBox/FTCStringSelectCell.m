@@ -26,6 +26,17 @@
     // Initialization code
 }
 
+- (id)delegate
+{
+    return theDelegate;
+}
+
+- (void)setDelegate:(id)delegate
+{
+    theDelegate = delegate;
+}
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

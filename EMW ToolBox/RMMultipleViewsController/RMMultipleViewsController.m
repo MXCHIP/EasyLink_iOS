@@ -123,8 +123,8 @@ static char const * const multipleViewsControllerKey = "multipleViewsControllerK
     if([self.mutableViewController count] <= 0) {
         [NSException raise:@"RMInvalidViewControllerException" format:@"When -[RMMultipleViewsController %@] is called a multiple views controller must have at least one view controller assigned.", NSStringFromSelector(_cmd)];
     }
-    
-    [self showViewController:[self.mutableViewController objectAtIndex:0] animated:NO];
+    for(NSInteger idx = [self.mutableViewController count]-1; idx>=0; idx--)
+    [self showViewController:[self.mutableViewController objectAtIndex:idx] animated:NO];
     
     if(self.navigationStrategy != RMMultipleViewsControllerNavigationStrategyNone) {
         if (self.navigationStrategy == RMMultipleViewsControllerNavigationStrategySegmentedControl) {
@@ -420,7 +420,7 @@ static char const * const multipleViewsControllerKey = "multipleViewsControllerK
         if(self.currentViewController && [aViewController isViewLoaded] && animated) {
             switchViewController();
         } else {
-            aViewController.view.frame = CGRectMake(0, 0, blockself.view.frame.size.width, blockself.view.frame.size.height);
+            //aViewController.view.frame = CGRectMake(0, 0, blockself.view.frame.size.width, blockself.view.frame.size.height);
             switchViewController();
         }
     }
