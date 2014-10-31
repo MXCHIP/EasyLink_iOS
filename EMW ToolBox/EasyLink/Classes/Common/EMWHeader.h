@@ -1,8 +1,4 @@
-/*
- * File: CC3xHeader.h
- * Copyright © 2013, Texas Instruments Incorporated - http://www.ti.com/
- * All rights reserved.
- */
+
 
 #ifndef EMWHeader_h
 #define EMWHeader_h

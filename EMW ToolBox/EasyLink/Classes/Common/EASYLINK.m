@@ -8,6 +8,14 @@
 
 #import "EASYLINK.h"
 #import "sys/sysctl.h"
+#include <ifaddrs.h>
+#include <arpa/inet.h>
+
+#if TARGET_IPHONE_SIMULATOR
+#include <net/route.h>
+#else
+#include "route.h"
+#endif
 
 #define MessageCount 100
 CFHTTPMessageRef inComingMessageArray[MessageCount];
@@ -266,6 +274,15 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     }
 }
 
+- (void)addSeqHook: (uint32_t)seqNo forBroadcastArray: (NSMutableArray *)inArray
+{
+    if (((seqNo)%4)==3) {
+        seqHook++;
+        [inArray addObject:[NSMutableData dataWithLength:(0x500+seqHook)]];
+    }
+    
+}
+
 - (void)prepareEasyLinkPlus:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
 {
     if (bSSID == nil) bSSID = @"";
@@ -280,6 +297,9 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     NSUInteger userInfo_length = [userInfo length];
     //UInt8 intnum;
     UInt16 chechSum = 0;
+    uint32_t seqNo = 0;
+    seqHook = 0;
+    
     
     NSUInteger totalLen = 0x5 + bssid_length + bpasswd_length + userInfo_length;
     
@@ -296,25 +316,30 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     /*Total len*/
     [self.broadcastArray addObject:[NSMutableData dataWithLength:( totalLen + addedConst[(addedConstIdx++)%4] )]];
     chechSum += totalLen;
+    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     
     /*SSID len*/
     [self.broadcastArray addObject:[NSMutableData dataWithLength:( bssid_length + addedConst[(addedConstIdx++)%4] )]];
     chechSum += bssid_length;
+    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     
     /*Key len*/
     [self.broadcastArray addObject:[NSMutableData dataWithLength:( bpasswd_length + addedConst[(addedConstIdx++)%4] )]];
     chechSum += bpasswd_length;
+    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     
     /*SSID*/
     for (NSUInteger idx = 0; idx != bssid_length; ++idx) {
         [self.broadcastArray addObject:[NSMutableData dataWithLength:( bSSID_UTF8[idx] + addedConst[(addedConstIdx++)%4] )]];
         chechSum += bSSID_UTF8[idx];
+        [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     }
 
     /*Key*/
     for (NSUInteger idx = 0; idx != bpasswd_length; ++idx) {
         [self.broadcastArray addObject:[NSMutableData dataWithLength:( bpasswd_UTF8[idx] + addedConst[(addedConstIdx++)%4] )]];
         chechSum += bpasswd_UTF8[idx];
+        [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     }
     
 
@@ -322,13 +347,16 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     for (NSUInteger idx = 0; idx != userInfo_length; ++idx) {
         [self.broadcastArray addObject:[NSMutableData dataWithLength:( userInfo_UTF8[idx] + addedConst[(addedConstIdx++)%4] )]];
         chechSum += userInfo_UTF8[idx];
+        [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     }
     
     /*Checksum high*/
     [self.broadcastArray addObject:[NSMutableData dataWithLength:( ((chechSum&0xFF00)>>8) + addedConst[(addedConstIdx++)%4] )]];
+    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     
     /*Checksum low*/
     [self.broadcastArray addObject:[NSMutableData dataWithLength:( (chechSum&0x00FF) + addedConst[(addedConstIdx++)%4] )]];
+    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
 }
 
 - (void)transmitSettings

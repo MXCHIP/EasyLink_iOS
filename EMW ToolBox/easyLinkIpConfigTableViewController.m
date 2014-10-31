@@ -10,6 +10,16 @@
 #import "EMWHeader.h"
 #import "EASYLINK.h"
 
+#import <UIKit/UIKit.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <AssertMacros.h>
+#import <CFNetwork/CFNetwork.h>
+#include <netinet/in.h>
+#include <errno.h>
+#include <ifaddrs.h>
+#include <arpa/inet.h>
+
 @interface easyLinkIpConfigTableViewController ()
 - (void)switchChanged: (UISwitch *)switcher;
 - (UITextField *)prepareTextField;

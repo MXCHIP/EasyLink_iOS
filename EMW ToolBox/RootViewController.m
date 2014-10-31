@@ -38,7 +38,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // Segmented control with scrolling
-    sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home", @"ConThings"]];
+    //sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home", @"ConThings"]];
+    sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home"]];
     sceneSegment.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     sceneSegment.frame = CGRectMake(0, 44 + 20, 320, 40);
     sceneSegment.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -57,12 +58,12 @@
     self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.contentSize = CGSizeMake(640, 464);
+    self.scrollView.contentSize = CGSizeMake(320, 464);
     self.scrollView.delegate = self;
     [self.scrollView scrollRectToVisible:CGRectMake(0, 0, 320, 464) animated:YES];
     [self.view addSubview:self.scrollView];
 
-    ConThingsViewController *ConThings = [self.storyboard instantiateViewControllerWithIdentifier:@"ConThings"];
+    //ConThingsViewController *ConThings = [self.storyboard instantiateViewControllerWithIdentifier:@"ConThings"];
     browserViewController *localDevice = [self.storyboard instantiateViewControllerWithIdentifier:@"Local Device"];
     
     /*Local devices list*/
@@ -73,13 +74,13 @@
     [localDevice didMoveToParentViewController:self];
     
     
-    /*Devices list on www.conthings.com*/
-    ConThings.view.frame = CGRectMake(320, 0, 320, 464);
-    
-    [ConThings willMoveToParentViewController:self];
-    [self.scrollView addSubview:ConThings.view];
-    [self addChildViewController:ConThings];
-    [ConThings didMoveToParentViewController:self];
+//    /*Devices list on www.conthings.com*/
+//    ConThings.view.frame = CGRectMake(320, 0, 320, 464);
+//    
+//    [ConThings willMoveToParentViewController:self];
+//    [self.scrollView addSubview:ConThings.view];
+//    [self addChildViewController:ConThings];
+//    [ConThings didMoveToParentViewController:self];
 
 }
 

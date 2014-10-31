@@ -60,7 +60,6 @@
 		3DAA389B17A5446B003806FE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA37F817A5446A003806FE /* Default-568h@2x.png */; };
 		3DAA38A217A5446B003806FE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA37FF17A5446B003806FE /* Default.png */; };
 		3DAA393F17A54572003806FE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA393E17A54572003806FE /* Reachability.m */; };
-		3DAA394817A54ED0003806FE /* APManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA394217A54ED0003806FE /* APManager.m */; };
 		3DAA394A17A54ED0003806FE /* EASYLINK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA394717A54ED0003806FE /* EASYLINK.m */; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA394E17A55486003806FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
@@ -242,8 +241,6 @@
 		3DAA37FF17A5446B003806FE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3DAA393D17A54572003806FE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3DAA393E17A54572003806FE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		3DAA394117A54ED0003806FE /* APManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APManager.h; sourceTree = "<group>"; };
-		3DAA394217A54ED0003806FE /* APManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APManager.m; sourceTree = "<group>"; };
 		3DAA394317A54ED0003806FE /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMWHeader.h; sourceTree = "<group>"; };
 		3DAA394617A54ED0003806FE /* EASYLINK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EASYLINK.h; path = EasyLink/Classes/Common/EASYLINK.h; sourceTree = "<group>"; };
 		3DAA394717A54ED0003806FE /* EASYLINK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EASYLINK.m; path = EasyLink/Classes/Common/EASYLINK.m; sourceTree = "<group>"; };
@@ -693,8 +690,6 @@
 			isa = PBXGroup;
 			children = (
 				3D31DA9A18E7A98800385649 /* route.h */,
-				3DAA394117A54ED0003806FE /* APManager.h */,
-				3DAA394217A54ED0003806FE /* APManager.m */,
 				3DAA394317A54ED0003806FE /* EMWHeader.h */,
 			);
 			name = Common;
@@ -1047,7 +1042,6 @@
 				3DE5C6CA18FCFCB7008436EB /* GRListingRequest.m in Sources */,
 				3D677D0D1925B3E400E4A486 /* MJRefreshFooterView.m in Sources */,
 				3DE5C6CE18FCFCB7008436EB /* GRQueue.m in Sources */,
-				3DAA394817A54ED0003806FE /* APManager.m in Sources */,
 				3D8249271924FE3F00176E14 /* ConThingsViewController.m in Sources */,
 				3DAEA03719191B600082D846 /* UIImage+JSMessagesView.m in Sources */,
 				3D0D3035191B4C7D00C5B57A /* talkToModuleViewController.m in Sources */,

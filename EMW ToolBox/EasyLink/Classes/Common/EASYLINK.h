@@ -7,19 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <SystemConfiguration/CaptiveNetwork.h>
 #import "AsyncUdpSocket.h"
 #import "AsyncSocket.h"
-#import <UIKit/UIKit.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <AssertMacros.h>
-#import <CFNetwork/CFNetwork.h>
-#include <netinet/in.h>
-#include <errno.h>
-#include <ifaddrs.h>
-#include <arpa/inet.h>
-#import "route.h"
-#import <SystemConfiguration/CaptiveNetwork.h>
 
 #define EASYLINK_V1         0
 #define EASYLINK_V2         1
@@ -74,6 +65,7 @@
     NSThread *easyLinkThread;
     BOOL firstTimeConfig;
     id theDelegate;
+    uint32_t seqHook;
 }
 
 @property (retain, nonatomic) NSMutableArray *multicastArray;
