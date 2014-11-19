@@ -17,9 +17,7 @@ extern BOOL newModuleFound;
 BOOL configTableMoved = NO;
 
 
-@interface EasyLinkMainViewController (){
-    PulsingHaloLayer *halo;
-}
+@interface EasyLinkMainViewController ()
 
 @property (nonatomic, retain, readwrite) NSThread* waitForAckThread;
 
@@ -109,21 +107,12 @@ BOOL configTableMoved = NO;
     
     deviceIPConfig = [[NSMutableDictionary alloc] initWithCapacity:5];
     
-    CGRect screenBounds = [UIScreen mainScreen].bounds;
+//    CGRect screenBounds = [UIScreen mainScreen].bounds;
     
-    if( screenBounds.size.height == 480.0){
-        imagePhoneView.center = CGPointMake(imagePhoneView.center.x, imagePhoneView.center.y+MOVE_UP_ON_3_5_INCH/2);
-        imagePhoneView.transform =  CGAffineTransformMakeTranslation(0, MOVE_UP_ON_3_5_INCH);
-    }
-    
-    halo = [PulsingHaloLayer layer];
-    halo.position = CGPointMake(screenBounds.size.width/2, imagePhoneView.center.y-25);
-    [self.view.layer insertSublayer:halo above:imagePhoneView.layer];
-    halo.radius = 400;
-    halo.backgroundColor = [UIColor colorWithRed:0 green:122.0/255 blue:1.0 alpha:1.0].CGColor;
-    
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapPhoneImage:)];
-    [imagePhoneView addGestureRecognizer:singleTap];
+//    if( screenBounds.size.height == 480.0){
+//        imagePhoneView.center = CGPointMake(imagePhoneView.center.x, imagePhoneView.center.y+MOVE_UP_ON_3_5_INCH/2);
+//        imagePhoneView.transform =  CGAffineTransformMakeTranslation(0, MOVE_UP_ON_3_5_INCH);
+//    }
 
 
     //按钮加边框
@@ -171,6 +160,7 @@ BOOL configTableMoved = NO;
 
 - (void)viewWillAppear:(BOOL)animated {
     /*Update IP config cell*/
+    [ipAddress setUserInteractionEnabled:NO];
     if(ipAddress != nil){
         if([[deviceIPConfig objectForKey:@"DHCP"] boolValue] == YES)
             [ipAddress setText:@"Automatic"];
@@ -321,18 +311,12 @@ BOOL configTableMoved = NO;
 }
 
 - (IBAction)easyLinkV2ButtonAction:(UIButton*)button{
-    [halo startAnimation: NO];
     
     CATransition *animation = [CATransition animation];
     animation.delegate = self;
     animation.duration = 0.5 ;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.type = kCATransitionFade;
-
-    [imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhoneStarted.png"]];
-    //[EasylinkV2Button setSelected:YES];
-
-    [[imagePhoneView layer] addAnimation:animation forKey:@"animation"];
     
     /*Pop up a Easylink sending dialog*/
     easyLinkSendingView = [[CustomIOS7AlertView alloc] init];
@@ -345,13 +329,12 @@ BOOL configTableMoved = NO;
     title.textAlignment = NSTextAlignmentCenter;
     [alertContentView addSubview:title];
     
-    
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.alignment = NSTextAlignmentCenter;
     paragraphStyle.lineSpacing = 5.0f;
     
-    UIFont *font = [UIFont systemFontOfSize:12.0];
+    UIFont *font = [UIFont systemFontOfSize:14.0];
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:paragraphStyle,
                                                                     font,
@@ -359,92 +342,57 @@ BOOL configTableMoved = NO;
                                                            forKeys:[NSArray arrayWithObjects:NSParagraphStyleAttributeName,
                                                                     NSFontAttributeName,
                                                                     nil]];
-    
-    /*Add spin controller*/
-    CGRect frame = CGRectMake(0, 0, 50, 50);
-    UIActivityIndicatorView* spinner = [[UIActivityIndicatorView alloc] initWithFrame:frame];
-    spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    [spinner sizeToFit];
-    [spinner setColor: [UIColor colorWithRed:0 green:122.0/255 blue:1 alpha:1]];
-    spinner.frame = CGRectMake(alertContentView.frame.size.width/2-25, 180, 50, 80);
-    [alertContentView addSubview:spinner];
+
     [easyLinkSendingView setContainerView:alertContentView];
     
     /*EasyLink button image*/
-    UIImageView *easyLinkButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-38, 82, 76, 76)];
+    UIImageView *easyLinkButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-45, 76, 90, 90)];
     easyLinkButtonView.image = [UIImage imageNamed:@"EASYLINK_BUTTON.png" ];
     [alertContentView addSubview:easyLinkButtonView];
     
     /*EasyLink pres image*/
-    UIImageView *buttonPressView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2+80, 110, 120, 120)];
+    UIImageView *buttonPressView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2+80, 180, 120, 120)];
     buttonPressView.image = [UIImage imageNamed:@"EASYLINK_PRESS.png" ];
     [alertContentView addSubview:buttonPressView];
-    
-    /*Bulb image*/
-    UIImageView *micoSysLedBeforeView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-90, 195, 30, 50)];
-    micoSysLedBeforeView.image = [UIImage imageNamed:@"MICO_SYS_LED_OFF.png"];
-    micoSysLedBeforeView.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"MICO_SYS_LED_OFF.png"],
-                                            [UIImage imageNamed:@"MICO_SYS_LED_ON.png" ],nil];
-    micoSysLedBeforeView.animationDuration = 0.2;
-    [alertContentView addSubview:micoSysLedBeforeView];
-    
-    UIImageView *micoSysLedAfterView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2+60, 195, 30, 50)];
-    micoSysLedAfterView.image = [UIImage imageNamed:@"MICO_SYS_LED_OFF.png"];
-    micoSysLedAfterView.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"MICO_SYS_LED_OFF.png"],
-                                            [UIImage imageNamed:@"MICO_SYS_LED_ON.png" ],nil];
-    micoSysLedAfterView.animationDuration = 1;
-    [alertContentView addSubview:micoSysLedAfterView];
-    
     
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         [buttonPressView setFrame:CGRectMake(alertContentView.frame.size.width/2-15, 130, 35, 35)];
+                         [buttonPressView setFrame:CGRectMake(alertContentView.frame.size.width/2-15, 130, 40, 40)];
                      }
                      completion:^(BOOL finished){
-                         [micoSysLedBeforeView startAnimating];
-                         [spinner startAnimating];
-                         [micoSysLedAfterView performSelector:@selector(startAnimating) withObject:nil afterDelay: 0];
+                         ;
                      }];
 
     /*Add Line 1*/
-    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 20, 260, 100)];
-    NSAttributedString *contentText =  [[NSAttributedString alloc] initWithString:@"First, press EasyLink button on your device."
+    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 15, 260, 100)];
+    NSAttributedString *contentText =  [[NSAttributedString alloc] initWithString:@"Press EasyLink button on your device!"
                                                                        attributes:attributes];
     content.attributedText = contentText;
     content.numberOfLines = 1;
     [alertContentView addSubview:content];
     
-    /*Add Line 2*/
-    content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 120, 260, 100)];
-    contentText =  [[NSAttributedString alloc] initWithString:@"Wait until system led is changed on device." attributes:attributes];
+    UIImageView *phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-100, 180, 200, 200)];
+    [phoneImageView setImage:[UIImage imageNamed:@"EasyLinkPhoneStarted.png"]];
+    [alertContentView addSubview:phoneImageView];
+    [phoneImageView setContentMode:UIViewContentModeScaleAspectFit];
+    alertContentView.clipsToBounds = true;
     
-    content.attributedText = contentText;
-    content.numberOfLines = 1;
-    [alertContentView addSubview:content];
+    PulsingHaloLayer *pulsingHalo = [PulsingHaloLayer layer];
+    pulsingHalo.position = CGPointMake(alertContentView.frame.size.width/2, phoneImageView.center.y-25);
+    [alertContentView.layer insertSublayer:pulsingHalo above:phoneImageView.layer];
+    pulsingHalo.radius = 300;
+    pulsingHalo.backgroundColor = [UIColor colorWithRed:0 green:122.0/255 blue:1.0 alpha:1.0].CGColor;
     
-    /*Add Line 3*/
-    content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 220, 260, 100)];
-    contentText =  [[NSAttributedString alloc] initWithString:@"Press the \"Next\" button to scan new devices" attributes:attributes];
+    [pulsingHalo startAnimation:YES];
     
-    content.attributedText = contentText;
-    content.numberOfLines = 1;
-    [alertContentView addSubview:content];
-    
-    [easyLinkSendingView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel", @"Next", nil]];
+    [easyLinkSendingView setButtonTitles:[NSMutableArray arrayWithObjects:@"Stop", nil]];
     __weak EasyLinkMainViewController *_self = self;
-    __weak UIImageView *_imagePhoneView = imagePhoneView;
-    __weak PulsingHaloLayer *_halo = halo;
     [easyLinkSendingView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, NSInteger buttonIndex) {
         if(buttonIndex == 0){
-            [_halo startAnimation:NO];
-            [_imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhone.png"]];
             [button setTitle:@"START" forState:UIControlStateNormal];
             [_self enableUIAccess:YES];
-        }else{
-            [button setTitle:@"SCANING" forState:UIControlStateNormal];
-            [_halo startAnimation: YES];
         }
         [button setBackgroundColor:[UIColor clearColor]];
         [_self stopAction];
@@ -617,6 +565,8 @@ BOOL configTableMoved = NO;
         [apInforRecord setObject:passwordField.text forKey:ssidField.text];
         [apInforRecord writeToFile:apInforRecordFile atomically:YES];
     }
+    
+    [easyLinkSendingView close];
     
     if(otaAlertView != nil){
         [otaAlertView close];
@@ -874,6 +824,7 @@ BOOL configTableMoved = NO;
         [ipAddress setReturnKeyType:UIReturnKeyDone];
         [ipAddress setBackgroundColor:[UIColor clearColor]];
         [ipAddress setUserInteractionEnabled:NO];
+
         if([[deviceIPConfig objectForKey:@"DHCP"] boolValue] == YES)
             [ipAddress setText:@"Automatic"];
         else

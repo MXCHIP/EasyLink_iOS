@@ -24,7 +24,6 @@
     UITextField *ssidField,*bssidField,*passwordField,*userInfoField,*ipAddress;
 
     IBOutlet UIButton *EasylinkV2Button;
-    IBOutlet UIImageView *imagePhoneView;
     UIAlertView *alertView;
     CustomIOS7AlertView *customAlertView, *otaAlertView;
     NSMutableDictionary *deviceIPConfig;

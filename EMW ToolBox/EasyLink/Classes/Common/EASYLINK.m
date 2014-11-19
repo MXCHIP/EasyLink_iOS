@@ -18,7 +18,31 @@
 #endif
 
 #define MessageCount 100
+
+#define EasyLinkPlusDelayPerByte    0.005
+#define EasyLinkPlusDelayPerBlock   0.1
+#define EasyLinkV2DelayPerBlock     0.04
+
+
 CFHTTPMessageRef inComingMessageArray[MessageCount];
+
+@implementation NSMutableArray (Additions)
+- (void)insertEasyLinkPlusData:(NSUInteger)length
+{
+    [self addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys: [NSMutableData dataWithLength:length], @"sendData", [NSNumber numberWithFloat:EasyLinkPlusDelayPerByte], @"Delay", nil]];
+}
+
+- (void)insertEasyLinkPlusBlockIndex:(uint32_t *)blockIndex forSeqNo: (uint32_t)seqNo
+{
+    if (((seqNo)%4)==3) {
+        (*blockIndex)++;
+        [(NSMutableDictionary *)([self lastObject]) setObject:[NSNumber numberWithFloat:EasyLinkPlusDelayPerBlock] forKey:@"Delay"];
+        [self addObject:[NSDictionary dictionaryWithObjectsAndKeys: [NSMutableData dataWithLength:(0x500+ *blockIndex)], @"sendData", [NSNumber numberWithFloat:EasyLinkPlusDelayPerBlock], @"Delay", nil]];
+    }
+}
+
+@end
+
 
 @interface EASYLINK (privates)
 
@@ -55,8 +79,8 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
         
         self.multicastSocket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
         
-        multicastSendInterval = nil;
-        broadcastSendInterval = nil;
+        multicastSending = false;
+        broadcastSending = false;
         
         for(NSUInteger idx = 0; idx<MessageCount; idx++){
             inComingMessageArray[idx] = nil;
@@ -229,6 +253,7 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
         [dictionary setValue:@"239.118.0.0" forKey:@"host"];
+        [dictionary setValue:[NSNumber numberWithFloat:EasyLinkV2DelayPerBlock] forKey:@"Delay"];
         [self.multicastArray addObject:dictionary];
     }
     
@@ -236,6 +261,7 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
     [dictionary setValue:[NSString stringWithFormat:@"239.126.%lu.%lu", (unsigned long)bSSID_length, (unsigned long)bpasswd_length] forKey:@"host"];
+    [dictionary setValue:[NSNumber numberWithFloat:EasyLinkV2DelayPerBlock] forKey:@"Delay"];
     [self.multicastArray addObject:dictionary];
     headerLength++;
     
@@ -250,6 +276,7 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
         
         [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
         [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", a, b] forKey:@"host"];
+        [dictionary setValue:[NSNumber numberWithFloat:EasyLinkV2DelayPerBlock] forKey:@"Delay"];
         [self.multicastArray addObject:dictionary];
     }
     
@@ -257,6 +284,7 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
     [dictionary setValue:[NSString stringWithFormat:@"239.126.%lu.0", (unsigned long)userInfo_length] forKey:@"host"];
+    [dictionary setValue:[NSNumber numberWithFloat:EasyLinkV2DelayPerBlock] forKey:@"Delay"];
     [self.multicastArray addObject:dictionary];
     headerLength++;
     
@@ -270,17 +298,9 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
         dictionary = [NSMutableDictionary dictionary];
         [dictionary setValue:[NSMutableData dataWithLength:headerLength] forKey:@"sendData"];
         [dictionary setValue:[NSString stringWithFormat:@"239.126.%d.%d", a, b] forKey:@"host"];
+        [dictionary setValue:[NSNumber numberWithFloat:EasyLinkV2DelayPerBlock] forKey:@"Delay"];
         [self.multicastArray addObject:dictionary];
     }
-}
-
-- (void)addSeqHook: (uint32_t)seqNo forBroadcastArray: (NSMutableArray *)inArray
-{
-    if (((seqNo)%4)==3) {
-        seqHook++;
-        [inArray addObject:[NSMutableData dataWithLength:(0x500+seqHook)]];
-    }
-    
 }
 
 - (void)prepareEasyLinkPlus:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
@@ -300,7 +320,6 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     uint32_t seqNo = 0;
     seqHook = 0;
     
-    
     NSUInteger totalLen = 0x5 + bssid_length + bpasswd_length + userInfo_length;
     
     NSUInteger addedConst[4] = {0x100, 0x200, 0x300, 0x400};
@@ -309,54 +328,54 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     [self.broadcastArray removeAllObjects];
     /*0x5AA|0x5AB|0x5AC|Total len|BSSID[3]|BSSID[4]|BSSID[5]|Key len|Key|User info|Checksum high|Checksum low*/
     
-    [self.broadcastArray addObject:[NSMutableData dataWithLength:0x5AA]];
-    [self.broadcastArray addObject:[NSMutableData dataWithLength:0x5AB]];
-    [self.broadcastArray addObject:[NSMutableData dataWithLength:0x5AC]];
+    [self.broadcastArray insertEasyLinkPlusData:0x5AA];
+    [self.broadcastArray insertEasyLinkPlusData:0x5AB];
+    [self.broadcastArray insertEasyLinkPlusData:0x5AC];
     
     /*Total len*/
-    [self.broadcastArray addObject:[NSMutableData dataWithLength:( totalLen + addedConst[(addedConstIdx++)%4] )]];
+    [self.broadcastArray insertEasyLinkPlusData:( totalLen + addedConst[(addedConstIdx++)%4] )];
+    [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
     chechSum += totalLen;
-    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
-    
+
     /*SSID len*/
-    [self.broadcastArray addObject:[NSMutableData dataWithLength:( bssid_length + addedConst[(addedConstIdx++)%4] )]];
+    [self.broadcastArray insertEasyLinkPlusData:( bssid_length + addedConst[(addedConstIdx++)%4] )];
+    [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
     chechSum += bssid_length;
-    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     
     /*Key len*/
-    [self.broadcastArray addObject:[NSMutableData dataWithLength:( bpasswd_length + addedConst[(addedConstIdx++)%4] )]];
+    [self.broadcastArray insertEasyLinkPlusData:( bpasswd_length + addedConst[(addedConstIdx++)%4] )];
+    [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
     chechSum += bpasswd_length;
-    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     
     /*SSID*/
     for (NSUInteger idx = 0; idx != bssid_length; ++idx) {
-        [self.broadcastArray addObject:[NSMutableData dataWithLength:( bSSID_UTF8[idx] + addedConst[(addedConstIdx++)%4] )]];
+        [self.broadcastArray insertEasyLinkPlusData:( bSSID_UTF8[idx] + addedConst[(addedConstIdx++)%4] )];
+        [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
         chechSum += bSSID_UTF8[idx];
-        [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     }
 
     /*Key*/
     for (NSUInteger idx = 0; idx != bpasswd_length; ++idx) {
-        [self.broadcastArray addObject:[NSMutableData dataWithLength:( bpasswd_UTF8[idx] + addedConst[(addedConstIdx++)%4] )]];
+        [self.broadcastArray insertEasyLinkPlusData:( bpasswd_UTF8[idx] + addedConst[(addedConstIdx++)%4] )];
+        [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
         chechSum += bpasswd_UTF8[idx];
-        [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     }
     
 
     /*User info*/
     for (NSUInteger idx = 0; idx != userInfo_length; ++idx) {
-        [self.broadcastArray addObject:[NSMutableData dataWithLength:( userInfo_UTF8[idx] + addedConst[(addedConstIdx++)%4] )]];
+        [self.broadcastArray insertEasyLinkPlusData:( userInfo_UTF8[idx] + addedConst[(addedConstIdx++)%4] )];
+        [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
         chechSum += userInfo_UTF8[idx];
-        [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
     }
     
     /*Checksum high*/
-    [self.broadcastArray addObject:[NSMutableData dataWithLength:( ((chechSum&0xFF00)>>8) + addedConst[(addedConstIdx++)%4] )]];
-    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
+    [self.broadcastArray insertEasyLinkPlusData:( ((chechSum&0xFF00)>>8) + addedConst[(addedConstIdx++)%4] )];
+    [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
     
     /*Checksum low*/
-    [self.broadcastArray addObject:[NSMutableData dataWithLength:( (chechSum&0x00FF) + addedConst[(addedConstIdx++)%4] )]];
-    [self addSeqHook: seqNo++ forBroadcastArray: self.broadcastArray];
+    [self.broadcastArray insertEasyLinkPlusData:( (chechSum&0x00FF) + addedConst[(addedConstIdx++)%4] )];
+    [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
 }
 
 - (void)transmitSettings
@@ -394,39 +413,45 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     }
 
     if(version == EASYLINK_PLUS){
-        broadcastSendInterval =[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(broadcastStartConfigure:) userInfo:nil repeats:YES];
-        multicastSendInterval =[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(multicastStartConfigure:) userInfo:nil repeats:YES];
-    }else{
-        multicastSendInterval =[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(multicastStartConfigure:) userInfo:nil repeats:YES];
-    }
+        if(broadcastSending == false){
+            broadcastSending = true;
+            [self performSelector:@selector(broadcastStartConfigure:) withObject:self];
+        }
         
-    
-    
+        if(multicastSending == false){
+            multicastSending = true;
+            [self performSelector:@selector(multicastStartConfigure:) withObject:self];
+        }
+
+    }else{
+        if(multicastSending == false){
+            multicastSending = true;
+            [self performSelector:@selector(multicastStartConfigure:) withObject:self];
+        }
+    }
 }
 
 - (void)stopTransmitting
 {
-    if(broadcastSendInterval != nil){
-        [broadcastSendInterval invalidate];
-        broadcastSendInterval = nil;
-    }
-    if(multicastSendInterval != nil){
-        [multicastSendInterval invalidate];
-        multicastSendInterval = nil;
-    }
+    broadcastSending = false;
+    multicastSending = false;
 
 }
 
 - (void)broadcastStartConfigure:(id)sender{
-    [self.broadcastSocket sendData:[self.broadcastArray objectAtIndex:broadcastcount] toHost:[EASYLINK getBroadcastAddress] port:65523 withTimeout:10 tag:0];
+    [self.broadcastSocket sendData:[[self.broadcastArray objectAtIndex:broadcastcount] objectForKey:@"sendData"] toHost:[EASYLINK getBroadcastAddress] port:65523 withTimeout:10 tag:0];
     ++broadcastcount;
     if (broadcastcount == [self.broadcastArray count]) broadcastcount = 0;
+    if(broadcastSending == true)
+        [self performSelector:@selector(broadcastStartConfigure:) withObject:self afterDelay:[(NSNumber *)([[self.broadcastArray objectAtIndex:broadcastcount] objectForKey:@"Delay"]) floatValue]];
 }
 
 - (void)multicastStartConfigure:(id)sender{
     [self.multicastSocket sendData:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"sendData"] toHost:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"host"] port:65523 withTimeout:10 tag:0];
     ++multicastCount;
     if (multicastCount == [self.multicastArray count]) multicastCount = 0;
+    if(multicastSending == true)
+        [self performSelector:@selector(multicastStartConfigure:) withObject:self afterDelay:[(NSNumber *)([[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"Delay"]) floatValue]];
 }
 
 - (void)closeFTCClient:(NSNumber *)client

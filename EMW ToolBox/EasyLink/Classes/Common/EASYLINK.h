@@ -60,8 +60,8 @@
     NSMutableArray *ftcClients;
     CFMutableArrayRef inCommingMessages;
     
-    NSTimer *multicastSendInterval;
-    NSTimer *broadcastSendInterval;
+    bool broadcastSending;
+    bool multicastSending;
     NSThread *easyLinkThread;
     BOOL firstTimeConfig;
     id theDelegate;
