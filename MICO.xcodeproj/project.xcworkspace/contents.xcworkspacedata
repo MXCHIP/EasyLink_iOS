@@ -5,12 +5,6 @@
       location = "container:"
       name = "EMW ToolBox">
       <FileRef
-         location = "group:../EMW ToolBox/EasyLinkFoundTableViewController.h">
-      </FileRef>
-      <FileRef
-         location = "group:../EMW ToolBox/EasyLinkFoundTableViewController.m">
-      </FileRef>
-      <FileRef
          location = "group:">
       </FileRef>
    </Group>

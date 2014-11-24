@@ -139,7 +139,6 @@
 		3DE5C6CE18FCFCB7008436EB /* GRQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6C318FCFCB7008436EB /* GRQueue.m */; };
 		3DE5C6CF18FCFCB7008436EB /* GRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6C518FCFCB7008436EB /* GRStreamInfo.m */; };
 		3DE5C6D218FD373D008436EB /* easyLinkOTATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6D118FD373D008436EB /* easyLinkOTATableViewController.m */; };
-		3DF2CA7A1A1C85FC0068DD59 /* EasyLinkFoundTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF2CA791A1C85FC0068DD59 /* EasyLinkFoundTableViewController.m */; };
 		3DF345D018E125F60088832E /* FTCStringCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF345CF18E125F60088832E /* FTCStringCell.m */; };
 		3DF4C5F019D7B0B300E3BD53 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DF4C5EF19D7B0B300E3BD53 /* Settings.bundle */; };
 		3DFB6D0A19D53E1300E91DBA /* MICO_SYS_LED_OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DFB6D0819D53E1300E91DBA /* MICO_SYS_LED_OFF.png */; };
@@ -351,8 +350,6 @@
 		3DE5C6C518FCFCB7008436EB /* GRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRStreamInfo.m; sourceTree = "<group>"; };
 		3DE5C6D018FD373D008436EB /* easyLinkOTATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easyLinkOTATableViewController.h; sourceTree = "<group>"; };
 		3DE5C6D118FD373D008436EB /* easyLinkOTATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = easyLinkOTATableViewController.m; sourceTree = "<group>"; };
-		3DF2CA781A1C85FC0068DD59 /* EasyLinkFoundTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLinkFoundTableViewController.h; sourceTree = "<group>"; };
-		3DF2CA791A1C85FC0068DD59 /* EasyLinkFoundTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLinkFoundTableViewController.m; sourceTree = "<group>"; };
 		3DF345CE18E125F60088832E /* FTCStringCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCStringCell.h; sourceTree = "<group>"; };
 		3DF345CF18E125F60088832E /* FTCStringCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCStringCell.m; sourceTree = "<group>"; };
 		3DF4C5EF19D7B0B300E3BD53 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -508,8 +505,6 @@
 		3D2AD58C17A247E30026E31E /* MainUI */ = {
 			isa = PBXGroup;
 			children = (
-				3DAA393C17A54572003806FE /* Reachability */,
-				3D2AD58D17A247E30026E31E /* Supporting Files */,
 				3D0D3032191B4C1500C5B57A /* Module Interactive */,
 				3DA1179718EBE2CE009B2E1E /* Browser Cell */,
 				3DF345CD18E125CF0088832E /* Configuration Menu */,
@@ -520,8 +515,8 @@
 				3D1F0D851910C9DE0030A828 /* bonjourDetailTableViewController.m */,
 				3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */,
 				3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */,
-				3DF2CA781A1C85FC0068DD59 /* EasyLinkFoundTableViewController.h */,
-				3DF2CA791A1C85FC0068DD59 /* EasyLinkFoundTableViewController.m */,
+				3DAA393C17A54572003806FE /* Reachability */,
+				3D2AD58D17A247E30026E31E /* Supporting Files */,
 				3D8249221924FA3C00176E14 /* RootViewController.h */,
 				3D8249231924FA3C00176E14 /* RootViewController.m */,
 				3D2AD5A117A247E30026E31E /* browserViewController.h */,
@@ -1032,7 +1027,6 @@
 				3DE5C6C618FCFCB7008436EB /* GRRequestsManager.m in Sources */,
 				3DAEA03519191B600082D846 /* UIButton+JSMessagesView.m in Sources */,
 				3D677D0B1925B3E400E4A486 /* MJRefreshBaseView.m in Sources */,
-				3DF2CA7A1A1C85FC0068DD59 /* EasyLinkFoundTableViewController.m in Sources */,
 				3DAEA00119191B600082D846 /* JSDismissiveTextView.m in Sources */,
 				3DE5C6D218FD373D008436EB /* easyLinkOTATableViewController.m in Sources */,
 				3DA2EDC319221B000055A89A /* addNewCommandViewController.m in Sources */,
