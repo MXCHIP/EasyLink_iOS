@@ -15,15 +15,17 @@
 #import "EasyLinkFTCTableViewController.h"
 #import "CustomIOS7AlertView.h"
 #import "EasyLinkOTATableViewController.h"
+#import "EasyLinkFoundTableViewController.h"
+
 
 @interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate, EasyLinkFTCDelegate, EasyLinkFTCDataDelegate, EasyLinkOTADelegate>{
     NSMutableArray *foundModules;
 @private
     IBOutlet UITableView *configTableView;
-    IBOutlet UITableView *foundModuleTableView;
     UITextField *ssidField,*bssidField,*passwordField,*userInfoField,*ipAddress;
 
     IBOutlet UIButton *EasylinkV2Button;
+    IBOutlet UIButton *newDevicesButton;
     UIAlertView *alertView;
     CustomIOS7AlertView *customAlertView, *otaAlertView;
     NSMutableDictionary *deviceIPConfig;
@@ -32,19 +34,13 @@
 
     EASYLINK *easylink_config;
     CustomIOS7AlertView *easyLinkSendingView;
+    __weak EasyLinkFoundTableViewController *foundTableViewController;
 
     Reachability *wifiReachability;
 }
 
 @property (strong, nonatomic) NSMutableArray *foundModules;
 
-/*
- This method waits for an acknowledge from the remote device than it stops the transmit to the remote device and returns with data it got from the remote device.
- This method blocks until it gets respond.
- The method will return true if it got the ack from the remote device or false if it got aborted by a call to stopTransmitting.
- In case of a failure the method throws an OSFailureException.
- */
-- (void) waitForAck: (id)sender;
 
 /*
     This method start the transmitting the data to connected 
