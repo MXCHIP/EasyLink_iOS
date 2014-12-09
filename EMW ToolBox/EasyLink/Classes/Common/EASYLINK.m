@@ -51,8 +51,8 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
 - (void)closeClient:(NSTimer *)timer;
 - (BOOL)isFTCServerStarted;
 - (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd;
-- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
-- (void)prepareEasyLinkPlus:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
+- (void)prepareEasyLinkV2:(NSData *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
+- (void)prepareEasyLinkPlus:(NSData *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
 
 @end
 
@@ -162,28 +162,22 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     struct ifaddrs *temp_addr = NULL;
     in_addr_t ip, netmask, gateway, dns1, dns2;
     bool dhcp;
-    NSUInteger idx ;
     
-    NSString *wlanConfig[20] = {nil};
-    
-    NSString *bSSID, *bpasswd;
+    NSData *bSSID;
+    NSString *bpasswd;
     char seperate = '#';
-    
-    for(idx = 0; idx < [wlanConfigArray count]; idx++){
-        wlanConfig[idx] = [wlanConfigArray objectAtIndex:idx];
-    }
     
     version = ver;
     
-    bSSID = wlanConfig[INDEX_SSID];
-    bpasswd = wlanConfig[INDEX_PASSWORD];
+    bSSID = [wlanConfigArray objectAtIndex:INDEX_SSID];
+    bpasswd = [wlanConfigArray objectAtIndex:INDEX_PASSWORD];
     
-    ip = wlanConfig[INDEX_IP]==nil? -1:htonl(inet_addr([ wlanConfig[INDEX_IP] cStringUsingEncoding:NSASCIIStringEncoding]));
-    netmask = wlanConfig[INDEX_NETMASK]==nil? -1:htonl(inet_addr([wlanConfig[INDEX_NETMASK] cStringUsingEncoding:NSASCIIStringEncoding]));
-    gateway = wlanConfig[INDEX_GATEWAY]==nil? -1:htonl(inet_addr([wlanConfig[INDEX_GATEWAY] cStringUsingEncoding:NSASCIIStringEncoding]));
-    dns1 = wlanConfig[INDEX_DNS1]==nil? -1:htonl(inet_addr([wlanConfig[INDEX_DNS1] cStringUsingEncoding:NSASCIIStringEncoding]));
-    dns2 = wlanConfig[INDEX_DNS2]==nil? -1:htonl(inet_addr([wlanConfig[INDEX_DNS2] cStringUsingEncoding:NSASCIIStringEncoding]));
-    dhcp = [wlanConfig[INDEX_DHCP] boolValue];
+    ip = [wlanConfigArray count]>=INDEX_IP? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_IP] cStringUsingEncoding:NSASCIIStringEncoding]));
+    netmask = [wlanConfigArray count]>=INDEX_NETMASK? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_NETMASK] cStringUsingEncoding:NSASCIIStringEncoding]));
+    gateway = [wlanConfigArray count]>=INDEX_GATEWAY? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_GATEWAY] cStringUsingEncoding:NSASCIIStringEncoding]));
+    dns1 = [wlanConfigArray count]>=INDEX_DNS1? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_DNS1] cStringUsingEncoding:NSASCIIStringEncoding]));
+    dns2 = [wlanConfigArray count]>=INDEX_DNS2? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_DNS2] cStringUsingEncoding:NSASCIIStringEncoding]));
+    dhcp = [wlanConfigArray count]>=INDEX_DHCP? YES:[[wlanConfigArray objectAtIndex:INDEX_DHCP] boolValue];
     if(dhcp==YES)
         ip = -1;
     
@@ -228,22 +222,23 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
 }
 
 
-- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
+- (void)prepareEasyLinkV2:(NSData *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
 {
-    if (bSSID == nil) bSSID = @"";
+    if (bSSID == nil) bSSID = [NSData data];
     if (bpasswd == nil) bpasswd = @"";
     if (userInfo == nil) userInfo = [NSData dataWithBytes:nil length:0];
-    NSString *mergeString =  [bSSID stringByAppendingString:bpasswd];
+    NSMutableData *mergeSsidPass = [NSMutableData dataWithCapacity:100];
+    [mergeSsidPass appendData:bSSID];
+    [mergeSsidPass appendData: [bpasswd dataUsingEncoding:NSUTF8StringEncoding]];
     
-    const char *bSSID_UTF8 = [bSSID UTF8String];
     const char *bpasswd_UTF8 = [bpasswd UTF8String];
     const uint8_t *userInfo_UTF8 = [userInfo bytes];
-    const char *mergeString_UTF8 = [mergeString UTF8String];
+    const char *cMergeSsidPass = [mergeSsidPass bytes];
     
-    NSUInteger bSSID_length = strlen(bSSID_UTF8);
+    NSUInteger bSSID_length = [bSSID length];
     NSUInteger bpasswd_length = strlen(bpasswd_UTF8);
     NSUInteger userInfo_length = [userInfo length];
-    NSUInteger mergeString_Length = strlen(mergeString_UTF8);
+    NSUInteger mergeSsidPass_Length = [mergeSsidPass length];
     
     NSUInteger headerLength = 20;
     [self.multicastArray removeAllObjects];
@@ -266,11 +261,11 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     headerLength++;
     
     // 239.126.mergeString[idx],mergeString[idx+1]
-    for (NSUInteger idx = 0; idx < mergeString_Length; idx += 2, headerLength++) {
-        Byte a = mergeString_UTF8[idx];
+    for (NSUInteger idx = 0; idx < mergeSsidPass_Length; idx += 2, headerLength++) {
+        Byte a = cMergeSsidPass[idx];
         Byte b = 0;
-        if (idx + 1 != mergeString_Length)
-            b = mergeString_UTF8[idx+1];
+        if (idx + 1 != mergeSsidPass_Length)
+            b = cMergeSsidPass[idx+1];
         
         dictionary = [NSMutableDictionary dictionary];
         
@@ -303,19 +298,20 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     }
 }
 
-- (void)prepareEasyLinkPlus:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
+- (void)prepareEasyLinkPlus:(NSData *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
 {
-    if (bSSID == nil) bSSID = @"";
+    if (bSSID == nil) bSSID = [NSData data];
     if (bpasswd == nil) bpasswd = @"";
     if (userInfo == nil) userInfo = [NSData dataWithBytes:nil length:0];
     
-    const char *bSSID_UTF8 = [bSSID UTF8String];
-    NSUInteger bssid_length = [bSSID length];
+    const unsigned char *cSSID = [bSSID bytes];
     const char *bpasswd_UTF8 = [bpasswd UTF8String];
-    NSUInteger bpasswd_length = [bpasswd length];
     const uint8_t *userInfo_UTF8 = [userInfo bytes];
+    
+    NSUInteger bssid_length = [bSSID length];
+    NSUInteger bpasswd_length = strlen(bpasswd_UTF8);
     NSUInteger userInfo_length = [userInfo length];
-    //UInt8 intnum;
+
     UInt16 chechSum = 0;
     uint32_t seqNo = 0;
     seqHook = 0;
@@ -326,7 +322,6 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     NSUInteger addedConstIdx = 0;
     
     [self.broadcastArray removeAllObjects];
-    /*0x5AA|0x5AB|0x5AC|Total len|BSSID[3]|BSSID[4]|BSSID[5]|Key len|Key|User info|Checksum high|Checksum low*/
     
     [self.broadcastArray insertEasyLinkPlusData:0x5AA];
     [self.broadcastArray insertEasyLinkPlusData:0x5AB];
@@ -349,9 +344,9 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     
     /*SSID*/
     for (NSUInteger idx = 0; idx != bssid_length; ++idx) {
-        [self.broadcastArray insertEasyLinkPlusData:( bSSID_UTF8[idx] + addedConst[(addedConstIdx++)%4] )];
+        [self.broadcastArray insertEasyLinkPlusData:( cSSID[idx] + addedConst[(addedConstIdx++)%4] )];
         [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
-        chechSum += bSSID_UTF8[idx];
+        chechSum += cSSID[idx];
     }
 
     /*Key*/
@@ -658,7 +653,7 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     NSString *urlPath= (__bridge_transfer NSString*)urlPathRef;
     NSLog(@"URL: %@", urlPath);
     
-    if([urlPath rangeOfString:@"/auth-setup"].location != NSNotFound){
+    if([urlPath rangeOfString:@"/auth-setup"].location != NSNotFound ||[urlPath rangeOfString:@"/config-read"].location != NSNotFound){
         httpRespondMessage = CFHTTPMessageCreateResponse ( kCFAllocatorDefault, 202, NULL, kCFHTTPVersion1_1 );
         CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRespondMessage );
         [sock writeData:(__bridge_transfer NSData*)httpData withTimeout:20 tag:[[client objectForKey:@"Tag"] longValue]];
@@ -701,11 +696,32 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     NSString *ssid = nil;
 
     if ( info ){
-        ssid = [info objectForKey:@"SSID"];
+        ssid = [info objectForKey:(__bridge_transfer NSString*)kCNNetworkInfoKeySSID];
     }
     info = nil;
     return ssid? ssid:@"";
 }
+
++ (NSData *)ssidDataForConnectedNetwork{
+    NSArray *interfaces = (__bridge_transfer NSArray*)CNCopySupportedInterfaces();
+    NSDictionary *info = nil;
+    for (NSString *ifname in interfaces) {
+        info = (__bridge_transfer NSDictionary*)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifname);
+        if (info && [info count]) {
+            break;
+        }
+        info = nil;
+    }
+    
+    NSData *ssidData = nil;
+    
+    if ( info ){
+        ssidData = [info objectForKey:(__bridge_transfer NSString*)kCNNetworkInfoKeySSIDData];
+    }
+    info = nil;
+    return ssidData? ssidData:[NSData data];
+}
+
 
 + (NSDictionary *)infoForConnectedNetwork
 {

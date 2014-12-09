@@ -22,6 +22,7 @@
     IBOutlet UITableView *configTableView;
     IBOutlet UITableView *foundModuleTableView;
     UITextField *ssidField,*bssidField,*passwordField,*userInfoField,*ipAddress;
+    NSData *ssidData;
 
     IBOutlet UIButton *EasylinkV2Button;
     UIAlertView *alertView;
