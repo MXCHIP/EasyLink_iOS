@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -483,46 +485,15 @@
                         <viewControllerLayoutGuide type="top" id="SBj-Dq-LXZ"/>
                         <viewControllerLayoutGuide type="bottom" id="X3q-19-P2H"/>
                     </layoutGuides>
-                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="Pgy-D5-0yK">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="Pgy-D5-0yK" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQy-Do-Sjg">
-                                <rect key="frame" x="11" y="334" width="126" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="126" id="22g-kJ-37J"/>
-                                    <constraint firstAttribute="height" constant="41" id="Tb7-AE-huU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="Fast mode">
-                                    <color key="titleColor" red="0.0" green="0.47843140363693237" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="easyLinkV2ButtonAction:" destination="Wtb-2v-kgF" eventType="touchUpInside" id="daA-tK-y9d"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7L2-gy-Sic" userLabel="New Devices">
-                                <rect key="frame" x="44" y="453" width="232" height="51"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="232" id="2Bp-1e-VZX"/>
-                                    <constraint firstAttribute="height" constant="51" id="l5F-LM-K7O"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
-                                <state key="normal" title="New Devices">
-                                    <color key="titleColor" red="0.0" green="0.47843140363693237" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                </state>
-                                <state key="disabled">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="nGo-tc-DNy" kind="push" identifier="New Devices" id="SdL-Cp-JZS"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WqK-QA-90X">
                                 <rect key="frame" x="7" y="109" width="306" height="177"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="177" id="yzl-Ug-CE5"/>
+                                    <constraint firstAttribute="height" constant="177" id="ZOw-Gi-0Dd"/>
                                 </constraints>
                                 <color key="separatorColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -567,12 +538,18 @@
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Enter Wi-Fi settings for your new device" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAE-PI-Hwe">
                                 <rect key="frame" x="11" y="77" width="298" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Oup-lb-SNk"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" red="0.047058823529411764" green="0.25882352941176473" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Send Wi-Fi settings using EasyLink" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikv-72-Aya">
                                 <rect key="frame" x="11" y="305" width="298" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="yx0-wI-Gcm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" red="0.047058823530000002" green="0.25882352939999997" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -580,57 +557,88 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Manage your new devices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUu-dK-KRo">
                                 <rect key="frame" x="11" y="397" width="298" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="be0-nv-PPa"/>
+                                    <constraint firstAttribute="height" constant="21" id="wqg-a3-1jk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" red="0.047058823530000002" green="0.25882352939999997" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAq-4a-Fd6">
-                                <rect key="frame" x="166" y="334" width="138" height="41"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rDw-gk-9YP">
+                                <rect key="frame" x="7" y="339" width="153" height="43"/>
+                                <color key="backgroundColor" red="0.3843137254901961" green="0.58039215686274515" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="138" id="HTw-Y4-kOh"/>
-                                    <constraint firstAttribute="height" constant="41" id="WAC-sV-5So"/>
+                                    <constraint firstAttribute="height" constant="43" id="gKz-Rk-Lc2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="Normal mode">
-                                    <color key="titleColor" red="0.0" green="0.47843140363693237" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Fast mode">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="easyLinkV2ButtonAction:" destination="Wtb-2v-kgF" eventType="touchUpInside" id="8PQ-ar-5sm"/>
+                                    <action selector="easyLinkV2ButtonAction:" destination="Wtb-2v-kgF" eventType="touchUpInside" id="uWw-zk-f0w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMa-dL-O8i">
+                                <rect key="frame" x="168" y="339" width="145" height="43"/>
+                                <color key="backgroundColor" red="0.38431372549019605" green="0.58039215686274503" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="145" id="8ci-nX-HJd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Normal mode">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="easyLinkuAPButtonAction:" destination="Wtb-2v-kgF" eventType="touchUpInside" id="QSW-DU-S67"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7L2-gy-Sic" userLabel="New Devices">
+                                <rect key="frame" x="44" y="426" width="232" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="0Re-5N-gMc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                <state key="normal" title="New Devices">
+                                    <color key="titleColor" red="0.0" green="0.47843140363693237" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nGo-tc-DNy" kind="push" identifier="New Devices" id="SdL-Cp-JZS"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.76470588235294112" green="0.85882352941176465" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="7L2-gy-Sic" firstAttribute="top" secondItem="kUu-dK-KRo" secondAttribute="bottom" constant="35" id="07M-7W-bLR"/>
-                            <constraint firstItem="WqK-QA-90X" firstAttribute="top" secondItem="NAE-PI-Hwe" secondAttribute="bottom" constant="11" id="2hh-cF-zVf"/>
-                            <constraint firstItem="NAE-PI-Hwe" firstAttribute="leading" secondItem="kUu-dK-KRo" secondAttribute="leading" id="38f-B6-KFr"/>
-                            <constraint firstItem="NAE-PI-Hwe" firstAttribute="trailing" secondItem="kUu-dK-KRo" secondAttribute="trailing" id="4Iv-Dg-nXm"/>
-                            <constraint firstItem="WqK-QA-90X" firstAttribute="top" secondItem="SBj-Dq-LXZ" secondAttribute="bottom" constant="45" id="9Gp-MU-2Vl"/>
-                            <constraint firstItem="oAq-4a-Fd6" firstAttribute="top" secondItem="kQy-Do-Sjg" secondAttribute="bottom" constant="-41" id="AhO-Dg-bRZ"/>
-                            <constraint firstItem="kQy-Do-Sjg" firstAttribute="centerX" secondItem="WqK-QA-90X" secondAttribute="centerX" constant="-86" id="BeV-ok-b0a"/>
-                            <constraint firstItem="X3q-19-P2H" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7L2-gy-Sic" secondAttribute="bottom" constant="10" id="G5F-yI-wrL"/>
-                            <constraint firstItem="WqK-QA-90X" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leading" constant="7" id="Ia4-jg-RTy"/>
-                            <constraint firstItem="kQy-Do-Sjg" firstAttribute="top" secondItem="Ikv-72-Aya" secondAttribute="bottom" constant="8" symbolic="YES" id="IbW-El-vbp"/>
-                            <constraint firstItem="oAq-4a-Fd6" firstAttribute="centerX" secondItem="Ikv-72-Aya" secondAttribute="centerX" constant="75" id="Pke-3W-gvE"/>
-                            <constraint firstItem="kQy-Do-Sjg" firstAttribute="top" secondItem="SBj-Dq-LXZ" secondAttribute="bottom" constant="270" id="Ppu-Zg-pCv"/>
-                            <constraint firstItem="WqK-QA-90X" firstAttribute="centerX" secondItem="Pgy-D5-0yK" secondAttribute="centerX" id="Qp0-Jm-VCw"/>
-                            <constraint firstItem="NAE-PI-Hwe" firstAttribute="top" secondItem="SBj-Dq-LXZ" secondAttribute="bottom" constant="13" id="Rxm-wu-2tF"/>
-                            <constraint firstItem="kUu-dK-KRo" firstAttribute="top" secondItem="oAq-4a-Fd6" secondAttribute="bottom" constant="22" id="e5c-dp-2yM"/>
-                            <constraint firstItem="oAq-4a-Fd6" firstAttribute="centerX" secondItem="NAE-PI-Hwe" secondAttribute="centerX" constant="75" id="fNH-V7-6k8"/>
-                            <constraint firstItem="7L2-gy-Sic" firstAttribute="top" relation="lessThanOrEqual" secondItem="kUu-dK-KRo" secondAttribute="bottom" constant="35" id="fhV-nO-kQ5"/>
-                            <constraint firstItem="NAE-PI-Hwe" firstAttribute="leading" secondItem="Ikv-72-Aya" secondAttribute="leading" id="hFa-vs-VCb"/>
-                            <constraint firstItem="oAq-4a-Fd6" firstAttribute="leading" secondItem="kQy-Do-Sjg" secondAttribute="leading" constant="155" id="hgO-Kt-d2j"/>
-                            <constraint firstItem="Ikv-72-Aya" firstAttribute="top" secondItem="WqK-QA-90X" secondAttribute="bottom" constant="19" id="i2Z-Ed-ihc"/>
-                            <constraint firstItem="7L2-gy-Sic" firstAttribute="trailing" secondItem="Pgy-D5-0yK" secondAttribute="trailingMargin" constant="-28" id="kvz-du-K9R"/>
+                            <constraint firstItem="WqK-QA-90X" firstAttribute="leading" secondItem="rDw-gk-9YP" secondAttribute="leading" id="176-xN-4nb"/>
+                            <constraint firstItem="rDw-gk-9YP" firstAttribute="baseline" secondItem="jMa-dL-O8i" secondAttribute="firstBaseline" id="1m2-sF-WWh"/>
+                            <constraint firstItem="Ikv-72-Aya" firstAttribute="top" secondItem="WqK-QA-90X" secondAttribute="bottom" constant="19" id="4GR-7U-G6g"/>
+                            <constraint firstItem="WqK-QA-90X" firstAttribute="centerX" secondItem="Pgy-D5-0yK" secondAttribute="centerX" id="As1-R3-mPX"/>
+                            <constraint firstItem="jMa-dL-O8i" firstAttribute="trailing" secondItem="WqK-QA-90X" secondAttribute="trailing" id="Iih-vK-tPP"/>
+                            <constraint firstItem="jMa-dL-O8i" firstAttribute="baseline" secondItem="rDw-gk-9YP" secondAttribute="firstBaseline" id="IoP-J1-sIq"/>
+                            <constraint firstItem="7L2-gy-Sic" firstAttribute="centerX" secondItem="kUu-dK-KRo" secondAttribute="centerX" id="MmL-JK-lBU"/>
+                            <constraint firstItem="rDw-gk-9YP" firstAttribute="top" secondItem="jMa-dL-O8i" secondAttribute="top" id="Taq-n0-p79"/>
+                            <constraint firstItem="Ikv-72-Aya" firstAttribute="leading" secondItem="NAE-PI-Hwe" secondAttribute="leading" id="cDx-fA-ar7"/>
+                            <constraint firstItem="rDw-gk-9YP" firstAttribute="top" secondItem="Ikv-72-Aya" secondAttribute="bottom" constant="13" id="fSe-r1-L44"/>
+                            <constraint firstItem="WqK-QA-90X" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leadingMargin" constant="-9" id="faf-11-5yE"/>
+                            <constraint firstItem="Ikv-72-Aya" firstAttribute="trailing" secondItem="kUu-dK-KRo" secondAttribute="trailing" id="g79-0z-LBp"/>
+                            <constraint firstItem="Ikv-72-Aya" firstAttribute="trailing" secondItem="NAE-PI-Hwe" secondAttribute="trailing" id="gDU-0r-RVo"/>
+                            <constraint firstItem="jMa-dL-O8i" firstAttribute="leading" secondItem="rDw-gk-9YP" secondAttribute="trailing" constant="8" symbolic="YES" id="gUO-W1-fhh"/>
+                            <constraint firstItem="NAE-PI-Hwe" firstAttribute="top" secondItem="SBj-Dq-LXZ" secondAttribute="bottom" constant="13" id="mlm-8y-4cH"/>
+                            <constraint firstItem="WqK-QA-90X" firstAttribute="top" secondItem="NAE-PI-Hwe" secondAttribute="bottom" constant="11" id="nNE-zh-K3g"/>
+                            <constraint firstItem="Ikv-72-Aya" firstAttribute="leading" secondItem="kUu-dK-KRo" secondAttribute="leading" id="nvc-e9-UwV"/>
+                            <constraint firstItem="7L2-gy-Sic" firstAttribute="top" secondItem="kUu-dK-KRo" secondAttribute="bottom" constant="8" id="ppo-Ra-mc8"/>
+                            <constraint firstItem="7L2-gy-Sic" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leadingMargin" constant="28" id="t6X-9k-2uD"/>
+                            <constraint firstItem="WqK-QA-90X" firstAttribute="centerX" secondItem="NAE-PI-Hwe" secondAttribute="centerX" id="vwV-Rs-PKT"/>
+                            <constraint firstItem="kUu-dK-KRo" firstAttribute="top" secondItem="rDw-gk-9YP" secondAttribute="bottom" constant="15" id="x3b-YJ-msF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="EasyLink" id="ZQi-po-HQp">
                         <barButtonItem key="backBarButtonItem" title=" " id="hKV-Is-SDk"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="EasylinkV2Button" destination="kQy-Do-Sjg" id="IoA-R3-IGv"/>
                         <outlet property="configTableView" destination="WqK-QA-90X" id="l2w-q4-gdQ"/>
                         <outlet property="newDevicesButton" destination="7L2-gy-Sic" id="4E3-bm-b5f"/>
                         <segue destination="gaq-Gk-fOw" kind="push" identifier="IP config" id="B3Q-tS-47y"/>

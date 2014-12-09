@@ -47,7 +47,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EMW ToolBox/commandsTableViewController.m"
@@ -63,7 +63,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EMW ToolBox/commandsTableViewController.m"
@@ -130,13 +130,61 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EMW ToolBox/RootViewController.m"
-            timestampString = "434514961.739091"
+            filePath = "EMW ToolBox/EasyLink/Classes/iPhone/EasyLinkMainViewController.m"
+            timestampString = "439722753.852647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-guideButtonPressed:"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "-updateButtonTitle_NewDevices"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EMW ToolBox/EasyLink/Classes/Common/EASYLINK.m"
+            timestampString = "439715860.271449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "-prepareEasyLink_withFTC:info:mode:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EMW ToolBox/EasyLink/Classes/Common/EASYLINK.m"
+            timestampString = "439715860.271449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-insertEasyLinkPlusBlockIndex:forSeqNo:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EMW ToolBox/EasyLink/Classes/Common/EASYLINK.m"
+            timestampString = "439715860.271449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
+            landmarkName = "-stopTransmitting"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -147,12 +195,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EMW ToolBox/EasyLink/Classes/iPhone/EasyLinkMainViewController.m"
-            timestampString = "438171154.02403"
+            timestampString = "439725386.612235"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
-            landmarkName = "-updateButtonTitle_NewDevices"
+            startingLineNumber = "650"
+            endingLineNumber = "650"
+            landmarkName = "-onDisconnectFromFTC:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EMW ToolBox/EasyLink/Classes/Common/EASYLINK.m"
+            timestampString = "439715860.271449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "672"
+            endingLineNumber = "672"
+            landmarkName = "-onSocket:didAcceptNewSocket:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EMW ToolBox/EasyLink/Classes/Common/EASYLINK.m"
+            timestampString = "439715860.271449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "605"
+            endingLineNumber = "605"
+            landmarkName = "-onSocket:didConnectToHost:port:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EMW ToolBox/EasyLink/Classes/Common/EASYLINK.m"
+            timestampString = "439715860.271449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "626"
+            endingLineNumber = "626"
+            landmarkName = "-onSocket:didConnectToHost:port:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EMW ToolBox/EasyLink/Classes/Common/EASYLINK.m"
+            timestampString = "439721302.653782"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "810"
+            endingLineNumber = "810"
+            landmarkName = "-appEnterInforground:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

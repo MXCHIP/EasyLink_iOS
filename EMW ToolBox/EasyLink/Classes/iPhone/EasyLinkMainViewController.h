@@ -23,8 +23,8 @@
 @private
     IBOutlet UITableView *configTableView;
     UITextField *ssidField,*bssidField,*passwordField,*userInfoField,*ipAddress;
+    NSString *targetSsid;
 
-    IBOutlet UIButton *EasylinkV2Button;
     IBOutlet UIButton *newDevicesButton;
     UIAlertView *alertView;
     CustomIOS7AlertView *customAlertView, *otaAlertView;
@@ -33,8 +33,9 @@
     NSString *apInforRecordFile;
 
     EASYLINK *easylink_config;
-    CustomIOS7AlertView *easyLinkSendingView;
+    CustomIOS7AlertView *easyLinkSendingView, *easyLinkUAPSendingView;
     __weak EasyLinkFoundTableViewController *foundTableViewController;
+    
 
     Reachability *wifiReachability;
 }
@@ -42,12 +43,7 @@
 @property (strong, nonatomic) NSMutableArray *foundModules;
 
 
-/*
-    This method start the transmitting the data to connected 
-    AP. Nerwork validation is also done here. All exceptions from
-    library is handled.
- */
-- (void)startTransmitting: (int)version;
+
 
 
 
