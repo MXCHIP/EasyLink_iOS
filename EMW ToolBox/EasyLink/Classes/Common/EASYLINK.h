@@ -12,6 +12,8 @@
 #import "AsyncUdpSocket.h"
 #import "AsyncSocket.h"
 
+//#define INTERVAL_EASYLINK
+
 #define EASYLINK_V1         0
 #define EASYLINK_V2         1
 #define EASYLINK_PLUS       2
@@ -66,6 +68,10 @@
     BOOL firstTimeConfig;
     id theDelegate;
     uint32_t seqHook;
+#ifdef INTERVAL_EASYLINK
+    BOOL easyLinkSuspend;
+    NSTimer *easyLinkTemporarySuspendTimer;
+#endif
 }
 
 @property (retain, nonatomic) NSMutableArray *multicastArray;
