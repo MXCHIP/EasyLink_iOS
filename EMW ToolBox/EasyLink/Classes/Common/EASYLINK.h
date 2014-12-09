@@ -118,6 +118,7 @@ NSNetServiceDelegate>{
  **/
 
 + (NSString *)ssidForConnectedNetwork;
++ (NSData *)ssidDataForConnectedNetwork;
 + (NSDictionary *)infoForConnectedNetwork;
 + (NSString *)getIPAddress;
 + (NSString *)getNetMask;

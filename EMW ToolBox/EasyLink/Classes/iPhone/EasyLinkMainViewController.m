@@ -106,6 +106,19 @@ BOOL configTableMoved = NO;
         self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
     
     deviceIPConfig = [[NSMutableDictionary alloc] initWithCapacity:5];
+<<<<<<< HEAD
+=======
+    
+    ssidData = [NSData data];
+    
+//    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    
+//    if( screenBounds.size.height == 480.0){
+//        imagePhoneView.center = CGPointMake(imagePhoneView.center.x, imagePhoneView.center.y+MOVE_UP_ON_3_5_INCH/2);
+//        imagePhoneView.transform =  CGAffineTransformMakeTranslation(0, MOVE_UP_ON_3_5_INCH);
+//    }
+
+>>>>>>> master
 
     //按钮加边框
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -224,6 +237,7 @@ BOOL configTableMoved = NO;
 - (void)startTransmitting: (EasyLinkMode)mode {
     NSMutableDictionary *wlanConfig = [NSMutableDictionary dictionaryWithCapacity:20];
 
+<<<<<<< HEAD
     if([ssidField.text length] > 0) [wlanConfig setObject:ssidField.text forKey:KEY_SSID];
     if([passwordField.text length] > 0) [wlanConfig setObject:passwordField.text forKey:KEY_PASSWORD];
     [wlanConfig setObject:[NSNumber numberWithBool:[[deviceIPConfig objectForKey:@"DHCP"] boolValue]] forKey:KEY_DHCP];
@@ -232,6 +246,19 @@ BOOL configTableMoved = NO;
     if([[deviceIPConfig objectForKey:@"NetMask"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"NetMask"] forKey:KEY_NETMASK];
     if([[deviceIPConfig objectForKey:@"GateWay"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"GateWay"] forKey:KEY_GATEWAY];
     if([[deviceIPConfig objectForKey:@"DnsServer"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"DnsServer"] forKey:KEY_DNS1];
+=======
+    NSString *passwordKey = [passwordField.text length] ? passwordField.text : @"";
+    NSString *userInfo = [userInfoField.text length]? userInfoField.text : @"";
+    NSNumber *dhcp = [NSNumber numberWithBool:[[deviceIPConfig objectForKey:@"DHCP"] boolValue]];
+    NSString *ipString = [[deviceIPConfig objectForKey:@"IP"] length] ? [deviceIPConfig objectForKey:@"IP"] : @"";
+    NSString *netmaskString = [[deviceIPConfig objectForKey:@"NetMask"] length] ? [deviceIPConfig objectForKey:@"NetMask"] : @"";
+    NSString *gatewayString = [[deviceIPConfig objectForKey:@"GateWay"] length] ? [deviceIPConfig objectForKey:@"GateWay"] : @"";
+    NSString *dnsString = [[deviceIPConfig objectForKey:@"DnsServer"] length] ? [deviceIPConfig objectForKey:@"DnsServer"] : @"";
+    if([[deviceIPConfig objectForKey:@"DHCP"] boolValue] == YES) ipString = @"";
+    
+    wlanConfigArray = [NSArray arrayWithObjects: ssidData, passwordKey, dhcp, ipString, netmaskString, gatewayString, dnsString, nil];
+
+>>>>>>> master
 
     NSString *userInfo = [userInfoField.text length]? userInfoField.text : @"";
     if(userInfo!=nil){
@@ -825,7 +852,8 @@ BOOL configTableMoved = NO;
 -(UITableViewCell *) prepareCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     if ( indexPath.row == SSID_ROW ){/// this is SSID row
-        NSString *SSID = [[EASYLINK infoForConnectedNetwork] objectForKey:@"SSID"];
+        NSString *SSID = [EASYLINK ssidForConnectedNetwork];
+        ssidData = [EASYLINK ssidDataForConnectedNetwork];
         if(SSID == nil) SSID = @"";
         
         ssidField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
@@ -838,6 +866,7 @@ BOOL configTableMoved = NO;
         [ssidField setBackgroundColor:[UIColor clearColor]];
         [ssidField setReturnKeyType:UIReturnKeyDone];
         [ssidField setText:SSID];
+        
         [cell addSubview:ssidField];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
@@ -995,6 +1024,7 @@ BOOL configTableMoved = NO;
     
     if ( netStatus != NotReachable && ![[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]) {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
+        ssidData = [EASYLINK ssidDataForConnectedNetwork];
         NSString *password = [apInforRecord objectForKey:ssidField.text];
         if(password == nil) password = @"";
         [passwordField setText:password];

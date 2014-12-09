@@ -23,7 +23,11 @@
 @private
     IBOutlet UITableView *configTableView;
     UITextField *ssidField,*bssidField,*passwordField,*userInfoField,*ipAddress;
+<<<<<<< HEAD
     NSString *targetSsid;
+=======
+    NSData *ssidData;
+>>>>>>> master
 
     IBOutlet UIButton *newDevicesButton;
     UIAlertView *alertView;
