@@ -107,6 +107,8 @@ BOOL configTableMoved = NO;
     
     deviceIPConfig = [[NSMutableDictionary alloc] initWithCapacity:5];
     
+    ssidData = [NSData data];
+    
 //    CGRect screenBounds = [UIScreen mainScreen].bounds;
     
 //    if( screenBounds.size.height == 480.0){
@@ -274,8 +276,6 @@ BOOL configTableMoved = NO;
         [alertView show];
     }
 
-    
-    NSString *ssid = [ssidField.text length] ? ssidField.text : nil;
     NSString *passwordKey = [passwordField.text length] ? passwordField.text : @"";
     NSString *userInfo = [userInfoField.text length]? userInfoField.text : @"";
     NSNumber *dhcp = [NSNumber numberWithBool:[[deviceIPConfig objectForKey:@"DHCP"] boolValue]];
@@ -285,7 +285,7 @@ BOOL configTableMoved = NO;
     NSString *dnsString = [[deviceIPConfig objectForKey:@"DnsServer"] length] ? [deviceIPConfig objectForKey:@"DnsServer"] : @"";
     if([[deviceIPConfig objectForKey:@"DHCP"] boolValue] == YES) ipString = @"";
     
-    wlanConfigArray = [NSArray arrayWithObjects: ssid, passwordKey, dhcp, ipString, netmaskString, gatewayString, dnsString, nil];
+    wlanConfigArray = [NSArray arrayWithObjects: ssidData, passwordKey, dhcp, ipString, netmaskString, gatewayString, dnsString, nil];
 
 
     if(userInfo!=nil){
@@ -757,7 +757,8 @@ BOOL configTableMoved = NO;
 -(UITableViewCell *) prepareCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     if ( indexPath.row == SSID_ROW ){/// this is SSID row
-        NSString *SSID = [[EASYLINK infoForConnectedNetwork] objectForKey:@"SSID"];
+        NSString *SSID = [EASYLINK ssidForConnectedNetwork];
+        ssidData = [EASYLINK ssidDataForConnectedNetwork];
         if(SSID == nil) SSID = @"";
         
         ssidField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
@@ -770,6 +771,7 @@ BOOL configTableMoved = NO;
         [ssidField setBackgroundColor:[UIColor clearColor]];
         [ssidField setReturnKeyType:UIReturnKeyDone];
         [ssidField setText:SSID];
+        
         [cell addSubview:ssidField];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
@@ -911,6 +913,7 @@ BOOL configTableMoved = NO;
         passwordField.text = @"";
     }else {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
+        ssidData = [EASYLINK ssidDataForConnectedNetwork];
         NSString *password = [apInforRecord objectForKey:ssidField.text];
         if(password == nil) password = @"";
         [passwordField setText:password];
