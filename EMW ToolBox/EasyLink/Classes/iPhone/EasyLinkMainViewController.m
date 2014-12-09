@@ -567,6 +567,7 @@ BOOL configTableMoved = NO;
     }
     
     [easyLinkSendingView close];
+    [easylink_config stopTransmitting];
     
     if(otaAlertView != nil){
         [otaAlertView close];

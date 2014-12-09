@@ -20,7 +20,7 @@
 #define MessageCount 100
 
 #define EasyLinkPlusDelayPerByte    0.005
-#define EasyLinkPlusDelayPerBlock   0.1
+#define EasyLinkPlusDelayPerBlock   0.08
 #define EasyLinkV2DelayPerBlock     0.04
 
 
@@ -406,6 +406,11 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
         mreq.imr_multiaddr.s_addr =  inet_addr([multicastAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
         setsockopt(CFSocketGetNative(tempSocket),IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq));
     }
+    
+#ifdef INTERVAL_EASYLINK
+    easyLinkSuspend = false;
+    easyLinkTemporarySuspendTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(easyLinkTemperarySuspend:) userInfo:nil repeats:YES];
+#endif
 
     if(version == EASYLINK_PLUS){
         if(broadcastSending == false){
@@ -430,11 +435,34 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
 {
     broadcastSending = false;
     multicastSending = false;
-
+    
+#ifdef INTERVAL_EASYLINK
+    [easyLinkTemporarySuspendTimer invalidate];
+    easyLinkTemporarySuspendTimer = nil;
+#endif
 }
 
+#ifdef INTERVAL_EASYLINK
+- (void)easyLinkTemperarySuspend:(id)userInfo
+{
+    if(easyLinkSuspend == false){
+        NSLog(@"Suspend...");
+        easyLinkSuspend = true;
+    }
+    else{
+        NSLog(@"Unsuspend...");
+        easyLinkSuspend = false;
+    }
+}
+#endif
+
 - (void)broadcastStartConfigure:(id)sender{
+#ifdef INTERVAL_EASYLINK
+    if(easyLinkSuspend == false)
+        [self.broadcastSocket sendData:[[self.broadcastArray objectAtIndex:broadcastcount] objectForKey:@"sendData"] toHost:[EASYLINK getBroadcastAddress] port:65523 withTimeout:10 tag:0];
+#else
     [self.broadcastSocket sendData:[[self.broadcastArray objectAtIndex:broadcastcount] objectForKey:@"sendData"] toHost:[EASYLINK getBroadcastAddress] port:65523 withTimeout:10 tag:0];
+#endif
     ++broadcastcount;
     if (broadcastcount == [self.broadcastArray count]) broadcastcount = 0;
     if(broadcastSending == true)
@@ -442,7 +470,12 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
 }
 
 - (void)multicastStartConfigure:(id)sender{
+#ifdef INTERVAL_EASYLINK
+    if(easyLinkSuspend == false)
+        [self.multicastSocket sendData:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"sendData"] toHost:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"host"] port:65523 withTimeout:10 tag:0];
+#else
     [self.multicastSocket sendData:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"sendData"] toHost:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"host"] port:65523 withTimeout:10 tag:0];
+#endif
     ++multicastCount;
     if (multicastCount == [self.multicastArray count]) multicastCount = 0;
     if(multicastSending == true)
