@@ -52,6 +52,11 @@ typedef enum
 /**
  *
  **/
+- (void)onConfiguredByUAP;
+
+/**
+ *
+ **/
 - (void)onDisconnectFromFTC:(NSNumber *)client;
 
 @end
@@ -64,7 +69,8 @@ NSNetServiceDelegate>{
     /* Wlan configuratuon send by EasyLink */
     in_addr_t ip, netmask, gateway, dns1, dns2;
     bool dhcp;
-    NSString *ssid, *passwd;
+    NSData *ssid;
+    NSString *passwd;
     NSMutableData *userInfoWithIP;
     
     NSUInteger broadcastcount, multicastCount;

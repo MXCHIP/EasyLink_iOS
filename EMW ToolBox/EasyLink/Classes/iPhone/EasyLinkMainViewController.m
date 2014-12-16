@@ -10,6 +10,7 @@
 #import "PulsingHaloLayer.h"
 #import "EasyLinkFTCTableViewController.h"
 #import "EasyLinkIpConfigTableViewController.h"
+#import "newModuleTableViewCell.h"
 
 BOOL configTableMoved = NO;
 
@@ -90,6 +91,8 @@ BOOL configTableMoved = NO;
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
+    [bgView setContentSize:CGSizeMake(320, 1900)];
+    bgView.showsVerticalScrollIndicator = NO;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docPath = [paths objectAtIndex:0];
@@ -106,19 +109,8 @@ BOOL configTableMoved = NO;
         self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
     
     deviceIPConfig = [[NSMutableDictionary alloc] initWithCapacity:5];
-<<<<<<< HEAD
-=======
-    
-    ssidData = [NSData data];
-    
-//    CGRect screenBounds = [UIScreen mainScreen].bounds;
-    
-//    if( screenBounds.size.height == 480.0){
-//        imagePhoneView.center = CGPointMake(imagePhoneView.center.x, imagePhoneView.center.y+MOVE_UP_ON_3_5_INCH/2);
-//        imagePhoneView.transform =  CGAffineTransformMakeTranslation(0, MOVE_UP_ON_3_5_INCH);
-//    }
 
->>>>>>> master
+    targetSsid = [NSData data];
 
     //按钮加边框
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -180,9 +172,7 @@ BOOL configTableMoved = NO;
         self.foundModules = nil;
     }
     
-    [self stopAction];
     // Retain the UI access for the user.
-    [self enableUIAccess:YES];
     [super viewWillDisappear:animated];
 }
 
@@ -202,10 +192,10 @@ BOOL configTableMoved = NO;
 {
     if ([foundModules count] == 0) {
         //newDevicesButton.titleLabel.text = @"hello";
-        [newDevicesButton setTitle:@"New Devices(0)" forState: UIControlStateNormal];
+        [newDevicesButton setTitle:@"(0)" forState: UIControlStateNormal];
         [newDevicesButton setUserInteractionEnabled:false];
     }else{
-        NSString *title = [[NSString alloc]initWithFormat:@"New Devices(%d)",[foundModules count]];
+        NSString *title = [[NSString alloc]initWithFormat:@"(%d)",[foundModules count]];
         [newDevicesButton setTitle:title forState: UIControlStateNormal];
         [newDevicesButton setUserInteractionEnabled:true];
     }
@@ -237,8 +227,7 @@ BOOL configTableMoved = NO;
 - (void)startTransmitting: (EasyLinkMode)mode {
     NSMutableDictionary *wlanConfig = [NSMutableDictionary dictionaryWithCapacity:20];
 
-<<<<<<< HEAD
-    if([ssidField.text length] > 0) [wlanConfig setObject:ssidField.text forKey:KEY_SSID];
+    if([targetSsid length] > 0) [wlanConfig setObject:targetSsid forKey:KEY_SSID];
     if([passwordField.text length] > 0) [wlanConfig setObject:passwordField.text forKey:KEY_PASSWORD];
     [wlanConfig setObject:[NSNumber numberWithBool:[[deviceIPConfig objectForKey:@"DHCP"] boolValue]] forKey:KEY_DHCP];
     
@@ -246,19 +235,6 @@ BOOL configTableMoved = NO;
     if([[deviceIPConfig objectForKey:@"NetMask"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"NetMask"] forKey:KEY_NETMASK];
     if([[deviceIPConfig objectForKey:@"GateWay"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"GateWay"] forKey:KEY_GATEWAY];
     if([[deviceIPConfig objectForKey:@"DnsServer"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"DnsServer"] forKey:KEY_DNS1];
-=======
-    NSString *passwordKey = [passwordField.text length] ? passwordField.text : @"";
-    NSString *userInfo = [userInfoField.text length]? userInfoField.text : @"";
-    NSNumber *dhcp = [NSNumber numberWithBool:[[deviceIPConfig objectForKey:@"DHCP"] boolValue]];
-    NSString *ipString = [[deviceIPConfig objectForKey:@"IP"] length] ? [deviceIPConfig objectForKey:@"IP"] : @"";
-    NSString *netmaskString = [[deviceIPConfig objectForKey:@"NetMask"] length] ? [deviceIPConfig objectForKey:@"NetMask"] : @"";
-    NSString *gatewayString = [[deviceIPConfig objectForKey:@"GateWay"] length] ? [deviceIPConfig objectForKey:@"GateWay"] : @"";
-    NSString *dnsString = [[deviceIPConfig objectForKey:@"DnsServer"] length] ? [deviceIPConfig objectForKey:@"DnsServer"] : @"";
-    if([[deviceIPConfig objectForKey:@"DHCP"] boolValue] == YES) ipString = @"";
-    
-    wlanConfigArray = [NSArray arrayWithObjects: ssidData, passwordKey, dhcp, ipString, netmaskString, gatewayString, dnsString, nil];
-
->>>>>>> master
 
     NSString *userInfo = [userInfoField.text length]? userInfoField.text : @"";
     if(userInfo!=nil){
@@ -418,7 +394,7 @@ BOOL configTableMoved = NO;
     alertContentView.pagingEnabled = YES;
     alertContentView.userInteractionEnabled = false;
     alertContentView.showsHorizontalScrollIndicator = NO;
-    alertContentView.contentSize = CGSizeMake(290*4, 300);
+    alertContentView.contentSize = CGSizeMake(290*5, 300);
     
     [alertContentView scrollRectToVisible:CGRectMake(0, 0, 290, 300) animated:YES];
     
@@ -497,6 +473,13 @@ BOOL configTableMoved = NO;
     
     /* uAP config Page 4*/
     title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130 + 3 * alertContentView.frame.size.width, 20, 260, 25)];
+    title.text = [[NSString alloc] initWithFormat: @"Reconnect to %@...", [[NSString alloc]initWithData:targetSsid encoding:NSUTF8StringEncoding] ] ;
+    title.font= [UIFont boldSystemFontOfSize:19.0];
+    title.textAlignment = NSTextAlignmentCenter;
+    [alertContentView addSubview:title];
+    
+    /* uAP config Page 5*/
+    title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130 + 4 * alertContentView.frame.size.width, 20, 260, 25)];
     title.text = @"Scaning for new device...";
     title.font= [UIFont boldSystemFontOfSize:19.0];
     title.textAlignment = NSTextAlignmentCenter;
@@ -565,12 +548,29 @@ BOOL configTableMoved = NO;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"APInfo"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell setBackgroundColor:[UIColor colorWithRed:0.100 green:0.478 blue:1.000 alpha:0.1]];
-    cell = [self prepareCell:cell atIndexPath:indexPath];
-
-    return cell;
+    UITableViewCell *cell;
+    newModuleTableViewCell *newModuleCell;
+    
+    if(tableView == configTableView){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"APInfo"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell setBackgroundColor:[UIColor colorWithRed:0.100 green:0.478 blue:1.000 alpha:0.1]];
+        cell = [self prepareCell:cell atIndexPath:indexPath];
+        return cell;
+    }
+    else{
+        newModuleCell = (newModuleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"New Module"];
+        if(newModuleCell == nil)
+            newModuleCell = [[newModuleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"New Module"];
+        newModuleCell.moduleInfo = [foundModules objectAtIndex: indexPath.row];
+        [newModuleCell setDelegate:self];
+        return newModuleCell;
+//        [cell setBackgroundColor:[UIColor colorWithRed:0.100 green:0.478 blue:1.000 alpha:0.4]];
+//        [cell setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.6]];
+//        cell.textLabel.text = [[self.foundModules objectAtIndex:indexPath.row] objectForKey:@"N"];
+//        currentVerStr = [[self.foundModules objectAtIndex:indexPath.row] objectForKey:@"FW"];
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"Firmware: %@",currentVerStr? currentVerStr:@"unkown"];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -583,7 +583,10 @@ BOOL configTableMoved = NO;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    if(tableView == configTableView)
+        return 4;
+    else
+        return [self.foundModules count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -650,9 +653,14 @@ BOOL configTableMoved = NO;
         }
     }
 
+    [foundModule setObject: [NSNumber numberWithInteger:arc4random()] forKey:@"tag"];
     [self.foundModules addObject:foundModule];
     indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
     [foundTableViewController.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                withRowAnimation:UITableViewRowAnimationRight];
+    
+    indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
+    [foundModuleTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                 withRowAnimation:UITableViewRowAnimationRight];
     
     /*Correct AP info input, save to file*/
@@ -674,6 +682,11 @@ BOOL configTableMoved = NO;
     
 }
 
+- (void) onConfiguredByUAP
+{
+    [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 3 * 290, 0, 290, 300) animated:YES];
+}
+
 - (void)onDisconnectFromFTC:(NSNumber *)ftcClientTag
 {
     NSIndexPath* indexPath;
@@ -692,6 +705,8 @@ BOOL configTableMoved = NO;
     
     if(disconnectedClient != nil){
         [self.foundModules removeObject: disconnectedClient ];
+        [foundModuleTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                    withRowAnimation:UITableViewRowAnimationAutomatic];
         [foundTableViewController.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                     withRowAnimation:UITableViewRowAnimationAutomatic];
     }
@@ -722,11 +737,10 @@ BOOL configTableMoved = NO;
             }
         }
     }
+    
+    [self updateButtonTitle_NewDevices];
 
-    if(foundTableViewController != nil && [foundModules count] != 0)
-        [self.navigationController popToViewController:foundTableViewController animated:YES];
-    else
-        [self.navigationController popToViewController:self animated:YES];
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 #pragma mark - EasyLinkFTCTableViewController delegate-
@@ -771,6 +785,13 @@ BOOL configTableMoved = NO;
     [easylink_config configFTCClient:[configData objectForKey:@"client"]
                withConfigurationData:[NSJSONSerialization dataWithJSONObject:[configData objectForKey:@"update"] options:0 error:&err]];
 }
+
+
+- (void)onIgnored:(NSNumber *)client
+{
+    [easylink_config closeFTCClient: client];
+}
+
 
 #pragma mark - EasyLinkOTATableViewController delegate-
 
@@ -853,7 +874,7 @@ BOOL configTableMoved = NO;
 {
     if ( indexPath.row == SSID_ROW ){/// this is SSID row
         NSString *SSID = [EASYLINK ssidForConnectedNetwork];
-        ssidData = [EASYLINK ssidDataForConnectedNetwork];
+        targetSsid = [EASYLINK ssidDataForConnectedNetwork];
         if(SSID == nil) SSID = @"";
         
         ssidField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
@@ -954,8 +975,8 @@ BOOL configTableMoved = NO;
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     
     if ( netStatus != NotReachable ){
-        if ( [[EASYLINK ssidForConnectedNetwork] isEqualToString: targetSsid]){
-            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 3 * 290, 0, 290, 300) animated:YES];
+        if ( [[EASYLINK ssidForConnectedNetwork] isEqualToString: [[NSString alloc] initWithData:targetSsid encoding:NSUTF8StringEncoding]]){
+            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 4 * 290, 0, 290, 300) animated:YES];
             [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
         }
         if ( [[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]){
@@ -966,6 +987,7 @@ BOOL configTableMoved = NO;
     
     if ( netStatus != NotReachable && ![[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]) {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
+        targetSsid = [EASYLINK ssidDataForConnectedNetwork];
         ipAddress.text = @"Automatic";
         ssidField.userInteractionEnabled = NO;
         
@@ -979,9 +1001,6 @@ BOOL configTableMoved = NO;
         [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
         [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
     }
-
-
-    
 }
 
 /*
@@ -1012,8 +1031,8 @@ BOOL configTableMoved = NO;
     NetworkStatus netStatus = [verifyConnection currentReachabilityStatus];
     
     if ( netStatus != NotReachable ){
-        if ( [[EASYLINK ssidForConnectedNetwork] isEqualToString: targetSsid]){
-            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 3 * 290, 0, 290, 300) animated:YES];
+        if ( [[EASYLINK ssidForConnectedNetwork] isEqualToString: [[NSString alloc] initWithData:targetSsid encoding:NSUTF8StringEncoding]]){
+            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 4 * 290, 0, 290, 300) animated:YES];
             [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
         }
         if ( [[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]){
@@ -1024,7 +1043,7 @@ BOOL configTableMoved = NO;
     
     if ( netStatus != NotReachable && ![[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]) {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
-        ssidData = [EASYLINK ssidDataForConnectedNetwork];
+        targetSsid = [EASYLINK ssidDataForConnectedNetwork];
         NSString *password = [apInforRecord objectForKey:ssidField.text];
         if(password == nil) password = @"";
         [passwordField setText:password];
@@ -1042,12 +1061,27 @@ BOOL configTableMoved = NO;
 {
     if ([[segue identifier] isEqualToString:@"IP config"]) {
         [[segue destinationViewController] setDeviceIPConfig: deviceIPConfig];
-    }
-    else if ([[segue identifier] isEqualToString:@"New Devices"]) {
-        foundTableViewController = [segue destinationViewController];
-        [foundTableViewController setFoundModules: self.foundModules];
-        [foundTableViewController setDelegate:self];
-        [foundTableViewController setEasylink_config:easylink_config];
+    }else if ([[segue identifier] isEqualToString:@"First Time Configuration"]){
+        for( NSMutableDictionary *object in foundModules){
+            if([[object objectForKey:@"tag"] isEqualToNumber:[NSNumber numberWithInt:[sender tag] ]]){
+                [object removeObjectsForKeys:[NSArray arrayWithObjects:@"FW", @"PO", @"HD", nil]];
+                [[segue destinationViewController] setConfigData:object];
+                [(EasyLinkFTCTableViewController *)[segue destinationViewController] setDelegate:self];
+                break;
+            }
+        }
+    }else if ([[segue identifier] isEqualToString:@"OTA"]){
+        for( NSMutableDictionary *object in foundModules){
+            if([[object objectForKey:@"tag"] isEqualToNumber:[NSNumber numberWithInt:[sender tag] ]]){
+                [[segue destinationViewController] setProtocol:[object objectForKey:@"PO"]];
+                [[segue destinationViewController] setClient:[object objectForKey:@"client"]];
+                [[segue destinationViewController] setHardwareVersion: [object objectForKey:@"HD"]];
+                [[segue destinationViewController] setFirmwareVersion: [object objectForKey:@"FW"]];
+                [[segue destinationViewController] setRfVersion: [object objectForKey:@"RF"]];
+                [[segue destinationViewController] setDelegate:self];
+                break;
+            }
+        }
     }
 }
 

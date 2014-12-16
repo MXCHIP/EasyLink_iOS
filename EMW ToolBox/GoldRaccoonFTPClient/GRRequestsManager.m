@@ -68,6 +68,7 @@
 {
     NSLog(@"FTP dealloc");
     [self stopAndCancelAllRequests];
+    _delegate = nil;
 }
 
 #pragma mark - Setters

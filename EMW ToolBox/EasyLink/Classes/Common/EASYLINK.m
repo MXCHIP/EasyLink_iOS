@@ -18,8 +18,6 @@
 #include "route.h"
 #endif
 
-
-
 #define EasyLinkPlusDelayPerByte    0.005
 #define EasyLinkPlusDelayPerBlock   0.08
 #define EasyLinkV2DelayPerBlock     0.04
@@ -52,19 +50,14 @@
 @property (nonatomic, retain, readwrite) NSNetServiceBrowser* netServiceBrowser;
 @property (nonatomic, retain, readwrite) NSMutableArray* netServiceArray;
 
-
 - (void)broadcastStartConfigure:(id)sender;
 - (void)multicastStartConfigure:(id)sender;
 - (void)closeClient:(NSTimer *)timer;
 - (BOOL)isFTCServerStarted;
-<<<<<<< HEAD
-- (void)prepareEasyLinkV2:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
-- (void)prepareEasyLinkPlus:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
-=======
-- (void)prepareEasyLinkV1:(NSString *)bSSID password:(NSString *)bpasswd;
+
 - (void)prepareEasyLinkV2:(NSData *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
 - (void)prepareEasyLinkPlus:(NSData *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo;
->>>>>>> master
+
 
 @end
 
@@ -89,10 +82,7 @@
         multicastArray = [NSMutableArray array];
         
         self.ftcClients = [NSMutableArray arrayWithCapacity:10];
-        self.broadcastSocket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
-        [self.broadcastSocket enableBroadcast:YES error:&err];
-        
-        self.multicastSocket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
+
         
         multicastSending = false;
         broadcastSending = false;
@@ -107,9 +97,12 @@
         multicastCount = 0;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInforground:) name:UIApplicationDidBecomeActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+
         
         // wifi notification when changed.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wifiStatusChanged:) name:kReachabilityChangedNotification object:nil];
+        
 
     }
     return self;
@@ -184,7 +177,6 @@
 //- (void)prepareEasyLinkV2_withFTC:(NSString *)bSSID password:(NSString *)bpasswd info: (NSData *)userInfo
 - (void)prepareEasyLink_withFTC:(NSDictionary *)wlanConfigArray info: (NSData *)userInfo mode: (EasyLinkMode)easyLinkMode;
 {
-<<<<<<< HEAD
     NSString *ipAddress;
     char seperate = '#';
     
@@ -210,28 +202,7 @@
     dns2 = ipAddress==nil? -1:htonl(inet_addr([ipAddress cStringUsingEncoding:NSASCIIStringEncoding]));
     
     dhcp = [[wlanConfigArray objectForKey:KEY_DHCP]  boolValue];
-=======
-    struct ifaddrs *interfaces = NULL;
-    struct ifaddrs *temp_addr = NULL;
-    in_addr_t ip, netmask, gateway, dns1, dns2;
-    bool dhcp;
-    
-    NSData *bSSID;
-    NSString *bpasswd;
-    char seperate = '#';
-    
-    version = ver;
-    
-    bSSID = [wlanConfigArray objectAtIndex:INDEX_SSID];
-    bpasswd = [wlanConfigArray objectAtIndex:INDEX_PASSWORD];
-    
-    ip = [wlanConfigArray count]>=INDEX_IP? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_IP] cStringUsingEncoding:NSASCIIStringEncoding]));
-    netmask = [wlanConfigArray count]>=INDEX_NETMASK? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_NETMASK] cStringUsingEncoding:NSASCIIStringEncoding]));
-    gateway = [wlanConfigArray count]>=INDEX_GATEWAY? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_GATEWAY] cStringUsingEncoding:NSASCIIStringEncoding]));
-    dns1 = [wlanConfigArray count]>=INDEX_DNS1? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_DNS1] cStringUsingEncoding:NSASCIIStringEncoding]));
-    dns2 = [wlanConfigArray count]>=INDEX_DNS2? -1:htonl(inet_addr([ [wlanConfigArray objectAtIndex:INDEX_DNS2] cStringUsingEncoding:NSASCIIStringEncoding]));
-    dhcp = [wlanConfigArray count]>=INDEX_DHCP? YES:[[wlanConfigArray objectAtIndex:INDEX_DHCP] boolValue];
->>>>>>> master
+
     if(dhcp==YES)
         ip = -1;
     
@@ -349,12 +320,9 @@
     NSUInteger bssid_length = [bSSID length];
     NSUInteger bpasswd_length = strlen(bpasswd_UTF8);
     NSUInteger userInfo_length = [userInfo length];
-<<<<<<< HEAD
-    uint16_t chechSum = 0;
-=======
 
-    UInt16 chechSum = 0;
->>>>>>> master
+    uint16_t chechSum = 0;
+
     uint32_t seqNo = 0;
     uint32_t seqHook = 0;
     
@@ -363,12 +331,7 @@
     NSUInteger addedConst[4] = {0x100, 0x200, 0x300, 0x400};
     NSUInteger addedConstIdx = 0;
     
-<<<<<<< HEAD
     [broadcastArray removeAllObjects];
-    /*0x5AA|0x5AB|0x5AC|Total len|BSSID[3]|BSSID[4]|BSSID[5]|Key len|Key|User info|Checksum high|Checksum low*/
-=======
-    [self.broadcastArray removeAllObjects];
->>>>>>> master
     
     [broadcastArray insertEasyLinkPlusData:0x5AA];
     [broadcastArray insertEasyLinkPlusData:0x5AB];
@@ -391,15 +354,9 @@
     
     /*SSID*/
     for (NSUInteger idx = 0; idx != bssid_length; ++idx) {
-<<<<<<< HEAD
-        [broadcastArray insertEasyLinkPlusData:( bSSID_UTF8[idx] + addedConst[(addedConstIdx++)%4] )];
+        [broadcastArray insertEasyLinkPlusData:( cSSID[idx] + addedConst[(addedConstIdx++)%4] )];
         [broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
-        chechSum += bSSID_UTF8[idx];
-=======
-        [self.broadcastArray insertEasyLinkPlusData:( cSSID[idx] + addedConst[(addedConstIdx++)%4] )];
-        [self.broadcastArray insertEasyLinkPlusBlockIndex: &seqHook forSeqNo:seqNo++];
         chechSum += cSSID[idx];
->>>>>>> master
     }
 
     /*Key*/
@@ -429,21 +386,36 @@
 
 - (void)transmitSettings
 {
+    NSError *err;
     [self stopTransmitting];
     
     if(mode == EASYLINK_PLUS){
         broadcastSending = true;
         multicastSending = true;
+        
+        self.broadcastSocket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
+        [self.broadcastSocket enableBroadcast:YES error:&err];
+        
+        self.multicastSocket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
+        
         [self performSelector:@selector(broadcastStartConfigure:) withObject:self];
         [self performSelector:@selector(multicastStartConfigure:) withObject:self];
 
     }else if(mode == EASYLINK_V2){
         multicastSending = true;
+        self.multicastSocket = [[AsyncUdpSocket alloc] initWithDelegate:nil];
         [self performSelector:@selector(multicastStartConfigure:) withObject:self];
         
     }else if(mode == EASYLINK_SOFT_AP) {
         softAPSending = true;
         self.netServiceBrowser.delegate = nil;
+        self.netServiceBrowser = nil;
+        
+        for (NSNetService *service in self.netServiceArray){
+            service.delegate = nil;
+        }
+        self.netServiceArray = nil;
+        
         NSNetServiceBrowser *aNetServiceBrowser = [[NSNetServiceBrowser alloc] init];
         if(!aNetServiceBrowser) {
             // The NSNetServiceBrowser couldn't be allocated and initialized.
@@ -463,17 +435,7 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(multicastStartConfigure: ) object:self];
     broadcastSending = false;
     multicastSending = false;
-    
-    if(softAPSending == true){
-        softAPSending = false;
-        self.netServiceBrowser.delegate = nil;
-        self.netServiceBrowser = nil;
-        
-        for (NSNetService *service in self.netServiceArray){
-            service.delegate = nil;
-        }
-        self.netServiceArray = nil;
-    }
+    softAPSending = false;
 }
 
 
@@ -508,8 +470,43 @@
 {
     NSDictionary *txtData;
     NSError *err;
+    NSString *_address;
+    NSNumber *tag = nil;
     
     [service stop];
+    service.delegate = nil;
+    
+    _address = [[[service addresses] objectAtIndex: 0] host];
+    NSLog(@"Found address: %@", _address);
+    
+    for (NSDictionary *client in self.ftcClients){
+        if( [[client objectForKey:@"Host"]isEqualToString:_address]){
+            [[client objectForKey:@"Socket"] disconnect];
+        }
+    }
+    
+    NSMutableDictionary *client = [[NSMutableDictionary alloc] initWithCapacity:5];
+    
+    for (NSUInteger idx=0; idx!=MessageCount; idx++) {
+        if(inComingMessageArray[idx]==nil){
+            inComingMessageArray[idx] = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, false);
+            tag = [NSNumber numberWithLong:(long)idx];
+            break;
+        }
+    }
+    if(tag == nil)
+        return;
+    
+    AsyncSocket *sock = [[AsyncSocket alloc] initWithDelegate:self];
+    [client setObject:sock forKey:@"Socket"];
+    [client setObject:tag forKey:@"Tag"];
+    [client setObject:_address forKey:@"Host"];
+    
+    [ftcClients addObject:client];
+    NSLog(@"New socket client, %d", [tag intValue]);
+
+    
+    
     
     txtData = [NSNetService dictionaryFromTXTRecordData: [service TXTRecordData]];
     if([[NSString alloc]initWithData:[txtData objectForKey:@"wlan unconfigured"] encoding:NSASCIIStringEncoding].boolValue == YES){
@@ -519,12 +516,11 @@
         wlanUnConfigured = false;
     }
     
-    //configSocket = [[AsyncSocket alloc] initWithDelegate:self];
-    NSString *_address = [[[service addresses] objectAtIndex: 0] host];
     
-    [[[AsyncSocket alloc] initWithDelegate:self] connectToHost:_address onPort:service.port withTimeout:4.0 error:&err];
+    NSLog(@"Connect to: %@:%d", _address, service.port);
+    [sock connectToHost:_address onPort:service.port withTimeout:5 error:&err];
+    [self.netServiceArray removeObject:service];
 }
-
 
 #pragma mark - First time configuration
 
@@ -641,6 +637,8 @@
                                                          selector:@selector(closeClient:)
                                                          userInfo:[clientDict objectForKey:@"Socket"]
                                                           repeats:NO];
+    
+
 }
 
 
@@ -653,28 +651,17 @@
     char contentLen[50];
     NSError *err;
     NSNumber *tag = nil;
-    NSData *configData = [NSJSONSerialization dataWithJSONObject:configDict options:0 error:&err];
-    NSMutableDictionary *client = [[NSMutableDictionary alloc]initWithCapacity:5];
-    
     if(mode != EASYLINK_SOFT_AP)
         return;
     
-    for (NSUInteger idx=0; idx!=MessageCount; idx++) {
-        if(inComingMessageArray[idx]==nil){
-            inComingMessageArray[idx] = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, false);
-            tag = [NSNumber numberWithLong:(long)idx];
-            break;
-        }
-    }
-    if(tag == nil)
-        return;
     
-    [client setObject:sock forKey:@"Socket"];
-    [client setObject:tag forKey:@"Tag"];
-    [ftcClients addObject:client];
-    NSLog(@"New socket client, %d", [tag intValue]);
+    NSMutableDictionary *configDictTmp = [NSMutableDictionary dictionaryWithDictionary:configDict];
+    [configDictTmp setObject:[[NSString alloc] initWithData:[configDictTmp objectForKey:KEY_SSID] encoding:NSUTF8StringEncoding]
+                              forKey:KEY_SSID];
     
-    if(wlanUnConfigured == true){
+    NSData *configData = [NSJSONSerialization dataWithJSONObject:configDictTmp options:0 error:&err];
+    
+    if(wlanUnConfigured == true){ //uAP mode -> connected to uap, send config
         CFURLRef urlRef = CFURLCreateWithString(kCFAllocatorDefault, CFSTR("/config-write-uap"), NULL);
         CFHTTPMessageRef httpRequestMessage = CFHTTPMessageCreateRequest (kCFAllocatorDefault,
                                                                           CFSTR("POST"),
@@ -695,7 +682,7 @@
         CFRelease(length);
         
         [sock readDataWithTimeout:-1 tag:[tag intValue]];
-    }else{
+    }else{ //uAP mode -> connected to target ap, read config
         CFURLRef urlRef = CFURLCreateWithString(kCFAllocatorDefault, CFSTR("/config-read"), NULL);
         CFHTTPMessageRef httpRequestMessage = CFHTTPMessageCreateRequest (kCFAllocatorDefault,
                                                                           CFSTR("GET"),
@@ -717,7 +704,6 @@
 {
     NSNumber *tag = nil;
     AsyncSocket *clientSocket = newSocket;
-    //NSLog(@"New socket client");
     
     NSMutableDictionary *client = [[NSMutableDictionary alloc]initWithCapacity:5];
     for (NSUInteger idx=0; idx!=MessageCount; idx++) {
@@ -741,7 +727,8 @@
 - (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err
 {
     if (err) {
-        NSLog(@"Setup TCP server failed:%@, %@", sock, [err localizedDescription]);
+        NSLog(@"Socket connect failed: %@", [err localizedDescription]);
+        //NSLog(@"Setup TCP server failed:%@, %@", sock, [err localizedDescription]);
     }
 }
 
@@ -774,7 +761,7 @@
         CFRelease(inComingMessageArray[[tag intValue]]);
         inComingMessageArray[[tag intValue]] = nil;
         [self.ftcClients removeObject: disconnnectedClient];
-        if([theDelegate respondsToSelector:@selector(onDisconnectFromFTC:)])
+        if([theDelegate respondsToSelector:@selector(onDisconnectFromFTC:)] && wlanUnConfigured == false)
             [theDelegate onDisconnectFromFTC:tag];
     }
 }
@@ -807,7 +794,6 @@
         return;
     }
 
-<<<<<<< HEAD
     if(CFHTTPMessageIsRequest(inComingMessage) == true ){
         CFURLRef urlRef = CFHTTPMessageCopyRequestURL(inComingMessage);
         CFStringRef urlPathRef= CFURLCopyPath (urlRef);
@@ -815,36 +801,30 @@
         NSString *urlPath= (__bridge_transfer NSString*)urlPathRef;
         NSLog(@"URL: %@", urlPath);
         
-        if([urlPath rangeOfString:@"/config-read"].location != NSNotFound){
+        if([urlPath rangeOfString:@"/auth-setup"].location != NSNotFound || [urlPath rangeOfString:@"/config-read"].location != NSNotFound){
             httpRespondMessage = CFHTTPMessageCreateResponse ( kCFAllocatorDefault, 202, NULL, kCFHTTPVersion1_1 );
             CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRespondMessage );
             [sock writeData:(__bridge_transfer NSData*)httpData withTimeout:20 tag:[[client objectForKey:@"Tag"] longValue]];
+            [self stopTransmitting];
             if([theDelegate respondsToSelector:@selector(onFoundByFTC: currentConfig:)])
                 [theDelegate onFoundByFTC:[NSNumber numberWithLong:tag] currentConfig: body];
         }
     }else{
+        if([theDelegate respondsToSelector:@selector(onConfiguredByUAP)] && wlanUnConfigured == true ){
+            [theDelegate onConfiguredByUAP];
+            [sock disconnect];
+        }
+        
         NSMutableDictionary *foundModule = [NSJSONSerialization JSONObjectWithData:body
                                                                            options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
                                                                              error:&err];
         if ( [[foundModule objectForKey:@"T"] isEqualToString:@"Current Configuration"] == true ){
+            [self stopTransmitting];
             if([theDelegate respondsToSelector:@selector(onFoundByFTC: currentConfig:)])
                 [theDelegate onFoundByFTC:[NSNumber numberWithLong:tag] currentConfig: body];
+        }else{
+            
         }
-=======
-    
-    CFURLRef urlRef = CFHTTPMessageCopyRequestURL(inComingMessage);
-    CFStringRef urlPathRef= CFURLCopyPath (urlRef);
-    CFRelease(urlRef);
-    NSString *urlPath= (__bridge_transfer NSString*)urlPathRef;
-    NSLog(@"URL: %@", urlPath);
-    
-    if([urlPath rangeOfString:@"/auth-setup"].location != NSNotFound ||[urlPath rangeOfString:@"/config-read"].location != NSNotFound){
-        httpRespondMessage = CFHTTPMessageCreateResponse ( kCFAllocatorDefault, 202, NULL, kCFHTTPVersion1_1 );
-        CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRespondMessage );
-        [sock writeData:(__bridge_transfer NSData*)httpData withTimeout:20 tag:[[client objectForKey:@"Tag"] longValue]];
-        if([theDelegate respondsToSelector:@selector(onFoundByFTC: currentConfig:)])
-            [theDelegate onFoundByFTC:[NSNumber numberWithLong:tag] currentConfig: body];
->>>>>>> master
     }
     
     /*Recv data that server can send FIN+ACK when client disconnect*/
@@ -869,18 +849,27 @@
  */
 - (void)appEnterInforground:(NSNotification*)notification{
     NSLog(@"%s", __func__);
-    if(softAPSending == true){
-        self.netServiceBrowser.delegate = nil;
-        NSNetServiceBrowser *aNetServiceBrowser = [[NSNetServiceBrowser alloc] init];
-        if(!aNetServiceBrowser) {
-            // The NSNetServiceBrowser couldn't be allocated and initialized.
-            NSLog(@"Network service error!");
-        }
-        aNetServiceBrowser.delegate = self;
-        self.netServiceBrowser = aNetServiceBrowser;
-        [self.netServiceBrowser searchForServicesOfType:kEasyLinkConfigServiceType inDomain:kInitialDomain];
+    NSError *err = nil;
+    NSLog(@"Start FTC server");
+    ftcServerSocket = [[AsyncSocket alloc] initWithDelegate:self];
+    [ftcServerSocket acceptOnPort:FTC_PORT error:&err];
+    if (err) {
+        NSLog(@"Setup TCP server failed:%@", [err localizedDescription]);
+    }
+    
+    if(softAPSending == true)
+        [self transmitSettings];
+}
+
+- (void)appEnterInBackground:(NSNotification*)notification{
+    if(self.ftcServerSocket != nil){
+        NSLog(@"Close FTC server");
+        [self.ftcServerSocket setDelegate:nil];
+        [self.ftcServerSocket disconnect];
+        self.ftcServerSocket = nil;
     }
 }
+
 
 /*
  Notification method handler when status of wifi changes
@@ -893,16 +882,18 @@
     NetworkStatus netStatus = [verifyConnection currentReachabilityStatus];
     
     if ( netStatus != NotReachable ) {
+        NSLog(@"Connected to %@!", [EASYLINK ssidForConnectedNetwork]);
         if(softAPSending == true){
-            self.netServiceBrowser.delegate = nil;
-            NSNetServiceBrowser *aNetServiceBrowser = [[NSNetServiceBrowser alloc] init];
-            if(!aNetServiceBrowser) {
-                // The NSNetServiceBrowser couldn't be allocated and initialized.
-                NSLog(@"Network service error!");
-            }
-            aNetServiceBrowser.delegate = self;
-            self.netServiceBrowser = aNetServiceBrowser;
-            [self.netServiceBrowser searchForServicesOfType:kEasyLinkConfigServiceType inDomain:kInitialDomain];
+            [self transmitSettings];
+//            self.netServiceBrowser.delegate = nil;
+//            NSNetServiceBrowser *aNetServiceBrowser = [[NSNetServiceBrowser alloc] init];
+//            if(!aNetServiceBrowser) {
+//                // The NSNetServiceBrowser couldn't be allocated and initialized.
+//                NSLog(@"Network service error!");
+//            }
+//            aNetServiceBrowser.delegate = self;
+//            self.netServiceBrowser = aNetServiceBrowser;
+//            [self.netServiceBrowser searchForServicesOfType:kEasyLinkConfigServiceType inDomain:kInitialDomain];
         }
     }
 }
@@ -1077,13 +1068,13 @@
     int i;
     char *address = NULL;
 
-    NSString *routerAddrses;
+    NSString *routerAddrses = @"";
     
     if(sysctl(mib, sizeof(mib)/sizeof(int), 0, &l, 0, 0) < 0) {
-        return nil;
+        return routerAddrses;
     }
     if(l<=0)
-        return nil;
+        return routerAddrses;
     
     buf = malloc(l);
     if(sysctl(mib, sizeof(mib)/sizeof(int), buf, &l, 0, 0) < 0) {

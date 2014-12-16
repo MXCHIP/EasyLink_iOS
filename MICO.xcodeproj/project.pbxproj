@@ -31,6 +31,7 @@
 		3D2AD5A017A247E30026E31E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD59E17A247E30026E31E /* MainStoryboard.storyboard */; };
 		3D2AD5A317A247E30026E31E /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD5A217A247E30026E31E /* browserViewController.m */; };
 		3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */; };
+		3D64B4981A3810250028392C /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D64B4971A3810250028392C /* newModuleTableViewCell.m */; };
 		3D65ABA419493E1E00C8BD14 /* EMW3280.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D65ABA119493E1E00C8BD14 /* EMW3280.png */; };
 		3D65ABA7194944F000C8BD14 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D65ABA5194944F000C8BD14 /* EMW3161.png */; };
 		3D65ABA8194944F000C8BD14 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D65ABA6194944F000C8BD14 /* EMW3162.png */; };
@@ -200,6 +201,8 @@
 		3D31DA9A18E7A98800385649 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
 		3D4289D918A4D73F0092DD5D /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PulsingHaloLayer.h; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.h"; sourceTree = "<group>"; };
 		3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.m"; sourceTree = "<group>"; };
+		3D64B4961A3810250028392C /* newModuleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newModuleTableViewCell.h; path = EasyLink/Classes/iPhone/newModuleTableViewCell.h; sourceTree = "<group>"; };
+		3D64B4971A3810250028392C /* newModuleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newModuleTableViewCell.m; path = EasyLink/Classes/iPhone/newModuleTableViewCell.m; sourceTree = "<group>"; };
 		3D65ABA119493E1E00C8BD14 /* EMW3280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMW3280.png; sourceTree = "<group>"; };
 		3D65ABA5194944F000C8BD14 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = "EMW ToolBox/Resources/Images/iPhone/EMW3161.png"; sourceTree = SOURCE_ROOT; };
 		3D65ABA6194944F000C8BD14 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = "EMW ToolBox/Resources/Images/iPhone/EMW3162.png"; sourceTree = SOURCE_ROOT; };
@@ -530,6 +533,8 @@
 				3D1F0D851910C9DE0030A828 /* bonjourDetailTableViewController.m */,
 				3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */,
 				3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */,
+				3D64B4961A3810250028392C /* newModuleTableViewCell.h */,
+				3D64B4971A3810250028392C /* newModuleTableViewCell.m */,
 				3DF2CA781A1C85FC0068DD59 /* EasyLinkFoundTableViewController.h */,
 				3DF2CA791A1C85FC0068DD59 /* EasyLinkFoundTableViewController.m */,
 				3D8249221924FA3C00176E14 /* RootViewController.h */,
@@ -1047,6 +1052,7 @@
 				3D677D131925EB8600E4A486 /* guideViewController.m in Sources */,
 				3DE5C6C718FCFCB7008436EB /* GRCreateDirectoryRequest.m in Sources */,
 				3D677D0C1925B3E400E4A486 /* MJRefreshConst.m in Sources */,
+				3D64B4981A3810250028392C /* newModuleTableViewCell.m in Sources */,
 				3D179B5818F3E5A3003C02F9 /* FTCStringSelectCell.m in Sources */,
 				3DAEA00319191B600082D846 /* JSMessageSoundEffect.m in Sources */,
 				3DE5C6C618FCFCB7008436EB /* GRRequestsManager.m in Sources */,

@@ -18,16 +18,15 @@
 #import "EasyLinkFoundTableViewController.h"
 
 
-@interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate, EasyLinkFTCDelegate, EasyLinkFTCDataDelegate, EasyLinkOTADelegate>{
+@interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate, EasyLinkFTCDelegate, EasyLinkFTCDataDelegate, EasyLinkOTADelegate, NSFileManagerDelegate>{
     NSMutableArray *foundModules;
 @private
     IBOutlet UITableView *configTableView;
+    IBOutlet UIScrollView *bgView;
+    IBOutlet UITableView *foundModuleTableView;
     UITextField *ssidField,*bssidField,*passwordField,*userInfoField,*ipAddress;
-<<<<<<< HEAD
-    NSString *targetSsid;
-=======
-    NSData *ssidData;
->>>>>>> master
+
+    NSData *targetSsid;
 
     IBOutlet UIButton *newDevicesButton;
     UIAlertView *alertView;
