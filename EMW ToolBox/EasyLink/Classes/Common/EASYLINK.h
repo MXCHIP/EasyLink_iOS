@@ -11,6 +11,7 @@
 #import <SystemConfiguration/CaptiveNetwork.h>
 #import "AsyncUdpSocket.h"
 #import "AsyncSocket.h"
+#import "Reachability.h"
 
 
 typedef enum{
@@ -20,13 +21,13 @@ typedef enum{
     EASYLINK_SOFT_AP,
 } EasyLinkMode;
 
-typedef enum
-{
-    eState_start                        = -1,
-    eState_ReadConfig                   = 0,
-    eState_WriteConfig                  = 1,
-    eState_SendOTAData                  = 2
-} _ConfigState_t;
+typedef enum{
+    eState_initialize,
+    eState_connect_to_uap,
+    eState_configured_by_uap,
+    eState_connect_to_wrong_wlan,
+    eState_connect_to_target_wlan,
+} EasyLinkSoftApStage;
 
 /*w lanConfig key */
 #define KEY_SSID          @"SSID"
@@ -42,94 +43,208 @@ typedef enum
 #define MessageCount 100
 
 @protocol EasyLinkFTCDelegate
-@optional
+@required
 
 /**
  *
  **/
-- (void)onFoundByFTC:(NSNumber *)client currentConfig: (NSData *)config;
+- (void)onFoundByFTC:(NSNumber *)client withConfiguration: (NSDictionary *)configDict;
 
-/**
- *
- **/
-- (void)onConfiguredByUAP;
+
 
 /**
  *
  **/
 - (void)onDisconnectFromFTC:(NSNumber *)client;
 
+
+@optional
+
+- (void)onEasyLinkSoftApStageChanged: (EasyLinkSoftApStage)stage;
+
 @end
-
-
 
 @interface EASYLINK : NSObject<NSNetServiceBrowserDelegate,
 NSNetServiceDelegate>{
 @private
     /* Wlan configuratuon send by EasyLink */
-    in_addr_t ip, netmask, gateway, dns1, dns2;
-    bool dhcp;
-    NSData *ssid;
-    NSString *passwd;
-    NSMutableData *userInfoWithIP;
+    NSUInteger _broadcastcount, _multicastCount;
+    bool _broadcastSending, _multicastSending, _softAPSending, _wlanUnConfigured;
     
-    NSUInteger broadcastcount, multicastCount;
-    bool broadcastSending, multicastSending, softAPSending;
-    
-    EasyLinkMode mode;
-    bool wlanUnConfigured;
+    EasyLinkMode _mode;
     
     NSMutableArray *multicastArray, *broadcastArray;   //Used for EasyLink transmitting
     AsyncUdpSocket *multicastSocket, *broadcastSocket;
     
     //Used for EasyLink first time configuration
-    AsyncSocket *ftcServerSocket, *configSocket;
+    AsyncSocket *ftcServerSocket;
     NSMutableArray *ftcClients;
-    CFMutableArrayRef inCommingMessages;
     NSTimer *closeFTCClientTimer;
     
     NSNetServiceBrowser* _netServiceBrowser;
     NSMutableArray * _netServiceArray;
-    NSDictionary * configDict;
+    NSDictionary * _configDict;
     
     CFHTTPMessageRef inComingMessageArray[MessageCount];
+    Reachability *wifiReachability;
+    EasyLinkSoftApStage _softAPStage;
     
     id theDelegate;
 }
 
-@property (retain, nonatomic) AsyncUdpSocket *multicastSocket;
-@property (retain, nonatomic) AsyncUdpSocket *broadcastSocket;
-@property (retain, nonatomic) AsyncSocket *ftcServerSocket;
-@property (retain, nonatomic) NSMutableArray *ftcClients;
+@property (nonatomic, readonly) EasyLinkSoftApStage softAPStage;
 
 
-
-- (void)prepareEasyLink_withFTC:(NSDictionary *)wlanConfigArray info: (NSData *)userInfo mode: (EasyLinkMode)easyLinkMode;
-
-- (void)transmitSettings;
-- (void)stopTransmitting;
-
+- (id)initWithDelegate:(id)delegate;
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
-- (void)startFTCServerWithDelegate:(id)delegate;
-- (void)configFTCClient:(NSNumber *)client withConfigurationData: (NSData *)configData;
-- (void)otaFTCClient:(NSNumber *)client withOTAData: (NSData *)otaData;
-- (void)closeFTCClient:(NSNumber *)client;
-- (void)closeFTCServer;
+- (void)unInit;
 
-
+// Easylink sequence:
+// Application ---------------------------------EasyLink------------------------------------------MICO Device----------------------
+// initWithDelegate:(id)delegate;     ->      Create FTC server
+// prepareEasyLink_withFTC:info:mode: ->      Store configurations
+//
+// EasyLink V2/Plus mode:==========================================================================================================
+// transmitSettings                   ->      Send wlan configurations       ->             Receive wlan configurations
+//                                                                                          Connect to wlan
+//                                            Accept FTC client              <-             Connect to FTC server
+// onFoundByFTC:withConfiguration:    <-      Receive                        <-             Send current info and configuration
+//
+// stopTransmitting                   ->      Stop send wlan configurations
+//
+//
+// EasyLink soft ap mode:==========================================================================================================
+// transmitSettings                   ->      Start FTC monitoring
+// onEasyLinkSoftApStageChanged:      <-      Connect to EasyLink_XXXXXX wlan in iOS settings by user
+//                                            Find the new device, connect   ->             Accetp iOS connection
+//                                            Send wlan configurations       ->             Receive wlan configurations
+// onEasyLinkSoftApStageChanged:      <-      Receive                        <-             Send response
+//                                                                                          Close Soft AP
+//                                                                                          Connect to wlan
+// iOS disconnect from Soft ap and connect to wlan (possiable manual operation required in iOS settings, because iOS may connect to another wlan rather than a previous connected wlan)
+// onEasyLinkSoftApStageChanged:      <-      Connect to EasyLink_XXXXXX wlan in iOS settings by user
+//                                            Find the new device, connect   ->             Accetp iOS connection
+//                                            Read FTC configurations        ->             Receive
+// onFoundByFTC:withConfiguration:    <-      Receive                        <-             Send FTC configurations
+//
+//
+//================================================================================================================================
+//
+// At this step, the device has connect to the same wlan as iOS, but wlan settings has not stored to flash storage.
+// If App enter background while FTC client is connected, all FTC client will be disconnected, and leave them unconfigured
+//
+//================================================================================================================================
+// Now application has several choices:
+//
+// 1. Send first-time-configuration to device, and finish EasyLink procedure
+// configFTCClient:withConfiguration: ->      Send FTC configurations        ->             Receive FTC configurations
+//                                                                                          Store all configurations
+// onDisconnectFromFTC:               <-      Disconnect FTC client          <-             Disconnect from FTC server
+//                                                                                          Reboot and enter normal running mode
+//
+// 2. Send OTA data to update device's firmware
+// otaFTCClient:withOTAData:          ->      Send OTA data                  ->             Receive OTA data
+// onDisconnectFromFTC:               <-      Disconnect FTC client          <-             Disconnect from FTC server
+//                                                                                          Reboot and apply new firmware
+//                                            Accept FTC client              <-             Connect to FTC server
+// onFoundByFTC:currentConfig:        <-      Receive                        <-             Send current info and configuration
+//
+// 3. Ignore FTC client and leave them unconfigured
+// configFTCClient:withConfiguration: ->      Send FTC configurations        ->             Receive FTC configurations
+//                                                                                          Store all configurations
+// onDisconnectFromFTC:               <-      Disconnect FTC client          <-             Disconnect from FTC server
+//                                                                                          Reboot and enter normal running mode
+//
 
 /**
- * Tools
- **/
+ @brief Set all wlan seetings that need to be delivered by EasyLink. It 
+        should be excuted before (void)transmitSettings
+ @param wlanConfigDict: Wlan configurations, include SSID, password, address etc.
+ @param userInfo:       Application defined specific data to be send by Easylink.
+ @param easyLinkMode:   The mode of EasyLink.
+ @return none.
+ */
+- (void)prepareEasyLink_withFTC:(NSDictionary *)wlanConfigDict info: (NSData *)userInfo mode: (EasyLinkMode)easyLinkMode;
 
+/**
+ @brief Send wlan settings use the predefined EasyLink mode
+ */
+- (void)transmitSettings;
+
+/**
+ @brief Stop current Easylink delivery. It is suggested to stop EasyLink once a new device
+        is found (Notified by onFoundByFTC:currentConfig: in protocol EasyLinkFTCDelegate).
+        As the EasyLink V2/plus mode would reduce the performance of the wireless router.
+ */
+- (void)stopTransmitting;
+
+/**
+ @brief Send a dictionary that contains all of the first-time-configurations to the new deivice.
+        Once the device has received, it will disconnect, and exit the EasyLionk configuration mode.
+        This function initialize the device like cloud servive account, password, working configures
+        etc. when user first connect the device to Internet.
+ @param client:         Client identifier, read by onFoundByFTC:currentConfig: in protocol 
+                        EasyLinkFTCDelegate.
+ @param configDict:     Device configurations.
+ @return none.
+ */
+- (void)configFTCClient:(NSNumber *)client withConfiguration: (NSDictionary *)configDict;
+
+/**
+ @brief Send new firmware to the new deivice. Once the device has received, it will disconnect,
+        update to the new firmware, and reconnect to iOS.
+ @param client:         Client identifier, read by onFoundByFTC:currentConfig: in protocol
+                        EasyLinkFTCDelegate.
+ @param otaData:        New firmware data.
+ @return none.
+ */
+- (void)otaFTCClient:(NSNumber *)client withOTAData: (NSData *)otaData;
+
+/**
+ @brief Disconnect the new device, and leave it unconfigured(device will not store wlan settings).
+ @param client:         Client identifier, read by onFoundByFTC:currentConfig: in protocol
+                        EasyLinkFTCDelegate.
+ @return none.
+ */
+- (void)closeFTCClient:(NSNumber *)client;
+
+
+#pragma mark - Tools -
+
+/**
+ @brief Return the WLan SSID string(UTF8 conding) connected by iOS currently.
+ */
 + (NSString *)ssidForConnectedNetwork;
+
+/**
+ @brief Return the WLan SSID data (bytes) connected by iOS currently.
+ */
 + (NSData *)ssidDataForConnectedNetwork;
+
+/**
+ @brief Return the WLan information connected by iOS currently.
+ */
 + (NSDictionary *)infoForConnectedNetwork;
+
+/**
+ @brief Return the current iOS IP address on the wlan interface.
+ */
 + (NSString *)getIPAddress;
+
+/**
+ @brief Return the current iOS netmask on the wlan interface.
+ */
 + (NSString *)getNetMask;
+
+/**
+ @brief Return the current iOS broadcast address on the wlan interface.
+ */
 + (NSString *)getBroadcastAddress;
 
+/**
+ @brief Return the current iOS gateway address on the wlan interface.
+ */
 + (NSString *)getGatewayAddress;
 
 @end

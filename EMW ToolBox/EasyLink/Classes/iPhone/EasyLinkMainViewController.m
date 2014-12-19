@@ -23,10 +23,9 @@ BOOL configTableMoved = NO;
 /* button action, where we need to start or stop the request 
  @param: button ... tag value defines the action 
  */
-- (void)updateButtonTitle_NewDevices;
+- (void)updateDeviceCountLable;
 - (IBAction)easyLinkV2ButtonAction:(UIButton*)button;
 - (IBAction)easyLinkuAPButtonAction:(UIButton*)button;
-- (void)handleSingleTapPhoneImage:(UIGestureRecognizer *)gestureRecognizer;
 
 /*
  This method start the transmitting the data to connected
@@ -59,15 +58,6 @@ BOOL configTableMoved = NO;
  @param the fired notification object
  */
 - (void)wifiStatusChanged:(NSNotification*)notification;
-
-
-/* enableUIAccess
-  * enable / disable the UI access like enable / disable the textfields 
-  * and other component while transmitting the packets.
-  * @param: vbool is to validate the controls.
- */
--(void) enableUIAccess:(BOOL) isEnable;
-
 
 @end
 
@@ -102,8 +92,7 @@ BOOL configTableMoved = NO;
         apInforRecord = [NSMutableDictionary dictionaryWithCapacity:10];    
     
     if( easylink_config == nil){
-        easylink_config = [[EASYLINK alloc]init];
-        [easylink_config startFTCServerWithDelegate:self];
+        easylink_config = [[EASYLINK alloc]initWithDelegate:self];
     }
     if( self.foundModules == nil)
         self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
@@ -112,7 +101,7 @@ BOOL configTableMoved = NO;
 
     targetSsid = [NSData data];
 
-    //按钮加边框
+    //配置表格加边框
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 0, 122.0/255, 1, 1 });
     
@@ -138,16 +127,12 @@ BOOL configTableMoved = NO;
         [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
     }
     
-    [self updateButtonTitle_NewDevices];
-
+    [self updateDeviceCountLable];
     
-    //// stoping the process in app backgroud state
+    // stoping the process in app backgroud state
     NSLog(@"regisister notificationcenter");
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInforground:) name:UIApplicationDidBecomeActiveNotification object:nil];
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -166,8 +151,7 @@ BOOL configTableMoved = NO;
 
 - (void)viewWillDisappear:(BOOL)animated{
     if([self.navigationController.viewControllers indexOfObject:self] == NSNotFound){
-        easylink_config.delegate = nil;
-        [easylink_config closeFTCServer];
+        [easylink_config unInit];
         easylink_config = nil;
         self.foundModules = nil;
     }
@@ -180,25 +164,11 @@ BOOL configTableMoved = NO;
     NSLog(@"%s=>dealloc", __func__);
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
+#pragma mark - New Devices Lable -
 
-#pragma mark - New Devices Button -
-
-- (void)updateButtonTitle_NewDevices
+- (void)updateDeviceCountLable
 {
-    if ([foundModules count] == 0) {
-        //newDevicesButton.titleLabel.text = @"hello";
-        [newDevicesButton setTitle:@"(0)" forState: UIControlStateNormal];
-        [newDevicesButton setUserInteractionEnabled:false];
-    }else{
-        NSString *title = [[NSString alloc]initWithFormat:@"(%d)",[foundModules count]];
-        [newDevicesButton setTitle:title forState: UIControlStateNormal];
-        [newDevicesButton setUserInteractionEnabled:true];
-    }
+    [newDeviceCount setText:[[NSString alloc]initWithFormat:@"(%d)",[foundModules count]]];
 }
 
 #pragma mark - TRASMITTING DATA -
@@ -245,8 +215,6 @@ BOOL configTableMoved = NO;
         [easylink_config prepareEasyLink_withFTC:wlanConfig info:nil mode:mode];
     }
     targetSsid = [wlanConfig objectForKey:KEY_SSID];
-
-    [self enableUIAccess:NO];
 }
 
 - (IBAction)easyLinkV2ButtonAction:(UIButton*)button{
@@ -348,11 +316,7 @@ BOOL configTableMoved = NO;
     [easyLinkSendingView setButtonTitles:[NSMutableArray arrayWithObjects:@"Stop", nil]];
     __weak EasyLinkMainViewController *_self = self;
     [easyLinkSendingView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, NSInteger buttonIndex) {
-        if(buttonIndex == 0){
-            [_self enableUIAccess:YES];
-        }
         [_self stopAction];
-        
         //[_imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhone.png"]];
         NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[customIOS7AlertView tag]);
         [customIOS7AlertView close];
@@ -497,7 +461,6 @@ BOOL configTableMoved = NO;
         UIScrollView *containerView = (UIScrollView *)customIOS7AlertView.containerView;
         currentPage = containerView.contentOffset.x / 290;
         if(buttonIndex == 0){
-            [_self enableUIAccess:YES];
             [_self stopAction];
             [customIOS7AlertView close];
         }else if(buttonIndex == 1){
@@ -565,11 +528,6 @@ BOOL configTableMoved = NO;
         newModuleCell.moduleInfo = [foundModules objectAtIndex: indexPath.row];
         [newModuleCell setDelegate:self];
         return newModuleCell;
-//        [cell setBackgroundColor:[UIColor colorWithRed:0.100 green:0.478 blue:1.000 alpha:0.4]];
-//        [cell setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.6]];
-//        cell.textLabel.text = [[self.foundModules objectAtIndex:indexPath.row] objectForKey:@"N"];
-//        currentVerStr = [[self.foundModules objectAtIndex:indexPath.row] objectForKey:@"FW"];
-//        cell.detailTextLabel.text = [NSString stringWithFormat:@"Firmware: %@",currentVerStr? currentVerStr:@"unkown"];
     }
 }
 
@@ -619,28 +577,11 @@ BOOL configTableMoved = NO;
 
 #pragma mark - EasyLink delegate -
 
-- (void)onFoundByFTC:(NSNumber *)ftcClientTag currentConfig: (NSData *)config;
+- (void)onFoundByFTC:(NSNumber *)ftcClientTag withConfiguration: (NSDictionary *)configDict;
 {
-    NSError *err;
     NSIndexPath* indexPath;
-    NSMutableDictionary *foundModule = nil;
+    NSMutableDictionary *foundModule = [NSMutableDictionary dictionaryWithDictionary:configDict];
     NSMutableDictionary *updateSettings;
-    
-    foundModule = [NSJSONSerialization JSONObjectWithData:config
-                                                  options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
-                                                    error:&err];
-    NSLog(@"Recv JSON data, length: %lu", (unsigned long)[config length]);
-
-    if (err) {
-#ifdef DEBUG
-        NSString *temp = [[NSString alloc] initWithData:config encoding:NSASCIIStringEncoding];
-        NSLog(@"Unpackage JSON data failed:%@, %@", [err localizedDescription], temp);
-#endif
-        
-        alertView = [[UIAlertView alloc] initWithTitle:@"EMW ToolBox Alert" message:@"JSON data err" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alertView show];
-        return;
-    }
     
     [foundModule setValue:ftcClientTag forKey:@"client"];
     updateSettings = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -656,10 +597,7 @@ BOOL configTableMoved = NO;
     [foundModule setObject: [NSNumber numberWithInteger:arc4random()] forKey:@"tag"];
     [self.foundModules addObject:foundModule];
     indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
-    [foundTableViewController.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                withRowAnimation:UITableViewRowAnimationRight];
-    
-    indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
+
     [foundModuleTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                 withRowAnimation:UITableViewRowAnimationRight];
     
@@ -671,29 +609,19 @@ BOOL configTableMoved = NO;
     
     [easyLinkSendingView close];
     [easyLinkUAPSendingView close];
-    [self updateButtonTitle_NewDevices];
+    [self updateDeviceCountLable];
     [self stopAction];
     
     if(otaAlertView != nil){
         [otaAlertView close];
         otaAlertView = nil;
     }
-
-    
-}
-
-- (void) onConfiguredByUAP
-{
-    [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 3 * 290, 0, 290, 300) animated:YES];
 }
 
 - (void)onDisconnectFromFTC:(NSNumber *)ftcClientTag
 {
     NSIndexPath* indexPath;
     NSDictionary *disconnectedClient;
-    
-
-    //if([self.navigationController topViewController] == )
 
     for( NSDictionary *object in self.foundModules){
         if ([[object objectForKey:@"client"] isEqualToNumber:ftcClientTag] ){
@@ -706,8 +634,6 @@ BOOL configTableMoved = NO;
     if(disconnectedClient != nil){
         [self.foundModules removeObject: disconnectedClient ];
         [foundModuleTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                    withRowAnimation:UITableViewRowAnimationAutomatic];
-        [foundTableViewController.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                     withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 
@@ -738,18 +664,42 @@ BOOL configTableMoved = NO;
         }
     }
     
-    [self updateButtonTitle_NewDevices];
+    [self updateDeviceCountLable];
 
     [self.navigationController popToViewController:self animated:YES];
+}
+
+- (void)onEasyLinkSoftApStageChanged: (EasyLinkSoftApStage)stage
+{
+    NSString *message;
+    UIAlertView *wrongWlanAlertView;
+    
+    switch (stage) {
+        case eState_connect_to_uap:
+            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 2 * 290, 0, 290, 300) animated:YES];
+            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
+            break;
+        case eState_configured_by_uap:
+            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 3 * 290, 0, 290, 300) animated:YES];
+            break;
+        case eState_connect_to_target_wlan:
+            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 4 * 290, 0, 290, 300) animated:YES];
+            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
+            break;
+        case eState_connect_to_wrong_wlan:
+            message =  [[NSString alloc] initWithFormat:@"Current connected wlan is %@. You should connect to target wlan %@ manually.",[EASYLINK ssidForConnectedNetwork],  ssidField.text];
+            wrongWlanAlertView = [[UIAlertView alloc] initWithTitle:@"Wrong Wlan Connected" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [wrongWlanAlertView show];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - EasyLinkFTCTableViewController delegate-
 
 - (void)onConfigured:(NSMutableDictionary *)configData
-{
-    NSError *err;
-    
-    //alertView = [[UIAlertView alloc] initWithTitle:@"Please wait..." message:@"Updating Wi-Fi module configuration" delegate:Nil cancelButtonTitle:nil otherButtonTitles: nil];
+{    
     customAlertView = [[CustomIOS7AlertView alloc] init];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 140)];
@@ -783,7 +733,7 @@ BOOL configTableMoved = NO;
     [customAlertView show];
     
     [easylink_config configFTCClient:[configData objectForKey:@"client"]
-               withConfigurationData:[NSJSONSerialization dataWithJSONObject:[configData objectForKey:@"update"] options:0 error:&err]];
+                   withConfiguration:[configData objectForKey:@"update"] ];
 }
 
 
@@ -852,18 +802,6 @@ BOOL configTableMoved = NO;
     [easylink_config otaFTCClient:client withOTAData: [NSData dataWithContentsOfFile:otaFilePath]];
 }
 #pragma mark - Private Methods -
-
-/* enableUIAccess
- * enable / disable the UI access like enable / disable the textfields 
- * and other component while transmitting the packets.
- * @param: vbool is to validate the controls.
- */
--(void) enableUIAccess:(BOOL) isEnable{
-    ssidField.userInteractionEnabled = isEnable;
-    passwordField.userInteractionEnabled = isEnable;
-    userInfoField.userInteractionEnabled = isEnable;
-    ipAddress.userInteractionEnabled = isEnable;
-}
 
 /* 
  Prepare a cell that is created with respect to the indexpath 
@@ -964,26 +902,7 @@ BOOL configTableMoved = NO;
  @param the fired notification object
  */
 - (void)appEnterInforground:(NSNotification*)notification{
-    NSLog(@"%s", __func__);
-    if( easylink_config == nil){
-        easylink_config = [[EASYLINK alloc]init];
-        [easylink_config startFTCServerWithDelegate:self];
-    }
-    if( self.foundModules == nil)
-        self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
-
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
-    
-    if ( netStatus != NotReachable ){
-        if ( [[EASYLINK ssidForConnectedNetwork] isEqualToString: [[NSString alloc] initWithData:targetSsid encoding:NSUTF8StringEncoding]]){
-            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 4 * 290, 0, 290, 300) animated:YES];
-            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
-        }
-        if ( [[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]){
-            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 2 * 290, 0, 290, 300) animated:YES];
-            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
-        }
-    }
     
     if ( netStatus != NotReachable && ![[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]) {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
@@ -1004,43 +923,13 @@ BOOL configTableMoved = NO;
 }
 
 /*
- Notification method handler when app enter in background
- @param the fired notification object
- */
-- (void)appEnterInBackground:(NSNotification*)notification{
-    NSLog(@"%s", __func__);
-    
-    //[easylink_config stopTransmitting];
-    //[easylink_config closeFTCServer];
-    //easylink_config = nil;
-    //self.foundModules = nil;
-    
-    //[easyLinkSendingView close];
-    
-    //[self.navigationController popToRootViewControllerAnimated:NO];
-}
-
-/*
  Notification method handler when status of wifi changes
  @param the fired notification object
  */
 - (void)wifiStatusChanged:(NSNotification*)notification{
-    NSLog(@"%s", __func__);
-    Reachability *verifyConnection = [notification object];	
-    NSAssert(verifyConnection != NULL, @"currentNetworkStatus called with NULL verifyConnection Object");
-    NetworkStatus netStatus = [verifyConnection currentReachabilityStatus];
+    NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     
-    if ( netStatus != NotReachable ){
-        if ( [[EASYLINK ssidForConnectedNetwork] isEqualToString: [[NSString alloc] initWithData:targetSsid encoding:NSUTF8StringEncoding]]){
-            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 4 * 290, 0, 290, 300) animated:YES];
-            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
-        }
-        if ( [[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]){
-            [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 2 * 290, 0, 290, 300) animated:YES];
-            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
-        }
-    }
-    
+    /* iOS has connect to a wireless router */
     if ( netStatus != NotReachable && ![[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]) {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
         targetSsid = [EASYLINK ssidDataForConnectedNetwork];

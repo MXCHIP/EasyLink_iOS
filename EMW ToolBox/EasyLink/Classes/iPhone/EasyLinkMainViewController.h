@@ -28,7 +28,7 @@
 
     NSData *targetSsid;
 
-    IBOutlet UIButton *newDevicesButton;
+    IBOutlet UILabel *newDeviceCount;
     UIAlertView *alertView;
     CustomIOS7AlertView *customAlertView, *otaAlertView;
     NSMutableDictionary *deviceIPConfig;
