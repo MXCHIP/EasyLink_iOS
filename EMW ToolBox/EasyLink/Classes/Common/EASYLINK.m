@@ -59,6 +59,7 @@
 
 @implementation EASYLINK
 @synthesize softAPStage = _softAPStage;
+@synthesize softAPSending = _softAPSending;
 
 -(id)init{
     return [self initWithDelegate:nil];

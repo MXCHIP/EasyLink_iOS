@@ -44,22 +44,27 @@ typedef enum{
 
 @protocol EasyLinkFTCDelegate
 @required
-
 /**
- *
- **/
+ @brief A new FTC client is found by FTC server in EasyLink
+ @param client:         Client identifier.
+ @param configDict:     Configuration data provided by FTC client
+ @return none.
+ */
 - (void)onFoundByFTC:(NSNumber *)client withConfiguration: (NSDictionary *)configDict;
 
-
-
 /**
- *
- **/
+ @brief A FTC client is disconnected from FTC server in EasyLink
+ @param client:         Client identifier.
+ @return none.
+ */
 - (void)onDisconnectFromFTC:(NSNumber *)client;
 
-
 @optional
-
+/**
+ @brief EasyLink stage is changed during soft ap configuration mode
+ @param stage:         The current stage.
+ @return none.
+ */
 - (void)onEasyLinkSoftApStageChanged: (EasyLinkSoftApStage)stage;
 
 @end
@@ -93,6 +98,7 @@ NSNetServiceDelegate>{
 }
 
 @property (nonatomic, readonly) EasyLinkSoftApStage softAPStage;
+@property (nonatomic, readonly) bool softAPSending;
 
 
 - (id)initWithDelegate:(id)delegate;

@@ -862,7 +862,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="H0Z-hv-fBX">
                         <barButtonItem key="backBarButtonItem" title="Back" id="HcB-OW-7zU"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="hbK-o1-Lf3">
+                        <barButtonItem key="rightBarButtonItem" title="Confirm" style="done" id="hbK-o1-Lf3">
                             <connections>
                                 <action selector="applyNewConfigData" destination="A0u-3J-hpE" id="B7n-3r-zWi"/>
                             </connections>
@@ -985,8 +985,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="MnL-7g-rx9"/>
-        <segue reference="DZf-Vi-XVy"/>
         <segue reference="1Ll-OQ-cMg"/>
+        <segue reference="MnL-7g-rx9"/>
+        <segue reference="Eco-N2-HeY"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,7 +12,17 @@
 #import "EasyLinkIpConfigTableViewController.h"
 #import "newModuleTableViewCell.h"
 
-BOOL configTableMoved = NO;
+typedef enum{
+    ePage_StartEasyLink = 0,
+    ePage_ConnectingToModule,
+    ePage_SendingConfig,
+    ePage_ConnectingToTargetWlan,
+    ePage_ScanNewDevice,
+    maxEasyLinkSoftPages,
+} EasyLinkSoftPage;
+
+#define WIDTH_ALERT_VIEW    290
+#define HEIGHT_ALERT_VIEW   300
 
 @interface EasyLinkMainViewController ()
 
@@ -233,7 +243,7 @@ BOOL configTableMoved = NO;
     }
     
     if([ssidField.text length] == 0){
-        alertView = [[UIAlertView alloc] initWithTitle:@"Wi-Fi Settings Error" message:@"SSID field is empry." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alertView = [[UIAlertView alloc] initWithTitle:@"Wi-Fi Settings Error" message:@"SSID field is empry." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
         return;
     }
@@ -349,26 +359,6 @@ BOOL configTableMoved = NO;
         return;
     }
     
-    /*Pop up a Easylink sending dialog*/
-    easyLinkUAPSendingView = [[CustomIOS7AlertView alloc] init];
-    
-    UIScrollView *alertContentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 290, 300)];
-    
-    alertContentView.tag = 0x1000;
-    alertContentView.pagingEnabled = YES;
-    alertContentView.userInteractionEnabled = false;
-    alertContentView.showsHorizontalScrollIndicator = NO;
-    alertContentView.contentSize = CGSizeMake(290*5, 300);
-    
-    [alertContentView scrollRectToVisible:CGRectMake(0, 0, 290, 300) animated:YES];
-    
-    /* uAP config Page 1*/
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 20, 260, 25)];
-    title.text = @"Start EasyLink uAP mode...";
-    title.font= [UIFont boldSystemFontOfSize:19.0];
-    title.textAlignment = NSTextAlignmentCenter;
-    [alertContentView addSubview:title];
-    
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.alignment = NSTextAlignmentCenter;
@@ -383,25 +373,39 @@ BOOL configTableMoved = NO;
                                                                     NSFontAttributeName,
                                                                     nil]];
     
-    /*EasyLink button image*/
-    UIImageView *easyLinkButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-45, 76, 90, 90)];
-    easyLinkButtonView.image = [UIImage imageNamed:@"EASYLINK_BUTTON.png" ];
-    [alertContentView addSubview:easyLinkButtonView];
+    /*Pop up a Easylink sending dialog*/
+    easyLinkUAPSendingView = [[CustomIOS7AlertView alloc] init];
+    
+    UIScrollView *alertContentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 290, 300)];
+    
+    alertContentView.tag = 0x1000;
+    alertContentView.pagingEnabled = YES;
+    alertContentView.userInteractionEnabled = false;
+    alertContentView.showsHorizontalScrollIndicator = NO;
+    alertContentView.contentSize = CGSizeMake(WIDTH_ALERT_VIEW * maxEasyLinkSoftPages, HEIGHT_ALERT_VIEW);
+    
+    [alertContentView scrollRectToVisible:CGRectMake(0, 0, WIDTH_ALERT_VIEW, HEIGHT_ALERT_VIEW) animated:YES];
+    
+    /* ======================================== uAP config Page 1 ===========================================*/
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_StartEasyLink* WIDTH_ALERT_VIEW , 20, 260, 25)];
+    title.text = @"Start EasyLink uAP mode...";
+    title.font= [UIFont boldSystemFontOfSize:19.0];
+    title.textAlignment = NSTextAlignmentCenter;
+    [alertContentView addSubview:title];
+    
+    UIImageView *startEasyLinkView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-145 + ePage_StartEasyLink * WIDTH_ALERT_VIEW, 45, 290, 255)];
+    startEasyLinkView.image = [UIImage imageNamed:@"StartEasyLink.png" ];
+    [alertContentView addSubview:startEasyLinkView];
     
     /*EasyLink pres image*/
     UIImageView *buttonPressView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2+80, 180, 120, 120)];
     buttonPressView.image = [UIImage imageNamed:@"EASYLINK_PRESS.png" ];
     [alertContentView addSubview:buttonPressView];
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
                          [buttonPressView setFrame:CGRectMake(alertContentView.frame.size.width/2-15, 130, 40, 40)];
-                     }
-                     completion:^(BOOL finished){
-                         ;
-                     }];
+                     } completion:^(BOOL finished){}];
     
     /*Add Line 1*/
     UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 15, 260, 100)];
@@ -409,46 +413,80 @@ BOOL configTableMoved = NO;
                                                              attributes:attributes];
     [alertContentView addSubview:content];
     
+    content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 140, 260, 100)];
+    content.numberOfLines = 2;
+    content.attributedText = [[NSAttributedString alloc] initWithString:@"Wait until uAP is established on device!\r\n (RF led is turned on)"
+                                                             attributes:attributes];
+    [alertContentView addSubview:content];
     
-    /* uAP config Page 2*/
-    title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130 + alertContentView.frame.size.width, 20, 260, 25)];
+    /* ======================================== uAP config Page 2 ===========================================*/
+    title = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_ConnectingToModule * WIDTH_ALERT_VIEW, 20, 260, 25)];
     title.text = @"Connecting to module...";
     title.font= [UIFont boldSystemFontOfSize:19.0];
     title.textAlignment = NSTextAlignmentCenter;
     [alertContentView addSubview:title];
     
-    content = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130 + alertContentView.frame.size.width, 15, 260, 100)];
+    UIImageView *homeButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-145 + ePage_ConnectingToModule * WIDTH_ALERT_VIEW, 45, 290, 255)];
+    homeButtonView.image = [UIImage imageNamed:@"ConnectingToModule.png" ];
+    [alertContentView addSubview:homeButtonView];
+    
+    content = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_ConnectingToModule * WIDTH_ALERT_VIEW, 45, 260, 25)];
     content.attributedText = [[NSAttributedString alloc] initWithString:@"Press Home button to exit current APP."
                                                              attributes:attributes];;
     [alertContentView addSubview:content];
     
-    // 750 * 438
-    UIImageView *homeButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-145 + alertContentView.frame.size.width, 76, 290, 80)];
-    homeButtonView.image = [UIImage imageNamed:@"Home_Button.png" ];
-    [alertContentView addSubview:homeButtonView];
+    content = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_ConnectingToModule * WIDTH_ALERT_VIEW, 150, 260, 50)];
+    content.numberOfLines = 2;
+    content.attributedText = [[NSAttributedString alloc] initWithString:@"Connect to wlan: EasyLink_XXXXXX."
+                                                             attributes:attributes];
+    [alertContentView addSubview:content];
     
-    
-    /* uAP config Page 3*/
-    title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130 + 2 * alertContentView.frame.size.width, 20, 260, 25)];
+    /* ======================================== uAP config Page 3 ===========================================*/
+    title = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_SendingConfig * WIDTH_ALERT_VIEW, 20, 260, 25)];
     title.text = @"Transmitting Data...";
     title.font= [UIFont boldSystemFontOfSize:19.0];
     title.textAlignment = NSTextAlignmentCenter;
     [alertContentView addSubview:title];
     
-    /* uAP config Page 4*/
-    title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130 + 3 * alertContentView.frame.size.width, 20, 260, 25)];
+    UIImageView *sendingConfigView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-145 + ePage_SendingConfig * WIDTH_ALERT_VIEW, 45, 290, 255)];
+    sendingConfigView.image = [UIImage imageNamed:@"SendingConfig.png" ];
+    [alertContentView addSubview:sendingConfigView];
+    
+    /* ======================================== uAP config Page 4 ===========================================*/
+    title = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_ConnectingToTargetWlan * WIDTH_ALERT_VIEW, 20, 260, 25)];
     title.text = [[NSString alloc] initWithFormat: @"Reconnect to %@...", [[NSString alloc]initWithData:targetSsid encoding:NSUTF8StringEncoding] ] ;
     title.font= [UIFont boldSystemFontOfSize:19.0];
     title.textAlignment = NSTextAlignmentCenter;
     [alertContentView addSubview:title];
     
-    /* uAP config Page 5*/
-    title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130 + 4 * alertContentView.frame.size.width, 20, 260, 25)];
+    UIImageView *connectingToTargetWlanView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-145 + ePage_ConnectingToTargetWlan * WIDTH_ALERT_VIEW, 45, 290, 255)];
+    connectingToTargetWlanView.image = [UIImage imageNamed:@"ConnectingToTargetWlan.png" ];
+    [alertContentView addSubview:connectingToTargetWlanView];
+    
+    /* ======================================== uAP config Page 5 ===========================================*/
+    title = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_ScanNewDevice * WIDTH_ALERT_VIEW, 20, 260, 25)];
     title.text = @"Scaning for new device...";
     title.font= [UIFont boldSystemFontOfSize:19.0];
     title.textAlignment = NSTextAlignmentCenter;
     [alertContentView addSubview:title];
     
+    UIView *pulsingHaloView = [[UIView alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW * ePage_ScanNewDevice,0, 290, 300)];
+    pulsingHaloView.clipsToBounds = YES;
+    
+    UIImageView *phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 60, 260, 260)];
+    [phoneImageView setImage:[UIImage imageNamed:@"EasyLinkPhoneStarted.png"]];
+    [pulsingHaloView addSubview:phoneImageView];
+    [phoneImageView setContentMode:UIViewContentModeScaleAspectFit];
+
+    PulsingHaloLayer *pulsingHalo = [PulsingHaloLayer layer];
+    pulsingHalo.position = CGPointMake(phoneImageView.center.x, phoneImageView.center.y-25);
+    [pulsingHaloView.layer insertSublayer:pulsingHalo above:phoneImageView.layer];
+    pulsingHalo.radius = 300;
+    pulsingHalo.backgroundColor = [UIColor colorWithRed:0 green:122.0/255 blue:1.0 alpha:1.0].CGColor;
+    [alertContentView addSubview:pulsingHaloView];
+
+    [pulsingHalo startAnimation:YES];
+    /* ==================================================================================================*/
     
     [easyLinkUAPSendingView setContainerView:alertContentView];
     
@@ -677,18 +715,22 @@ BOOL configTableMoved = NO;
     switch (stage) {
         case eState_connect_to_uap:
             [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 2 * 290, 0, 290, 300) animated:YES];
-            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
+            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 2] setEnabled:NO];
+            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 1] setEnabled:NO];
             break;
         case eState_configured_by_uap:
             [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 3 * 290, 0, 290, 300) animated:YES];
+            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 2] setEnabled:NO];
+            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 1] setEnabled:NO];
             break;
         case eState_connect_to_target_wlan:
             [(UIScrollView *)easyLinkUAPSendingView.containerView scrollRectToVisible:CGRectMake( 4 * 290, 0, 290, 300) animated:YES];
-            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 3] setEnabled:NO];
+            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 2] setEnabled:NO];
+            [(UIButton *)[easyLinkUAPSendingView.dialogView viewWithTag: 1] setEnabled:NO];
             break;
         case eState_connect_to_wrong_wlan:
             message =  [[NSString alloc] initWithFormat:@"Current connected wlan is %@. You should connect to target wlan %@ manually.",[EASYLINK ssidForConnectedNetwork],  ssidField.text];
-            wrongWlanAlertView = [[UIAlertView alloc] initWithTitle:@"Wrong Wlan Connected" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            wrongWlanAlertView = [[UIAlertView alloc] initWithTitle:@"Wrong Wlan Connected" message:message delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
             [wrongWlanAlertView show];
             break;
         default:
@@ -904,7 +946,7 @@ BOOL configTableMoved = NO;
 - (void)appEnterInforground:(NSNotification*)notification{
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     
-    if ( netStatus != NotReachable && ![[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]) {
+    if ( netStatus != NotReachable && ![[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"] && easylink_config.softAPSending == false) {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
         targetSsid = [EASYLINK ssidDataForConnectedNetwork];
         ipAddress.text = @"Automatic";
@@ -930,7 +972,7 @@ BOOL configTableMoved = NO;
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     
     /* iOS has connect to a wireless router */
-    if ( netStatus != NotReachable && ![[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"]) {
+    if ( netStatus != NotReachable && ![[EASYLINK ssidForConnectedNetwork] hasPrefix:@"EasyLink_"] && easylink_config.softAPSending == false) {
         ssidField.text = [EASYLINK ssidForConnectedNetwork];
         targetSsid = [EASYLINK ssidDataForConnectedNetwork];
         NSString *password = [apInforRecord objectForKey:ssidField.text];

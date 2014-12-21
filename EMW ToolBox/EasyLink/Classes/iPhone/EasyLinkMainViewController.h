@@ -10,25 +10,22 @@
 #import "Reachability.h"
 #include <time.h>
 #import "EMWHeader.h"
-//#import "EMWUtility.h"
 #import "EASYLINK.h"
 #import "EasyLinkFTCTableViewController.h"
 #import "CustomIOS7AlertView.h"
 #import "EasyLinkOTATableViewController.h"
-#import "EasyLinkFoundTableViewController.h"
 
 
 @interface EasyLinkMainViewController : UIViewController<UITextFieldDelegate, EasyLinkFTCDelegate, EasyLinkFTCDataDelegate, EasyLinkOTADelegate, NSFileManagerDelegate>{
-    NSMutableArray *foundModules;
 @private
-    IBOutlet UITableView *configTableView;
+    IBOutlet UITableView *configTableView, *foundModuleTableView;
     IBOutlet UIScrollView *bgView;
-    IBOutlet UITableView *foundModuleTableView;
+    IBOutlet UILabel *newDeviceCount;
     UITextField *ssidField,*bssidField,*passwordField,*userInfoField,*ipAddress;
 
     NSData *targetSsid;
 
-    IBOutlet UILabel *newDeviceCount;
+    
     UIAlertView *alertView;
     CustomIOS7AlertView *customAlertView, *otaAlertView;
     NSMutableDictionary *deviceIPConfig;
@@ -37,19 +34,10 @@
 
     EASYLINK *easylink_config;
     CustomIOS7AlertView *easyLinkSendingView, *easyLinkUAPSendingView;
-    __weak EasyLinkFoundTableViewController *foundTableViewController;
-    
 
     Reachability *wifiReachability;
 }
 
 @property (strong, nonatomic) NSMutableArray *foundModules;
-
-
-
-
-
-
-
 
 @end
