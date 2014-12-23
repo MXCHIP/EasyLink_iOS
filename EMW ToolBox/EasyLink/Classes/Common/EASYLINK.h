@@ -12,13 +12,6 @@
 #import "AsyncSocket.h"
 #import "Reachability.h"
 
-<<<<<<< HEAD
-//#define INTERVAL_EASYLINK
-
-#define EASYLINK_V1         0
-#define EASYLINK_V2         1
-#define EASYLINK_PLUS       2
-=======
 typedef enum{
     EASYLINK_V1 = 0,
     EASYLINK_V2,
@@ -26,7 +19,6 @@ typedef enum{
     EASYLINK_V2_PLUS,
     EASYLINK_SOFT_AP,
 } EasyLinkMode;
->>>>>>> EasyLink-Soft-AP
 
 typedef enum{
     eState_initialize,
@@ -102,14 +94,6 @@ NSNetServiceDelegate>{
     EasyLinkSoftApStage _softAPStage;
     
     id theDelegate;
-<<<<<<< HEAD
-    uint32_t seqHook;
-#ifdef INTERVAL_EASYLINK
-    BOOL easyLinkSuspend;
-    NSTimer *easyLinkTemporarySuspendTimer;
-#endif
-=======
->>>>>>> EasyLink-Soft-AP
 }
 
 @property (nonatomic, readonly) EasyLinkSoftApStage softAPStage;

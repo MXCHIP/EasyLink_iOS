@@ -22,17 +22,8 @@
 #define DefaultEasyLinkPlusDelayPerBlock   0.08
 #define DefaultEasyLinkV2DelayPerBlock     0.02
 
-<<<<<<< HEAD
-#define EasyLinkPlusDelayPerByte    0.005
-#define EasyLinkPlusDelayPerBlock   0.08
-#define EasyLinkV2DelayPerBlock     0.04
-
-
-CFHTTPMessageRef inComingMessageArray[MessageCount];
-=======
 #define kEasyLinkConfigServiceType @"_easylink_config._tcp"
 #define kInitialDomain  @"local"
->>>>>>> EasyLink-Soft-AP
 
 @implementation NSMutableArray (Additions)
 - (void)insertEasyLinkPlusData:(NSUInteger)length delay:(float)delay
@@ -406,50 +397,6 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
 
 - (void)transmitSettings
 {
-<<<<<<< HEAD
-    multicastCount = 0;
-    broadcastcount = 0;
-    
-    CFSocketRef tempSocket;
-    tempSocket = CFSocketCreate(kCFAllocatorDefault,
-                                PF_INET,
-                                SOCK_DGRAM,
-                                IPPROTO_UDP,
-                                kCFSocketNoCallBack,
-                                NULL,
-                                NULL);
-    uint8_t loop = 0x1;
-    setsockopt(CFSocketGetNative(tempSocket), SOL_SOCKET, IP_MULTICAST_LOOP, &loop, sizeof(uint8_t));
-    NSString *ipAddressStr = [EASYLINK getIPAddress];
-    NSString *multicastAddressStr;
-    struct in_addr interface;
-    interface.s_addr= inet_addr([ipAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
-    
-    struct ip_mreq mreq;
-    mreq.imr_interface = interface;
-    NSDictionary *object;
-    for(object in self.multicastArray){
-        multicastAddressStr = [object objectForKey:@"host"];
-        mreq.imr_multiaddr.s_addr =  inet_addr([multicastAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
-        setsockopt(CFSocketGetNative(tempSocket),IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq));
-    }
-    for(object in self.multicastArray){
-        multicastAddressStr = [object objectForKey:@"host"];
-        mreq.imr_multiaddr.s_addr =  inet_addr([multicastAddressStr cStringUsingEncoding:NSASCIIStringEncoding]);
-        setsockopt(CFSocketGetNative(tempSocket),IPPROTO_IP,IP_ADD_MEMBERSHIP,&mreq,sizeof(mreq));
-    }
-    
-#ifdef INTERVAL_EASYLINK
-    easyLinkSuspend = false;
-    easyLinkTemporarySuspendTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(easyLinkTemperarySuspend:) userInfo:nil repeats:YES];
-#endif
-
-    if(version == EASYLINK_PLUS){
-        if(broadcastSending == false){
-            broadcastSending = true;
-            [self performSelector:@selector(broadcastStartConfigure:) withObject:self];
-        }
-=======
     NSError *err;
     [self stopTransmitting];
     
@@ -481,7 +428,6 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
         
         _netServiceBrowser.delegate = nil;
         _netServiceBrowser = nil;
->>>>>>> EasyLink-Soft-AP
         
         for (NSNetService *service in _netServiceArray){
             service.delegate = nil;
@@ -503,64 +449,15 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
 
 - (void)stopTransmitting
 {
-<<<<<<< HEAD
-    broadcastSending = false;
-    multicastSending = false;
-    
-#ifdef INTERVAL_EASYLINK
-    [easyLinkTemporarySuspendTimer invalidate];
-    easyLinkTemporarySuspendTimer = nil;
-#endif
-}
-
-#ifdef INTERVAL_EASYLINK
-- (void)easyLinkTemperarySuspend:(id)userInfo
-{
-    if(easyLinkSuspend == false){
-        NSLog(@"Suspend...");
-        easyLinkSuspend = true;
-    }
-    else{
-        NSLog(@"Unsuspend...");
-        easyLinkSuspend = false;
-    }
-=======
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(broadcastStartConfigure: ) object:self];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(multicastStartConfigure: ) object:self];
     _broadcastSending = false;
     _multicastSending = false;
     _softAPSending = false;
->>>>>>> EasyLink-Soft-AP
 }
-#endif
 
 
 - (void)broadcastStartConfigure:(id)sender{
-<<<<<<< HEAD
-#ifdef INTERVAL_EASYLINK
-    if(easyLinkSuspend == false)
-        [self.broadcastSocket sendData:[[self.broadcastArray objectAtIndex:broadcastcount] objectForKey:@"sendData"] toHost:[EASYLINK getBroadcastAddress] port:65523 withTimeout:10 tag:0];
-#else
-    [self.broadcastSocket sendData:[[self.broadcastArray objectAtIndex:broadcastcount] objectForKey:@"sendData"] toHost:[EASYLINK getBroadcastAddress] port:65523 withTimeout:10 tag:0];
-#endif
-    ++broadcastcount;
-    if (broadcastcount == [self.broadcastArray count]) broadcastcount = 0;
-    if(broadcastSending == true)
-        [self performSelector:@selector(broadcastStartConfigure:) withObject:self afterDelay:[(NSNumber *)([[self.broadcastArray objectAtIndex:broadcastcount] objectForKey:@"Delay"]) floatValue]];
-}
-
-- (void)multicastStartConfigure:(id)sender{
-#ifdef INTERVAL_EASYLINK
-    if(easyLinkSuspend == false)
-        [self.multicastSocket sendData:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"sendData"] toHost:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"host"] port:65523 withTimeout:10 tag:0];
-#else
-    [self.multicastSocket sendData:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"sendData"] toHost:[[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"host"] port:65523 withTimeout:10 tag:0];
-#endif
-    ++multicastCount;
-    if (multicastCount == [self.multicastArray count]) multicastCount = 0;
-    if(multicastSending == true)
-        [self performSelector:@selector(multicastStartConfigure:) withObject:self afterDelay:[(NSNumber *)([[self.multicastArray objectAtIndex:multicastCount] objectForKey:@"Delay"]) floatValue]];
-=======
     [broadcastSocket sendData:[[broadcastArray objectAtIndex:_broadcastcount] objectForKey:@"sendData"] toHost:[EASYLINK getBroadcastAddress] port:65523 withTimeout:10 tag:0];
     ++_broadcastcount;
     if (_broadcastcount == [broadcastArray count]) _broadcastcount = 0;
@@ -574,7 +471,6 @@ CFHTTPMessageRef inComingMessageArray[MessageCount];
     if (_multicastCount == [multicastArray count]) _multicastCount = 0;
     if(_multicastSending == true)
         [self performSelector:@selector(multicastStartConfigure:) withObject:self afterDelay:[(NSNumber *)([[multicastArray objectAtIndex:_multicastCount] objectForKey:@"Delay"]) floatValue]];
->>>>>>> EasyLink-Soft-AP
 }
 
 #pragma mark - Service browser

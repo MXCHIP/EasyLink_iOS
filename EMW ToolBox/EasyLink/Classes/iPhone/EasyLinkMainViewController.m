@@ -647,13 +647,10 @@ typedef enum{
     }
     
     [easyLinkSendingView close];
-<<<<<<< HEAD
-    [easylink_config stopTransmitting];
-=======
+
     [easyLinkUAPSendingView close];
     [self updateDeviceCountLable];
     [self stopAction];
->>>>>>> EasyLink-Soft-AP
     
     if(otaAlertView != nil){
         [otaAlertView close];
