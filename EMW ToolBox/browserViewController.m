@@ -110,7 +110,7 @@ bool enumerating = NO;
     [browserTableView reloadData];
     browserTableView.allowsMultipleSelection = NO;
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(initialWaitOver:) userInfo:nil repeats:NO];
-    //[self.netServiceBrowser stop];
+
     [self.netServiceBrowser searchForServicesOfType:kWebServiceType inDomain:kInitialDomain];
     
     //// stoping the process in app backgroud state
