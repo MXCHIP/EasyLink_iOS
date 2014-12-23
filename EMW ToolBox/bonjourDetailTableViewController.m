@@ -222,6 +222,7 @@
                                                                           CFSTR("GET"),
                                                                           urlRef,
                                                                           kCFHTTPVersion1_1);
+        CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Connection"), CFSTR("close"));
         CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRequestMessage );
         [sock writeData:(__bridge NSData*)httpData withTimeout:-1 tag:0];
         CFRelease(httpData);
@@ -544,6 +545,7 @@
     snprintf(contentLen, 50, "%lu", (unsigned long)[otaData length]);
     
     CFStringRef length = CFStringCreateWithCString(kCFAllocatorDefault, contentLen, kCFStringEncodingASCII);
+    CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Connection"), CFSTR("close"));
     CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Content-Length"),length);
     CFHTTPMessageSetBody(httpRequestMessage, (__bridge CFDataRef)otaData);
     
@@ -572,6 +574,7 @@
     CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Content-Type"), CFSTR("application/json"));
     snprintf(contentLen, 50, "%lu", (unsigned long)[updateData length]);
     CFStringRef length = CFStringCreateWithCString(kCFAllocatorDefault, contentLen, kCFStringEncodingASCII);
+    CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Connection"), CFSTR("close"));
     CFHTTPMessageSetHeaderFieldValue(httpRequestMessage, CFSTR("Content-Length"),length);
     CFHTTPMessageSetBody(httpRequestMessage, (__bridge CFDataRef)updateData);
     

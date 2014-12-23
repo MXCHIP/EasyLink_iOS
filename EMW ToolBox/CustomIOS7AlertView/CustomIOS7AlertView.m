@@ -133,7 +133,6 @@ CGFloat buttonSpacerHeight = 0;
 - (void)customIOS7dialogButtonTouchUpInside: (CustomIOS7AlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"Button Clicked! %ld, %ld", (long)buttonIndex, (long)[alertView tag]);
-    [self close];
 }
 
 // Dialog close animation then cleaning and removing the view from the parent
@@ -239,6 +238,7 @@ CGFloat buttonSpacerHeight = 0;
         [closeButton setTitle:[buttonTitles objectAtIndex:i] forState:UIControlStateNormal];
         [closeButton setTitleColor:[UIColor colorWithRed:0.0f green:0.5f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
         [closeButton setTitleColor:[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:0.5f] forState:UIControlStateHighlighted];
+        [closeButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
         [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [closeButton.layer setCornerRadius:kCustomIOS7AlertViewCornerRadius];
 
@@ -249,7 +249,7 @@ CGFloat buttonSpacerHeight = 0;
 // Helper function: count and return the dialog's size
 - (CGSize)countDialogSize
 {
-    CGFloat dialogWidth = containerView.frame.size.width;
+    CGFloat dialogWidth = containerView.frame.size.width > 320 ? 290:containerView.frame.size.width;
     CGFloat dialogHeight = containerView.frame.size.height + buttonHeight + buttonSpacerHeight;
 
     return CGSizeMake(dialogWidth, dialogHeight);

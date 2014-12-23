@@ -105,7 +105,7 @@
     __weak UINavigationController *_nav = self.navigationController;
     [customAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *alertView, NSInteger buttonIndex) {
         _requestsManager = nil;
-        [_nav popToViewController:[_nav.viewControllers objectAtIndex:2] animated:YES];
+        [_nav popToViewController:[_nav.viewControllers objectAtIndex:1] animated:YES];
         NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[alertView tag]);
         [alertView close];
     }];
@@ -312,6 +312,7 @@
 {
     NSLog(@"requestsManager:didFailRequest:withError: \n %@", error);
     [self.requestsManager stopAndCancelAllRequests];
+    [self.navigationController popToViewController:theDelegate animated:YES];
 }
 
 
