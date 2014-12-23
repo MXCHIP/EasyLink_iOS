@@ -2,8 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Title</key>
+	<string></string>
 	<key>PreferenceSpecifiers</key>
 	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
+			<key>Title</key>
+			<string>EasyLink mode</string>
+			<key>Titles</key>
+			<array>
+				<string>EasyLink V2 Only</string>
+				<string>EasyLink Plus Only</string>
+				<string>EasyLink Both</string>
+			</array>
+			<key>Key</key>
+			<string>easylink_preference</string>
+			<key>DefaultValue</key>
+			<integer>3</integer>
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
@@ -12,17 +36,7 @@
 			<key>Key</key>
 			<string>version_preference</string>
 			<key>DefaultValue</key>
-			<string>2.1.2</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>easylinkv2_only_preference</string>
-			<key>Title</key>
-			<string>Use EasyLink V2 only</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
+			<string>3.0.1</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

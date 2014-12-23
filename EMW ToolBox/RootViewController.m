@@ -65,6 +65,7 @@
 
     //ConThingsViewController *ConThings = [self.storyboard instantiateViewControllerWithIdentifier:@"ConThings"];
     browserViewController *localDevice = [self.storyboard instantiateViewControllerWithIdentifier:@"Local Device"];
+    //ConThingsViewController *conThings = [self.storyboard instantiateViewControllerWithIdentifier:@"Local Device"];
     
     /*Local devices list*/
     localDevice.view.frame = CGRectMake(0, -35, 320, 464 );
@@ -74,13 +75,13 @@
     [localDevice didMoveToParentViewController:self];
     
     
-//    /*Devices list on www.conthings.com*/
-//    ConThings.view.frame = CGRectMake(320, 0, 320, 464);
+    /*Devices list on www.conthings.com*/
+//    conThings.view.frame = CGRectMake(320, 0, 320, 464);
 //    
-//    [ConThings willMoveToParentViewController:self];
-//    [self.scrollView addSubview:ConThings.view];
-//    [self addChildViewController:ConThings];
-//    [ConThings didMoveToParentViewController:self];
+//    [conThings willMoveToParentViewController:self];
+//    [self.scrollView addSubview:conThings.view];
+//    [self addChildViewController:conThings];
+//    [conThings didMoveToParentViewController:self];
 
 }
 
