@@ -178,7 +178,7 @@ typedef enum{
 
 - (void)updateDeviceCountLable
 {
-    [newDeviceCount setText:[[NSString alloc]initWithFormat:@"(%d)",[foundModules count]]];
+    [newDeviceCount setText:[[NSString alloc]initWithFormat:@"(%lu)",(unsigned long)[foundModules count]]];
 }
 
 #pragma mark - TRASMITTING DATA -
@@ -234,6 +234,7 @@ typedef enum{
     animation.duration = 0.5 ;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.type = kCATransitionFade;
+    NSArray *easyLinkModeStrArray = [NSArray arrayWithObjects:@"EsyLink V1 sending...", @"EsyLink V2 sending...", @"EsyLink Plus sending...", @"EsyLink V2/Plus sending...", nil];
     
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     if ( netStatus == NotReachable) {// No activity if no wifi
@@ -254,13 +255,21 @@ typedef enum{
         return;
     }
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    EasyLinkMode mode = (EasyLinkMode)[defaults integerForKey:@"easylink_preference"];
+    NSLog(@"Mode is %d", mode);
+    if(mode != EASYLINK_V2 && mode != EASYLINK_PLUS && mode != EASYLINK_V2_PLUS)
+        mode = EASYLINK_V2_PLUS;
+    
+    [self startTransmitting: mode];
+    
     /*Pop up a Easylink sending dialog*/
     easyLinkSendingView = [[CustomIOS7AlertView alloc] init];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 300)];
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 20, 260, 25)];
-    title.text = @"Transmitting Data...";
+    title.text = [easyLinkModeStrArray objectAtIndex: easylink_config.mode];
     title.font= [UIFont boldSystemFontOfSize:19.0];
     title.textAlignment = NSTextAlignmentCenter;
     [alertContentView addSubview:title];
@@ -334,15 +343,7 @@ typedef enum{
     
     [easyLinkSendingView setUseMotionEffects:true];
     [easyLinkSendingView show];
-
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    bool useEasyLinkV2Only = [defaults boolForKey:@"easylinkv2_only_preference"];
-    NSLog(@"Preference %d", useEasyLinkV2Only);
-
-    if(useEasyLinkV2Only == YES)
-        [self startTransmitting: EASYLINK_V2];
-    else
-        [self startTransmitting: EASYLINK_PLUS];
+    
 }
 
 - (IBAction)easyLinkuAPButtonAction:(UIButton*)button
@@ -994,7 +995,7 @@ typedef enum{
         [[segue destinationViewController] setDeviceIPConfig: deviceIPConfig];
     }else if ([[segue identifier] isEqualToString:@"First Time Configuration"]){
         for( NSMutableDictionary *object in foundModules){
-            if([[object objectForKey:@"tag"] isEqualToNumber:[NSNumber numberWithInt:[sender tag] ]]){
+            if([[object objectForKey:@"tag"] isEqualToNumber:[NSNumber numberWithLong:[sender tag] ]]){
                 [object removeObjectsForKeys:[NSArray arrayWithObjects:@"FW", @"PO", @"HD", nil]];
                 [[segue destinationViewController] setConfigData:object];
                 [(EasyLinkFTCTableViewController *)[segue destinationViewController] setDelegate:self];
@@ -1003,7 +1004,7 @@ typedef enum{
         }
     }else if ([[segue identifier] isEqualToString:@"OTA"]){
         for( NSMutableDictionary *object in foundModules){
-            if([[object objectForKey:@"tag"] isEqualToNumber:[NSNumber numberWithInt:[sender tag] ]]){
+            if([[object objectForKey:@"tag"] isEqualToNumber:[NSNumber numberWithLong:[sender tag] ]]){
                 [[segue destinationViewController] setProtocol:[object objectForKey:@"PO"]];
                 [[segue destinationViewController] setClient:[object objectForKey:@"client"]];
                 [[segue destinationViewController] setHardwareVersion: [object objectForKey:@"HD"]];

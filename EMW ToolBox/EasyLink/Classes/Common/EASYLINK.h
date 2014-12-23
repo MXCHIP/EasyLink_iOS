@@ -7,17 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
 #import "AsyncUdpSocket.h"
 #import "AsyncSocket.h"
 #import "Reachability.h"
 
-
 typedef enum{
-    EASYLINK_V1,
+    EASYLINK_V1 = 0,
     EASYLINK_V2,
     EASYLINK_PLUS,
+    EASYLINK_V2_PLUS,
     EASYLINK_SOFT_AP,
 } EasyLinkMode;
 
@@ -99,6 +98,12 @@ NSNetServiceDelegate>{
 
 @property (nonatomic, readonly) EasyLinkSoftApStage softAPStage;
 @property (nonatomic, readonly) bool softAPSending;
+@property (nonatomic, readonly) EasyLinkMode mode;
+
+/* These delays should can only be write before prepareEasyLink_withFTC:info:mode is called. The less time is delayed, the faster Easylink may success,but wireless router would be under heavier pressure. So user should consider a balence between speed and wireless router's performance*/
+@property (nonatomic, readwrite) float easyLinkPlusDelayPerByte;   //Default value: 5ms
+@property (nonatomic, readwrite) float easyLinkPlusDelayPerBlock;  //Default value: 80ms, a block send 5 package
+@property (nonatomic, readwrite) float easyLinkV2DelayPerBlock;    //Default value: 20ms, a block send 1 package
 
 
 - (id)initWithDelegate:(id)delegate;
