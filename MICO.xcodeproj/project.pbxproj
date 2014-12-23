@@ -45,7 +45,6 @@
 		3D2AD5A017A247E30026E31E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD59E17A247E30026E31E /* MainStoryboard.storyboard */; };
 		3D2AD5A317A247E30026E31E /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD5A217A247E30026E31E /* browserViewController.m */; };
 		3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */; };
-		3D64B4981A3810250028392C /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D64B4971A3810250028392C /* newModuleTableViewCell.m */; };
 		3D65ABA419493E1E00C8BD14 /* EMW3280.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D65ABA119493E1E00C8BD14 /* EMW3280.png */; };
 		3D65ABA7194944F000C8BD14 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D65ABA5194944F000C8BD14 /* EMW3161.png */; };
 		3D65ABA8194944F000C8BD14 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D65ABA6194944F000C8BD14 /* EMW3162.png */; };
@@ -77,11 +76,8 @@
 		3DA1179A18EBE946009B2E1E /* moduleBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1179918EBE946009B2E1E /* moduleBrowserCell.m */; };
 		3DA2EDBF192218440055A89A /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2EDBE192218440055A89A /* UIViewController+KNSemiModal.m */; };
 		3DA2EDC319221B000055A89A /* addNewCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2EDC119221B000055A89A /* addNewCommandViewController.m */; };
-		3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */; };
 		3DAA389B17A5446B003806FE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA37F817A5446A003806FE /* Default-568h@2x.png */; };
 		3DAA38A217A5446B003806FE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAA37FF17A5446B003806FE /* Default.png */; };
-		3DAA393F17A54572003806FE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA393E17A54572003806FE /* Reachability.m */; };
-		3DAA394A17A54ED0003806FE /* EASYLINK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA394717A54ED0003806FE /* EASYLINK.m */; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA394E17A55486003806FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
@@ -149,6 +145,10 @@
 		3DC773B717A8A6710029ACB3 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC773B517A8A6710029ACB3 /* known_logo.png */; };
 		3DD19A6018E00D5600F8E43A /* EasyLinkFTCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */; };
 		3DDB158A18BB0C580053B32D /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDB158918BB0C580053B32D /* ExternalAccessory.framework */; };
+		3DE0C3351A494E1B00B7133F /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE0C3321A494E1B00B7133F /* EasyLinkMainViewController.m */; };
+		3DE0C3361A494E1B00B7133F /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE0C3341A494E1B00B7133F /* newModuleTableViewCell.m */; };
+		3DE0C33B1A494E3A00B7133F /* EASYLINK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE0C3381A494E3A00B7133F /* EASYLINK.m */; };
+		3DE0C33F1A494E8200B7133F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE0C33E1A494E8200B7133F /* Reachability.m */; };
 		3DE5C6C618FCFCB7008436EB /* GRRequestsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6AF18FCFCB7008436EB /* GRRequestsManager.m */; };
 		3DE5C6C718FCFCB7008436EB /* GRCreateDirectoryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6B318FCFCB7008436EB /* GRCreateDirectoryRequest.m */; };
 		3DE5C6C818FCFCB7008436EB /* GRDeleteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5C6B518FCFCB7008436EB /* GRDeleteRequest.m */; };
@@ -225,11 +225,8 @@
 		3D2AD5A117A247E30026E31E /* browserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = browserViewController.h; sourceTree = "<group>"; };
 		3D2AD5A217A247E30026E31E /* browserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = browserViewController.m; sourceTree = "<group>"; };
 		3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		3D31DA9A18E7A98800385649 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
 		3D4289D918A4D73F0092DD5D /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PulsingHaloLayer.h; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.h"; sourceTree = "<group>"; };
 		3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.m"; sourceTree = "<group>"; };
-		3D64B4961A3810250028392C /* newModuleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newModuleTableViewCell.h; path = EasyLink/Classes/iPhone/newModuleTableViewCell.h; sourceTree = "<group>"; };
-		3D64B4971A3810250028392C /* newModuleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newModuleTableViewCell.m; path = EasyLink/Classes/iPhone/newModuleTableViewCell.m; sourceTree = "<group>"; };
 		3D65ABA119493E1E00C8BD14 /* EMW3280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMW3280.png; sourceTree = "<group>"; };
 		3D65ABA5194944F000C8BD14 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = "EMW ToolBox/Resources/Images/iPhone/EMW3161.png"; sourceTree = SOURCE_ROOT; };
 		3D65ABA6194944F000C8BD14 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = "EMW ToolBox/Resources/Images/iPhone/EMW3162.png"; sourceTree = SOURCE_ROOT; };
@@ -277,15 +274,8 @@
 		3DA2EDBE192218440055A89A /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
 		3DA2EDC019221B000055A89A /* addNewCommandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addNewCommandViewController.h; sourceTree = "<group>"; };
 		3DA2EDC119221B000055A89A /* addNewCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addNewCommandViewController.m; sourceTree = "<group>"; };
-		3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLinkMainViewController.h; path = EasyLink/Classes/iPhone/EasyLinkMainViewController.h; sourceTree = "<group>"; };
-		3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EasyLinkMainViewController.m; path = EasyLink/Classes/iPhone/EasyLinkMainViewController.m; sourceTree = "<group>"; };
 		3DAA37F817A5446A003806FE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3DAA37FF17A5446B003806FE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		3DAA393D17A54572003806FE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		3DAA393E17A54572003806FE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		3DAA394317A54ED0003806FE /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMWHeader.h; sourceTree = "<group>"; };
-		3DAA394617A54ED0003806FE /* EASYLINK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EASYLINK.h; path = EasyLink/Classes/Common/EASYLINK.h; sourceTree = "<group>"; };
-		3DAA394717A54ED0003806FE /* EASYLINK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EASYLINK.m; path = EasyLink/Classes/Common/EASYLINK.m; sourceTree = "<group>"; };
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3DAA394D17A55486003806FE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3DAA394F17A554AD003806FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -368,6 +358,16 @@
 		3DD19A5E18E00D5600F8E43A /* EasyLinkFTCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLinkFTCTableViewController.h; sourceTree = "<group>"; };
 		3DD19A5F18E00D5600F8E43A /* EasyLinkFTCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLinkFTCTableViewController.m; sourceTree = "<group>"; };
 		3DDB158918BB0C580053B32D /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		3DE0C3311A494E1B00B7133F /* EasyLinkMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLinkMainViewController.h; path = EasyLink/iPhone/EasyLinkMainViewController.h; sourceTree = "<group>"; };
+		3DE0C3321A494E1B00B7133F /* EasyLinkMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EasyLinkMainViewController.m; path = EasyLink/iPhone/EasyLinkMainViewController.m; sourceTree = "<group>"; };
+		3DE0C3331A494E1B00B7133F /* newModuleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newModuleTableViewCell.h; path = EasyLink/iPhone/newModuleTableViewCell.h; sourceTree = "<group>"; };
+		3DE0C3341A494E1B00B7133F /* newModuleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newModuleTableViewCell.m; path = EasyLink/iPhone/newModuleTableViewCell.m; sourceTree = "<group>"; };
+		3DE0C3371A494E3A00B7133F /* EASYLINK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EASYLINK.h; path = EasyLink/Common/EASYLINK.h; sourceTree = "<group>"; };
+		3DE0C3381A494E3A00B7133F /* EASYLINK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EASYLINK.m; path = EasyLink/Common/EASYLINK.m; sourceTree = "<group>"; };
+		3DE0C3391A494E3A00B7133F /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/Common/EMWHeader.h; sourceTree = "<group>"; };
+		3DE0C33A1A494E3A00B7133F /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = route.h; path = EasyLink/Common/route.h; sourceTree = "<group>"; };
+		3DE0C33D1A494E8200B7133F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = EasyLink/Reachability/Reachability.h; sourceTree = "<group>"; };
+		3DE0C33E1A494E8200B7133F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = EasyLink/Reachability/Reachability.m; sourceTree = "<group>"; };
 		3DE5C6AE18FCFCB7008436EB /* GRRequestsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRRequestsManager.h; path = "EMW ToolBox/GoldRaccoonFTPClient/GRRequestsManager.h"; sourceTree = "<group>"; };
 		3DE5C6AF18FCFCB7008436EB /* GRRequestsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GRRequestsManager.m; path = "EMW ToolBox/GoldRaccoonFTPClient/GRRequestsManager.m"; sourceTree = "<group>"; };
 		3DE5C6B018FCFCB7008436EB /* GRRequestsManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRRequestsManagerProtocol.h; path = "EMW ToolBox/GoldRaccoonFTPClient/GRRequestsManagerProtocol.h"; sourceTree = "<group>"; };
@@ -546,7 +546,7 @@
 		3D2AD58C17A247E30026E31E /* MainUI */ = {
 			isa = PBXGroup;
 			children = (
-				3DAA393C17A54572003806FE /* Reachability */,
+				3DE0C3301A494DFF00B7133F /* EasyLinkPage */,
 				3D2AD58D17A247E30026E31E /* Supporting Files */,
 				3D0D3032191B4C1500C5B57A /* Module Interactive */,
 				3DA1179718EBE2CE009B2E1E /* Browser Cell */,
@@ -556,10 +556,6 @@
 				3D2AD59E17A247E30026E31E /* MainStoryboard.storyboard */,
 				3D1F0D841910C9DE0030A828 /* bonjourDetailTableViewController.h */,
 				3D1F0D851910C9DE0030A828 /* bonjourDetailTableViewController.m */,
-				3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */,
-				3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */,
-				3D64B4961A3810250028392C /* newModuleTableViewCell.h */,
-				3D64B4971A3810250028392C /* newModuleTableViewCell.m */,
 				3D8249221924FA3C00176E14 /* RootViewController.h */,
 				3D8249231924FA3C00176E14 /* RootViewController.m */,
 				3D2AD5A117A247E30026E31E /* browserViewController.h */,
@@ -683,9 +679,11 @@
 		3DAA37E317A542FC003806FE /* EasyLink */ = {
 			isa = PBXGroup;
 			children = (
-				3DAA394617A54ED0003806FE /* EASYLINK.h */,
-				3DAA394717A54ED0003806FE /* EASYLINK.m */,
-				3DAA394017A54ED0003806FE /* Common */,
+				3DE0C33C1A494E6D00B7133F /* Reachability */,
+				3DE0C3371A494E3A00B7133F /* EASYLINK.h */,
+				3DE0C3381A494E3A00B7133F /* EASYLINK.m */,
+				3DE0C3391A494E3A00B7133F /* EMWHeader.h */,
+				3DE0C33A1A494E3A00B7133F /* route.h */,
 			);
 			name = EasyLink;
 			path = "EMW ToolBox";
@@ -736,26 +734,6 @@
 			children = (
 			);
 			path = iPhone;
-			sourceTree = "<group>";
-		};
-		3DAA393C17A54572003806FE /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				3DAA393D17A54572003806FE /* Reachability.h */,
-				3DAA393E17A54572003806FE /* Reachability.m */,
-			);
-			name = Reachability;
-			path = EasyLink/Classes/Reachability;
-			sourceTree = "<group>";
-		};
-		3DAA394017A54ED0003806FE /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				3D31DA9A18E7A98800385649 /* route.h */,
-				3DAA394317A54ED0003806FE /* EMWHeader.h */,
-			);
-			name = Common;
-			path = EasyLink/Classes/Common;
 			sourceTree = "<group>";
 		};
 		3DAE9FB519191B350082D846 /* MessagesTableViewController */ = {
@@ -858,6 +836,26 @@
 				3DAE9FF619191B600082D846 /* messageSent.aiff */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		3DE0C3301A494DFF00B7133F /* EasyLinkPage */ = {
+			isa = PBXGroup;
+			children = (
+				3DE0C3311A494E1B00B7133F /* EasyLinkMainViewController.h */,
+				3DE0C3321A494E1B00B7133F /* EasyLinkMainViewController.m */,
+				3DE0C3331A494E1B00B7133F /* newModuleTableViewCell.h */,
+				3DE0C3341A494E1B00B7133F /* newModuleTableViewCell.m */,
+			);
+			name = EasyLinkPage;
+			sourceTree = "<group>";
+		};
+		3DE0C33C1A494E6D00B7133F /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				3DE0C33D1A494E8200B7133F /* Reachability.h */,
+				3DE0C33E1A494E8200B7133F /* Reachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 		3DE5C6B118FCFCB7008436EB /* Requests */ = {
@@ -1092,24 +1090,26 @@
 				3DAEA03819191B600082D846 /* UIView+AnimationOptionsForCurve.m in Sources */,
 				3DE5C6CC18FCFCB7008436EB /* GRUploadRequest.m in Sources */,
 				3D179B5B18F3F1C8003C02F9 /* FTCSelectViewController.m in Sources */,
-				3DAA37F317A5442B003806FE /* EasyLinkMainViewController.m in Sources */,
 				3D7ACE8718FACAF600747F32 /* CustomIOS7AlertView.m in Sources */,
 				3DF345D018E125F60088832E /* FTCStringCell.m in Sources */,
 				3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */,
 				3D0D3038191B5F0F00C5B57A /* commandsTableViewController.m in Sources */,
 				3D1F0D861910C9DE0030A828 /* bonjourDetailTableViewController.m in Sources */,
+				3DE0C3361A494E1B00B7133F /* newModuleTableViewCell.m in Sources */,
 				3DA2EDBF192218440055A89A /* UIViewController+KNSemiModal.m in Sources */,
 				3DA1179A18EBE946009B2E1E /* moduleBrowserCell.m in Sources */,
 				3D677D131925EB8600E4A486 /* guideViewController.m in Sources */,
 				3DE5C6C718FCFCB7008436EB /* GRCreateDirectoryRequest.m in Sources */,
 				3D677D0C1925B3E400E4A486 /* MJRefreshConst.m in Sources */,
-				3D64B4981A3810250028392C /* newModuleTableViewCell.m in Sources */,
 				3D179B5818F3E5A3003C02F9 /* FTCStringSelectCell.m in Sources */,
 				3DAEA00319191B600082D846 /* JSMessageSoundEffect.m in Sources */,
 				3DE5C6C618FCFCB7008436EB /* GRRequestsManager.m in Sources */,
+				3DE0C33B1A494E3A00B7133F /* EASYLINK.m in Sources */,
 				3DAEA03519191B600082D846 /* UIButton+JSMessagesView.m in Sources */,
+				3DE0C3351A494E1B00B7133F /* EasyLinkMainViewController.m in Sources */,
 				3D677D0B1925B3E400E4A486 /* MJRefreshBaseView.m in Sources */,
 				3DAEA00119191B600082D846 /* JSDismissiveTextView.m in Sources */,
+				3DE0C33F1A494E8200B7133F /* Reachability.m in Sources */,
 				3DE5C6D218FD373D008436EB /* easyLinkOTATableViewController.m in Sources */,
 				3DA2EDC319221B000055A89A /* addNewCommandViewController.m in Sources */,
 				3DE5C6C818FCFCB7008436EB /* GRDeleteRequest.m in Sources */,
@@ -1120,7 +1120,6 @@
 				3DAE9FFF19191B600082D846 /* JSBubbleMessageCell.m in Sources */,
 				3DFEF5FA1903C37300798682 /* easyLinkIpConfigTableViewController.m in Sources */,
 				3D677D0E1925B3E400E4A486 /* MJRefreshHeaderView.m in Sources */,
-				3DAA393F17A54572003806FE /* Reachability.m in Sources */,
 				3DE5C6CA18FCFCB7008436EB /* GRListingRequest.m in Sources */,
 				3D677D0D1925B3E400E4A486 /* MJRefreshFooterView.m in Sources */,
 				3DE5C6CE18FCFCB7008436EB /* GRQueue.m in Sources */,
@@ -1129,7 +1128,6 @@
 				3D0D3035191B4C7D00C5B57A /* talkToModuleViewController.m in Sources */,
 				3DD19A6018E00D5600F8E43A /* EasyLinkFTCTableViewController.m in Sources */,
 				3D207F46187D2FC700A3CBB7 /* AsyncSocket.m in Sources */,
-				3DAA394A17A54ED0003806FE /* EASYLINK.m in Sources */,
 				3D9247D21922540900A0EE32 /* CustomUIStoryboardSegue.m in Sources */,
 				3DAEA00219191B600082D846 /* JSMessageInputView.m in Sources */,
 				3D7B49CD18E2BB2D0062837A /* FTCSwitchCell.m in Sources */,
@@ -1236,10 +1234,7 @@
 				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = EasyLink;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1259,10 +1254,7 @@
 				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = EasyLink;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "61831f35-0591-4d97-b0bc-3d8b232e10c6";
