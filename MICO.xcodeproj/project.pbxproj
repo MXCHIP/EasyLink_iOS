@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D05356A1A46982A00059A5A /* ConnectingToModule@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0535671A46982A00059A5A /* ConnectingToModule@3x.png */; };
+		3D05356B1A46982A00059A5A /* ConnectingToModule.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0535681A46982A00059A5A /* ConnectingToModule.png */; };
+		3D05356C1A46982A00059A5A /* ConnectingToModule@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0535691A46982A00059A5A /* ConnectingToModule@2x.png */; };
+		3D0535701A46A3DC00059A5A /* SendingConfig.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D05356D1A46A3DC00059A5A /* SendingConfig.png */; };
+		3D0535711A46A3DC00059A5A /* SendingConfig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D05356E1A46A3DC00059A5A /* SendingConfig@2x.png */; };
+		3D0535721A46A3DC00059A5A /* SendingConfig@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D05356F1A46A3DC00059A5A /* SendingConfig@3x.png */; };
+		3D0535761A46A6D900059A5A /* ConnectingToTargetWlan.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0535731A46A6D900059A5A /* ConnectingToTargetWlan.png */; };
+		3D0535771A46A6D900059A5A /* ConnectingToTargetWlan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0535741A46A6D900059A5A /* ConnectingToTargetWlan@2x.png */; };
+		3D0535781A46A6D900059A5A /* ConnectingToTargetWlan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0535751A46A6D900059A5A /* ConnectingToTargetWlan@3x.png */; };
+		3D05357B1A46B14500059A5A /* EasyLinkPhoneStarted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0535791A46B14500059A5A /* EasyLinkPhoneStarted@2x.png */; };
+		3D05357C1A46B14500059A5A /* EasyLinkPhoneStarted@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D05357A1A46B14500059A5A /* EasyLinkPhoneStarted@3x.png */; };
+		3D05357E1A46BF0100059A5A /* StartEasyLink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D05357D1A46BF0100059A5A /* StartEasyLink.png */; };
+		3D0535801A46C14D00059A5A /* StartEasyLink@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D05357F1A46C14D00059A5A /* StartEasyLink@3x.png */; };
+		3D0535821A46C15B00059A5A /* StartEasyLink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0535811A46C15B00059A5A /* StartEasyLink@2x.png */; };
 		3D0D3027191B4A6900C5B57A /* RMMultipleViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D301A191B4A6900C5B57A /* RMMultipleViewsController.m */; };
 		3D0D3028191B4A6900C5B57A /* RMMultipleViewsController.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D301B191B4A6900C5B57A /* RMMultipleViewsController.xcassets */; };
 		3D0D302C191B4A6900C5B57A /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D3020191B4A6900C5B57A /* Contents.json */; };
@@ -31,6 +45,7 @@
 		3D2AD5A017A247E30026E31E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD59E17A247E30026E31E /* MainStoryboard.storyboard */; };
 		3D2AD5A317A247E30026E31E /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD5A217A247E30026E31E /* browserViewController.m */; };
 		3D4289DB18A4D73F0092DD5D /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */; };
+		3D64B4981A3810250028392C /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D64B4971A3810250028392C /* newModuleTableViewCell.m */; };
 		3D65ABA419493E1E00C8BD14 /* EMW3280.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D65ABA119493E1E00C8BD14 /* EMW3280.png */; };
 		3D65ABA7194944F000C8BD14 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D65ABA5194944F000C8BD14 /* EMW3161.png */; };
 		3D65ABA8194944F000C8BD14 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D65ABA6194944F000C8BD14 /* EMW3162.png */; };
@@ -51,6 +66,12 @@
 		3D8249211924FA0A00176E14 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8249201924FA0A00176E14 /* HMSegmentedControl.m */; };
 		3D8249241924FA3C00176E14 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8249231924FA3C00176E14 /* RootViewController.m */; };
 		3D8249271924FE3F00176E14 /* ConThingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8249261924FE3F00176E14 /* ConThingsViewController.m */; };
+		3D85D4A51A35AA1A002C7179 /* EASYLINK_PRESS.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D85D4A41A35AA1A002C7179 /* EASYLINK_PRESS.png */; };
+		3D85D4A71A35AB8B002C7179 /* EASYLINK_PRESS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D85D4A61A35AB8B002C7179 /* EASYLINK_PRESS@2x.png */; };
+		3D85D4A91A35AC27002C7179 /* EASYLINK_PRESS@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D85D4A81A35AC27002C7179 /* EASYLINK_PRESS@3x.png */; };
+		3D85D4B11A35AFAC002C7179 /* Home_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D85D4B01A35AFAC002C7179 /* Home_Button.png */; };
+		3D85D4B41A35B179002C7179 /* Home_Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D85D4B21A35B179002C7179 /* Home_Button@2x.png */; };
+		3D85D4B51A35B179002C7179 /* Home_Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D85D4B31A35B179002C7179 /* Home_Button@3x.png */; };
 		3D9247D21922540900A0EE32 /* CustomUIStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9247D11922540900A0EE32 /* CustomUIStoryboardSegue.m */; };
 		3D92995618EEB66300DE2560 /* FTCSubMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D92995518EEB66300DE2560 /* FTCSubMenuCell.m */; };
 		3DA1179A18EBE946009B2E1E /* moduleBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1179918EBE946009B2E1E /* moduleBrowserCell.m */; };
@@ -144,11 +165,24 @@
 		3DFB6D0A19D53E1300E91DBA /* MICO_SYS_LED_OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DFB6D0819D53E1300E91DBA /* MICO_SYS_LED_OFF.png */; };
 		3DFB6D0B19D53E1300E91DBA /* MICO_SYS_LED_ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DFB6D0919D53E1300E91DBA /* MICO_SYS_LED_ON.png */; };
 		3DFB6D0D19D55D6100E91DBA /* EASYLINK_BUTTON.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DFB6D0C19D55D6100E91DBA /* EASYLINK_BUTTON.png */; };
-		3DFB6D1319D573F600E91DBA /* EASYLINK_PRESS.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DFB6D1219D573F600E91DBA /* EASYLINK_PRESS.png */; };
 		3DFEF5FA1903C37300798682 /* easyLinkIpConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEF5F91903C37300798682 /* easyLinkIpConfigTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D0535671A46982A00059A5A /* ConnectingToModule@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ConnectingToModule@3x.png"; path = "EasyLink/ConnectingToModule@3x.png"; sourceTree = "<group>"; };
+		3D0535681A46982A00059A5A /* ConnectingToModule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ConnectingToModule.png; path = EasyLink/ConnectingToModule.png; sourceTree = "<group>"; };
+		3D0535691A46982A00059A5A /* ConnectingToModule@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ConnectingToModule@2x.png"; path = "EasyLink/ConnectingToModule@2x.png"; sourceTree = "<group>"; };
+		3D05356D1A46A3DC00059A5A /* SendingConfig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SendingConfig.png; path = EasyLink/SendingConfig.png; sourceTree = "<group>"; };
+		3D05356E1A46A3DC00059A5A /* SendingConfig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SendingConfig@2x.png"; path = "EasyLink/SendingConfig@2x.png"; sourceTree = "<group>"; };
+		3D05356F1A46A3DC00059A5A /* SendingConfig@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SendingConfig@3x.png"; path = "EasyLink/SendingConfig@3x.png"; sourceTree = "<group>"; };
+		3D0535731A46A6D900059A5A /* ConnectingToTargetWlan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ConnectingToTargetWlan.png; path = EasyLink/ConnectingToTargetWlan.png; sourceTree = "<group>"; };
+		3D0535741A46A6D900059A5A /* ConnectingToTargetWlan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ConnectingToTargetWlan@2x.png"; path = "EasyLink/ConnectingToTargetWlan@2x.png"; sourceTree = "<group>"; };
+		3D0535751A46A6D900059A5A /* ConnectingToTargetWlan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ConnectingToTargetWlan@3x.png"; path = "EasyLink/ConnectingToTargetWlan@3x.png"; sourceTree = "<group>"; };
+		3D0535791A46B14500059A5A /* EasyLinkPhoneStarted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EasyLinkPhoneStarted@2x.png"; sourceTree = "<group>"; };
+		3D05357A1A46B14500059A5A /* EasyLinkPhoneStarted@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EasyLinkPhoneStarted@3x.png"; sourceTree = "<group>"; };
+		3D05357D1A46BF0100059A5A /* StartEasyLink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StartEasyLink.png; path = EasyLink/StartEasyLink.png; sourceTree = "<group>"; };
+		3D05357F1A46C14D00059A5A /* StartEasyLink@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StartEasyLink@3x.png"; path = "EasyLink/StartEasyLink@3x.png"; sourceTree = "<group>"; };
+		3D0535811A46C15B00059A5A /* StartEasyLink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StartEasyLink@2x.png"; path = "EasyLink/StartEasyLink@2x.png"; sourceTree = "<group>"; };
 		3D0D3019191B4A6900C5B57A /* RMMultipleViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMMultipleViewsController.h; path = "EMW ToolBox/RMMultipleViewsController/RMMultipleViewsController.h"; sourceTree = "<group>"; };
 		3D0D301A191B4A6900C5B57A /* RMMultipleViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMMultipleViewsController.m; path = "EMW ToolBox/RMMultipleViewsController/RMMultipleViewsController.m"; sourceTree = "<group>"; };
 		3D0D301B191B4A6900C5B57A /* RMMultipleViewsController.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = RMMultipleViewsController.xcassets; path = "EMW ToolBox/RMMultipleViewsController/RMMultipleViewsController.xcassets"; sourceTree = "<group>"; };
@@ -194,6 +228,8 @@
 		3D31DA9A18E7A98800385649 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
 		3D4289D918A4D73F0092DD5D /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PulsingHaloLayer.h; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.h"; sourceTree = "<group>"; };
 		3D4289DA18A4D73F0092DD5D /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = "EMW ToolBox/PulsingHalo/PulsingHaloLayer.m"; sourceTree = "<group>"; };
+		3D64B4961A3810250028392C /* newModuleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newModuleTableViewCell.h; path = EasyLink/Classes/iPhone/newModuleTableViewCell.h; sourceTree = "<group>"; };
+		3D64B4971A3810250028392C /* newModuleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newModuleTableViewCell.m; path = EasyLink/Classes/iPhone/newModuleTableViewCell.m; sourceTree = "<group>"; };
 		3D65ABA119493E1E00C8BD14 /* EMW3280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMW3280.png; sourceTree = "<group>"; };
 		3D65ABA5194944F000C8BD14 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = "EMW ToolBox/Resources/Images/iPhone/EMW3161.png"; sourceTree = SOURCE_ROOT; };
 		3D65ABA6194944F000C8BD14 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = "EMW ToolBox/Resources/Images/iPhone/EMW3162.png"; sourceTree = SOURCE_ROOT; };
@@ -225,6 +261,12 @@
 		3D8249231924FA3C00176E14 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		3D8249251924FE3F00176E14 /* ConThingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConThingsViewController.h; sourceTree = "<group>"; };
 		3D8249261924FE3F00176E14 /* ConThingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConThingsViewController.m; sourceTree = "<group>"; };
+		3D85D4A41A35AA1A002C7179 /* EASYLINK_PRESS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EASYLINK_PRESS.png; path = EasyLink/EASYLINK_PRESS.png; sourceTree = "<group>"; };
+		3D85D4A61A35AB8B002C7179 /* EASYLINK_PRESS@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EASYLINK_PRESS@2x.png"; path = "EasyLink/EASYLINK_PRESS@2x.png"; sourceTree = "<group>"; };
+		3D85D4A81A35AC27002C7179 /* EASYLINK_PRESS@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EASYLINK_PRESS@3x.png"; path = "EasyLink/EASYLINK_PRESS@3x.png"; sourceTree = "<group>"; };
+		3D85D4B01A35AFAC002C7179 /* Home_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Home_Button.png; path = EasyLink/Home_Button.png; sourceTree = "<group>"; };
+		3D85D4B21A35B179002C7179 /* Home_Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Home_Button@2x.png"; path = "EasyLink/Home_Button@2x.png"; sourceTree = "<group>"; };
+		3D85D4B31A35B179002C7179 /* Home_Button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Home_Button@3x.png"; path = "EasyLink/Home_Button@3x.png"; sourceTree = "<group>"; };
 		3D9247D01922540900A0EE32 /* CustomUIStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIStoryboardSegue.h; sourceTree = "<group>"; };
 		3D9247D11922540900A0EE32 /* CustomUIStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIStoryboardSegue.m; sourceTree = "<group>"; };
 		3D92995418EEB66300DE2560 /* FTCSubMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCSubMenuCell.h; sourceTree = "<group>"; };
@@ -356,7 +398,6 @@
 		3DFB6D0819D53E1300E91DBA /* MICO_SYS_LED_OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MICO_SYS_LED_OFF.png; path = EasyLink/MICO_SYS_LED_OFF.png; sourceTree = "<group>"; };
 		3DFB6D0919D53E1300E91DBA /* MICO_SYS_LED_ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MICO_SYS_LED_ON.png; path = EasyLink/MICO_SYS_LED_ON.png; sourceTree = "<group>"; };
 		3DFB6D0C19D55D6100E91DBA /* EASYLINK_BUTTON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EASYLINK_BUTTON.png; path = EasyLink/EASYLINK_BUTTON.png; sourceTree = "<group>"; };
-		3DFB6D1219D573F600E91DBA /* EASYLINK_PRESS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EASYLINK_PRESS.png; sourceTree = "<group>"; };
 		3DFEF5F81903C37300798682 /* easyLinkIpConfigTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easyLinkIpConfigTableViewController.h; sourceTree = "<group>"; };
 		3DFEF5F91903C37300798682 /* easyLinkIpConfigTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = easyLinkIpConfigTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -505,6 +546,8 @@
 		3D2AD58C17A247E30026E31E /* MainUI */ = {
 			isa = PBXGroup;
 			children = (
+				3DAA393C17A54572003806FE /* Reachability */,
+				3D2AD58D17A247E30026E31E /* Supporting Files */,
 				3D0D3032191B4C1500C5B57A /* Module Interactive */,
 				3DA1179718EBE2CE009B2E1E /* Browser Cell */,
 				3DF345CD18E125CF0088832E /* Configuration Menu */,
@@ -515,8 +558,8 @@
 				3D1F0D851910C9DE0030A828 /* bonjourDetailTableViewController.m */,
 				3DAA37EE17A5442B003806FE /* EasyLinkMainViewController.h */,
 				3DAA37EF17A5442B003806FE /* EasyLinkMainViewController.m */,
-				3DAA393C17A54572003806FE /* Reachability */,
-				3D2AD58D17A247E30026E31E /* Supporting Files */,
+				3D64B4961A3810250028392C /* newModuleTableViewCell.h */,
+				3D64B4971A3810250028392C /* newModuleTableViewCell.m */,
 				3D8249221924FA3C00176E14 /* RootViewController.h */,
 				3D8249231924FA3C00176E14 /* RootViewController.m */,
 				3D2AD5A117A247E30026E31E /* browserViewController.h */,
@@ -591,7 +634,24 @@
 		3D8E9FD218A8A85800F6618E /* EasyLinkView */ = {
 			isa = PBXGroup;
 			children = (
-				3DFB6D1219D573F600E91DBA /* EASYLINK_PRESS.png */,
+				3D0535811A46C15B00059A5A /* StartEasyLink@2x.png */,
+				3D05357F1A46C14D00059A5A /* StartEasyLink@3x.png */,
+				3D05357D1A46BF0100059A5A /* StartEasyLink.png */,
+				3D0535731A46A6D900059A5A /* ConnectingToTargetWlan.png */,
+				3D0535741A46A6D900059A5A /* ConnectingToTargetWlan@2x.png */,
+				3D0535751A46A6D900059A5A /* ConnectingToTargetWlan@3x.png */,
+				3D05356D1A46A3DC00059A5A /* SendingConfig.png */,
+				3D05356E1A46A3DC00059A5A /* SendingConfig@2x.png */,
+				3D05356F1A46A3DC00059A5A /* SendingConfig@3x.png */,
+				3D0535671A46982A00059A5A /* ConnectingToModule@3x.png */,
+				3D0535681A46982A00059A5A /* ConnectingToModule.png */,
+				3D0535691A46982A00059A5A /* ConnectingToModule@2x.png */,
+				3D85D4B21A35B179002C7179 /* Home_Button@2x.png */,
+				3D85D4B31A35B179002C7179 /* Home_Button@3x.png */,
+				3D85D4B01A35AFAC002C7179 /* Home_Button.png */,
+				3D85D4A81A35AC27002C7179 /* EASYLINK_PRESS@3x.png */,
+				3D85D4A61A35AB8B002C7179 /* EASYLINK_PRESS@2x.png */,
+				3D85D4A41A35AA1A002C7179 /* EASYLINK_PRESS.png */,
 				3DFB6D0C19D55D6100E91DBA /* EASYLINK_BUTTON.png */,
 				3DFB6D0819D53E1300E91DBA /* MICO_SYS_LED_OFF.png */,
 				3DFB6D0919D53E1300E91DBA /* MICO_SYS_LED_ON.png */,
@@ -653,6 +713,8 @@
 		3DAA37F717A5446A003806FE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3D0535791A46B14500059A5A /* EasyLinkPhoneStarted@2x.png */,
+				3D05357A1A46B14500059A5A /* EasyLinkPhoneStarted@3x.png */,
 				3D6D4767194AB04900F267E5 /* easycloud.png */,
 				3D65ABAD1949603900C8BD14 /* EasyLinkPhoneStarted.png */,
 				3D65ABAB19495DD500C8BD14 /* EasyLinkPhone.png */,
@@ -913,6 +975,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D05357C1A46B14500059A5A /* EasyLinkPhoneStarted@3x.png in Resources */,
 				3DFB6D0B19D53E1300E91DBA /* MICO_SYS_LED_ON.png in Resources */,
 				3DAEA01319191B600082D846 /* bubble-flat-incoming-selected.png in Resources */,
 				3D0D3031191B4A6900C5B57A /* Right Reveal Icon@2x.png in Resources */,
@@ -925,11 +988,15 @@
 				3D0D302D191B4A6900C5B57A /* Left Reveal Icon.png in Resources */,
 				3D71295618AA26430071D553 /* Images.xcassets in Resources */,
 				3DAEA01E19191B600082D846 /* bubble-square-incoming-selected@2x.png in Resources */,
+				3D05356A1A46982A00059A5A /* ConnectingToModule@3x.png in Resources */,
 				3DAEA02619191B600082D846 /* bubble-typing@2x.png in Resources */,
 				3D65ABAC19495DD500C8BD14 /* EasyLinkPhone.png in Resources */,
+				3D05357E1A46BF0100059A5A /* StartEasyLink.png in Resources */,
 				3DAEA01B19191B600082D846 /* bubble-flat-outgoing.png in Resources */,
 				3DAEA02319191B600082D846 /* bubble-square-outgoing.png in Resources */,
 				3DAEA01119191B600082D846 /* bubble-default-outgoing.png in Resources */,
+				3D0535701A46A3DC00059A5A /* SendingConfig.png in Resources */,
+				3D0535801A46C14D00059A5A /* StartEasyLink@3x.png in Resources */,
 				3D65ABA7194944F000C8BD14 /* EMW3161.png in Resources */,
 				3DAEA01F19191B600082D846 /* bubble-square-incoming.png in Resources */,
 				3DAEA03019191B600082D846 /* send-highlighted@2x.png in Resources */,
@@ -937,21 +1004,33 @@
 				3DAEA03219191B600082D846 /* send@2x.png in Resources */,
 				3DAEA02A19191B600082D846 /* input-bar@2x.png in Resources */,
 				3DAEA01D19191B600082D846 /* bubble-square-incoming-selected.png in Resources */,
+				3D85D4A91A35AC27002C7179 /* EASYLINK_PRESS@3x.png in Resources */,
 				3D2AD5A017A247E30026E31E /* MainStoryboard.storyboard in Resources */,
+				3D85D4B51A35B179002C7179 /* Home_Button@3x.png in Resources */,
 				3D0D302C191B4A6900C5B57A /* Contents.json in Resources */,
 				3DFB6D0A19D53E1300E91DBA /* MICO_SYS_LED_OFF.png in Resources */,
 				3DAEA00A19191B600082D846 /* bubble-default-incoming-selected@2x.png in Resources */,
+				3D0535821A46C15B00059A5A /* StartEasyLink@2x.png in Resources */,
+				3D0535771A46A6D900059A5A /* ConnectingToTargetWlan@2x.png in Resources */,
 				3DAEA00E19191B600082D846 /* bubble-default-outgoing-green@2x.png in Resources */,
 				3D65ABAE1949603900C8BD14 /* EasyLinkPhoneStarted.png in Resources */,
+				3D85D4A51A35AA1A002C7179 /* EASYLINK_PRESS.png in Resources */,
 				3DAEA02919191B600082D846 /* input-bar.png in Resources */,
 				3D65ABA419493E1E00C8BD14 /* EMW3280.png in Resources */,
+				3D85D4B11A35AFAC002C7179 /* Home_Button.png in Resources */,
 				3DAEA00719191B600082D846 /* bubble-default-incoming-green.png in Resources */,
+				3D85D4A71A35AB8B002C7179 /* EASYLINK_PRESS@2x.png in Resources */,
 				3DAEA02419191B600082D846 /* bubble-square-outgoing@2x.png in Resources */,
+				3D0535711A46A3DC00059A5A /* SendingConfig@2x.png in Resources */,
 				3DAEA02519191B600082D846 /* bubble-typing.png in Resources */,
 				3D65ABAA19494E1F00C8BD14 /* demo-avatar-ai.png in Resources */,
+				3D05356B1A46982A00059A5A /* ConnectingToModule.png in Resources */,
 				3DAA389B17A5446B003806FE /* Default-568h@2x.png in Resources */,
+				3D85D4B41A35B179002C7179 /* Home_Button@2x.png in Resources */,
+				3D0535761A46A6D900059A5A /* ConnectingToTargetWlan.png in Resources */,
 				3DAEA02F19191B600082D846 /* send-highlighted.png in Resources */,
 				3DAA38A217A5446B003806FE /* Default.png in Resources */,
+				3D05356C1A46982A00059A5A /* ConnectingToModule@2x.png in Resources */,
 				3DAEA00919191B600082D846 /* bubble-default-incoming-selected.png in Resources */,
 				3DAEA02819191B600082D846 /* input-bar-flat@2x.png in Resources */,
 				3DAEA03319191B600082D846 /* messageReceived.aiff in Resources */,
@@ -962,7 +1041,6 @@
 				3DAEA00C19191B600082D846 /* bubble-default-incoming@2x.png in Resources */,
 				3DAEA01619191B600082D846 /* bubble-flat-incoming@2x.png in Resources */,
 				3DFB6D0D19D55D6100E91DBA /* EASYLINK_BUTTON.png in Resources */,
-				3DFB6D1319D573F600E91DBA /* EASYLINK_PRESS.png in Resources */,
 				3DC773B717A8A6710029ACB3 /* known_logo.png in Resources */,
 				3D0D3030191B4A6900C5B57A /* Right Reveal Icon.png in Resources */,
 				3DAEA01419191B600082D846 /* bubble-flat-incoming-selected@2x.png in Resources */,
@@ -974,9 +1052,12 @@
 				3DAEA01519191B600082D846 /* bubble-flat-incoming.png in Resources */,
 				3DAEA00D19191B600082D846 /* bubble-default-outgoing-green.png in Resources */,
 				3DAEA01719191B600082D846 /* bubble-flat-outgoing-old.png in Resources */,
+				3D05357B1A46B14500059A5A /* EasyLinkPhoneStarted@2x.png in Resources */,
 				3DAEA01219191B600082D846 /* bubble-default-outgoing@2x.png in Resources */,
+				3D0535721A46A3DC00059A5A /* SendingConfig@3x.png in Resources */,
 				3DAEA00F19191B600082D846 /* bubble-default-outgoing-selected.png in Resources */,
 				3DAEA02019191B600082D846 /* bubble-square-incoming@2x.png in Resources */,
+				3D0535781A46A6D900059A5A /* ConnectingToTargetWlan@3x.png in Resources */,
 				3DAEA03119191B600082D846 /* send.png in Resources */,
 				3DF4C5F019D7B0B300E3BD53 /* Settings.bundle in Resources */,
 				3D0D3028191B4A6900C5B57A /* RMMultipleViewsController.xcassets in Resources */,
@@ -1022,6 +1103,7 @@
 				3D677D131925EB8600E4A486 /* guideViewController.m in Sources */,
 				3DE5C6C718FCFCB7008436EB /* GRCreateDirectoryRequest.m in Sources */,
 				3D677D0C1925B3E400E4A486 /* MJRefreshConst.m in Sources */,
+				3D64B4981A3810250028392C /* newModuleTableViewCell.m in Sources */,
 				3D179B5818F3E5A3003C02F9 /* FTCStringSelectCell.m in Sources */,
 				3DAEA00319191B600082D846 /* JSMessageSoundEffect.m in Sources */,
 				3DE5C6C618FCFCB7008436EB /* GRRequestsManager.m in Sources */,
@@ -1153,7 +1235,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",
@@ -1176,7 +1258,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMW ToolBox/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EMW ToolBox/EasyLink-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EMW ToolBox/EasyLink\"",

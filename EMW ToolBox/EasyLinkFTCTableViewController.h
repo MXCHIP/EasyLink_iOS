@@ -17,7 +17,7 @@
 - (void)onConfigured:(NSMutableDictionary *)updateSettings;
 @end
 
-@interface EasyLinkFTCTableViewController : UITableViewController<GRRequestsManagerDelegate>{
+@interface EasyLinkFTCTableViewController : UITableViewController{
     IBOutlet UITableView *configTableView;
     id theDelegate;
 @private
