@@ -98,6 +98,8 @@ bool enumerating = NO;
     header.scrollView = browserTableView;
     header.delegate = self;
     
+    
+    
     NSNetServiceBrowser *aNetServiceBrowser = [[NSNetServiceBrowser alloc] init];
 	if(!aNetServiceBrowser) {
         // The NSNetServiceBrowser couldn't be allocated and initialized.
@@ -117,7 +119,6 @@ bool enumerating = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInforground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,6 +128,14 @@ bool enumerating = NO;
     if(indexPath != nil)
        [browserTableView deselectRowAtIndexPath:indexPath animated:NO];
     [self.navigationController setToolbarHidden:YES animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
+    float scrollWidth = appFrame.size.width;
+    float scrollHeight = appFrame.size.height - 40 - self.navigationController.navigationBar.frame.size.height;
+    [browserTableView setFrame: CGRectMake(0, -35, scrollWidth, scrollHeight+35)];
 }
 
 
@@ -470,7 +479,6 @@ exit:
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
         return 70;
 }
-
 
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath

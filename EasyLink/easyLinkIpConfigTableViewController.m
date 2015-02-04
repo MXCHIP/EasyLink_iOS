@@ -91,6 +91,8 @@
     NSArray *identifierArray = [NSArray arrayWithObjects:@"DHCP", @"IP", @"NetMask", @"GateWay", @"DnsServer", nil];
     
     UITableViewCell *cell;
+    CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
+    float scrollWidth = appFrame.size.width;
 
     if(sectionRow == 0){
         cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:[identifierArray objectAtIndex:indexPath.row]];
@@ -101,7 +103,7 @@
         switch(indexPath.row){
             case DHCP_ROW:
                 if(dhcpSwitch == nil){
-                    dhcpSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(CELL_IPHONE_SWITCH_X,
+                    dhcpSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(scrollWidth - 69 ,
                                                                             CELL_iPHONE_SWITCH_Y,
                                                                             CELL_iPHONE_SWITCH_WIDTH,
                                                                             CELL_iPHONE_SWITCH_HEIGHT)];
@@ -213,7 +215,10 @@
 
 - (UITextField *)prepareTextField
 {
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
+    CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
+    float scrollWidth = appFrame.size.width;
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(scrollWidth - 190,
                                                                  CELL_iPHONE_FIELD_Y,
                                                                  CELL_iPHONE_FIELD_WIDTH,
                                                                  CELL_iPHONE_FIELD_HEIGHT)];

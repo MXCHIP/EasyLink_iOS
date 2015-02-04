@@ -38,10 +38,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // Segmented control with scrolling
+    CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
+    float scrollWidth = appFrame.size.width;
+    float scrollHeight = appFrame.size.height - 40 - self.navigationController.navigationBar.frame.size.height;
     //sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home", @"ConThings"]];
     sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home"]];
     sceneSegment.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-    sceneSegment.frame = CGRectMake(0, 44 + 20, 320, 40);
+    sceneSegment.frame = CGRectMake(0, 44 + 20, scrollWidth, 40);
     sceneSegment.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
     sceneSegment.selectionIndicatorHeight = 2.0f;
     sceneSegment.backgroundColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.8 alpha:1];
@@ -54,13 +57,13 @@
     [sceneSegment addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:sceneSegment];
     
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 104, 320, 464)]; //20+44+40 (status+nav+segcontrol)
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 104, scrollWidth, scrollHeight)]; //20+44+40 (status+nav+segcontrol)
     self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.contentSize = CGSizeMake(320, 464);
+    self.scrollView.contentSize = CGSizeMake(scrollWidth, scrollHeight);
     self.scrollView.delegate = self;
-    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, 320, 464) animated:YES];
+    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, scrollWidth, scrollHeight) animated:YES];
     [self.view addSubview:self.scrollView];
 
     //ConThingsViewController *ConThings = [self.storyboard instantiateViewControllerWithIdentifier:@"ConThings"];
@@ -68,7 +71,6 @@
     //ConThingsViewController *conThings = [self.storyboard instantiateViewControllerWithIdentifier:@"Local Device"];
     
     /*Local devices list*/
-    localDevice.view.frame = CGRectMake(0, -35, 320, 464 );
     [localDevice willMoveToParentViewController:self];
     [self.scrollView addSubview:localDevice.view];
     [self addChildViewController:localDevice];

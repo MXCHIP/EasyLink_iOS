@@ -91,7 +91,6 @@ typedef enum{
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
-    [bgView setContentSize:CGSizeMake(320, 1900)];
     bgView.showsVerticalScrollIndicator = NO;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -170,6 +169,18 @@ typedef enum{
     [super viewWillDisappear:animated];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
+    float contentWidth = appFrame.size.width;
+    float contentHeight = appFrame.size.height - self.navigationController.navigationBar.frame.size.height;
+    NSUInteger count = [foundModules count];
+    if (count != 0)
+        [bgView setContentSize:CGSizeMake(contentWidth, foundModuleTableView.frame.origin.y + 120 * [foundModules count])];
+    else
+        [bgView setContentSize:CGSizeMake(contentWidth, contentHeight)];
+}
+
 - (void)dealloc {
     NSLog(@"%s=>dealloc", __func__);
 }
@@ -178,7 +189,19 @@ typedef enum{
 
 - (void)updateDeviceCountLable
 {
+    CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
+    float contentWidth = appFrame.size.width;
+    float contentHeight = appFrame.size.height - self.navigationController.navigationBar.frame.size.height;
+    
     [newDeviceCount setText:[[NSString alloc]initWithFormat:@"(%lu)",(unsigned long)[foundModules count]]];
+    NSUInteger count = [foundModules count];
+    if (count != 0){
+        NSLog(@"bounds.y = %f, %f", foundModuleTableView.bounds.origin.y, foundModuleTableView.frame.origin.y);
+        [bgView setContentSize:CGSizeMake(contentWidth, foundModuleTableView.frame.origin.y + 120 * [foundModules count])];
+    }
+    else
+        [bgView setContentSize:CGSizeMake(contentWidth, contentHeight)];
+
 }
 
 #pragma mark - TRASMITTING DATA -
@@ -208,6 +231,7 @@ typedef enum{
     NSMutableDictionary *wlanConfig = [NSMutableDictionary dictionaryWithCapacity:20];
 
     if([targetSsid length] > 0) [wlanConfig setObject:targetSsid forKey:KEY_SSID];
+    else [wlanConfig setObject:[ssidField.text dataUsingEncoding:NSUTF8StringEncoding] forKey:KEY_SSID];
     if([passwordField.text length] > 0) [wlanConfig setObject:passwordField.text forKey:KEY_PASSWORD];
     [wlanConfig setObject:[NSNumber numberWithBool:[[deviceIPConfig objectForKey:@"DHCP"] boolValue]] forKey:KEY_DHCP];
     
@@ -854,6 +878,9 @@ typedef enum{
  */
 -(UITableViewCell *) prepareCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    CGRect tableFrame = configTableView.frame;
+    float textWidth = tableFrame.size.width - CELL_IPHONE_FIELD_X;
+    
     if ( indexPath.row == SSID_ROW ){/// this is SSID row
         NSString *SSID = [EASYLINK ssidForConnectedNetwork];
         targetSsid = [EASYLINK ssidDataForConnectedNetwork];
@@ -861,7 +888,7 @@ typedef enum{
         
         ssidField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
                                                                   CELL_iPHONE_FIELD_Y,
-                                                                  CELL_iPHONE_FIELD_WIDTH,
+                                                                  textWidth,
                                                                   CELL_iPHONE_FIELD_HEIGHT)];
         [ssidField setDelegate:self];
         [ssidField setClearButtonMode:UITextFieldViewModeNever];
@@ -877,7 +904,7 @@ typedef enum{
     }else if(indexPath.row == PASSWORD_ROW ){// this is password field
         passwordField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
                                                                       CELL_iPHONE_FIELD_Y,
-                                                                      CELL_iPHONE_FIELD_WIDTH,
+                                                                      textWidth,
                                                                       CELL_iPHONE_FIELD_HEIGHT)];
         [passwordField setDelegate:self];
         [passwordField setClearButtonMode:UITextFieldViewModeNever];
@@ -899,7 +926,7 @@ typedef enum{
         /// this is Gateway Address field
         userInfoField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
                                                                        CELL_iPHONE_FIELD_Y,
-                                                                       CELL_iPHONE_FIELD_WIDTH,
+                                                                       textWidth,
                                                                        CELL_iPHONE_FIELD_HEIGHT)];
         [userInfoField setDelegate:self];
         [userInfoField setClearButtonMode:UITextFieldViewModeNever];
@@ -916,7 +943,7 @@ typedef enum{
         /// this is Gateway Address field
         ipAddress = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
                                                                   CELL_iPHONE_FIELD_Y,
-                                                                  CELL_iPHONE_FIELD_WIDTH,
+                                                                  textWidth,
                                                                   CELL_iPHONE_FIELD_HEIGHT)];
         [ipAddress setDelegate:self];
         [ipAddress setClearButtonMode:UITextFieldViewModeNever];
