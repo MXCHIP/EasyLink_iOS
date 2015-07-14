@@ -215,7 +215,7 @@ bool enumerating = NO;
 - (void)netServiceBrowser:(NSNetServiceBrowser*)netServiceBrowser didRemoveService:(NSNetService*)service moreComing:(BOOL)moreComing {
 	// If a service went away, stop resolving it if it's currently being resolved,
 	// remove it from the list and update the table view if no more events are queued.
-    NSLog(@"Remove service");
+    NSLog(@"Remove service: %@", service.name);
     for (NSMutableDictionary *object in self.services)
     {
         if([[object objectForKey:@"Name"] isEqual:[service name]]){

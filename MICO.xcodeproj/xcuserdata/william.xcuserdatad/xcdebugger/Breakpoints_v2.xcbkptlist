@@ -195,12 +195,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyLink/EasyLink/Common/EasyLink.m"
-            timestampString = "457327614.065228"
+            timestampString = "457411295.433791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1116"
-            endingLineNumber = "1116"
+            startingLineNumber = "1131"
+            endingLineNumber = "1131"
             landmarkName = "+getBroadcastAddress"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HomePage/browserViewController.m"
+            timestampString = "457866950.792099"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "-netServiceBrowser:didRemoveService:moreComing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
