@@ -195,11 +195,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyLink/EasyLink/Common/EasyLink.m"
-            timestampString = "457411295.433791"
+            timestampString = "459079158.300612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1131"
-            endingLineNumber = "1131"
+            startingLineNumber = "1178"
+            endingLineNumber = "1178"
             landmarkName = "+getBroadcastAddress"
             landmarkType = "5">
          </BreakpointContent>
@@ -210,13 +210,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HomePage/browserViewController.m"
-            timestampString = "457866950.792099"
+            filePath = "EasyLink/EasyLink/Common/EasyLink.m"
+            timestampString = "459079158.300612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "-netServiceBrowser:didRemoveService:moreComing:"
+            startingLineNumber = "985"
+            endingLineNumber = "985"
+            landmarkName = "-appEnterInforground:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EasyLink/EasyLinkMainViewController.m"
+            timestampString = "459085571.968382"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "839"
+            endingLineNumber = "839"
+            landmarkName = "-onDisconnectFromFTC:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

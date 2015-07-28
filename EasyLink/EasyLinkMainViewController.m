@@ -576,6 +576,7 @@ typedef enum{
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
     newModuleTableViewCell *newModuleCell;
+    NSString *newModuleCellIdentifier;
     
     if(tableView == configTableView){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"APInfo"];
@@ -585,14 +586,30 @@ typedef enum{
         return cell;
     }
     else{
-        newModuleCell = (newModuleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"New Module"];
+        if( [[[foundModules objectAtIndex: indexPath.row] objectForKey:@"FTC"] boolValue] == NO ){
+            newModuleCellIdentifier = @"New Module";
+            
+        }
+        else{
+            newModuleCellIdentifier = @"New Module FTC";
+        }
+        
+        newModuleCell = (newModuleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:newModuleCellIdentifier];
         if(newModuleCell == nil)
-            newModuleCell = [[newModuleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"New Module"];
+            newModuleCell = [[newModuleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newModuleCellIdentifier];
         newModuleCell.moduleInfo = [foundModules objectAtIndex: indexPath.row];
         [newModuleCell setDelegate:self];
         return newModuleCell;
     }
 }
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    newModuleTableViewCell *newModuleCell = (newModuleTableViewCell *)cell;
+    if(tableView == foundModuleTableView){
+        newModuleCell.delegate = nil;
+    }
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -640,29 +657,117 @@ typedef enum{
 
 #pragma mark - EasyLink delegate -
 
+- (void)onFoundByFTC:(NSNumber *)client withName:(NSString *)name mataData: (NSDictionary *)mataDataDict
+{
+    NSLog(@"Found new device using bonjour==================");
+    NSIndexPath* indexPath;
+    NSMutableDictionary *foundModule = [NSMutableDictionary dictionaryWithDictionary:mataDataDict];
+    NSMutableDictionary *updateSettings;
+    NSData *tempData;
+    NSUInteger index = 0xFF;
+    
+    [foundModule setValue:name forKey:@"N"];
+    [foundModule setObject:@NO forKey:@"FTC"];
+    
+    tempData = [mataDataDict objectForKey:@"FW"];
+    if( tempData != nil ) [foundModule setValue:[[NSString alloc] initWithData:tempData encoding:NSUTF8StringEncoding] forKey:@"FW"];
+    
+    tempData = [mataDataDict objectForKey:@"HD"];
+    if( tempData != nil ) [foundModule setValue:[[NSString alloc] initWithData:tempData encoding:NSUTF8StringEncoding] forKey:@"HD"];
+    
+    tempData = [mataDataDict objectForKey:@"PO"];
+    if( tempData != nil ) [foundModule setValue:[[NSString alloc] initWithData:tempData encoding:NSUTF8StringEncoding] forKey:@"PO"];
+    
+    tempData = [mataDataDict objectForKey:@"RF"];
+    if( tempData != nil ) [foundModule setValue:[[NSString alloc] initWithData:tempData encoding:NSUTF8StringEncoding] forKey:@"RF"];
+    
+    [foundModule setValue:client forKey:@"client"];
+    updateSettings = [NSMutableDictionary dictionaryWithCapacity:10];
+    [foundModule setValue:updateSettings forKey:@"update"];
+    
+    /* Device already existed */
+    for( NSDictionary *object in self.foundModules){
+        if ([[object objectForKey:@"N"] isEqualToString:[foundModule objectForKey:@"N"]] ){
+            index = [self.foundModules indexOfObject:object];
+            [self.foundModules replaceObjectAtIndex:index withObject:object];
+            indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+            [foundModuleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                        withRowAnimation:UITableViewRowAnimationLeft];
+        }
+    }
+    
+    /* Find a new device */
+    if (index == 0xFF){
+        [foundModule setObject: [NSNumber numberWithInteger:arc4random()] forKey:@"tag"];
+        [self.foundModules addObject:foundModule];
+        indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
+        
+        [foundModuleTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                    withRowAnimation:UITableViewRowAnimationRight];
+    }
+    
+    
+    /*Correct AP info input, save to file*/
+    if([[apInforRecord objectForKey:ssidField.text] isEqualToString:passwordField.text] == NO){
+        [apInforRecord setObject:passwordField.text forKey:ssidField.text];
+        [apInforRecord writeToFile:apInforRecordFile atomically:YES];
+    }
+    
+    [easyLinkSendingView close];
+    [easyLinkUAPSendingView close];
+    [self updateDeviceCountLable];
+    [self stopAction];
+    
+    if(otaAlertView != nil){
+        [otaAlertView close];
+        otaAlertView = nil;
+    }
+}
+
+
 - (void)onFoundByFTC:(NSNumber *)ftcClientTag withConfiguration: (NSDictionary *)configDict;
 {
     NSIndexPath* indexPath;
     NSMutableDictionary *foundModule = [NSMutableDictionary dictionaryWithDictionary:configDict];
     NSMutableDictionary *updateSettings;
+    BOOL reloadTable = NO;
+    NSUInteger reloadIndex;
     
     [foundModule setValue:ftcClientTag forKey:@"client"];
     updateSettings = [NSMutableDictionary dictionaryWithCapacity:10];
     [foundModule setValue:updateSettings forKey:@"update"];
+    [foundModule setObject:@YES forKey:@"FTC"];
     
     /*Replace an old device*/
     for( NSDictionary *object in self.foundModules){
         if ([[object objectForKey:@"N"] isEqualToString:[foundModule objectForKey:@"N"]] ){
-            [easylink_config closeFTCClient:[object objectForKey:@"client"]];
+            if( [ftcClientTag isEqualToNumber: [object objectForKey:@"client"] ]== NO )
+                /* This is a same device using a new connection, disconnect the old one */
+                [easylink_config closeFTCClient:[object objectForKey:@"client"]];
+            else{
+                reloadTable = YES;
+                reloadIndex = [self.foundModules indexOfObject:object];
+            }
+            
         }
     }
 
     [foundModule setObject: [NSNumber numberWithInteger:arc4random()] forKey:@"tag"];
-    [self.foundModules addObject:foundModule];
-    indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
+    
 
-    [foundModuleTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                withRowAnimation:UITableViewRowAnimationRight];
+    if (reloadTable == YES) {
+        indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
+        [self.foundModules replaceObjectAtIndex:reloadIndex withObject:foundModule];
+        [foundModuleTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                    withRowAnimation:UITableViewRowAnimationNone];
+    }
+    else{
+        [self.foundModules addObject:foundModule];
+        indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
+        [foundModuleTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                    withRowAnimation:UITableViewRowAnimationRight];
+    }
+    
     
     /*Correct AP info input, save to file*/
     if([[apInforRecord objectForKey:ssidField.text] isEqualToString:passwordField.text] == NO){
@@ -686,6 +791,7 @@ typedef enum{
 {
     NSIndexPath* indexPath;
     NSDictionary *disconnectedClient;
+    NSLog(@"View: Disconnect from FTC");
 
     for( NSDictionary *object in self.foundModules){
         if ([[object objectForKey:@"client"] isEqualToNumber:ftcClientTag] ){

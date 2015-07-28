@@ -135,7 +135,8 @@
 		3D33719A1A496A3400ABFF1B /* EASYLINK_PRESS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371971A496A3400ABFF1B /* EASYLINK_PRESS@2x.png */; };
 		3D33719B1A496A3400ABFF1B /* EASYLINK_PRESS@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371981A496A3400ABFF1B /* EASYLINK_PRESS@3x.png */; };
 		3D33719D1A496A4A00ABFF1B /* EASYLINK_BUTTON.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33719C1A496A4A00ABFF1B /* EASYLINK_BUTTON.png */; };
-		3D40E8541B4382B000E8F702 /* EasyLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D40E8531B4382B000E8F702 /* EasyLink.m */; };
+		3D3940E31B674A1B00CFEA7F /* libEasyLink_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3940E21B674A1B00CFEA7F /* libEasyLink_debug.a */; };
+		3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
 		3D9A166A1A496ABF00DBBE61 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
 		3D9A166B1A496ABF00DBBE61 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
@@ -163,7 +164,6 @@
 		3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3D3370361A495ECB00ABFF1B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = EasyLink/EasyLink/Reachability/Reachability.h; sourceTree = SOURCE_ROOT; };
 		3D3370371A495ECB00ABFF1B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = EasyLink/EasyLink/Reachability/Reachability.m; sourceTree = SOURCE_ROOT; };
-		3D3370391A495EDE00ABFF1B /* EASYLINK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EASYLINK.h; path = EasyLink/EasyLink/Common/EASYLINK.h; sourceTree = SOURCE_ROOT; };
 		3D33703A1A495EDE00ABFF1B /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/EasyLink/Common/EMWHeader.h; sourceTree = SOURCE_ROOT; };
 		3D33703B1A495EDE00ABFF1B /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = route.h; path = EasyLink/EasyLink/Common/route.h; sourceTree = SOURCE_ROOT; };
 		3D33704B1A495F7E00ABFF1B /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJRefreshHeaderView.m; path = UITemplate/MJRefresh/MJRefreshHeaderView.m; sourceTree = SOURCE_ROOT; };
@@ -351,7 +351,9 @@
 		3D3371971A496A3400ABFF1B /* EASYLINK_PRESS@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EASYLINK_PRESS@2x.png"; path = "Resources/Images/EasyLink/EASYLINK_PRESS@2x.png"; sourceTree = SOURCE_ROOT; };
 		3D3371981A496A3400ABFF1B /* EASYLINK_PRESS@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EASYLINK_PRESS@3x.png"; path = "Resources/Images/EasyLink/EASYLINK_PRESS@3x.png"; sourceTree = SOURCE_ROOT; };
 		3D33719C1A496A4A00ABFF1B /* EASYLINK_BUTTON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EASYLINK_BUTTON.png; path = Resources/Images/EasyLink/EASYLINK_BUTTON.png; sourceTree = SOURCE_ROOT; };
-		3D40E8531B4382B000E8F702 /* EasyLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EasyLink.m; path = EasyLink/EasyLink/Common/EasyLink.m; sourceTree = SOURCE_ROOT; };
+		3D3940E21B674A1B00CFEA7F /* libEasyLink_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEasyLink_debug.a; path = EasyLink/EasyLink/Common/libEasyLink_debug.a; sourceTree = SOURCE_ROOT; };
+		3D417CE81B5CEA0D00EA2E1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3D43DA491B65F77B00DD4AE3 /* EasyLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLink.h; path = EasyLink/EasyLink/Common/EasyLink.h; sourceTree = SOURCE_ROOT; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
 		3D9A16671A496ABF00DBBE61 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = Resources/Images/iPhone/EMW3161.png; sourceTree = SOURCE_ROOT; };
 		3D9A16681A496ABF00DBBE61 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = Resources/Images/iPhone/EMW3162.png; sourceTree = SOURCE_ROOT; };
@@ -377,12 +379,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */,
 				3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */,
 				3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */,
 				3DAA394E17A55486003806FE /* SystemConfiguration.framework in Frameworks */,
 				3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */,
 				3D2AD58717A247E30026E31E /* UIKit.framework in Frameworks */,
 				3D2AD58917A247E30026E31E /* Foundation.framework in Frameworks */,
+				3D3940E31B674A1B00CFEA7F /* libEasyLink_debug.a in Frameworks */,
 				3D2AD58B17A247E30026E31E /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +469,7 @@
 		3D2AD58517A247E30026E31E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D417CE81B5CEA0D00EA2E1E /* Security.framework */,
 				3DAEA03C191924320082D846 /* AudioToolbox.framework */,
 				3DAEA03D191924320082D846 /* AudioUnit.framework */,
 				3DAA394F17A554AD003806FE /* QuartzCore.framework */,
@@ -749,7 +754,8 @@
 		3DAA37E317A542FC003806FE /* EasyLink */ = {
 			isa = PBXGroup;
 			children = (
-				3D40E8531B4382B000E8F702 /* EasyLink.m */,
+				3D3940E21B674A1B00CFEA7F /* libEasyLink_debug.a */,
+				3D43DA491B65F77B00DD4AE3 /* EasyLink.h */,
 				3DE0C33C1A494E6D00B7133F /* Reachability */,
 			);
 			name = EasyLink;
@@ -838,7 +844,6 @@
 		3DE0C33C1A494E6D00B7133F /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				3D3370391A495EDE00ABFF1B /* EASYLINK.h */,
 				3D33703A1A495EDE00ABFF1B /* EMWHeader.h */,
 				3D33703B1A495EDE00ABFF1B /* route.h */,
 				3D3370361A495ECB00ABFF1B /* Reachability.h */,
@@ -1025,7 +1030,6 @@
 				3D33713E1A49682300ABFF1B /* NSString+JSMessagesView.m in Sources */,
 				3D33713D1A49682300ABFF1B /* JSMessageTextView.m in Sources */,
 				3D3370621A495FCD00ABFF1B /* UIViewController+KNSemiModal.m in Sources */,
-				3D40E8541B4382B000E8F702 /* EasyLink.m in Sources */,
 				3D33708A1A49622700ABFF1B /* commandsTableViewController.m in Sources */,
 				3D3370571A495F7E00ABFF1B /* MJRefreshBaseView.m in Sources */,
 				3D3371751A49686E00ABFF1B /* main.m in Sources */,

@@ -40,10 +40,19 @@
     _confirmBtn.tag = newModuleIndex;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    
+    //[super viewDidAppear:animated];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _confirmBtn.frame = CGRectMake(120, 120, 120, 120);
+    });
+}
+
 
 - (void)setModuleInfo:(NSMutableDictionary *)newModuleInfo
 {
     _moduleInfo = newModuleInfo;
+    
     
     NSString *module = [[[_moduleInfo objectForKey:@"N"] componentsSeparatedByString:@"("] objectAtIndex:0];
     _deviceImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", module]];
@@ -63,8 +72,14 @@
 {
     if(sender == _confirmBtn){
         NSLog(@"Confirm pressed");
-        if([theDelegate respondsToSelector:@selector(onConfigured:)])
-            [theDelegate performSelector:@selector(onConfigured:) withObject:_moduleInfo];
+        if( [[_moduleInfo objectForKey:@"FTC"] boolValue] == YES ){
+            if([theDelegate respondsToSelector:@selector(onConfigured:)])
+                [theDelegate performSelector:@selector(onConfigured:) withObject:_moduleInfo];
+        }
+        else{
+            if([theDelegate respondsToSelector:@selector(onIgnored:)])
+                [theDelegate performSelector:@selector(onIgnored:) withObject:[_moduleInfo objectForKey:@"client"]];
+        }
     }else if(sender == _settingBtn){
         NSLog(@"Setting pressed");
     }else if(sender == _updateBtn){

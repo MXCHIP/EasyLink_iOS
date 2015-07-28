@@ -18,6 +18,7 @@ typedef enum{
     EASYLINK_PLUS,
     EASYLINK_V2_PLUS,
     EASYLINK_SOFT_AP,
+    EASYLINK_COMBO,
 } EasyLinkMode;
 
 typedef enum{
@@ -50,6 +51,15 @@ typedef enum{
  @return none.
  */
 - (void)onFoundByFTC:(NSNumber *)client withConfiguration: (NSDictionary *)configDict;
+
+/**
+ @brief A new FTC client is found by bonjour in EasyLink
+ @param client:         Client identifier.
+ @param configDict:     Configuration data provided by FTC client
+ @return none.
+ */
+- (void)onFoundByFTC:(NSNumber *)client withName:(NSString *)name mataData: (NSDictionary *)mataDataDict;
+
 
 /**
  @brief A FTC client is disconnected from FTC server in EasyLink
@@ -92,6 +102,7 @@ NSNetServiceDelegate>{
     CFHTTPMessageRef inComingMessageArray[MessageCount];
     Reachability *wifiReachability;
     EasyLinkSoftApStage _softAPStage;
+    uint32_t _identifier;
     
     id theDelegate;
 }
@@ -169,14 +180,16 @@ NSNetServiceDelegate>{
 //
 
 /**
- @brief Set all wlan seetings that need to be delivered by EasyLink. It 
-        should be excuted before (void)transmitSettings
+ @brief Set all wlan seetings that need to be delivered by EasyLink. It
+ should be excuted before (void)transmitSettings
  @param wlanConfigDict: Wlan configurations, include SSID, password, address etc.
  @param userInfo:       Application defined specific data to be send by Easylink.
  @param easyLinkMode:   The mode of EasyLink.
  @return none.
  */
 - (void)prepareEasyLink_withFTC:(NSDictionary *)wlanConfigDict info: (NSData *)userInfo mode: (EasyLinkMode)easyLinkMode;
+
+- (void)prepareEasyLink:(NSDictionary *)wlanConfigDict info: (NSData *)userInfo mode: (EasyLinkMode)easyLinkMode;
 
 /**
  @brief Send wlan settings use the predefined EasyLink mode
@@ -185,18 +198,19 @@ NSNetServiceDelegate>{
 
 /**
  @brief Stop current Easylink delivery. It is suggested to stop EasyLink once a new device
-        is found (Notified by onFoundByFTC:currentConfig: in protocol EasyLinkFTCDelegate).
-        As the EasyLink V2/plus mode would reduce the performance of the wireless router.
+ is found (Notified by onFoundByFTC:currentConfig: in protocol EasyLinkFTCDelegate).
+ As the EasyLink V2/plus mode would reduce the performance of the wireless router.
  */
 - (void)stopTransmitting;
 
+
 /**
  @brief Send a dictionary that contains all of the first-time-configurations to the new deivice.
-        Once the device has received, it will disconnect, and exit the EasyLionk configuration mode.
-        This function initialize the device like cloud servive account, password, working configures
-        etc. when user first connect the device to Internet.
- @param client:         Client identifier, read by onFoundByFTC:currentConfig: in protocol 
-                        EasyLinkFTCDelegate.
+ Once the device has received, it will disconnect, and exit the EasyLionk configuration mode.
+ This function initialize the device like cloud servive account, password, working configures
+ etc. when user first connect the device to Internet.
+ @param client:         Client identifier, read by onFoundByFTC:currentConfig: in protocol
+ EasyLinkFTCDelegate.
  @param configDict:     Device configurations.
  @return none.
  */
@@ -204,9 +218,9 @@ NSNetServiceDelegate>{
 
 /**
  @brief Send new firmware to the new deivice. Once the device has received, it will disconnect,
-        update to the new firmware, and reconnect to iOS.
+ update to the new firmware, and reconnect to iOS.
  @param client:         Client identifier, read by onFoundByFTC:currentConfig: in protocol
-                        EasyLinkFTCDelegate.
+ EasyLinkFTCDelegate.
  @param otaData:        New firmware data.
  @return none.
  */
@@ -215,7 +229,7 @@ NSNetServiceDelegate>{
 /**
  @brief Disconnect the new device, and leave it unconfigured(device will not store wlan settings).
  @param client:         Client identifier, read by onFoundByFTC:currentConfig: in protocol
-                        EasyLinkFTCDelegate.
+ EasyLinkFTCDelegate.
  @return none.
  */
 - (void)closeFTCClient:(NSNumber *)client;
