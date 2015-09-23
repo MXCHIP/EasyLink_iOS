@@ -137,7 +137,6 @@
 		3D33719D1A496A4A00ABFF1B /* EASYLINK_BUTTON.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33719C1A496A4A00ABFF1B /* EASYLINK_BUTTON.png */; };
 		3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
-		3D96B5511BB1446400E7E5D5 /* libEasyLink_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D96B5501BB1446400E7E5D5 /* libEasyLink_debug.a */; settings = {ASSET_TAGS = (); }; };
 		3D9A166A1A496ABF00DBBE61 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
 		3D9A166B1A496ABF00DBBE61 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
 		3D9A166C1A496ABF00DBBE61 /* Philips Wi-Fi LED.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16691A496ABF00DBBE61 /* Philips Wi-Fi LED.png */; };
@@ -150,6 +149,7 @@
 		3D9A167C1A496CF900DBBE61 /* EasyLinkPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167B1A496CF900DBBE61 /* EasyLinkPhone.png */; };
 		3D9A167E1A496D0500DBBE61 /* EMW3280.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167D1A496D0500DBBE61 /* EMW3280.png */; };
 		3D9A16801A496E1B00DBBE61 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167F1A496E1B00DBBE61 /* known_logo.png */; };
+		3D9E23451BB28E150068EEAB /* libEasyLink_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9E23441BB28E150068EEAB /* libEasyLink_debug.a */; settings = {ASSET_TAGS = (); }; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA394E17A55486003806FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
@@ -354,7 +354,6 @@
 		3D417CE81B5CEA0D00EA2E1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3D43DA491B65F77B00DD4AE3 /* EasyLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLink.h; path = EasyLink/EasyLink/Common/EasyLink.h; sourceTree = SOURCE_ROOT; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
-		3D96B5501BB1446400E7E5D5 /* libEasyLink_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEasyLink_debug.a; path = EasyLink/EasyLink/Common/libEasyLink_debug.a; sourceTree = SOURCE_ROOT; };
 		3D9A16671A496ABF00DBBE61 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = Resources/Images/iPhone/EMW3161.png; sourceTree = SOURCE_ROOT; };
 		3D9A16681A496ABF00DBBE61 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = Resources/Images/iPhone/EMW3162.png; sourceTree = SOURCE_ROOT; };
 		3D9A16691A496ABF00DBBE61 /* Philips Wi-Fi LED.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Philips Wi-Fi LED.png"; path = "Resources/Images/iPhone/Philips Wi-Fi LED.png"; sourceTree = SOURCE_ROOT; };
@@ -367,6 +366,7 @@
 		3D9A167B1A496CF900DBBE61 /* EasyLinkPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EasyLinkPhone.png; path = Resources/Images/Common/EasyLinkPhone.png; sourceTree = SOURCE_ROOT; };
 		3D9A167D1A496D0500DBBE61 /* EMW3280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3280.png; path = Resources/Images/Common/EMW3280.png; sourceTree = SOURCE_ROOT; };
 		3D9A167F1A496E1B00DBBE61 /* known_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = known_logo.png; path = Resources/Images/Common/known_logo.png; sourceTree = SOURCE_ROOT; };
+		3D9E23441BB28E150068EEAB /* libEasyLink_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEasyLink_debug.a; path = EasyLink/EasyLink/Common/libEasyLink_debug.a; sourceTree = SOURCE_ROOT; };
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3DAA394D17A55486003806FE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3DAA394F17A554AD003806FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -386,7 +386,7 @@
 				3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */,
 				3D2AD58717A247E30026E31E /* UIKit.framework in Frameworks */,
 				3D2AD58917A247E30026E31E /* Foundation.framework in Frameworks */,
-				3D96B5511BB1446400E7E5D5 /* libEasyLink_debug.a in Frameworks */,
+				3D9E23451BB28E150068EEAB /* libEasyLink_debug.a in Frameworks */,
 				3D2AD58B17A247E30026E31E /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -754,7 +754,7 @@
 		3DAA37E317A542FC003806FE /* EasyLink */ = {
 			isa = PBXGroup;
 			children = (
-				3D96B5501BB1446400E7E5D5 /* libEasyLink_debug.a */,
+				3D9E23441BB28E150068EEAB /* libEasyLink_debug.a */,
 				3D43DA491B65F77B00DD4AE3 /* EasyLink.h */,
 				3DE0C33C1A494E6D00B7133F /* Reachability */,
 			);
