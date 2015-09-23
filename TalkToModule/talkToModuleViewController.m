@@ -47,7 +47,7 @@
 }
 
 - (void)dealloc{
-    self.viewController = nil;
+    //self.viewController = nil;
     [message releaseDelegate];
     NSLog(@"dealloc <== talk to module");
 }
@@ -65,7 +65,7 @@
     if (_service != newService) {
         _service = newService;
         
-        _address = [[[newService addresses] objectAtIndex: 0] host];
+        _address = [(NSURL *)[[newService addresses] objectAtIndex: 0] host];
         _port = [newService port];
         NSDictionary *txtRecordDict = [NSNetService dictionaryFromTXTRecordData: [newService TXTRecordData]];
         

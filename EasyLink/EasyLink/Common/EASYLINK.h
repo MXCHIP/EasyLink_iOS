@@ -103,6 +103,7 @@ NSNetServiceDelegate>{
     Reachability *wifiReachability;
     EasyLinkSoftApStage _softAPStage;
     uint32_t _identifier;
+    bool _hasFTC;
     
     id theDelegate;
 }

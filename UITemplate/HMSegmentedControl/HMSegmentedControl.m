@@ -219,8 +219,8 @@
     
     if (self.type == HMSegmentedControlTypeText) {
         [self.sectionTitles enumerateObjectsUsingBlock:^(id titleString, NSUInteger idx, BOOL *stop) {
-            CGFloat stringHeight = roundf([titleString sizeWithFont:self.font].height);
-            CGFloat stringWidth = roundf([titleString sizeWithFont:self.font].width);
+            CGFloat stringHeight = roundf([titleString sizeWithAttributes:@{NSFontAttributeName:self.font}].height);
+            CGFloat stringWidth = [titleString sizeWithAttributes:@{NSFontAttributeName:self.font}].width+2;
             
             // Text inside the CATextLayer will appear blurry unless the rect values are rounded
             CGFloat y = roundf(CGRectGetHeight(self.frame) - self.selectionIndicatorHeight)/2 - stringHeight/2 + ((self.selectionIndicatorLocation == HMSegmentedControlSelectionIndicatorLocationUp) ? self.selectionIndicatorHeight : 0);
@@ -292,7 +292,7 @@
             CGFloat imageWidth = icon.size.width;
             CGFloat imageHeight = icon.size.height;
 			
-			CGFloat stringHeight = roundf([self.sectionTitles[idx] sizeWithFont:self.font].height);
+			CGFloat stringHeight = roundf([self.sectionTitles[idx] sizeWithAttributes:@{NSFontAttributeName:self.font}].height);
 						
 			CGFloat yOffset = roundf(((CGRectGetHeight(self.frame) - self.selectionIndicatorHeight) / 2) - (stringHeight / 2));
             
@@ -412,14 +412,14 @@
     CGFloat sectionWidth = 0.0f;
 
     if (self.type == HMSegmentedControlTypeText) {
-        CGFloat stringWidth = [[self.sectionTitles objectAtIndex:self.selectedSegmentIndex] sizeWithFont:self.font].width;
+        CGFloat stringWidth = [[self.sectionTitles objectAtIndex:self.selectedSegmentIndex] sizeWithAttributes:@{NSFontAttributeName:self.font}].width;
         sectionWidth = stringWidth;
     } else if (self.type == HMSegmentedControlTypeImages) {
         UIImage *sectionImage = [self.sectionImages objectAtIndex:self.selectedSegmentIndex];
         CGFloat imageWidth = sectionImage.size.width;
         sectionWidth = imageWidth;
     } else if (self.type == HMSegmentedControlTypeTextImages){
-		CGFloat stringWidth = [[self.sectionTitles objectAtIndex:self.selectedSegmentIndex] sizeWithFont:self.font].width;
+		CGFloat stringWidth = [[self.sectionTitles objectAtIndex:self.selectedSegmentIndex] sizeWithAttributes:@{NSFontAttributeName:self.font}].width;
 		UIImage *sectionImage = [self.sectionImages objectAtIndex:self.selectedSegmentIndex];
 		CGFloat imageWidth = sectionImage.size.width;
         if (self.segmentWidthStyle == HMSegmentedControlSegmentWidthStyleFixed)

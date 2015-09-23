@@ -901,7 +901,7 @@ typedef enum{
     [customAlertView setContainerView:alertContentView];
     
 
-    [customAlertView setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
+    [customAlertView setButtonTitles:[NSMutableArray arrayWithCapacity:3]];
 
     [customAlertView setUseMotionEffects:true];
     [customAlertView show];

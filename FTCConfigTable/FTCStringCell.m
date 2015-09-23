@@ -21,6 +21,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.textLabel.backgroundColor = [UIColor clearColor];
         
     }
     return self;
@@ -54,6 +55,7 @@
     NSString *contentString;
     NSNumber *contentNumber;
     
+    self.textLabel.backgroundColor = [UIColor clearColor];
     self.textLabel.text = [self.ftcConfig objectForKey:@"N"];
     if([[self.ftcConfig objectForKey:@"C"] isKindOfClass:[NSString class]]){ //string
         contentString = [self.ftcConfig objectForKey:@"C"];

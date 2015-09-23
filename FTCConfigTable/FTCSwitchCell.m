@@ -49,6 +49,7 @@
 - (void)setFtcConfig:(NSMutableDictionary *)newFtcConfig {
 	_ftcConfig = newFtcConfig;
     self.textLabel.text = [self.ftcConfig objectForKey:@"N"];
+    self.textLabel.backgroundColor = [UIColor clearColor];
     self.contentSwitch.on = [[self.ftcConfig valueForKey:@"C"] boolValue];
 
     if ([[self.ftcConfig objectForKey:@"P"] isEqualToString:@"RO"]) {

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0B1A846BE2D4DA295BBE333449B544B5A50792E3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "0B1A846BE2D4DA295BBE333449B544B5A50792E3" : 0,
+    "3ECBA3BF-70E1-4E2A-A6FA-41AF88029E5A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "05F5F5D6-682A-490A-922E-69CEDE684F59",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "0B1A846BE2D4DA295BBE333449B544B5A50792E3" : "EMW%20ToolBox",
+    "3ECBA3BF-70E1-4E2A-A6FA-41AF88029E5A" : "EMW ToolBox"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MICO",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MICO.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/neooxu\/EasyLink.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0B1A846BE2D4DA295BBE333449B544B5A50792E3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/neooxu\/EasyLink.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3ECBA3BF-70E1-4E2A-A6FA-41AF88029E5A"
+    }
+  ]
+}
