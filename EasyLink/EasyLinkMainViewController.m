@@ -657,7 +657,7 @@ typedef enum{
 
 #pragma mark - EasyLink delegate -
 
-- (void)onFoundByFTC:(NSNumber *)client withName:(NSString *)name mataData: (NSDictionary *)mataDataDict
+- (void)onFound:(NSNumber *)client withName:(NSString *)name mataData: (NSDictionary *)mataDataDict
 {
     NSLog(@"Found new device using bonjour==================");
     NSIndexPath* indexPath;
