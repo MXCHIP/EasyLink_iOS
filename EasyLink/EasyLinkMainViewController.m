@@ -787,7 +787,8 @@ typedef enum{
     }
 }
 
-- (void)onDisconnectFromFTC:(NSNumber *)ftcClientTag
+- (void)onDisconnectFromFTC:(NSNumber *)ftcClientTag withError:(bool)err;
+
 {
     NSIndexPath* indexPath;
     NSDictionary *disconnectedClient;
