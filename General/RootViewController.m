@@ -40,20 +40,22 @@
     // Segmented control with scrolling
     CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
     float scrollWidth = appFrame.size.width;
-    float scrollHeight = appFrame.size.height - 40 - self.navigationController.navigationBar.frame.size.height;
-    //sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home", @"ConThings"]];
+    float scrollHeight = appFrame.size.height - 44 - 40;
+    //ceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home", @"ConThings"]];
     sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home"]];
     sceneSegment.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     sceneSegment.frame = CGRectMake(0, 44 + 20, scrollWidth, 40);
     sceneSegment.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
     sceneSegment.selectionIndicatorHeight = 2.0f;
     sceneSegment.backgroundColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.8 alpha:1];
-    sceneSegment.textColor = [UIColor whiteColor];
-    sceneSegment.selectedTextColor = [UIColor whiteColor];
+    
+    sceneSegment.titleTextAttributes = @{ NSForegroundColorAttributeName:[UIColor grayColor] };
+    sceneSegment.selectedTitleTextAttributes = @{ NSForegroundColorAttributeName:[UIColor whiteColor] };
+    
     sceneSegment.selectionIndicatorColor = [UIColor colorWithRed:0.5 green:0.8 blue:1 alpha:1];
     sceneSegment.selectionStyle = HMSegmentedControlSelectionStyleBox;
     sceneSegment.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
-    sceneSegment.scrollEnabled = YES;
+    //sceneSegment.scrollEnabled = YES;
     [sceneSegment addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:sceneSegment];
     
@@ -71,6 +73,7 @@
     //ConThingsViewController *conThings = [self.storyboard instantiateViewControllerWithIdentifier:@"Local Device"];
     
     /*Local devices list*/
+    localDevice.view.frame = CGRectMake(0, 0, scrollWidth, scrollHeight);
     [localDevice willMoveToParentViewController:self];
     [self.scrollView addSubview:localDevice.view];
     [self addChildViewController:localDevice];

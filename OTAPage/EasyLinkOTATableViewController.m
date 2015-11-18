@@ -63,7 +63,7 @@
 
     NSLog(@"OTA selected");
         
-    customAlertView = [[CustomIOS7AlertView alloc] init];
+    customAlertView = [[CustomIOSAlertView alloc] init];
         
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 170)];
         
@@ -103,7 +103,7 @@
     [customAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel",nil]];
     __block GRRequestsManager *_requestsManager = self.requestsManager;
     __weak UINavigationController *_nav = self.navigationController;
-    [customAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *alertView, NSInteger buttonIndex) {
+    [customAlertView setOnButtonTouchUpInside:^(CustomIOSAlertView *alertView, int buttonIndex) {
         _requestsManager = nil;
         [_nav popToViewController:[_nav.viewControllers objectAtIndex:1] animated:YES];
         NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[alertView tag]);

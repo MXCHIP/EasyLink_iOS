@@ -23,6 +23,33 @@
 extern unsigned int str2hex(unsigned char *ibuf, unsigned char *obuf,
                             unsigned int olen);
 
+#pragma mark - UIView (FindUIViewController)
+
+// Convenient category method to find actual ViewController that contains a view
+// Adapted from: http://stackoverflow.com/questions/1340434/get-to-uiviewcontroller-from-uiview-on-iphone
+
+@implementation UIView (FindUIViewController)
+- (UIViewController *) containingViewController {
+    UIView * target = self.superview ? self.superview : self;
+    return (UIViewController *)[target traverseResponderChainForUIViewController];
+}
+
+- (id) traverseResponderChainForUIViewController {
+    id nextResponder = [self nextResponder];
+    BOOL isViewController = [nextResponder isKindOfClass:[UIViewController class]];
+    BOOL isTabBarController = [nextResponder isKindOfClass:[UITabBarController class]];
+    if (isViewController && !isTabBarController) {
+        return nextResponder;
+    } else if(isTabBarController){
+        UITabBarController *tabBarController = nextResponder;
+        return [tabBarController selectedViewController];
+    } else if ([nextResponder isKindOfClass:[UIView class]]) {
+        return [nextResponder traverseResponderChainForUIViewController];
+    } else {
+        return nil;
+    }
+}
+@end
 
 @interface addNewCommandViewController ()
 

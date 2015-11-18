@@ -12,7 +12,7 @@
 #import "EMWHeader.h"
 #import "EASYLINK.h"
 #import "EasyLinkFTCTableViewController.h"
-#import "CustomIOS7AlertView.h"
+#import "CustomIOSAlertView.h"
 #import "EasyLinkOTATableViewController.h"
 
 
@@ -27,13 +27,13 @@
 
     
     UIAlertView *alertView;
-    CustomIOS7AlertView *customAlertView, *otaAlertView;
+    CustomIOSAlertView *customAlertView, *otaAlertView;
     NSMutableDictionary *deviceIPConfig;
     NSMutableDictionary *apInforRecord;
     NSString *apInforRecordFile;
 
     EASYLINK *easylink_config;
-    CustomIOS7AlertView *easyLinkSendingView, *easyLinkUAPSendingView;
+    CustomIOSAlertView *easyLinkSendingView, *easyLinkUAPSendingView;
 
     Reachability *wifiReachability;
 }

@@ -1,0 +1,40 @@
+PODS:
+  - CocoaAsyncSocket (7.4.2)
+  - CustomIOSAlertView (0.9.3)
+  - GoldRaccoon (1.0.2)
+  - HMSegmentedControl (1.5.2)
+  - JSQMessagesViewController (7.2.0):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - KNSemiModalViewController (0.3)
+  - MJRefresh (3.0.3)
+  - PulsingHalo (0.0.1)
+  - Reachability (3.1.1)
+  - RMMultipleViewsController (1.0.2)
+
+DEPENDENCIES:
+  - CocoaAsyncSocket (~> 7.4.2)
+  - CustomIOSAlertView (~> 0.9.3)
+  - GoldRaccoon (~> 1.0.2)
+  - HMSegmentedControl (~> 1.5.2)
+  - JSQMessagesViewController
+  - KNSemiModalViewController (~> 0.3)
+  - MJRefresh (~> 3.0.3)
+  - PulsingHalo
+  - Reachability (~> 3.1.0)
+  - RMMultipleViewsController (~> 1.0.2)
+
+SPEC CHECKSUMS:
+  CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
+  CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
+  GoldRaccoon: a9143566afe37c2aba38589512aef83566a52573
+  HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
+  JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  KNSemiModalViewController: 8c0056377714b5170c52c65977d540200405411f
+  MJRefresh: 2460fca1a9c09a21aa4e13d47dd9e67c471d22ac
+  PulsingHalo: 1583823bd6c989fff3469bb417bc42f0d268f98e
+  Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
+  RMMultipleViewsController: e00985ae6e90330f2a78037a2cc5e7ee2d5e6232
+
+COCOAPODS: 0.38.2

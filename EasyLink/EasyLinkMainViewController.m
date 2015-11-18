@@ -288,7 +288,7 @@ typedef enum{
     [self startTransmitting: mode];
     
     /*Pop up a Easylink sending dialog*/
-    easyLinkSendingView = [[CustomIOS7AlertView alloc] init];
+    easyLinkSendingView = [[CustomIOSAlertView alloc] init];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 300)];
     
@@ -354,11 +354,10 @@ typedef enum{
     pulsingHalo.radius = 300;
     pulsingHalo.backgroundColor = [UIColor colorWithRed:0 green:122.0/255 blue:1.0 alpha:1.0].CGColor;
     
-    [pulsingHalo startAnimation:YES];
     
     [easyLinkSendingView setButtonTitles:[NSMutableArray arrayWithObjects:@"Stop", nil]];
     __weak EasyLinkMainViewController *_self = self;
-    [easyLinkSendingView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, NSInteger buttonIndex) {
+    [easyLinkSendingView setOnButtonTouchUpInside:^(CustomIOSAlertView *customIOS7AlertView, int buttonIndex) {
         [_self stopAction];
         //[_imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhone.png"]];
         NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[customIOS7AlertView tag]);
@@ -399,7 +398,7 @@ typedef enum{
                                                                     nil]];
     
     /*Pop up a Easylink sending dialog*/
-    easyLinkUAPSendingView = [[CustomIOS7AlertView alloc] init];
+    easyLinkUAPSendingView = [[CustomIOSAlertView alloc] init];
     
     UIScrollView *alertContentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 290, 300)];
     
@@ -510,7 +509,6 @@ typedef enum{
     pulsingHalo.backgroundColor = [UIColor colorWithRed:0 green:122.0/255 blue:1.0 alpha:1.0].CGColor;
     [alertContentView addSubview:pulsingHaloView];
 
-    [pulsingHalo startAnimation:YES];
     /* ==================================================================================================*/
     
     [easyLinkUAPSendingView setContainerView:alertContentView];
@@ -519,7 +517,7 @@ typedef enum{
     
     __weak EasyLinkMainViewController *_self = self;
     
-    [easyLinkUAPSendingView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, NSInteger buttonIndex) {
+    [easyLinkUAPSendingView setOnButtonTouchUpInside:^(CustomIOSAlertView *customIOS7AlertView, int buttonIndex) {
         NSUInteger currentPage;
         UIScrollView *containerView = (UIScrollView *)customIOS7AlertView.containerView;
         currentPage = containerView.contentOffset.x / 290;
@@ -875,7 +873,7 @@ typedef enum{
 
 - (void)onConfigured:(NSMutableDictionary *)configData
 {    
-    customAlertView = [[CustomIOS7AlertView alloc] init];
+    customAlertView = [[CustomIOSAlertView alloc] init];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 140)];
     
@@ -922,7 +920,7 @@ typedef enum{
 
 - (void)onStartOTA:(NSString *)otaFilePath toFTCClient:(NSNumber *)client
 {
-    otaAlertView = [[CustomIOS7AlertView alloc] init];
+    otaAlertView = [[CustomIOSAlertView alloc] init];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 170)];
     
@@ -962,8 +960,8 @@ typedef enum{
     
     [otaAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel",nil]];
     __weak EASYLINK *_easylink_config = easylink_config;
-    __weak CustomIOS7AlertView *_otaAlertView = otaAlertView;
-    [otaAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, NSInteger buttonIndex) {
+    __weak CustomIOSAlertView *_otaAlertView = otaAlertView;
+    [otaAlertView setOnButtonTouchUpInside:^(CustomIOSAlertView *customIOS7AlertView, int buttonIndex) {
       //  self.requestsManager = nil;
     [_easylink_config closeFTCClient: client];
       //  [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];

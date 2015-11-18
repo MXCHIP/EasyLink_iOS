@@ -8,7 +8,7 @@
 
 #import "RMMultipleViewsController.h"
 #import "AsyncSocket.h"
-#import "CustomIOS7AlertView.h"
+#import "CustomIOSAlertView.h"
 #import "commandsTableViewController.h"
 #import "messageViewController.h"
 
@@ -25,7 +25,7 @@
     NSString *_module;
     NSInteger _port;
     NSMutableArray *_txtRecordArray;
-    CustomIOS7AlertView *customAlertView;
+    CustomIOSAlertView *customAlertView;
     messageViewController *message;
     commandsTableViewController *commandVC;
     BOOL isInforground;

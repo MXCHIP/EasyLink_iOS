@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomUIStoryboardSegue : UIStoryboardSegue
+@interface KNSemiModalStoryboardSegue : UIStoryboardSegue
 
 @end

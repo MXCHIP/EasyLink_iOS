@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 MXCHIP Co;Ltd. All rights reserved.
 //
 
+#import "UIScrollView+MJRefresh.h"
 #import "browserViewController.h"
 #import "moduleBrowserCell.h"
 #import "bonjourDetailTableViewController.h"
@@ -52,7 +53,6 @@ bool enumerating = NO;
 }
 @end
 
-
 @interface browserViewController()
 @property (nonatomic, retain, readwrite) NSNetServiceBrowser* netServiceBrowser;
 @property (nonatomic, retain, readwrite) NSMutableArray* services;
@@ -93,12 +93,6 @@ bool enumerating = NO;
     
 	_services = [[NSMutableArray alloc] init];
     _displayServices = [[NSMutableArray alloc] init];
-
-    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-    header.scrollView = browserTableView;
-    header.delegate = self;
-    
-    
     
     NSNetServiceBrowser *aNetServiceBrowser = [[NSNetServiceBrowser alloc] init];
 	if(!aNetServiceBrowser) {
@@ -119,6 +113,18 @@ bool enumerating = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appEnterInforground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    
+    // 下拉刷新
+    browserTableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self searchForModules];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [browserTableView.mj_header endRefreshing];
+        });
+    }];
+    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    browserTableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,16 +133,16 @@ bool enumerating = NO;
     indexPath = [browserTableView indexPathForSelectedRow];
     if(indexPath != nil)
        [browserTableView deselectRowAtIndexPath:indexPath animated:NO];
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    //[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
-    float scrollWidth = appFrame.size.width;
-    float scrollHeight = appFrame.size.height - 40 - self.navigationController.navigationBar.frame.size.height;
-    [browserTableView setFrame: CGRectMake(0, -35, scrollWidth, scrollHeight+35)];
-}
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
+//    float scrollWidth = appFrame.size.width;
+//    float scrollHeight = appFrame.size.height - 40 - self.navigationController.navigationBar.frame.size.height;
+//    [browserTableView setFrame: CGRectMake(0, -35, scrollWidth, scrollHeight+35)];
+//}
 
 
 - (void)initialWaitOver:(NSTimer*)timer {
@@ -411,6 +417,11 @@ exit:
 	return count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     NSUInteger count = [self.displayServices count];
@@ -494,49 +505,6 @@ exit:
 	self.netServiceBrowser = nil;
 }
 
-#pragma mark - 刷新控件的代理方法
-#pragma mark 开始进入刷新状态
-- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
-{
-    NSLog(@"%@----开始进入刷新状态", refreshView.class);
-    [self searchForModules];
-    // 2.2秒后刷新表格UI
-    [self performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:1.0];
-    
-}
-
-#pragma mark 刷新完毕
-- (void)refreshViewEndRefreshing:(MJRefreshBaseView *)refreshView
-{
-    NSLog(@"%@----刷新完毕", refreshView.class);
-}
-
-#pragma mark 监听刷新状态的改变
-- (void)refreshView:(MJRefreshBaseView *)refreshView stateChange:(MJRefreshState)state
-{
-    switch (state) {
-        case MJRefreshStateNormal:
-            NSLog(@"%@----切换到：普通状态", refreshView.class);
-            break;
-            
-        case MJRefreshStatePulling:
-            NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
-            break;
-            
-        case MJRefreshStateRefreshing:
-            NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
-            break;
-        default:
-            break;
-    }
-}
-
-#pragma mark 刷新表格并且结束正在刷新状态
-- (void)doneWithView:(MJRefreshBaseView *)refreshView
-{
-    // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-    [refreshView endRefreshing];
-}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

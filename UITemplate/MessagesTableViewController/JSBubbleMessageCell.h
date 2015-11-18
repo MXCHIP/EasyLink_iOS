@@ -47,7 +47,7 @@ typedef enum {
 
 
 @property (nonatomic, assign) BOOL isSelected;
-@property (nonatomic, readonly, strong) UIImageView *imageView;
+//@property (nonatomic, readonly, strong) UIImageView *imageView;
 @property (nonatomic, readonly, strong) UIImage *renderedMark;
 
 #pragma mark - Initialization

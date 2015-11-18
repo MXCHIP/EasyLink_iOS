@@ -6,10 +6,10 @@
 //  Copyright (c) 2014年 MXCHIP Co;Ltd. All rights reserved.
 //
 
-#import "CustomUIStoryboardSegue.h"
+#import "KNSemiModalStoryboardSegue.h"
 #import "UIViewController+KNSemiModal.h"
 
-@implementation CustomUIStoryboardSegue
+@implementation KNSemiModalStoryboardSegue
 
 - (void)perform
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GRRequestsManager.h"
-#import "CustomIOS7AlertView.h"
+#import "CustomIOSAlertView.h"
 
 @protocol EasyLinkOTADelegate
 @optional
@@ -33,7 +33,7 @@
     IBOutlet UITableView *firmwareListTable;
     id theDelegate;
 @private
-    CustomIOS7AlertView *customAlertView;
+    CustomIOSAlertView *customAlertView;
     NSInteger currentSelectedIndex;
     NSString *localOTAFilePath;
 }

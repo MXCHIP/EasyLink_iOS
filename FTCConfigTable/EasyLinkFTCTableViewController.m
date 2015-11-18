@@ -11,7 +11,7 @@
 #import "FTCStringSelectCell.h"
 #import "FTCSwitchCell.h"
 #import "FTCSubMenuCell.h"
-#import "CustomIOS7AlertView.h"
+#import "CustomIOSAlertView.h"
 #import "EasyLinkOTATableViewController.h"
 
 @interface EasyLinkFTCTableViewController ()

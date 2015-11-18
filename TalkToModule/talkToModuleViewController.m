@@ -111,7 +111,7 @@
 
 -(void)showConnectingAlert
 {
-    customAlertView = [[CustomIOS7AlertView alloc] init];
+    customAlertView = [[CustomIOSAlertView alloc] init];
     NSString *alertContent = [NSString stringWithFormat:@"Connecting to %@ on port %ld ...", _address, (long)_port];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 170)];
@@ -152,7 +152,7 @@
     [customAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel",nil]];
     __weak UINavigationController *_nav = self.navigationController;
     __weak AsyncSocket *_tempsocket = self.socket;
-    [customAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *alertView, NSInteger buttonIndex) {
+    [customAlertView setOnButtonTouchUpInside:^(CustomIOSAlertView *alertView, int buttonIndex) {
         [_tempsocket disconnect];
         [_nav popToRootViewControllerAnimated:YES];
         NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[alertView tag]);

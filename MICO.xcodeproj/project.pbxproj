@@ -10,19 +10,6 @@
 		3D2AD58717A247E30026E31E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58617A247E30026E31E /* UIKit.framework */; };
 		3D2AD58917A247E30026E31E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58817A247E30026E31E /* Foundation.framework */; };
 		3D2AD58B17A247E30026E31E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58A17A247E30026E31E /* CoreGraphics.framework */; };
-		3D3370381A495ECB00ABFF1B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370371A495ECB00ABFF1B /* Reachability.m */; };
-		3D3370551A495F7E00ABFF1B /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33704B1A495F7E00ABFF1B /* MJRefreshHeaderView.m */; };
-		3D3370561A495F7E00ABFF1B /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D33704C1A495F7E00ABFF1B /* MJRefresh.bundle */; };
-		3D3370571A495F7E00ABFF1B /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33704F1A495F7E00ABFF1B /* MJRefreshBaseView.m */; };
-		3D3370581A495F7E00ABFF1B /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370511A495F7E00ABFF1B /* MJRefreshConst.m */; };
-		3D3370591A495F7E00ABFF1B /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370531A495F7E00ABFF1B /* MJRefreshFooterView.m */; };
-		3D33705C1A495FA700ABFF1B /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33705B1A495FA700ABFF1B /* HMSegmentedControl.m */; };
-		3D3370611A495FCD00ABFF1B /* CustomUIStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33705E1A495FCD00ABFF1B /* CustomUIStoryboardSegue.m */; };
-		3D3370621A495FCD00ABFF1B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370601A495FCD00ABFF1B /* UIViewController+KNSemiModal.m */; };
-		3D3370661A49603800ABFF1B /* RMMultipleViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370641A49603800ABFF1B /* RMMultipleViewsController.m */; };
-		3D3370671A49603800ABFF1B /* RMMultipleViewsController.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D3370651A49603800ABFF1B /* RMMultipleViewsController.xcassets */; };
-		3D33706A1A4960FE00ABFF1B /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370691A4960FE00ABFF1B /* PulsingHaloLayer.m */; };
-		3D33706E1A49613100ABFF1B /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33706C1A49613100ABFF1B /* CustomIOS7AlertView.m */; };
 		3D3370881A49622700ABFF1B /* addNewCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33707F1A49622700ABFF1B /* addNewCommandViewController.m */; };
 		3D3370891A49622700ABFF1B /* Protocols.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370811A49622700ABFF1B /* Protocols.m */; };
 		3D33708A1A49622700ABFF1B /* commandsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370831A49622700ABFF1B /* commandsTableViewController.m */; };
@@ -42,18 +29,6 @@
 		3D3370B71A49658300ABFF1B /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B21A49658300ABFF1B /* EasyLinkMainViewController.m */; };
 		3D3370B81A49658300ABFF1B /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B41A49658300ABFF1B /* newModuleTableViewCell.m */; };
 		3D3370B91A49658300ABFF1B /* easyLinkIpConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B61A49658300ABFF1B /* easyLinkIpConfigTableViewController.m */; };
-		3D3370BE1A4965F100ABFF1B /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370BB1A4965F100ABFF1B /* AsyncSocket.m */; };
-		3D3370BF1A4965F100ABFF1B /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370BD1A4965F100ABFF1B /* AsyncUdpSocket.m */; };
-		3D3370DA1A49664900ABFF1B /* GRRequestsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370C21A49664900ABFF1B /* GRRequestsManager.m */; };
-		3D3370DB1A49664900ABFF1B /* GRCreateDirectoryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370C71A49664900ABFF1B /* GRCreateDirectoryRequest.m */; };
-		3D3370DC1A49664900ABFF1B /* GRDeleteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370C91A49664900ABFF1B /* GRDeleteRequest.m */; };
-		3D3370DD1A49664900ABFF1B /* GRDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370CB1A49664900ABFF1B /* GRDownloadRequest.m */; };
-		3D3370DE1A49664900ABFF1B /* GRListingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370CD1A49664900ABFF1B /* GRListingRequest.m */; };
-		3D3370DF1A49664900ABFF1B /* GRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370CF1A49664900ABFF1B /* GRRequest.m */; };
-		3D3370E01A49664900ABFF1B /* GRUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370D21A49664900ABFF1B /* GRUploadRequest.m */; };
-		3D3370E11A49664900ABFF1B /* GRError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370D51A49664900ABFF1B /* GRError.m */; };
-		3D3370E21A49664900ABFF1B /* GRQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370D71A49664900ABFF1B /* GRQueue.m */; };
-		3D3370E31A49664900ABFF1B /* GRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370D91A49664900ABFF1B /* GRStreamInfo.m */; };
 		3D3370EB1A4966D400ABFF1B /* moduleBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E61A4966D400ABFF1B /* moduleBrowserCell.m */; };
 		3D3370EC1A4966D400ABFF1B /* bonjourDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */; };
 		3D3370ED1A4966D400ABFF1B /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370EA1A4966D400ABFF1B /* browserViewController.m */; };
@@ -149,11 +124,13 @@
 		3D9A167C1A496CF900DBBE61 /* EasyLinkPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167B1A496CF900DBBE61 /* EasyLinkPhone.png */; };
 		3D9A167E1A496D0500DBBE61 /* EMW3280.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167D1A496D0500DBBE61 /* EMW3280.png */; };
 		3D9A16801A496E1B00DBBE61 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167F1A496E1B00DBBE61 /* known_logo.png */; };
-		3D9E23451BB28E150068EEAB /* libEasyLink_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9E23441BB28E150068EEAB /* libEasyLink_debug.a */; settings = {ASSET_TAGS = (); }; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA394E17A55486003806FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
 		3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAEA03C191924320082D846 /* AudioToolbox.framework */; };
+		3DD765941BFC24BE0087CC27 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD765931BFC24BE0087CC27 /* libEasyLink.a */; };
+		3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */; };
+		5F7DC185457008CF0D0FF65B /* libPods-EasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7249A65E039CD4820DDA109A /* libPods-EasyLink.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,33 +139,6 @@
 		3D2AD58817A247E30026E31E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D2AD58A17A247E30026E31E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		3D3370361A495ECB00ABFF1B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = EasyLink/EasyLink/Reachability/Reachability.h; sourceTree = SOURCE_ROOT; };
-		3D3370371A495ECB00ABFF1B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = EasyLink/EasyLink/Reachability/Reachability.m; sourceTree = SOURCE_ROOT; };
-		3D33703A1A495EDE00ABFF1B /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/EasyLink/Common/EMWHeader.h; sourceTree = SOURCE_ROOT; };
-		3D33703B1A495EDE00ABFF1B /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = route.h; path = EasyLink/EasyLink/Common/route.h; sourceTree = SOURCE_ROOT; };
-		3D33704B1A495F7E00ABFF1B /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJRefreshHeaderView.m; path = UITemplate/MJRefresh/MJRefreshHeaderView.m; sourceTree = SOURCE_ROOT; };
-		3D33704C1A495F7E00ABFF1B /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MJRefresh.bundle; path = UITemplate/MJRefresh/MJRefresh.bundle; sourceTree = SOURCE_ROOT; };
-		3D33704D1A495F7E00ABFF1B /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefresh.h; path = UITemplate/MJRefresh/MJRefresh.h; sourceTree = SOURCE_ROOT; };
-		3D33704E1A495F7E00ABFF1B /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefreshBaseView.h; path = UITemplate/MJRefresh/MJRefreshBaseView.h; sourceTree = SOURCE_ROOT; };
-		3D33704F1A495F7E00ABFF1B /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBaseView.m; path = UITemplate/MJRefresh/MJRefreshBaseView.m; sourceTree = SOURCE_ROOT; };
-		3D3370501A495F7E00ABFF1B /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefreshConst.h; path = UITemplate/MJRefresh/MJRefreshConst.h; sourceTree = SOURCE_ROOT; };
-		3D3370511A495F7E00ABFF1B /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJRefreshConst.m; path = UITemplate/MJRefresh/MJRefreshConst.m; sourceTree = SOURCE_ROOT; };
-		3D3370521A495F7E00ABFF1B /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefreshFooterView.h; path = UITemplate/MJRefresh/MJRefreshFooterView.h; sourceTree = SOURCE_ROOT; };
-		3D3370531A495F7E00ABFF1B /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJRefreshFooterView.m; path = UITemplate/MJRefresh/MJRefreshFooterView.m; sourceTree = SOURCE_ROOT; };
-		3D3370541A495F7E00ABFF1B /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefreshHeaderView.h; path = UITemplate/MJRefresh/MJRefreshHeaderView.h; sourceTree = SOURCE_ROOT; };
-		3D33705A1A495FA700ABFF1B /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HMSegmentedControl.h; path = UITemplate/HMSegmentedControl/HMSegmentedControl.h; sourceTree = SOURCE_ROOT; };
-		3D33705B1A495FA700ABFF1B /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HMSegmentedControl.m; path = UITemplate/HMSegmentedControl/HMSegmentedControl.m; sourceTree = SOURCE_ROOT; };
-		3D33705D1A495FCD00ABFF1B /* CustomUIStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomUIStoryboardSegue.h; path = "UITemplate/UIViewController+KNSemiModal/CustomUIStoryboardSegue.h"; sourceTree = SOURCE_ROOT; };
-		3D33705E1A495FCD00ABFF1B /* CustomUIStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomUIStoryboardSegue.m; path = "UITemplate/UIViewController+KNSemiModal/CustomUIStoryboardSegue.m"; sourceTree = SOURCE_ROOT; };
-		3D33705F1A495FCD00ABFF1B /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+KNSemiModal.h"; path = "UITemplate/UIViewController+KNSemiModal/UIViewController+KNSemiModal.h"; sourceTree = SOURCE_ROOT; };
-		3D3370601A495FCD00ABFF1B /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+KNSemiModal.m"; path = "UITemplate/UIViewController+KNSemiModal/UIViewController+KNSemiModal.m"; sourceTree = SOURCE_ROOT; };
-		3D3370631A49603800ABFF1B /* RMMultipleViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMMultipleViewsController.h; path = UITemplate/RMMultipleViewsController/RMMultipleViewsController.h; sourceTree = "<group>"; };
-		3D3370641A49603800ABFF1B /* RMMultipleViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMMultipleViewsController.m; path = UITemplate/RMMultipleViewsController/RMMultipleViewsController.m; sourceTree = "<group>"; };
-		3D3370651A49603800ABFF1B /* RMMultipleViewsController.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = RMMultipleViewsController.xcassets; path = UITemplate/RMMultipleViewsController/RMMultipleViewsController.xcassets; sourceTree = "<group>"; };
-		3D3370681A4960FE00ABFF1B /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PulsingHaloLayer.h; path = UITemplate/PulsingHalo/PulsingHaloLayer.h; sourceTree = "<group>"; };
-		3D3370691A4960FE00ABFF1B /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = UITemplate/PulsingHalo/PulsingHaloLayer.m; sourceTree = "<group>"; };
-		3D33706C1A49613100ABFF1B /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomIOS7AlertView.m; path = UITemplate/CustomIOS7AlertView/CustomIOS7AlertView.m; sourceTree = "<group>"; };
-		3D33706D1A49613100ABFF1B /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomIOS7AlertView.h; path = UITemplate/CustomIOS7AlertView/CustomIOS7AlertView.h; sourceTree = "<group>"; };
 		3D33707E1A49622700ABFF1B /* addNewCommandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = addNewCommandViewController.h; path = TalkToModule/addNewCommandViewController.h; sourceTree = SOURCE_ROOT; };
 		3D33707F1A49622700ABFF1B /* addNewCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = addNewCommandViewController.m; path = TalkToModule/addNewCommandViewController.m; sourceTree = SOURCE_ROOT; };
 		3D3370801A49622700ABFF1B /* Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Protocols.h; path = TalkToModule/Protocols.h; sourceTree = SOURCE_ROOT; };
@@ -227,32 +177,6 @@
 		3D3370B41A49658300ABFF1B /* newModuleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newModuleTableViewCell.m; path = EasyLink/newModuleTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		3D3370B51A49658300ABFF1B /* easyLinkIpConfigTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = easyLinkIpConfigTableViewController.h; path = EasyLink/easyLinkIpConfigTableViewController.h; sourceTree = SOURCE_ROOT; };
 		3D3370B61A49658300ABFF1B /* easyLinkIpConfigTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = easyLinkIpConfigTableViewController.m; path = EasyLink/easyLinkIpConfigTableViewController.m; sourceTree = SOURCE_ROOT; };
-		3D3370BA1A4965F100ABFF1B /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = "CocoaAsyncSocket-7.3.3/RunLoop/AsyncSocket.h"; sourceTree = "<group>"; };
-		3D3370BB1A4965F100ABFF1B /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = "CocoaAsyncSocket-7.3.3/RunLoop/AsyncSocket.m"; sourceTree = "<group>"; };
-		3D3370BC1A4965F100ABFF1B /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncUdpSocket.h; path = "CocoaAsyncSocket-7.3.3/RunLoop/AsyncUdpSocket.h"; sourceTree = "<group>"; };
-		3D3370BD1A4965F100ABFF1B /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncUdpSocket.m; path = "CocoaAsyncSocket-7.3.3/RunLoop/AsyncUdpSocket.m"; sourceTree = "<group>"; };
-		3D3370C21A49664900ABFF1B /* GRRequestsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GRRequestsManager.m; path = GoldRaccoonFTPClient/GRRequestsManager.m; sourceTree = "<group>"; };
-		3D3370C31A49664900ABFF1B /* GRRequestsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRRequestsManager.h; path = GoldRaccoonFTPClient/GRRequestsManager.h; sourceTree = "<group>"; };
-		3D3370C41A49664900ABFF1B /* GRRequestsManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRRequestsManagerProtocol.h; path = GoldRaccoonFTPClient/GRRequestsManagerProtocol.h; sourceTree = "<group>"; };
-		3D3370C61A49664900ABFF1B /* GRCreateDirectoryRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRCreateDirectoryRequest.h; sourceTree = "<group>"; };
-		3D3370C71A49664900ABFF1B /* GRCreateDirectoryRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRCreateDirectoryRequest.m; sourceTree = "<group>"; };
-		3D3370C81A49664900ABFF1B /* GRDeleteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDeleteRequest.h; sourceTree = "<group>"; };
-		3D3370C91A49664900ABFF1B /* GRDeleteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDeleteRequest.m; sourceTree = "<group>"; };
-		3D3370CA1A49664900ABFF1B /* GRDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDownloadRequest.h; sourceTree = "<group>"; };
-		3D3370CB1A49664900ABFF1B /* GRDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDownloadRequest.m; sourceTree = "<group>"; };
-		3D3370CC1A49664900ABFF1B /* GRListingRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRListingRequest.h; sourceTree = "<group>"; };
-		3D3370CD1A49664900ABFF1B /* GRListingRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRListingRequest.m; sourceTree = "<group>"; };
-		3D3370CE1A49664900ABFF1B /* GRRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRRequest.h; sourceTree = "<group>"; };
-		3D3370CF1A49664900ABFF1B /* GRRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRRequest.m; sourceTree = "<group>"; };
-		3D3370D01A49664900ABFF1B /* GRRequestProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRRequestProtocol.h; sourceTree = "<group>"; };
-		3D3370D11A49664900ABFF1B /* GRUploadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRUploadRequest.h; sourceTree = "<group>"; };
-		3D3370D21A49664900ABFF1B /* GRUploadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadRequest.m; sourceTree = "<group>"; };
-		3D3370D41A49664900ABFF1B /* GRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRError.h; sourceTree = "<group>"; };
-		3D3370D51A49664900ABFF1B /* GRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRError.m; sourceTree = "<group>"; };
-		3D3370D61A49664900ABFF1B /* GRQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRQueue.h; sourceTree = "<group>"; };
-		3D3370D71A49664900ABFF1B /* GRQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRQueue.m; sourceTree = "<group>"; };
-		3D3370D81A49664900ABFF1B /* GRStreamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRStreamInfo.h; sourceTree = "<group>"; };
-		3D3370D91A49664900ABFF1B /* GRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRStreamInfo.m; sourceTree = "<group>"; };
 		3D3370E51A4966D400ABFF1B /* moduleBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = moduleBrowserCell.h; path = HomePage/moduleBrowserCell.h; sourceTree = SOURCE_ROOT; };
 		3D3370E61A4966D400ABFF1B /* moduleBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = moduleBrowserCell.m; path = HomePage/moduleBrowserCell.m; sourceTree = SOURCE_ROOT; };
 		3D3370E71A4966D400ABFF1B /* bonjourDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bonjourDetailTableViewController.h; path = HomePage/bonjourDetailTableViewController.h; sourceTree = SOURCE_ROOT; };
@@ -366,12 +290,18 @@
 		3D9A167B1A496CF900DBBE61 /* EasyLinkPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EasyLinkPhone.png; path = Resources/Images/Common/EasyLinkPhone.png; sourceTree = SOURCE_ROOT; };
 		3D9A167D1A496D0500DBBE61 /* EMW3280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3280.png; path = Resources/Images/Common/EMW3280.png; sourceTree = SOURCE_ROOT; };
 		3D9A167F1A496E1B00DBBE61 /* known_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = known_logo.png; path = Resources/Images/Common/known_logo.png; sourceTree = SOURCE_ROOT; };
-		3D9E23441BB28E150068EEAB /* libEasyLink_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEasyLink_debug.a; path = EasyLink/EasyLink/Common/libEasyLink_debug.a; sourceTree = SOURCE_ROOT; };
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3DAA394D17A55486003806FE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3DAA394F17A554AD003806FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3DAEA03C191924320082D846 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3DAEA03D191924320082D846 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		3DD765901BFC1F670087CC27 /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/EasyLink/Common/EMWHeader.h; sourceTree = SOURCE_ROOT; };
+		3DD765931BFC24BE0087CC27 /* libEasyLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEasyLink.a; path = EasyLink/EasyLink/Common/libEasyLink.a; sourceTree = SOURCE_ROOT; };
+		3DFC27CB1BFC377F008834C5 /* KNSemiModalStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KNSemiModalStoryboardSegue.h; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.h; sourceTree = "<group>"; };
+		3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KNSemiModalStoryboardSegue.m; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.m; sourceTree = "<group>"; };
+		7249A65E039CD4820DDA109A /* libPods-EasyLink.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyLink.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99C2418E5DA3442C56BCC37C /* Pods-EasyLink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.debug.xcconfig"; sourceTree = "<group>"; };
+		ECFB1310EFB492D3FAADC9CA /* Pods-EasyLink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,40 +312,19 @@
 				3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */,
 				3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */,
 				3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */,
+				3DD765941BFC24BE0087CC27 /* libEasyLink.a in Frameworks */,
 				3DAA394E17A55486003806FE /* SystemConfiguration.framework in Frameworks */,
 				3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */,
 				3D2AD58717A247E30026E31E /* UIKit.framework in Frameworks */,
 				3D2AD58917A247E30026E31E /* Foundation.framework in Frameworks */,
-				3D9E23451BB28E150068EEAB /* libEasyLink_debug.a in Frameworks */,
 				3D2AD58B17A247E30026E31E /* CoreGraphics.framework in Frameworks */,
+				5F7DC185457008CF0D0FF65B /* libPods-EasyLink.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3D041FC018FC078100D5563F /* GoldRaccoonFTPClient */ = {
-			isa = PBXGroup;
-			children = (
-				3D3370C21A49664900ABFF1B /* GRRequestsManager.m */,
-				3D3370C31A49664900ABFF1B /* GRRequestsManager.h */,
-				3D3370C41A49664900ABFF1B /* GRRequestsManagerProtocol.h */,
-				3D3370C51A49664900ABFF1B /* Requests */,
-				3D3370D31A49664900ABFF1B /* Utils */,
-			);
-			name = GoldRaccoonFTPClient;
-			sourceTree = "<group>";
-		};
-		3D0D3018191B4A3500C5B57A /* RMMultipleViewsController */ = {
-			isa = PBXGroup;
-			children = (
-				3D3370631A49603800ABFF1B /* RMMultipleViewsController.h */,
-				3D3370641A49603800ABFF1B /* RMMultipleViewsController.m */,
-				3D3370651A49603800ABFF1B /* RMMultipleViewsController.xcassets */,
-			);
-			name = RMMultipleViewsController;
-			sourceTree = "<group>";
-		};
 		3D0D3032191B4C1500C5B57A /* Module Interactive */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,28 +342,16 @@
 			name = "Module Interactive";
 			sourceTree = "<group>";
 		};
-		3D207F41187D2F7E00A3CBB7 /* AsyncSocket */ = {
-			isa = PBXGroup;
-			children = (
-				3D3370BA1A4965F100ABFF1B /* AsyncSocket.h */,
-				3D3370BB1A4965F100ABFF1B /* AsyncSocket.m */,
-				3D3370BC1A4965F100ABFF1B /* AsyncUdpSocket.h */,
-				3D3370BD1A4965F100ABFF1B /* AsyncUdpSocket.m */,
-			);
-			name = AsyncSocket;
-			sourceTree = "<group>";
-		};
 		3D2AD57A17A247E20026E31E = {
 			isa = PBXGroup;
 			children = (
 				3DAA37E317A542FC003806FE /* EasyLink */,
-				3D041FC018FC078100D5563F /* GoldRaccoonFTPClient */,
 				3D71295518AA26430071D553 /* Images.xcassets */,
 				3D7ACE8418FACAD400747F32 /* UITemplate */,
-				3D207F41187D2F7E00A3CBB7 /* AsyncSocket */,
 				3D2AD58C17A247E30026E31E /* MainUI */,
 				3D2AD58517A247E30026E31E /* Frameworks */,
 				3D2AD58417A247E30026E31E /* Products */,
+				AE4D8FF7EF7B34C99D1E2976 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -479,6 +376,7 @@
 				3D2AD58817A247E30026E31E /* Foundation.framework */,
 				3D2AD58A17A247E30026E31E /* CoreGraphics.framework */,
 				3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */,
+				7249A65E039CD4820DDA109A /* libPods-EasyLink.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -511,15 +409,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3D33706B1A49612300ABFF1B /* CustomIOS7AlertView */ = {
-			isa = PBXGroup;
-			children = (
-				3D33706C1A49613100ABFF1B /* CustomIOS7AlertView.m */,
-				3D33706D1A49613100ABFF1B /* CustomIOS7AlertView.h */,
-			);
-			name = CustomIOS7AlertView;
-			sourceTree = "<group>";
-		};
 		3D33709F1A4962AB00ABFF1B /* OTA Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,41 +431,6 @@
 				3D3370A71A4963BF00ABFF1B /* RootViewController.m */,
 			);
 			name = General;
-			sourceTree = "<group>";
-		};
-		3D3370C51A49664900ABFF1B /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				3D3370C61A49664900ABFF1B /* GRCreateDirectoryRequest.h */,
-				3D3370C71A49664900ABFF1B /* GRCreateDirectoryRequest.m */,
-				3D3370C81A49664900ABFF1B /* GRDeleteRequest.h */,
-				3D3370C91A49664900ABFF1B /* GRDeleteRequest.m */,
-				3D3370CA1A49664900ABFF1B /* GRDownloadRequest.h */,
-				3D3370CB1A49664900ABFF1B /* GRDownloadRequest.m */,
-				3D3370CC1A49664900ABFF1B /* GRListingRequest.h */,
-				3D3370CD1A49664900ABFF1B /* GRListingRequest.m */,
-				3D3370CE1A49664900ABFF1B /* GRRequest.h */,
-				3D3370CF1A49664900ABFF1B /* GRRequest.m */,
-				3D3370D01A49664900ABFF1B /* GRRequestProtocol.h */,
-				3D3370D11A49664900ABFF1B /* GRUploadRequest.h */,
-				3D3370D21A49664900ABFF1B /* GRUploadRequest.m */,
-			);
-			name = Requests;
-			path = GoldRaccoonFTPClient/Requests;
-			sourceTree = "<group>";
-		};
-		3D3370D31A49664900ABFF1B /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				3D3370D41A49664900ABFF1B /* GRError.h */,
-				3D3370D51A49664900ABFF1B /* GRError.m */,
-				3D3370D61A49664900ABFF1B /* GRQueue.h */,
-				3D3370D71A49664900ABFF1B /* GRQueue.m */,
-				3D3370D81A49664900ABFF1B /* GRStreamInfo.h */,
-				3D3370D91A49664900ABFF1B /* GRStreamInfo.m */,
-			);
-			name = Utils;
-			path = GoldRaccoonFTPClient/Utils;
 			sourceTree = "<group>";
 		};
 		3D3370E41A4966C600ABFF1B /* Home Page */ = {
@@ -662,55 +516,13 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		3D4289D818A4D72C0092DD5D /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-				3D3370681A4960FE00ABFF1B /* PulsingHaloLayer.h */,
-				3D3370691A4960FE00ABFF1B /* PulsingHaloLayer.m */,
-			);
-			name = Animation;
-			sourceTree = "<group>";
-		};
-		3D677CFF1925B3E400E4A486 /* MJRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				3D33704B1A495F7E00ABFF1B /* MJRefreshHeaderView.m */,
-				3D33704C1A495F7E00ABFF1B /* MJRefresh.bundle */,
-				3D33704D1A495F7E00ABFF1B /* MJRefresh.h */,
-				3D33704E1A495F7E00ABFF1B /* MJRefreshBaseView.h */,
-				3D33704F1A495F7E00ABFF1B /* MJRefreshBaseView.m */,
-				3D3370501A495F7E00ABFF1B /* MJRefreshConst.h */,
-				3D3370511A495F7E00ABFF1B /* MJRefreshConst.m */,
-				3D3370521A495F7E00ABFF1B /* MJRefreshFooterView.h */,
-				3D3370531A495F7E00ABFF1B /* MJRefreshFooterView.m */,
-				3D3370541A495F7E00ABFF1B /* MJRefreshHeaderView.h */,
-			);
-			name = MJRefresh;
-			path = "EMW ToolBox/MJRefresh";
-			sourceTree = "<group>";
-		};
 		3D7ACE8418FACAD400747F32 /* UITemplate */ = {
 			isa = PBXGroup;
 			children = (
-				3D33706B1A49612300ABFF1B /* CustomIOS7AlertView */,
-				3D4289D818A4D72C0092DD5D /* Animation */,
-				3D677CFF1925B3E400E4A486 /* MJRefresh */,
-				3D82491E1924FA0A00176E14 /* HMSegmentedControl */,
-				3DA2EDBC192218440055A89A /* UIViewController+KNSemiModal */,
-				3D0D3018191B4A3500C5B57A /* RMMultipleViewsController */,
+				3DFC27C71BFC371B008834C5 /* KNSemiModalStoryboardSegue */,
 				3DAE9FB519191B350082D846 /* MessagesTableViewController */,
 			);
 			name = UITemplate;
-			sourceTree = "<group>";
-		};
-		3D82491E1924FA0A00176E14 /* HMSegmentedControl */ = {
-			isa = PBXGroup;
-			children = (
-				3D33705A1A495FA700ABFF1B /* HMSegmentedControl.h */,
-				3D33705B1A495FA700ABFF1B /* HMSegmentedControl.m */,
-			);
-			name = HMSegmentedControl;
-			path = "EMW ToolBox/HMSegmentedControl";
 			sourceTree = "<group>";
 		};
 		3D8E9FD218A8A85800F6618E /* EasyLinkView */ = {
@@ -739,24 +551,12 @@
 			name = EasyLinkView;
 			sourceTree = "<group>";
 		};
-		3DA2EDBC192218440055A89A /* UIViewController+KNSemiModal */ = {
-			isa = PBXGroup;
-			children = (
-				3D33705D1A495FCD00ABFF1B /* CustomUIStoryboardSegue.h */,
-				3D33705E1A495FCD00ABFF1B /* CustomUIStoryboardSegue.m */,
-				3D33705F1A495FCD00ABFF1B /* UIViewController+KNSemiModal.h */,
-				3D3370601A495FCD00ABFF1B /* UIViewController+KNSemiModal.m */,
-			);
-			name = "UIViewController+KNSemiModal";
-			path = "EMW ToolBox/UIViewController+KNSemiModal";
-			sourceTree = "<group>";
-		};
 		3DAA37E317A542FC003806FE /* EasyLink */ = {
 			isa = PBXGroup;
 			children = (
-				3D9E23441BB28E150068EEAB /* libEasyLink_debug.a */,
+				3DD765931BFC24BE0087CC27 /* libEasyLink.a */,
+				3DD765901BFC1F670087CC27 /* EMWHeader.h */,
 				3D43DA491B65F77B00DD4AE3 /* EasyLink.h */,
-				3DE0C33C1A494E6D00B7133F /* Reachability */,
 			);
 			name = EasyLink;
 			path = "EMW ToolBox";
@@ -841,17 +641,6 @@
 			name = EasyLinkPage;
 			sourceTree = "<group>";
 		};
-		3DE0C33C1A494E6D00B7133F /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				3D33703A1A495EDE00ABFF1B /* EMWHeader.h */,
-				3D33703B1A495EDE00ABFF1B /* route.h */,
-				3D3370361A495ECB00ABFF1B /* Reachability.h */,
-				3D3370371A495ECB00ABFF1B /* Reachability.m */,
-			);
-			name = Reachability;
-			sourceTree = "<group>";
-		};
 		3DF345CD18E125CF0088832E /* FTC Config Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -871,6 +660,24 @@
 			name = "FTC Config Page";
 			sourceTree = "<group>";
 		};
+		3DFC27C71BFC371B008834C5 /* KNSemiModalStoryboardSegue */ = {
+			isa = PBXGroup;
+			children = (
+				3DFC27CB1BFC377F008834C5 /* KNSemiModalStoryboardSegue.h */,
+				3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */,
+			);
+			name = KNSemiModalStoryboardSegue;
+			sourceTree = "<group>";
+		};
+		AE4D8FF7EF7B34C99D1E2976 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				99C2418E5DA3442C56BCC37C /* Pods-EasyLink.debug.xcconfig */,
+				ECFB1310EFB492D3FAADC9CA /* Pods-EasyLink.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -878,9 +685,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D2AD5BE17A247E30026E31E /* Build configuration list for PBXNativeTarget "EasyLink" */;
 			buildPhases = (
+				69D95AAC537D928840264F3C /* Check Pods Manifest.lock */,
 				3D2AD57F17A247E20026E31E /* Sources */,
 				3D2AD58017A247E20026E31E /* Frameworks */,
 				3D2AD58117A247E20026E31E /* Resources */,
+				F4BBF953F94CAD4B8D0A50A4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -940,7 +749,6 @@
 				3D3371581A49682400ABFF1B /* bubble-square-incoming@2x.png in Resources */,
 				3D33715B1A49682400ABFF1B /* bubble-square-outgoing.png in Resources */,
 				3D3371691A49682400ABFF1B /* send.png in Resources */,
-				3D3370561A495F7E00ABFF1B /* MJRefresh.bundle in Resources */,
 				3D9A16761A496CC200DBBE61 /* easycloud.png in Resources */,
 				3D33715F1A49682400ABFF1B /* input-bar-flat.png in Resources */,
 				3D33717B1A4968E700ABFF1B /* InfoPlist.strings in Resources */,
@@ -962,7 +770,6 @@
 				3D3371431A49682300ABFF1B /* bubble-default-incoming.png in Resources */,
 				3D3371651A49682400ABFF1B /* PhotoIcon.png in Resources */,
 				3D3371521A49682400ABFF1B /* bubble-flat-outgoing-selected@2x.png in Resources */,
-				3D3370671A49603800ABFF1B /* RMMultipleViewsController.xcassets in Resources */,
 				3D33714D1A49682300ABFF1B /* bubble-flat-incoming.png in Resources */,
 				3D33719D1A496A4A00ABFF1B /* EASYLINK_BUTTON.png in Resources */,
 				3D33716B1A49682400ABFF1B /* messageReceived.aiff in Resources */,
@@ -1018,6 +825,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		69D95AAC537D928840264F3C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F4BBF953F94CAD4B8D0A50A4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3D2AD57F17A247E20026E31E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1026,61 +866,39 @@
 				3D3370881A49622700ABFF1B /* addNewCommandViewController.m in Sources */,
 				3D33716F1A49682400ABFF1B /* UIImage+JSMessagesView.m in Sources */,
 				3D3370991A49628E00ABFF1B /* FTCSelectViewController.m in Sources */,
-				3D33706E1A49613100ABFF1B /* CustomIOS7AlertView.m in Sources */,
 				3D33713E1A49682300ABFF1B /* NSString+JSMessagesView.m in Sources */,
 				3D33713D1A49682300ABFF1B /* JSMessageTextView.m in Sources */,
-				3D3370621A495FCD00ABFF1B /* UIViewController+KNSemiModal.m in Sources */,
 				3D33708A1A49622700ABFF1B /* commandsTableViewController.m in Sources */,
-				3D3370571A495F7E00ABFF1B /* MJRefreshBaseView.m in Sources */,
 				3D3371751A49686E00ABFF1B /* main.m in Sources */,
-				3D3370611A495FCD00ABFF1B /* CustomUIStoryboardSegue.m in Sources */,
 				3D3370A91A4963BF00ABFF1B /* RootViewController.m in Sources */,
-				3D3370661A49603800ABFF1B /* RMMultipleViewsController.m in Sources */,
-				3D3370DA1A49664900ABFF1B /* GRRequestsManager.m in Sources */,
 				3D3370891A49622700ABFF1B /* Protocols.m in Sources */,
 				3D33708C1A49622700ABFF1B /* talkToModuleViewController.m in Sources */,
-				3D3370BF1A4965F100ABFF1B /* AsyncUdpSocket.m in Sources */,
 				3D3370A21A4962FE00ABFF1B /* EasyLinkOTATableViewController.m in Sources */,
 				3D3371381A49682300ABFF1B /* JSBubbleView.m in Sources */,
 				3D33713A1A49682300ABFF1B /* JSMessageInputView.m in Sources */,
 				3D3370B91A49658300ABFF1B /* easyLinkIpConfigTableViewController.m in Sources */,
-				3D3370DF1A49664900ABFF1B /* GRRequest.m in Sources */,
 				3D33709B1A49628E00ABFF1B /* FTCStringSelectCell.m in Sources */,
 				3D3371701A49682400ABFF1B /* UIView+AnimationOptionsForCurve.m in Sources */,
 				3D3370AF1A4964C600ABFF1B /* mxchipAppDelegate.m in Sources */,
-				3D3370E01A49664900ABFF1B /* GRUploadRequest.m in Sources */,
 				3D33716D1A49682400ABFF1B /* UIButton+JSMessagesView.m in Sources */,
 				3D33713C1A49682300ABFF1B /* JSMessagesViewController.m in Sources */,
-				3D33706A1A4960FE00ABFF1B /* PulsingHaloLayer.m in Sources */,
+				3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */,
 				3D3370A81A4963BF00ABFF1B /* guideViewController.m in Sources */,
 				3D3370AC1A49643A00ABFF1B /* ConThingsViewController.m in Sources */,
-				3D3370381A495ECB00ABFF1B /* Reachability.m in Sources */,
 				3D3370B81A49658300ABFF1B /* newModuleTableViewCell.m in Sources */,
-				3D3370DE1A49664900ABFF1B /* GRListingRequest.m in Sources */,
-				3D3370DB1A49664900ABFF1B /* GRCreateDirectoryRequest.m in Sources */,
-				3D3370581A495F7E00ABFF1B /* MJRefreshConst.m in Sources */,
 				3D3370EC1A4966D400ABFF1B /* bonjourDetailTableViewController.m in Sources */,
 				3D3370ED1A4966D400ABFF1B /* browserViewController.m in Sources */,
 				3D33713B1A49682300ABFF1B /* JSMessageSoundEffect.m in Sources */,
 				3D33709E1A49628E00ABFF1B /* EasyLinkFTCTableViewController.m in Sources */,
 				3D33709A1A49628E00ABFF1B /* FTCStringCell.m in Sources */,
-				3D3370BE1A4965F100ABFF1B /* AsyncSocket.m in Sources */,
 				3D33708B1A49622700ABFF1B /* messageViewController.m in Sources */,
 				3D3370B71A49658300ABFF1B /* EasyLinkMainViewController.m in Sources */,
-				3D3370591A495F7E00ABFF1B /* MJRefreshFooterView.m in Sources */,
-				3D3370E21A49664900ABFF1B /* GRQueue.m in Sources */,
-				3D3370DC1A49664900ABFF1B /* GRDeleteRequest.m in Sources */,
 				3D33716E1A49682400ABFF1B /* UIColor+JSMessagesView.m in Sources */,
 				3D33709C1A49628E00ABFF1B /* FTCSubMenuCell.m in Sources */,
-				3D3370E11A49664900ABFF1B /* GRError.m in Sources */,
-				3D3370DD1A49664900ABFF1B /* GRDownloadRequest.m in Sources */,
 				3D3370EB1A4966D400ABFF1B /* moduleBrowserCell.m in Sources */,
 				3D3371391A49682300ABFF1B /* JSDismissiveTextView.m in Sources */,
-				3D3370551A495F7E00ABFF1B /* MJRefreshHeaderView.m in Sources */,
 				3D33709D1A49628E00ABFF1B /* FTCSwitchCell.m in Sources */,
-				3D33705C1A495FA700ABFF1B /* HMSegmentedControl.m in Sources */,
 				3D3371371A49682300ABFF1B /* JSBubbleMessageCell.m in Sources */,
-				3D3370E31A49664900ABFF1B /* GRStreamInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +939,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: wei xu (827P7DZFL8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1135,8 +955,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "8929ae7d-4aab-4e1b-bfc5-5d1f8a98817c";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8929ae7d-4aab-4e1b-bfc5-5d1f8a98817c";
+				PROVISIONING_PROFILE = "1390b95a-cb00-4cff-a837-3927d43e6ed7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1390b95a-cb00-4cff-a837-3927d43e6ed7";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = NO;
 			};
@@ -1157,6 +977,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MXCHIP Co.,Ltd (AYDR2YFZ4K)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MXCHIP Co.,Ltd (AYDR2YFZ4K)";
 				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -1164,8 +986,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "61831f35-0591-4d97-b0bc-3d8b232e10c6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "61831f35-0591-4d97-b0bc-3d8b232e10c6";
+				PROVISIONING_PROFILE = "4164d934-a6f9-462d-b079-6c2f9a818559";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4164d934-a6f9-462d-b079-6c2f9a818559";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1173,6 +995,7 @@
 		};
 		3D2AD5BF17A247E30026E31E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99C2418E5DA3442C56BCC37C /* Pods-EasyLink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1185,6 +1008,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EasyLink/EasyLink/Common",
+					"$(PROJECT_DIR)Demo/EasylinkDemo/EasyLink",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME}";
 				PRODUCT_NAME = EasyLink;
@@ -1197,6 +1021,7 @@
 		};
 		3D2AD5C017A247E30026E31E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECFB1310EFB492D3FAADC9CA /* Pods-EasyLink.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1209,6 +1034,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EasyLink/EasyLink/Common",
+					"$(PROJECT_DIR)Demo/EasylinkDemo/EasyLink",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME}";
 				PRODUCT_NAME = EasyLink;

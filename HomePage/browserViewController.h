@@ -11,7 +11,7 @@
 
 
 @interface browserViewController : UIViewController <NSNetServiceBrowserDelegate,
-NSNetServiceDelegate, MJRefreshBaseViewDelegate>{
+NSNetServiceDelegate>{
     NSMutableArray *_objects;
     IBOutlet UITableView *browserTableView;
     IBOutlet UISlider *ledControllerSlider;

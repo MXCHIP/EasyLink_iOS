@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AsyncSocket.h"
-#import "CustomIOS7AlertView.h"
+#import "CustomIOSAlertView.h"
 
 typedef enum
 {
@@ -29,7 +29,7 @@ typedef enum
     NSMutableArray *_majourInfo;
     NSMutableArray *_txtRecordArray;
     AsyncSocket *configSocket;
-    CustomIOS7AlertView *customAlertView, *otaAlertView;
+    CustomIOSAlertView *customAlertView, *otaAlertView;
     CFHTTPMessageRef inComingMessage;
     NSMutableDictionary *configData;
     NSData *updateData;

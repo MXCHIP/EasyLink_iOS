@@ -357,7 +357,7 @@
 
 -(void)showConnectingAlert
 {
-    customAlertView = [[CustomIOS7AlertView alloc] init];
+    customAlertView = [[CustomIOSAlertView alloc] init];
     NSString *alertContent = [NSString stringWithFormat:@"Connecting to %@ on port 8000 ...", _address];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 170)];
@@ -397,7 +397,7 @@
     
     [customAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel",nil]];
     __weak AsyncSocket *_tempsocket = configSocket;
-    [customAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *alertView, NSInteger buttonIndex) {
+    [customAlertView setOnButtonTouchUpInside:^(CustomIOSAlertView *alertView, int buttonIndex) {
         [_tempsocket disconnect];
         NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[alertView tag]);
         [alertView close];
@@ -422,7 +422,7 @@
         return;
     }
     
-    customAlertView = [[CustomIOS7AlertView alloc] init];
+    customAlertView = [[CustomIOSAlertView alloc] init];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 140)];
     
@@ -467,7 +467,7 @@
 - (void)onStartOTA:(NSString *)otaFilePath toFTCClient:(NSNumber *)client
 {
     NSError *err;
-    otaAlertView = [[CustomIOS7AlertView alloc] init];
+    otaAlertView = [[CustomIOSAlertView alloc] init];
     
     UIView *alertContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 170)];
     
@@ -507,8 +507,8 @@
     
     [otaAlertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel",nil]];
     __weak AsyncSocket *_configSocket = configSocket;
-    __weak CustomIOS7AlertView *_otaAlertView = otaAlertView;
-    [otaAlertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *customIOS7AlertView, NSInteger buttonIndex) {
+    __weak CustomIOSAlertView *_otaAlertView = otaAlertView;
+    [otaAlertView setOnButtonTouchUpInside:^(CustomIOSAlertView *customIOS7AlertView, int buttonIndex) {
         //  self.requestsManager = nil;
         [_configSocket disconnect];
         [_configSocket setDelegate:nil];
