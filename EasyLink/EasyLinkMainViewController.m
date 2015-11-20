@@ -316,12 +316,12 @@ typedef enum{
     
     /*EasyLink button image*/
     UIImageView *easyLinkButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-45, 76, 90, 90)];
-    easyLinkButtonView.image = [UIImage imageNamed:@"EASYLINK_BUTTON.png" ];
+    easyLinkButtonView.image = [UIImage imageNamed:@"EasyLinkBtn" ];
     [alertContentView addSubview:easyLinkButtonView];
     
     /*EasyLink pres image*/
     UIImageView *buttonPressView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2+80, 180, 120, 120)];
-    buttonPressView.image = [UIImage imageNamed:@"EASYLINK_PRESS.png" ];
+    buttonPressView.image = [UIImage imageNamed:@"EasyLinkBtnPress" ];
     [alertContentView addSubview:buttonPressView];
     
     [UIView animateWithDuration:0.5
@@ -343,7 +343,7 @@ typedef enum{
     [alertContentView addSubview:content];
     
     UIImageView *phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-100, 180, 200, 200)];
-    [phoneImageView setImage:[UIImage imageNamed:@"EasyLinkPhoneStarted.png"]];
+    [phoneImageView setImage:[UIImage imageNamed:@"EasyLinkSearching"]];
     [alertContentView addSubview:phoneImageView];
     [phoneImageView setContentMode:UIViewContentModeScaleAspectFit];
     alertContentView.clipsToBounds = true;
@@ -418,12 +418,12 @@ typedef enum{
     [alertContentView addSubview:title];
     
     UIImageView *startEasyLinkView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-145 + ePage_StartEasyLink * WIDTH_ALERT_VIEW, 45, 290, 255)];
-    startEasyLinkView.image = [UIImage imageNamed:@"StartEasyLink.png" ];
+    startEasyLinkView.image = [UIImage imageNamed:@"uAPPhase1.1" ];
     [alertContentView addSubview:startEasyLinkView];
     
     /*EasyLink pres image*/
     UIImageView *buttonPressView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2+80, 180, 120, 120)];
-    buttonPressView.image = [UIImage imageNamed:@"EASYLINK_PRESS.png" ];
+    buttonPressView.image = [UIImage imageNamed:@"EasyLinkBtnPress" ];
     [alertContentView addSubview:buttonPressView];
     
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
@@ -451,7 +451,7 @@ typedef enum{
     [alertContentView addSubview:title];
     
     UIImageView *homeButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-145 + ePage_ConnectingToModule * WIDTH_ALERT_VIEW, 45, 290, 255)];
-    homeButtonView.image = [UIImage imageNamed:@"ConnectingToModule.png" ];
+    homeButtonView.image = [UIImage imageNamed:@"uAPPhase1.2" ];
     [alertContentView addSubview:homeButtonView];
     
     content = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_ConnectingToModule * WIDTH_ALERT_VIEW, 45, 260, 25)];
@@ -473,7 +473,7 @@ typedef enum{
     [alertContentView addSubview:title];
     
     UIImageView *sendingConfigView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-145 + ePage_SendingConfig * WIDTH_ALERT_VIEW, 45, 290, 255)];
-    sendingConfigView.image = [UIImage imageNamed:@"SendingConfig.png" ];
+    sendingConfigView.image = [UIImage imageNamed:@"uAPPhase2" ];
     [alertContentView addSubview:sendingConfigView];
     
     /* ======================================== uAP config Page 4 ===========================================*/
@@ -484,7 +484,7 @@ typedef enum{
     [alertContentView addSubview:title];
     
     UIImageView *connectingToTargetWlanView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-145 + ePage_ConnectingToTargetWlan * WIDTH_ALERT_VIEW, 45, 290, 255)];
-    connectingToTargetWlanView.image = [UIImage imageNamed:@"ConnectingToTargetWlan.png" ];
+    connectingToTargetWlanView.image = [UIImage imageNamed:@"uAPPhase3" ];
     [alertContentView addSubview:connectingToTargetWlanView];
     
     /* ======================================== uAP config Page 5 ===========================================*/
@@ -498,7 +498,7 @@ typedef enum{
     pulsingHaloView.clipsToBounds = YES;
     
     UIImageView *phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(alertContentView.frame.size.width/2-130, 60, 260, 260)];
-    [phoneImageView setImage:[UIImage imageNamed:@"EasyLinkPhoneStarted.png"]];
+    [phoneImageView setImage:[UIImage imageNamed:@"EasyLinkSearching"]];
     [pulsingHaloView addSubview:phoneImageView];
     [phoneImageView setContentMode:UIViewContentModeScaleAspectFit];
 

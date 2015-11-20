@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>EasyLink Enterprise.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>EasyLink.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>3D2AD58217A247E20026E31E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3D42BF961BFDE35500E6D9DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
