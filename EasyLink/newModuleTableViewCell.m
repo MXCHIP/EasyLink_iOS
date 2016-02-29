@@ -61,7 +61,7 @@
     
     _deviceTitle.text = [_moduleInfo objectForKey:@"N"];
     _deviceDetail.text = [[NSString alloc] initWithFormat:@"Protocol: %@\r\nFirmware: %@\r\nHardware: %@\r\nRF version:%@", [_moduleInfo objectForKey:@"PO"], [_moduleInfo objectForKey:@"FW"], [_moduleInfo objectForKey:@"HD"], [_moduleInfo objectForKey:@"RF"]];
-    self.tag = [[_moduleInfo objectForKey:@"tag"] intValue];
+    self.tag = [[_moduleInfo objectForKey:@"tag"] longValue];
     _confirmBtn.tag = self.tag;
     _settingBtn.tag = self.tag;
     _updateBtn.tag = self.tag;
@@ -81,7 +81,7 @@
                 [theDelegate performSelector:@selector(onIgnored:) withObject:[_moduleInfo objectForKey:@"client"]];
         }
     }else if(sender == _settingBtn){
-        NSLog(@"Setting pressed");
+        NSLog(@"Setting pressed, tag = %ld", (long)self.tag );
     }else if(sender == _updateBtn){
         NSLog(@"Update pressed");
     }else if(sender == _ignoreBtn){

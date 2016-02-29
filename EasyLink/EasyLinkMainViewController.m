@@ -735,6 +735,7 @@ typedef enum{
     updateSettings = [NSMutableDictionary dictionaryWithCapacity:10];
     [foundModule setValue:updateSettings forKey:@"update"];
     [foundModule setObject:@YES forKey:@"FTC"];
+    [foundModule setObject: [NSNumber numberWithInteger:arc4random()] forKey:@"tag"];
     
     /*Replace an old device*/
     for( NSDictionary *object in self.foundModules){
@@ -745,13 +746,11 @@ typedef enum{
             else{
                 reloadTable = YES;
                 reloadIndex = [self.foundModules indexOfObject:object];
+                [foundModule setObject:[object objectForKey:@"tag"] forKey:@"tag"];
             }
             
         }
     }
-
-    [foundModule setObject: [NSNumber numberWithInteger:arc4random()] forKey:@"tag"];
-    
 
     if (reloadTable == YES) {
         indexPath = [NSIndexPath indexPathForRow:[self.foundModules indexOfObject:foundModule] inSection:0];
