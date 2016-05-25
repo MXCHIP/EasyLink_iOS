@@ -1197,7 +1197,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "General/EasyLink-Info.plist";
@@ -1211,8 +1211,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = EasyLink;
 				PRODUCT_NAME = EasyLink;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7c1d5cb5-b3aa-4066-80f5-a532c078a927";
+				PROVISIONING_PROFILE = "8981fde8-e19f-41fd-a48d-faa800048979";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8981fde8-e19f-41fd-a48d-faa800048979";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1267,7 +1267,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = EasyLink.enterprise;
 				PRODUCT_NAME = EasyLink;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7c1d5cb5-b3aa-4066-80f5-a532c078a927";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "754e1204-5460-4c00-92d4-0ddd9286f9e0";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1293,8 +1293,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = EasyLink.enterprise;
 				PRODUCT_NAME = EasyLink;
-				PROVISIONING_PROFILE = "6368f55d-2473-4887-ad06-9b4a72cdb4c1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6368f55d-2473-4887-ad06-9b4a72cdb4c1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "754e1204-5460-4c00-92d4-0ddd9286f9e0";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
