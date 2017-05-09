@@ -208,7 +208,7 @@
             startingLineNumber = "838"
             endingLineNumber = "838"
             landmarkName = "-onDisconnectFromFTC:withError:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -224,7 +224,7 @@
             startingLineNumber = "991"
             endingLineNumber = "991"
             landmarkName = "-prepareCell:atIndexPath:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

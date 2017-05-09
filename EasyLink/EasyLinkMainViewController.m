@@ -254,7 +254,7 @@ typedef enum{
 - (IBAction)easyLinkV2ButtonAction:(UIButton*)button{
     
     CATransition *animation = [CATransition animation];
-    animation.delegate = self;
+    animation.delegate = (id)self;
     animation.duration = 0.5 ;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.type = kCATransitionFade;

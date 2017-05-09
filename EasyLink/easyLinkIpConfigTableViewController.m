@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 MXCHIP Co;Ltd. All rights reserved.
 //
 
-#import "easyLinkIpConfigTableViewController.h"
+#import "EasyLinkIpConfigTableViewController.h"
 #import "EMWHeader.h"
 #import "EASYLINK.h"
 

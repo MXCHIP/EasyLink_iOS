@@ -54,6 +54,7 @@
     CGRect frame = CGRectMake(283, (cellFrame.size.height)/2-32, 25, 25);
     checkMarkView = [[UIView alloc] initWithFrame:frame];
     [self.contentView addSubview:checkMarkView];
+    [super awakeFromNib];
 }
 
 - (void)closeClient:(NSTimer *)timer
