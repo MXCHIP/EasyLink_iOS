@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyLink/EasyLinkMainViewController.m"
-            timestampString = "478440451.050451"
+            timestampString = "516007282.755372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "838"
-            endingLineNumber = "838"
+            startingLineNumber = "840"
+            endingLineNumber = "840"
             landmarkName = "-onDisconnectFromFTC:withError:"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyLink/EasyLinkMainViewController.m"
-            timestampString = "478440451.050451"
+            timestampString = "516007282.755372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "991"
-            endingLineNumber = "991"
+            startingLineNumber = "993"
+            endingLineNumber = "993"
             landmarkName = "-prepareCell:atIndexPath:"
             landmarkType = "7">
          </BreakpointContent>

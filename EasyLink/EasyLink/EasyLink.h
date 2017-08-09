@@ -116,12 +116,16 @@ NSNetServiceDelegate>{
 @property (nonatomic, readonly) EasyLinkMode mode;
 
 /* These delays should can only be write before prepareEasyLink_withFTC:info:mode is called. The less time is delayed, the faster Easylink may success,but wireless router would be under heavier pressure. So user should consider a balence between speed and wireless router's performance*/
-@property (nonatomic, readwrite) float easyLinkPlusDelayPerByte;   //Default value: 5ms
-@property (nonatomic, readwrite) float easyLinkPlusDelayPerBlock;  //Default value: 80ms, a block send 5 package
-@property (nonatomic, readwrite) float easyLinkV2DelayPerBlock;    //Default value: 20ms, a block send 1 package
+@property (nonatomic, readwrite) float easyLinkPlusDelayPerByte;   //Default value: 0.005s
+@property (nonatomic, readwrite) float easyLinkPlusDelayPerBlock;  //Default value: 0.06s, a block send 5 package
+@property (nonatomic, readwrite) float easyLinkV2DelayPerBlock;    //Default value: 0.08s, a block send 1 package
 
+/* Enable debug log when EasyLink lib is running, disabled in default */
+@property (nonatomic, readwrite) BOOL enableDebug;
 
 - (id)initWithDelegate:(id)delegate;
+- (id)initForDebug:(BOOL)enable WithDelegate:(id)delegate;
+
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
 
@@ -396,9 +400,11 @@ NSNetServiceDelegate>{
  @param wlanConfigDict: Wlan configurations, include SSID, password, address etc. refer to #define KEY_XXX
  @param userInfo:       Application defined specific data to be send by Easylink.
  @param easyLinkMode:   The mode of EasyLink.
+ @param key:            Key to encrypt data transfered in Easylink.
  @return none.
  */
-- (void)prepareEasyLink:(NSDictionary *)wlanConfigDict info: (NSData *)userInfo mode: (EasyLinkMode)easyLinkMode;
+- (void)prepareEasyLink:(NSDictionary *)wlanConfigDict info:(NSData *)userInfo mode:(EasyLinkMode)easyLinkMode;
+- (void)prepareEasyLink:(NSDictionary *)wlanConfigDict info:(NSData *)userInfo mode:(EasyLinkMode)easyLinkMode encrypt:(NSData *)key;
 
 
 /**
@@ -423,9 +429,11 @@ NSNetServiceDelegate>{
  @param wlanConfigDict: Wlan configurations, include SSID, password, address etc. refer to #define KEY_XXX
  @param userInfo:       Application defined specific data to be send by Easylink.
  @param easyLinkMode:   The mode of EasyLink.
+ @param key:            Key to encrypt data transfered in Easylink.
  @return none.
  */
-- (void)prepareEasyLink_withFTC:(NSDictionary *)wlanConfigDict info: (NSData *)userInfo mode: (EasyLinkMode)easyLinkMode;
+- (void)prepareEasyLink_withFTC:(NSDictionary *)wlanConfigDict info:(NSData *)userInfo mode: (EasyLinkMode)easyLinkMode;
+- (void)prepareEasyLink_withFTC:(NSDictionary *)wlanConfigDict info:(NSData *)userInfo mode: (EasyLinkMode)easyLinkMode encrypt:(NSData *)key;
 
 
 /**
@@ -479,6 +487,11 @@ NSNetServiceDelegate>{
 
 
 #pragma mark - Tools -
+
+/**
+ @brief Return the EasyLink library version.
+ */
++ (NSString *)version;
 
 /**
  @brief Return the WLan SSID string(UTF8 conding) connected by iOS currently.

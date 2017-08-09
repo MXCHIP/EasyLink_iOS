@@ -102,6 +102,8 @@ typedef enum{
     
     if( easylink_config == nil){
         easylink_config = [[EASYLINK alloc]initWithDelegate:self];
+        easylink_config.easyLinkV2DelayPerBlock = 0.06;
+        easylink_config.easyLinkPlusDelayPerBlock = 0.05;
     }
     if( self.foundModules == nil)
         self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
@@ -243,10 +245,10 @@ typedef enum{
     NSString *userInfo = [userInfoField.text length]? userInfoField.text : @"";
     if(userInfo!=nil){
         const char *temp = [userInfo cStringUsingEncoding:NSUTF8StringEncoding];
-        [easylink_config prepareEasyLink_withFTC:wlanConfig info:[NSData dataWithBytes:temp length:strlen(temp)] mode:mode ];
+        [easylink_config prepareEasyLink:wlanConfig info:[NSData dataWithBytes:temp length:strlen(temp)] mode:mode ];
         [self sendAction];
     }else{
-        [easylink_config prepareEasyLink_withFTC:wlanConfig info:nil mode:mode];
+        [easylink_config prepareEasyLink:wlanConfig info:nil mode:mode];
     }
     targetSsid = [wlanConfig objectForKey:KEY_SSID];
 }
