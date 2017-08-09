@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
-#import "AsyncUdpSocket.h"
-#import "AsyncSocket.h"
-#import "Reachability.h"
+
+
+@class AsyncUdpSocket;
+@class AsyncSocket;
+@class Reachability;
 
 typedef enum{
     EASYLINK_V1 = 0,
@@ -88,6 +90,7 @@ NSNetServiceDelegate>{
     /* Wlan configuratuon send by EasyLink */
     NSUInteger _broadcastcount, _multicastCount;
     bool _broadcastSending, _multicastSending, _softAPSending, _wlanUnConfigured;
+    
     
     EasyLinkMode _mode;
     

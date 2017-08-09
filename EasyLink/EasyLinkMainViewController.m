@@ -89,6 +89,9 @@ typedef enum{
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString *title = [NSString stringWithFormat:@"EasyLink v%@", [EASYLINK version]];
+    [self setTitle:title];
 
     // Do any additional setup after loading the view from its nib.
     bgView.showsVerticalScrollIndicator = NO;
@@ -101,9 +104,7 @@ typedef enum{
         apInforRecord = [NSMutableDictionary dictionaryWithCapacity:10];    
     
     if( easylink_config == nil){
-        easylink_config = [[EASYLINK alloc]initWithDelegate:self];
-        easylink_config.easyLinkV2DelayPerBlock = 0.06;
-        easylink_config.easyLinkPlusDelayPerBlock = 0.05;
+        easylink_config = [[EASYLINK alloc]initForDebug:NO WithDelegate:self];
     }
     if( self.foundModules == nil)
         self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
