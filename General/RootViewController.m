@@ -38,6 +38,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // Segmented control with scrolling
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    self.title = [NSString stringWithFormat:@"My Device Center v%@", app_Version];
     CGRect appFrame = [ UIScreen mainScreen ].applicationFrame;
     float scrollWidth = appFrame.size.width;
     float scrollHeight = appFrame.size.height - 44 - 40;

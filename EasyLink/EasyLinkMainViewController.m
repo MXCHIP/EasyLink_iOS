@@ -104,7 +104,7 @@ typedef enum{
         apInforRecord = [NSMutableDictionary dictionaryWithCapacity:10];    
     
     if( easylink_config == nil){
-        easylink_config = [[EASYLINK alloc]initForDebug:NO WithDelegate:self];
+        easylink_config = [[EASYLINK alloc]initForDebug:YES WithDelegate:self];
     }
     if( self.foundModules == nil)
         self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
@@ -458,13 +458,13 @@ typedef enum{
     [alertContentView addSubview:homeButtonView];
     
     content = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_ConnectingToModule * WIDTH_ALERT_VIEW, 45, 260, 25)];
-    content.attributedText = [[NSAttributedString alloc] initWithString:@"Press Home button to exit current APP."
+    content.attributedText = [[NSAttributedString alloc] initWithString:@"Press Next to Wi-Fi Setting!"
                                                              attributes:attributes];;
     [alertContentView addSubview:content];
     
     content = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH_ALERT_VIEW/2-130 + ePage_ConnectingToModule * WIDTH_ALERT_VIEW, 150, 260, 50)];
     content.numberOfLines = 2;
-    content.attributedText = [[NSAttributedString alloc] initWithString:@"Connect to wlan: EasyLink_XXXXXX."
+    content.attributedText = [[NSAttributedString alloc] initWithString:@"Select network: EasyLink_XXXXXX."
                                                              attributes:attributes];
     [alertContentView addSubview:content];
     
@@ -530,8 +530,19 @@ typedef enum{
         }else if(buttonIndex == 1){
             [containerView scrollRectToVisible:CGRectMake( --currentPage * 290, 0, 290, 300) animated:YES];
         }else if(buttonIndex == 2){
-            if(currentPage == 2) return;
-            [containerView scrollRectToVisible:CGRectMake( ++currentPage * 290, 0, 290, 300) animated:YES];
+            if (currentPage == 1){
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"App-Prefs:root=WIFI"]];
+            }
+            else if(currentPage == 2) {
+                return;
+            }
+            else {
+                [containerView scrollRectToVisible:CGRectMake( ++currentPage * 290, 0, 290, 300) animated:YES];
+            }
+        }
+        
+        if(buttonIndex == 1 && currentPage == 1){
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=WIFI"]];
         }
         
         if(currentPage == 0) {// This is the first page
@@ -540,11 +551,7 @@ typedef enum{
             [(UIButton *)[customIOS7AlertView.dialogView viewWithTag: 1] setEnabled:YES];
         };
         
-        if(currentPage == 1) {// Should exit current app and connect to EasyLink_xxxxxx
-            [(UIButton *)[customIOS7AlertView.dialogView viewWithTag: 2] setEnabled:NO];
-        }else{
-            [(UIButton *)[customIOS7AlertView.dialogView viewWithTag: 2] setEnabled:YES];
-        };
+        [(UIButton *)[customIOS7AlertView.dialogView viewWithTag: 2] setEnabled:YES];
 
         //[_imagePhoneView setImage:[UIImage imageNamed:@"EasyLinkPhone.png"]];
         NSLog(@"Block: Button at position %ld is clicked on alertView %ld.", (long)buttonIndex, (long)[customIOS7AlertView tag]);

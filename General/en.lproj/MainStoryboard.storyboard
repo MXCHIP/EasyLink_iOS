@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A360a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -218,7 +218,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="UoQ-nK-33v" kind="custom" identifier="Edit command" trigger="accessoryAction" customClass="CustomUIStoryboardSegue" id="oDM-0K-J4z"/>
+                                    <segue destination="UoQ-nK-33v" kind="custom" identifier="Edit command" trigger="accessoryAction" customClass="KNSemiModalStoryboardSegue" id="oDM-0K-J4z"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -231,7 +231,7 @@
                     <toolbarItems>
                         <barButtonItem systemItem="add" id="eAa-gU-4Hp">
                             <connections>
-                                <segue destination="UoQ-nK-33v" kind="custom" identifier="Add command" customClass="CustomUIStoryboardSegue" id="1Ll-OQ-cMg"/>
+                                <segue destination="UoQ-nK-33v" kind="custom" identifier="Add command" customClass="KNSemiModalStoryboardSegue" id="1Ll-OQ-cMg"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="n3H-jg-Ek6"/>
@@ -589,7 +589,7 @@
                                 <rect key="frame" x="7" y="339" width="153" height="43"/>
                                 <color key="backgroundColor" red="0.3843137254901961" green="0.58039215686274515" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Fast mode">
+                                <state key="normal" title="EasyLink">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -604,7 +604,7 @@
                                     <constraint firstAttribute="height" constant="43" id="w9d-yO-VOu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Normal mode">
+                                <state key="normal" title="Soft AP (uAP)">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -1222,8 +1222,8 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="DZf-Vi-XVy"/>
+        <segue reference="1Ll-OQ-cMg"/>
         <segue reference="MnL-7g-rx9"/>
-        <segue reference="oDM-0K-J4z"/>
+        <segue reference="DZf-Vi-XVy"/>
     </inferredMetricsTieBreakers>
 </document>
