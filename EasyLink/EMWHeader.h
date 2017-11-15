@@ -28,6 +28,7 @@
 #define PASSWORD_ROW                                                      1
 #define USER_INFO_ROW                                       2
 #define IP_ADDRESS_ROW                                                                3
+#define EASYLINK_MODE_ROW                                                                3
 #define DEVICE_NAME_ROW                                                  4
 
 #define SECTION_HEIGHT                                                   30.0

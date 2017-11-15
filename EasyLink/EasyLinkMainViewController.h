@@ -21,12 +21,13 @@
     IBOutlet UITableView *configTableView, *foundModuleTableView;
     IBOutlet UIScrollView *bgView;
     IBOutlet UILabel *newDeviceCount;
-    UITextField *ssidField,*bssidField,*passwordField,*userInfoField,*ipAddress;
+    IBOutlet UIButton *startEasyLinkBTN;
+    UITextField *ssidField, *bssidField, *passwordField, *userInfoField, *ipAddress, *easylinkModeField;
 
     NSData *targetSsid;
 
-    
     UIAlertView *alertView;
+    EasyLinkMode easylinkMode;
     CustomIOSAlertView *customAlertView, *otaAlertView;
     NSMutableDictionary *deviceIPConfig;
     NSMutableDictionary *apInforRecord;

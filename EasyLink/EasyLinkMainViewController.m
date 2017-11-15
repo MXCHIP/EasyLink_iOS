@@ -10,6 +10,7 @@
 #import "PulsingHaloLayer.h"
 #import "EasyLinkFTCTableViewController.h"
 #import "EasyLinkIpConfigTableViewController.h"
+#import "easylinkModeConfigTableViewController.h"
 #import "newModuleTableViewCell.h"
 
 typedef enum{
@@ -23,6 +24,9 @@ typedef enum{
 
 #define WIDTH_ALERT_VIEW    290
 #define HEIGHT_ALERT_VIEW   300
+
+NSString * const easylinkModeFieldText[] = { @"EasyLink V1", @"EasyLink V2", @"EasyLink Plus", @"EasyLink Combo", @"EasyLink AWS", @"EasyLink Soft AP"};
+NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink V2 sending...", @"EasyLink Plus sending...", @"EasyLink Combo sending...", @"EasyLink AWS sending...", @"EsyLink Soft AP sending..."};
 
 @interface EasyLinkMainViewController ()
 
@@ -110,8 +114,9 @@ typedef enum{
         self.foundModules = [[NSMutableArray alloc]initWithCapacity:10];
     
     deviceIPConfig = [[NSMutableDictionary alloc] initWithCapacity:5];
-
     targetSsid = [NSData data];
+    easylinkMode = EASYLINK_AWS;
+    //startEasyLinkBTN.titleLabel.text = [[NSString alloc] initWithFormat:@"Start %@ Mode", easylinkModeFieldText[easylinkMode]];
 
     //配置表格加边框
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -156,8 +161,12 @@ typedef enum{
         else
             [ipAddress setText:[deviceIPConfig objectForKey:@"IP"]];
     }
-
-
+    if(easylinkModeField != nil){
+        [easylinkModeField setText:easylinkModeFieldText[easylinkMode]];
+    }
+    
+    [startEasyLinkBTN setTitle:[[NSString alloc] initWithFormat:@"Start %@ Mode", easylinkModeFieldText[easylinkMode]]
+                      forState:UIControlStateNormal];
     [super viewWillAppear:animated];
 }
 
@@ -244,24 +253,28 @@ typedef enum{
     if([[deviceIPConfig objectForKey:@"DnsServer"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"DnsServer"] forKey:KEY_DNS1];
 
     NSString *userInfo = [userInfoField.text length]? userInfoField.text : @"";
-    if(userInfo!=nil){
-        const char *temp = [userInfo cStringUsingEncoding:NSUTF8StringEncoding];
-        [easylink_config prepareEasyLink:wlanConfig info:[NSData dataWithBytes:temp length:strlen(temp)] mode:mode ];
-        [self sendAction];
-    }else{
-        [easylink_config prepareEasyLink:wlanConfig info:nil mode:mode];
-    }
+
+    const char *temp = [userInfo cStringUsingEncoding:NSUTF8StringEncoding];
+    [easylink_config prepareEasyLink:wlanConfig info:[NSData dataWithBytes:temp length:strlen(temp)] mode:mode ];
+    [self sendAction];
     targetSsid = [wlanConfig objectForKey:KEY_SSID];
 }
 
 - (IBAction)easyLinkV2ButtonAction:(UIButton*)button{
+    
+    if( easylinkMode == EASYLINK_SOFT_AP ) {
+        [self easyLinkuAPButtonAction: button];
+        return;
+    }
     
     CATransition *animation = [CATransition animation];
     animation.delegate = (id)self;
     animation.duration = 0.5 ;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.type = kCATransitionFade;
-    NSArray *easyLinkModeStrArray = [NSArray arrayWithObjects:@"EsyLink V1 sending...", @"EsyLink V2 sending...", @"EsyLink Plus sending...", @"EsyLink V2/Plus sending...", nil];
+    NSArray *easyLinkModeStrArray = [NSArray arrayWithObjects:@"EsyLink V1 sending...", @"EsyLink V2 sending...", @"EsyLink Plus sending...", @"EsyLink V2/Plus sending...", @"EsyLink AWS sending...", nil];
+    
+
     
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     if ( netStatus == NotReachable) {// No activity if no wifi
@@ -282,13 +295,7 @@ typedef enum{
         return;
     }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    EasyLinkMode mode = (EasyLinkMode)[defaults integerForKey:@"easylink_preference"];
-    NSLog(@"Mode is %d", mode);
-    if(mode != EASYLINK_V2 && mode != EASYLINK_PLUS && mode != EASYLINK_V2_PLUS)
-        mode = EASYLINK_V2_PLUS;
-    
-    [self startTransmitting: mode];
+    [self startTransmitting: easylinkMode];
     
     /*Pop up a Easylink sending dialog*/
     easyLinkSendingView = [[CustomIOSAlertView alloc] init];
@@ -621,9 +628,14 @@ typedef enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#if 0
     if(tableView == configTableView && indexPath.row == IP_ADDRESS_ROW){
-        NSLog(@"selected");
         [self performSegueWithIdentifier:@"IP config" sender:configTableView];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+#endif
+    if(tableView == configTableView && indexPath.row == EASYLINK_MODE_ROW){
+        [self performSegueWithIdentifier:@"EasyLink Mode" sender:configTableView];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
@@ -1053,6 +1065,7 @@ typedef enum{
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"Extra Data";
     }
+#if 0
     else if ( indexPath.row == IP_ADDRESS_ROW){
         /// this is Gateway Address field
         ipAddress = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
@@ -1075,6 +1088,29 @@ typedef enum{
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"IP Address";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    }
+#endif
+    else if ( indexPath.row == EASYLINK_MODE_ROW){
+        /// this is Gateway Address field
+        easylinkModeField = [[UITextField alloc] initWithFrame:CGRectMake(CELL_IPHONE_FIELD_X,
+                                                                  CELL_iPHONE_FIELD_Y,
+                                                                  textWidth,
+                                                                  CELL_iPHONE_FIELD_HEIGHT)];
+        [easylinkModeField setDelegate:self];
+        [easylinkModeField setClearButtonMode:UITextFieldViewModeNever];
+        [easylinkModeField setPlaceholder:@"EasyLink AWS"];
+        [easylinkModeField setReturnKeyType:UIReturnKeyDone];
+        [easylinkModeField setBackgroundColor:[UIColor clearColor]];
+        [easylinkModeField setUserInteractionEnabled:NO];
+        
+        [easylinkModeField setText:easylinkModeFieldText[easylinkMode]];
+        
+        [cell addSubview:easylinkModeField];
+        
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
+        cell.textLabel.text = @"Mode";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -1135,6 +1171,8 @@ typedef enum{
 {
     if ([[segue identifier] isEqualToString:@"IP config"]) {
         [[segue destinationViewController] setDeviceIPConfig: deviceIPConfig];
+    }else if ([[segue identifier] isEqualToString:@"EasyLink Mode"]) {
+        [[segue destinationViewController] setMode: &easylinkMode];
     }else if ([[segue identifier] isEqualToString:@"First Time Configuration"]){
         for( NSMutableDictionary *object in foundModules){
             if([[object objectForKey:@"tag"] isEqualToNumber:[NSNumber numberWithLong:[sender tag] ]]){

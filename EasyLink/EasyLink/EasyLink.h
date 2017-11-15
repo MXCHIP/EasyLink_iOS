@@ -10,16 +10,18 @@
 #import <SystemConfiguration/CaptiveNetwork.h>
 
 
-@class AsyncUdpSocket;
-@class AsyncSocket;
-@class Reachability;
+@class ELAsyncUdpSocket;
+@class ELAsyncSocket;
+@class ELReachability;
 
 typedef enum{
     EASYLINK_V1 = 0,
     EASYLINK_V2,
     EASYLINK_PLUS,
     EASYLINK_V2_PLUS,
+    EASYLINK_AWS,
     EASYLINK_SOFT_AP,
+    EASYLINK_MODE_MAX,
 } EasyLinkMode;
 
 typedef enum{
@@ -41,6 +43,8 @@ typedef enum{
 #define KEY_DNS2          @"DNS2"               //value type: NSString, required if DHCP is false
 
 #define FTC_PORT 8000
+#define AWS_ECHO_SERVER_PORT 65123
+#define AWS_ECHO_CLIENT_PORT 65126
 #define MessageCount 100
 
 @protocol EasyLinkFTCDelegate
@@ -88,17 +92,22 @@ typedef enum{
 NSNetServiceDelegate>{
 @private
     /* Wlan configuratuon send by EasyLink */
-    NSUInteger _broadcastcount, _multicastCount;
-    bool _broadcastSending, _multicastSending, _softAPSending, _wlanUnConfigured;
+    NSObject *lockToken;
+    NSUInteger _broadcastCount, _multicastCount, _awsCount;
+    bool _broadcastSending, _multicastSending, _awsSending, _softAPSending, _wlanUnConfigured;
     
     
     EasyLinkMode _mode;
     
-    NSMutableArray *multicastArray, *broadcastArray;   //Used for EasyLink transmitting
-    AsyncUdpSocket *multicastSocket, *broadcastSocket;
+    NSMutableArray *multicastArray, *broadcastArray, *awsArray;   //Used for EasyLink transmitting
+    NSArray *multicastGuideArray, *broadcastGuideArray, *awsGuideArray;   //Used for EasyLink transmitting
+    ELAsyncUdpSocket *multicastSocket, *broadcastSocket, *awsSocket;
+    
+    //Used for EasyLink AWS new device discovery
+    ELAsyncUdpSocket *awsEchoServer;
     
     //Used for EasyLink first time configuration
-    AsyncSocket *ftcServerSocket;
+    ELAsyncSocket *ftcServerSocket;
     NSMutableArray *ftcClients;
     NSTimer *closeFTCClientTimer;
     
@@ -107,7 +116,7 @@ NSNetServiceDelegate>{
     NSDictionary * _configDict;
     
     CFHTTPMessageRef inComingMessageArray[MessageCount];
-    Reachability *wifiReachability;
+    ELReachability *wifiReachability;
     EasyLinkSoftApStage _softAPStage;
     uint32_t _identifier;
     
@@ -122,6 +131,7 @@ NSNetServiceDelegate>{
 @property (nonatomic, readwrite) float easyLinkPlusDelayPerByte;   //Default value: 0.005s
 @property (nonatomic, readwrite) float easyLinkPlusDelayPerBlock;  //Default value: 0.06s, a block send 5 package
 @property (nonatomic, readwrite) float easyLinkV2DelayPerBlock;    //Default value: 0.08s, a block send 1 package
+@property (nonatomic, readwrite) float easyLinkAWSDelayPerByte;    //Default value: 0.02s
 
 /* Enable debug log when EasyLink lib is running, disabled in default */
 @property (nonatomic, readwrite) BOOL enableDebug;
