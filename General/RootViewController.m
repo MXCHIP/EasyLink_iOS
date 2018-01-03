@@ -41,17 +41,14 @@
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     self.title = [NSString stringWithFormat:@"My Device Center v%@", app_Version];
-    CGRect appFrame = [ UIScreen mainScreen ].bounds;
-    //self.view.safeAreaInsets.
-    float scrollWidth = appFrame.size.width;
-    float scrollHeight = appFrame.size.height - 44 - 40;
-    CGFloat sceneSegmentTop = self.view.safeAreaInsets.top;
+    float scrollWidth = self.view.bounds.size.width;
+    float scrollHeight =  self.view.bounds.size.height - 44 - 40;
+    
     //ceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home", @"ConThings"]];
     sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home"]];
     sceneSegment.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-    //sceneSegment.frame = CGRectMake(0, 20 + 44, scrollWidth, 40);
     
-    sceneSegment.frame = CGRectMake(0, sceneSegmentTop, scrollWidth, 40);
+    sceneSegment.frame = CGRectMake(0, 0, scrollWidth, 40);
     sceneSegment.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
     sceneSegment.selectionIndicatorHeight = 2.0f;
     sceneSegment.backgroundColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.8 alpha:1];
@@ -66,7 +63,7 @@
     [sceneSegment addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:sceneSegment];
     
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.view.safeAreaInsets.top + 40, scrollWidth, scrollHeight)]; //40 segcontrol
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, scrollWidth, scrollHeight)]; //40 segcontrol
     self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
