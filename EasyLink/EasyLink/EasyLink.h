@@ -96,6 +96,7 @@ NSNetServiceDelegate>{
     NSUInteger _broadcastCount, _multicastCount, _awsCount;
     bool _broadcastSending, _multicastSending, _awsSending, _softAPSending, _wlanUnConfigured;
     
+    NSString *_userInfo_str;
     
     EasyLinkMode _mode;
     
