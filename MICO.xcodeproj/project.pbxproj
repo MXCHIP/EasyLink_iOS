@@ -200,12 +200,23 @@
 		3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3D6739331FB82EC900892F08 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
 		3D6739341FB82EC900892F08 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
-		3D6739451FB88D3600892F08 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9E27E71F3B3D3200B30056 /* libEasyLink.a */; };
 		3D6739481FBBF54D00892F08 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
 		3D6739491FBBF54D00892F08 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
 		3D67394B1FBBF65000892F08 /* launch_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D67394A1FBBF65000892F08 /* launch_image.png */; };
 		3D67394C1FBBF65000892F08 /* launch_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D67394A1FBBF65000892F08 /* launch_image.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
+		3D76B0C8200F8F2A009AFC05 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0C6200F8F2A009AFC05 /* PgySDK.framework */; };
+		3D76B0C9200F8F2A009AFC05 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0C6200F8F2A009AFC05 /* PgySDK.framework */; };
+		3D76B0CA200F8F2A009AFC05 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0C7200F8F2A009AFC05 /* PgyUpdate.framework */; };
+		3D76B0CB200F8F2A009AFC05 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0C7200F8F2A009AFC05 /* PgyUpdate.framework */; };
+		3D76B0CD200F8F6B009AFC05 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0CC200F8F6B009AFC05 /* CoreTelephony.framework */; };
+		3D76B0CF200F8F87009AFC05 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0CE200F8F87009AFC05 /* AVFoundation.framework */; };
+		3D76B0D1200F8F94009AFC05 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0D0200F8F94009AFC05 /* OpenGLES.framework */; };
+		3D76B0D3200F8F9F009AFC05 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0D2200F8F9F009AFC05 /* CoreMotion.framework */; };
+		3D76B0D4200F9357009AFC05 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0CC200F8F6B009AFC05 /* CoreTelephony.framework */; };
+		3D76B0D5200F936A009AFC05 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0CE200F8F87009AFC05 /* AVFoundation.framework */; };
+		3D76B0D6200F9373009AFC05 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0D0200F8F94009AFC05 /* OpenGLES.framework */; };
+		3D76B0D7200F937D009AFC05 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0D2200F8F9F009AFC05 /* CoreMotion.framework */; };
 		3D9A166A1A496ABF00DBBE61 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
 		3D9A166B1A496ABF00DBBE61 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
 		3D9A16761A496CC200DBBE61 /* easycloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16751A496CC200DBBE61 /* easycloud.png */; };
@@ -214,6 +225,7 @@
 		3D9A167C1A496CF900DBBE61 /* EasyLinkPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167B1A496CF900DBBE61 /* EasyLinkPhone.png */; };
 		3D9A167E1A496D0500DBBE61 /* EMW3280.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167D1A496D0500DBBE61 /* EMW3280.png */; };
 		3D9A16801A496E1B00DBBE61 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167F1A496E1B00DBBE61 /* known_logo.png */; };
+		3D9A70BD200F840B00A8A443 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9E27E71F3B3D3200B30056 /* libEasyLink.a */; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
 		3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAEA03C191924320082D846 /* AudioToolbox.framework */; };
@@ -355,6 +367,12 @@
 		3D67394A1FBBF65000892F08 /* launch_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image.png; path = Resources/Images/Common/launch_image.png; sourceTree = SOURCE_ROOT; };
 		3D6B82901BFEFCA3005A8263 /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/EMWHeader.h; sourceTree = SOURCE_ROOT; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
+		3D76B0C6200F8F2A009AFC05 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
+		3D76B0C7200F8F2A009AFC05 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
+		3D76B0CC200F8F6B009AFC05 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3D76B0CE200F8F87009AFC05 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3D76B0D0200F8F94009AFC05 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3D76B0D2200F8F9F009AFC05 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3D9A16671A496ABF00DBBE61 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = Resources/Images/iPhone/EMW3161.png; sourceTree = SOURCE_ROOT; };
 		3D9A16681A496ABF00DBBE61 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = Resources/Images/iPhone/EMW3162.png; sourceTree = SOURCE_ROOT; };
 		3D9A16751A496CC200DBBE61 /* easycloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = easycloud.png; path = Resources/Images/Common/easycloud.png; sourceTree = SOURCE_ROOT; };
@@ -381,13 +399,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D6739451FB88D3600892F08 /* libEasyLink.a in Frameworks */,
+				3D76B0D3200F8F9F009AFC05 /* CoreMotion.framework in Frameworks */,
+				3D76B0D1200F8F94009AFC05 /* OpenGLES.framework in Frameworks */,
+				3D76B0CF200F8F87009AFC05 /* AVFoundation.framework in Frameworks */,
+				3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */,
+				3D76B0CD200F8F6B009AFC05 /* CoreTelephony.framework in Frameworks */,
+				3D76B0C8200F8F2A009AFC05 /* PgySDK.framework in Frameworks */,
+				3D9A70BD200F840B00A8A443 /* libEasyLink.a in Frameworks */,
 				3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */,
 				3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */,
-				3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */,
 				3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */,
 				3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */,
 				3D2AD58717A247E30026E31E /* UIKit.framework in Frameworks */,
+				3D76B0CA200F8F2A009AFC05 /* PgyUpdate.framework in Frameworks */,
 				3D2AD58917A247E30026E31E /* Foundation.framework in Frameworks */,
 				3D2AD58B17A247E30026E31E /* CoreGraphics.framework in Frameworks */,
 			);
@@ -397,11 +421,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D05C4211F701E67002CA87F /* libEasyLink.a in Frameworks */,
-				3D42BFBE1BFDE35500E6D9DF /* Security.framework in Frameworks */,
+				3D76B0D7200F937D009AFC05 /* CoreMotion.framework in Frameworks */,
+				3D76B0D6200F9373009AFC05 /* OpenGLES.framework in Frameworks */,
+				3D76B0D5200F936A009AFC05 /* AVFoundation.framework in Frameworks */,
 				3D42BFBF1BFDE35500E6D9DF /* AudioToolbox.framework in Frameworks */,
+				3D76B0D4200F9357009AFC05 /* CoreTelephony.framework in Frameworks */,
+				3D05C4211F701E67002CA87F /* libEasyLink.a in Frameworks */,
+				3D76B0C9200F8F2A009AFC05 /* PgySDK.framework in Frameworks */,
+				3D42BFBE1BFDE35500E6D9DF /* Security.framework in Frameworks */,
 				3D42BFC01BFDE35500E6D9DF /* QuartzCore.framework in Frameworks */,
 				3D42BFC21BFDE35500E6D9DF /* SystemConfiguration.framework in Frameworks */,
+				3D76B0CB200F8F2A009AFC05 /* PgyUpdate.framework in Frameworks */,
 				3D42BFC31BFDE35500E6D9DF /* CFNetwork.framework in Frameworks */,
 				3D42BFC41BFDE35500E6D9DF /* UIKit.framework in Frameworks */,
 				3D42BFC51BFDE35500E6D9DF /* Foundation.framework in Frameworks */,
@@ -454,6 +484,12 @@
 		3D2AD58517A247E30026E31E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D76B0D2200F8F9F009AFC05 /* CoreMotion.framework */,
+				3D76B0D0200F8F94009AFC05 /* OpenGLES.framework */,
+				3D76B0CE200F8F87009AFC05 /* AVFoundation.framework */,
+				3D76B0CC200F8F6B009AFC05 /* CoreTelephony.framework */,
+				3D76B0C6200F8F2A009AFC05 /* PgySDK.framework */,
+				3D76B0C7200F8F2A009AFC05 /* PgyUpdate.framework */,
 				3D9E27E71F3B3D3200B30056 /* libEasyLink.a */,
 				3D417CE81B5CEA0D00EA2E1E /* Security.framework */,
 				3DAEA03C191924320082D846 /* AudioToolbox.framework */,
@@ -1218,6 +1254,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: wei xu (827P7DZFL8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
 				DEVELOPMENT_TEAM = AYDR2YFZ4K;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "General/EasyLink-Info.plist";
@@ -1245,6 +1285,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: wei xu (827P7DZFL8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
 				DEVELOPMENT_TEAM = AYDR2YFZ4K;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "General/EasyLink-Info.plist";
@@ -1272,6 +1316,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
 				DEVELOPMENT_TEAM = F49XPGKUF7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EasyLink_Enterprise-Info.plist";
@@ -1299,6 +1347,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Mxchip Information and Technology Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Mxchip Information and Technology Co., Ltd.";
 				DEVELOPMENT_TEAM = F49XPGKUF7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EasyLink_Enterprise-Info.plist";

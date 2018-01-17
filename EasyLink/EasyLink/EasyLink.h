@@ -106,6 +106,7 @@ NSNetServiceDelegate>{
     
     //Used for EasyLink AWS new device discovery
     ELAsyncUdpSocket *awsEchoServer;
+    NSMutableArray *awsHostsArrayPerSearch;
     
     //Used for EasyLink first time configuration
     ELAsyncSocket *ftcServerSocket;

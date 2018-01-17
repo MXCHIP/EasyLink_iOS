@@ -13,6 +13,7 @@
 #import <sys/socket.h> 
 #import <netinet/in.h>
 #include <arpa/inet.h>
+#import <PgyUpdate/PgyUpdateManager.h>
 
 #define searchingString @"Searching for MXCHIP Modules..."
 #define kWebServiceType @"_easylink._tcp"
@@ -125,6 +126,10 @@ bool enumerating = NO;
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     browserTableView.mj_header.automaticallyChangeAlpha = YES;
+    
+    /* 蒲公英检查更新 */
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_APP_ID];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -133,6 +138,10 @@ bool enumerating = NO;
     indexPath = [browserTableView indexPathForSelectedRow];
     if(indexPath != nil)
        [browserTableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    /* 蒲公英检查更新 */
+    [[PgyUpdateManager sharedPgyManager] checkUpdate];
+    
     //[self.navigationController setToolbarHidden:YES animated:YES];
 }
 

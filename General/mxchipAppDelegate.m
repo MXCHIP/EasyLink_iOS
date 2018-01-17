@@ -7,12 +7,19 @@
 //
 
 #import "mxchipAppDelegate.h"
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
 
 @implementation mxchipAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    //启动基本SDK
+    [[PgyManager sharedPgyManager] setShakingThreshold:4.0];
+    [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_APP_ID];
+    //启动更新检查SDK
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_APP_ID];
     return YES;
 }
 							
