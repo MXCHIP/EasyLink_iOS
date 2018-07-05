@@ -272,7 +272,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
     animation.duration = 0.5 ;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.type = kCATransitionFade;
-    NSArray *easyLinkModeStrArray = [NSArray arrayWithObjects:@"EsyLink V1 sending...", @"EsyLink V2 sending...", @"EsyLink Plus sending...", @"EsyLink V2/Plus sending...", @"EsyLink AWS sending...", nil];
+    NSArray *easyLinkModeStrArray = [NSArray arrayWithObjects:@"EasyLink V1 sending...", @"EasyLink V2 sending...", @"EasyLink Plus sending...", @"EasyLink V2/Plus sending...", @"EasyLink AWS sending...", nil];
     
 
     
