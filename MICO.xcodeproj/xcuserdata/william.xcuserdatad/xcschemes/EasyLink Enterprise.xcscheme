@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0830"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3D42BF961BFDE35500E6D9DF"
-               BuildableName = "EasyLink.app"
+               BlueprintIdentifier = "3DB0E09D216CD5E700357A65"
+               BuildableName = "EasyLink Enterprise.app"
                BlueprintName = "EasyLink Enterprise"
                ReferencedContainer = "container:MICO.xcodeproj">
             </BuildableReference>
@@ -32,8 +32,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D42BF961BFDE35500E6D9DF"
-            BuildableName = "EasyLink.app"
+            BlueprintIdentifier = "3DB0E09D216CD5E700357A65"
+            BuildableName = "EasyLink Enterprise.app"
             BlueprintName = "EasyLink Enterprise"
             ReferencedContainer = "container:MICO.xcodeproj">
          </BuildableReference>
@@ -55,8 +55,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D42BF961BFDE35500E6D9DF"
-            BuildableName = "EasyLink.app"
+            BlueprintIdentifier = "3DB0E09D216CD5E700357A65"
+            BuildableName = "EasyLink Enterprise.app"
             BlueprintName = "EasyLink Enterprise"
             ReferencedContainer = "container:MICO.xcodeproj">
          </BuildableReference>
@@ -74,8 +74,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D42BF961BFDE35500E6D9DF"
-            BuildableName = "EasyLink.app"
+            BlueprintIdentifier = "3DB0E09D216CD5E700357A65"
+            BuildableName = "EasyLink Enterprise.app"
             BlueprintName = "EasyLink Enterprise"
             ReferencedContainer = "container:MICO.xcodeproj">
          </BuildableReference>
