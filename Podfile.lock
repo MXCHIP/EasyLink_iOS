@@ -24,6 +24,20 @@ DEPENDENCIES:
   - Reachability (~> 3.1.0)
   - RMMultipleViewsController (~> 1.0.2)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - CocoaAsyncSocket
+    - CustomIOSAlertView
+    - GoldRaccoon
+    - HMSegmentedControl
+    - JSQMessagesViewController
+    - JSQSystemSoundPlayer
+    - KNSemiModalViewController
+    - MJRefresh
+    - PulsingHalo
+    - Reachability
+    - RMMultipleViewsController
+
 SPEC CHECKSUMS:
   CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
   CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
@@ -37,4 +51,6 @@ SPEC CHECKSUMS:
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   RMMultipleViewsController: e00985ae6e90330f2a78037a2cc5e7ee2d5e6232
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: f140f73c8afa08d8f965023179c4c00e9975bf2f
+
+COCOAPODS: 1.5.0

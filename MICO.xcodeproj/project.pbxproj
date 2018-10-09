@@ -94,21 +94,12 @@
 		3D3371781A4968BD00ABFF1B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371761A4968BD00ABFF1B /* MainStoryboard.storyboard */; };
 		3D33717B1A4968E700ABFF1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371791A4968E700ABFF1B /* InfoPlist.strings */; };
 		3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
-		3D4B74732088DF3100FE8FCF /* EasyLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B74722088DF3100FE8FCF /* EasyLink.m */; };
-		3D4B747F2088DFB100FE8FCF /* ELAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B747C2088DFB100FE8FCF /* ELAsyncUdpSocket.m */; };
-		3D4B74812088DFB100FE8FCF /* ELAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B747D2088DFB100FE8FCF /* ELAsyncSocket.m */; };
-		3D4B74852088DFBC00FE8FCF /* ELReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B74832088DFBC00FE8FCF /* ELReachability.m */; };
 		3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3D6739331FB82EC900892F08 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
+		3D6739451FB88D3600892F08 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9E27E71F3B3D3200B30056 /* libEasyLink.a */; };
 		3D6739481FBBF54D00892F08 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
 		3D67394B1FBBF65000892F08 /* launch_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D67394A1FBBF65000892F08 /* launch_image.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
-		3D76B0C8200F8F2A009AFC05 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0C6200F8F2A009AFC05 /* PgySDK.framework */; };
-		3D76B0CA200F8F2A009AFC05 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0C7200F8F2A009AFC05 /* PgyUpdate.framework */; };
-		3D76B0CD200F8F6B009AFC05 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0CC200F8F6B009AFC05 /* CoreTelephony.framework */; };
-		3D76B0CF200F8F87009AFC05 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0CE200F8F87009AFC05 /* AVFoundation.framework */; };
-		3D76B0D1200F8F94009AFC05 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0D0200F8F94009AFC05 /* OpenGLES.framework */; };
-		3D76B0D3200F8F9F009AFC05 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0D2200F8F9F009AFC05 /* CoreMotion.framework */; };
 		3D9A166A1A496ABF00DBBE61 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
 		3D9A166B1A496ABF00DBBE61 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
 		3D9A16761A496CC200DBBE61 /* easycloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16751A496CC200DBBE61 /* easycloud.png */; };
@@ -120,127 +111,122 @@
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
 		3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAEA03C191924320082D846 /* AudioToolbox.framework */; };
-		3DFC230C20A31FF9002FFA73 /* addNewCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33707F1A49622700ABFF1B /* addNewCommandViewController.m */; };
-		3DFC230D20A31FF9002FFA73 /* UIImage+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371341A49682300ABFF1B /* UIImage+JSMessagesView.m */; };
-		3DFC230E20A31FF9002FFA73 /* FTCSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33708E1A49628E00ABFF1B /* FTCSelectViewController.m */; };
-		3DFC230F20A31FF9002FFA73 /* NSString+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370FD1A49682300ABFF1B /* NSString+JSMessagesView.m */; };
-		3DFC231020A31FF9002FFA73 /* JSMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370FB1A49682300ABFF1B /* JSMessageTextView.m */; };
-		3DFC231120A31FF9002FFA73 /* commandsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370831A49622700ABFF1B /* commandsTableViewController.m */; };
-		3DFC231220A31FF9002FFA73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371731A49686E00ABFF1B /* main.m */; };
-		3DFC231320A31FF9002FFA73 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A71A4963BF00ABFF1B /* RootViewController.m */; };
-		3DFC231420A31FF9002FFA73 /* ELAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B747C2088DFB100FE8FCF /* ELAsyncUdpSocket.m */; };
-		3DFC231520A31FF9002FFA73 /* Protocols.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370811A49622700ABFF1B /* Protocols.m */; };
-		3DFC231620A31FF9002FFA73 /* talkToModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370871A49622700ABFF1B /* talkToModuleViewController.m */; };
-		3DFC231720A31FF9002FFA73 /* EasyLinkOTATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A11A4962FE00ABFF1B /* EasyLinkOTATableViewController.m */; };
-		3DFC231820A31FF9002FFA73 /* JSBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F11A49682300ABFF1B /* JSBubbleView.m */; };
-		3DFC231920A31FF9002FFA73 /* ELReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B74832088DFBC00FE8FCF /* ELReachability.m */; };
-		3DFC231A20A31FF9002FFA73 /* JSMessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F51A49682300ABFF1B /* JSMessageInputView.m */; };
-		3DFC231B20A31FF9002FFA73 /* easyLinkIpConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B61A49658300ABFF1B /* easyLinkIpConfigTableViewController.m */; };
-		3DFC231C20A31FF9002FFA73 /* FTCStringSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370921A49628E00ABFF1B /* FTCStringSelectCell.m */; };
-		3DFC231D20A31FF9002FFA73 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371361A49682300ABFF1B /* UIView+AnimationOptionsForCurve.m */; };
-		3DFC231E20A31FF9002FFA73 /* mxchipAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370AE1A4964C600ABFF1B /* mxchipAppDelegate.m */; };
-		3DFC231F20A31FF9002FFA73 /* EasyLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B74722088DF3100FE8FCF /* EasyLink.m */; };
-		3DFC232020A31FF9002FFA73 /* UIButton+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371301A49682300ABFF1B /* UIButton+JSMessagesView.m */; };
-		3DFC232120A31FF9002FFA73 /* JSMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F91A49682300ABFF1B /* JSMessagesViewController.m */; };
-		3DFC232220A31FF9002FFA73 /* KNSemiModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */; };
-		3DFC232320A31FF9002FFA73 /* guideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A51A4963BF00ABFF1B /* guideViewController.m */; };
-		3DFC232420A31FF9002FFA73 /* ConThingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370AB1A49643A00ABFF1B /* ConThingsViewController.m */; };
-		3DFC232520A31FF9002FFA73 /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B41A49658300ABFF1B /* newModuleTableViewCell.m */; };
-		3DFC232620A31FF9002FFA73 /* bonjourDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */; };
-		3DFC232720A31FF9002FFA73 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
-		3DFC232820A31FF9002FFA73 /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370EA1A4966D400ABFF1B /* browserViewController.m */; };
-		3DFC232920A31FF9002FFA73 /* JSMessageSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F71A49682300ABFF1B /* JSMessageSoundEffect.m */; };
-		3DFC232A20A31FF9002FFA73 /* EasyLinkFTCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370981A49628E00ABFF1B /* EasyLinkFTCTableViewController.m */; };
-		3DFC232B20A31FF9002FFA73 /* FTCStringCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370901A49628E00ABFF1B /* FTCStringCell.m */; };
-		3DFC232C20A31FF9002FFA73 /* messageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370851A49622700ABFF1B /* messageViewController.m */; };
-		3DFC232D20A31FF9002FFA73 /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B21A49658300ABFF1B /* EasyLinkMainViewController.m */; };
-		3DFC232E20A31FF9002FFA73 /* UIColor+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371321A49682300ABFF1B /* UIColor+JSMessagesView.m */; };
-		3DFC232F20A31FF9002FFA73 /* ELAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B747D2088DFB100FE8FCF /* ELAsyncSocket.m */; };
-		3DFC233020A31FF9002FFA73 /* FTCSubMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370941A49628E00ABFF1B /* FTCSubMenuCell.m */; };
-		3DFC233120A31FF9002FFA73 /* moduleBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E61A4966D400ABFF1B /* moduleBrowserCell.m */; };
-		3DFC233220A31FF9002FFA73 /* JSDismissiveTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F31A49682300ABFF1B /* JSDismissiveTextView.m */; };
-		3DFC233320A31FF9002FFA73 /* FTCSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370961A49628E00ABFF1B /* FTCSwitchCell.m */; };
-		3DFC233420A31FF9002FFA73 /* JSBubbleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370EF1A49682300ABFF1B /* JSBubbleMessageCell.m */; };
-		3DFC233620A31FF9002FFA73 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0D2200F8F9F009AFC05 /* CoreMotion.framework */; };
-		3DFC233720A31FF9002FFA73 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0D0200F8F94009AFC05 /* OpenGLES.framework */; };
-		3DFC233820A31FF9002FFA73 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0CE200F8F87009AFC05 /* AVFoundation.framework */; };
-		3DFC233920A31FF9002FFA73 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAEA03C191924320082D846 /* AudioToolbox.framework */; };
-		3DFC233A20A31FF9002FFA73 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0CC200F8F6B009AFC05 /* CoreTelephony.framework */; };
-		3DFC233B20A31FF9002FFA73 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0C6200F8F2A009AFC05 /* PgySDK.framework */; };
-		3DFC233C20A31FF9002FFA73 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
-		3DFC233D20A31FF9002FFA73 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
-		3DFC233E20A31FF9002FFA73 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
-		3DFC233F20A31FF9002FFA73 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
-		3DFC234020A31FF9002FFA73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58617A247E30026E31E /* UIKit.framework */; };
-		3DFC234120A31FF9002FFA73 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76B0C7200F8F2A009AFC05 /* PgyUpdate.framework */; };
-		3DFC234220A31FF9002FFA73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58817A247E30026E31E /* Foundation.framework */; };
-		3DFC234320A31FF9002FFA73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58A17A247E30026E31E /* CoreGraphics.framework */; };
-		3DFC234420A31FF9002FFA73 /* libPods-EasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DED7C3272D56FAD22BDD21C /* libPods-EasyLink.a */; };
-		3DFC234620A31FF9002FFA73 /* bubble-default-incoming-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371021A49682300ABFF1B /* bubble-default-incoming-selected.png */; };
-		3DFC234720A31FF9002FFA73 /* demo-avatar-ai.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16771A496CD100DBBE61 /* demo-avatar-ai.png */; };
-		3DFC234820A31FF9002FFA73 /* bubble-square-incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371191A49682300ABFF1B /* bubble-square-incoming@2x.png */; };
-		3DFC234920A31FF9002FFA73 /* bubble-square-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711C1A49682300ABFF1B /* bubble-square-outgoing.png */; };
-		3DFC234A20A31FF9002FFA73 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33712A1A49682300ABFF1B /* send.png */; };
-		3DFC234B20A31FF9002FFA73 /* easycloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16751A496CC200DBBE61 /* easycloud.png */; };
-		3DFC234C20A31FF9002FFA73 /* input-bar-flat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371201A49682300ABFF1B /* input-bar-flat.png */; };
-		3DFC234D20A31FF9002FFA73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371791A4968E700ABFF1B /* InfoPlist.strings */; };
-		3DFC234E20A31FF9002FFA73 /* bubble-default-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710A1A49682300ABFF1B /* bubble-default-outgoing.png */; };
-		3DFC234F20A31FF9002FFA73 /* bubble-flat-incoming-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710D1A49682300ABFF1B /* bubble-flat-incoming-selected@2x.png */; };
-		3DFC235020A31FF9002FFA73 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
-		3DFC235120A31FF9002FFA73 /* bubble-default-incoming-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371031A49682300ABFF1B /* bubble-default-incoming-selected@2x.png */; };
-		3DFC235220A31FF9002FFA73 /* input-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371231A49682300ABFF1B /* input-bar@2x.png */; };
-		3DFC235320A31FF9002FFA73 /* bubble-default-outgoing-green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371071A49682300ABFF1B /* bubble-default-outgoing-green@2x.png */; };
-		3DFC235420A31FF9002FFA73 /* EMW3280.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167D1A496D0500DBBE61 /* EMW3280.png */; };
-		3DFC235520A31FF9002FFA73 /* bubble-square-incoming-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371161A49682300ABFF1B /* bubble-square-incoming-selected.png */; };
-		3DFC235620A31FF9002FFA73 /* input-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371221A49682300ABFF1B /* input-bar.png */; };
-		3DFC235720A31FF9002FFA73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
-		3DFC235820A31FF9002FFA73 /* bubble-square-outgoing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711D1A49682300ABFF1B /* bubble-square-outgoing@2x.png */; };
-		3DFC235920A31FF9002FFA73 /* bubble-default-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371041A49682300ABFF1B /* bubble-default-incoming.png */; };
-		3DFC235A20A31FF9002FFA73 /* PhotoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371261A49682300ABFF1B /* PhotoIcon.png */; };
-		3DFC235B20A31FF9002FFA73 /* bubble-flat-outgoing-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371131A49682300ABFF1B /* bubble-flat-outgoing-selected@2x.png */; };
-		3DFC235C20A31FF9002FFA73 /* bubble-flat-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710E1A49682300ABFF1B /* bubble-flat-incoming.png */; };
-		3DFC235D20A31FF9002FFA73 /* messageReceived.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 3D33712D1A49682300ABFF1B /* messageReceived.aiff */; };
-		3DFC235E20A31FF9002FFA73 /* launch_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D67394A1FBBF65000892F08 /* launch_image.png */; };
-		3DFC235F20A31FF9002FFA73 /* bubble-typing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711F1A49682300ABFF1B /* bubble-typing@2x.png */; };
-		3DFC236020A31FF9002FFA73 /* bubble-default-outgoing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710B1A49682300ABFF1B /* bubble-default-outgoing@2x.png */; };
-		3DFC236120A31FF9002FFA73 /* bubble-flat-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371141A49682300ABFF1B /* bubble-flat-outgoing.png */; };
-		3DFC236220A31FF9002FFA73 /* bubble-flat-incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710F1A49682300ABFF1B /* bubble-flat-incoming@2x.png */; };
-		3DFC236320A31FF9002FFA73 /* messageSent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 3D33712E1A49682300ABFF1B /* messageSent.aiff */; };
-		3DFC236420A31FF9002FFA73 /* bubble-default-incoming-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371001A49682300ABFF1B /* bubble-default-incoming-green.png */; };
-		3DFC236520A31FF9002FFA73 /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33712B1A49682300ABFF1B /* send@2x.png */; };
-		3DFC236620A31FF9002FFA73 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
-		3DFC236720A31FF9002FFA73 /* UnderConstruction@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16791A496CE100DBBE61 /* UnderConstruction@2x.png */; };
-		3DFC236820A31FF9002FFA73 /* bubble-default-outgoing-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371081A49682300ABFF1B /* bubble-default-outgoing-selected.png */; };
-		3DFC236920A31FF9002FFA73 /* send-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371291A49682300ABFF1B /* send-highlighted@2x.png */; };
-		3DFC236A20A31FF9002FFA73 /* bubble-typing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711E1A49682300ABFF1B /* bubble-typing.png */; };
-		3DFC236B20A31FF9002FFA73 /* bubble-default-outgoing-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371091A49682300ABFF1B /* bubble-default-outgoing-selected@2x.png */; };
-		3DFC236C20A31FF9002FFA73 /* input-bar-flat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371211A49682300ABFF1B /* input-bar-flat@2x.png */; };
-		3DFC236D20A31FF9002FFA73 /* bubble-square-incoming-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371171A49682300ABFF1B /* bubble-square-incoming-selected@2x.png */; };
-		3DFC236E20A31FF9002FFA73 /* PhotoIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371271A49682300ABFF1B /* PhotoIcon@2x.png */; };
-		3DFC236F20A31FF9002FFA73 /* bubble-flat-outgoing-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371121A49682300ABFF1B /* bubble-flat-outgoing-selected.png */; };
-		3DFC237020A31FF9002FFA73 /* input-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371241A49682300ABFF1B /* input-field.png */; };
-		3DFC237120A31FF9002FFA73 /* bubble-flat-outgoing-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371111A49682300ABFF1B /* bubble-flat-outgoing-old@2x.png */; };
-		3DFC237220A31FF9002FFA73 /* send-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371281A49682300ABFF1B /* send-highlighted.png */; };
-		3DFC237320A31FF9002FFA73 /* EasyLinkPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167B1A496CF900DBBE61 /* EasyLinkPhone.png */; };
-		3DFC237420A31FF9002FFA73 /* bubble-flat-incoming-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710C1A49682300ABFF1B /* bubble-flat-incoming-selected.png */; };
-		3DFC237520A31FF9002FFA73 /* bubble-default-incoming-green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371011A49682300ABFF1B /* bubble-default-incoming-green@2x.png */; };
-		3DFC237620A31FF9002FFA73 /* bubble-square-outgoing-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711B1A49682300ABFF1B /* bubble-square-outgoing-selected@2x.png */; };
-		3DFC237720A31FF9002FFA73 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167F1A496E1B00DBBE61 /* known_logo.png */; };
-		3DFC237820A31FF9002FFA73 /* bubble-flat-outgoing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371151A49682300ABFF1B /* bubble-flat-outgoing@2x.png */; };
-		3DFC237920A31FF9002FFA73 /* input-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371251A49682300ABFF1B /* input-field@2x.png */; };
-		3DFC237A20A31FF9002FFA73 /* bubble-default-outgoing-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371061A49682300ABFF1B /* bubble-default-outgoing-green.png */; };
-		3DFC237B20A31FF9002FFA73 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
-		3DFC237C20A31FF9002FFA73 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371761A4968BD00ABFF1B /* MainStoryboard.storyboard */; };
-		3DFC237D20A31FF9002FFA73 /* bubble-flat-outgoing-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371101A49682300ABFF1B /* bubble-flat-outgoing-old.png */; };
-		3DFC237E20A31FF9002FFA73 /* bubble-default-incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371051A49682300ABFF1B /* bubble-default-incoming@2x.png */; };
-		3DFC237F20A31FF9002FFA73 /* bubble-square-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371181A49682300ABFF1B /* bubble-square-incoming.png */; };
-		3DFC238020A31FF9002FFA73 /* bubble-square-outgoing-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711A1A49682300ABFF1B /* bubble-square-outgoing-selected.png */; };
+		3DB0E09B216CD59B00357A65 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E098216CD4DA00357A65 /* PgySDK.framework */; };
+		3DB0E09C216CD59B00357A65 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E097216CD4DA00357A65 /* PgyUpdate.framework */; };
+		3DB0E0A1216CD5E700357A65 /* addNewCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33707F1A49622700ABFF1B /* addNewCommandViewController.m */; };
+		3DB0E0A2216CD5E700357A65 /* UIImage+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371341A49682300ABFF1B /* UIImage+JSMessagesView.m */; };
+		3DB0E0A3216CD5E700357A65 /* FTCSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33708E1A49628E00ABFF1B /* FTCSelectViewController.m */; };
+		3DB0E0A4216CD5E700357A65 /* NSString+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370FD1A49682300ABFF1B /* NSString+JSMessagesView.m */; };
+		3DB0E0A5216CD5E700357A65 /* JSMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370FB1A49682300ABFF1B /* JSMessageTextView.m */; };
+		3DB0E0A6216CD5E700357A65 /* commandsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370831A49622700ABFF1B /* commandsTableViewController.m */; };
+		3DB0E0A7216CD5E700357A65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371731A49686E00ABFF1B /* main.m */; };
+		3DB0E0A8216CD5E700357A65 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A71A4963BF00ABFF1B /* RootViewController.m */; };
+		3DB0E0A9216CD5E700357A65 /* Protocols.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370811A49622700ABFF1B /* Protocols.m */; };
+		3DB0E0AA216CD5E700357A65 /* talkToModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370871A49622700ABFF1B /* talkToModuleViewController.m */; };
+		3DB0E0AB216CD5E700357A65 /* EasyLinkOTATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A11A4962FE00ABFF1B /* EasyLinkOTATableViewController.m */; };
+		3DB0E0AC216CD5E700357A65 /* JSBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F11A49682300ABFF1B /* JSBubbleView.m */; };
+		3DB0E0AD216CD5E700357A65 /* JSMessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F51A49682300ABFF1B /* JSMessageInputView.m */; };
+		3DB0E0AE216CD5E700357A65 /* easyLinkIpConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B61A49658300ABFF1B /* easyLinkIpConfigTableViewController.m */; };
+		3DB0E0AF216CD5E700357A65 /* FTCStringSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370921A49628E00ABFF1B /* FTCStringSelectCell.m */; };
+		3DB0E0B0216CD5E700357A65 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371361A49682300ABFF1B /* UIView+AnimationOptionsForCurve.m */; };
+		3DB0E0B1216CD5E700357A65 /* mxchipAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370AE1A4964C600ABFF1B /* mxchipAppDelegate.m */; };
+		3DB0E0B2216CD5E700357A65 /* UIButton+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371301A49682300ABFF1B /* UIButton+JSMessagesView.m */; };
+		3DB0E0B3216CD5E700357A65 /* JSMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F91A49682300ABFF1B /* JSMessagesViewController.m */; };
+		3DB0E0B4216CD5E700357A65 /* KNSemiModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */; };
+		3DB0E0B5216CD5E700357A65 /* guideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A51A4963BF00ABFF1B /* guideViewController.m */; };
+		3DB0E0B6216CD5E700357A65 /* ConThingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370AB1A49643A00ABFF1B /* ConThingsViewController.m */; };
+		3DB0E0B7216CD5E700357A65 /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B41A49658300ABFF1B /* newModuleTableViewCell.m */; };
+		3DB0E0B8216CD5E700357A65 /* bonjourDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */; };
+		3DB0E0B9216CD5E700357A65 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
+		3DB0E0BA216CD5E700357A65 /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370EA1A4966D400ABFF1B /* browserViewController.m */; };
+		3DB0E0BB216CD5E700357A65 /* JSMessageSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F71A49682300ABFF1B /* JSMessageSoundEffect.m */; };
+		3DB0E0BC216CD5E700357A65 /* EasyLinkFTCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370981A49628E00ABFF1B /* EasyLinkFTCTableViewController.m */; };
+		3DB0E0BD216CD5E700357A65 /* FTCStringCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370901A49628E00ABFF1B /* FTCStringCell.m */; };
+		3DB0E0BE216CD5E700357A65 /* messageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370851A49622700ABFF1B /* messageViewController.m */; };
+		3DB0E0BF216CD5E700357A65 /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B21A49658300ABFF1B /* EasyLinkMainViewController.m */; };
+		3DB0E0C0216CD5E700357A65 /* UIColor+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371321A49682300ABFF1B /* UIColor+JSMessagesView.m */; };
+		3DB0E0C1216CD5E700357A65 /* FTCSubMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370941A49628E00ABFF1B /* FTCSubMenuCell.m */; };
+		3DB0E0C2216CD5E700357A65 /* moduleBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E61A4966D400ABFF1B /* moduleBrowserCell.m */; };
+		3DB0E0C3216CD5E700357A65 /* JSDismissiveTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F31A49682300ABFF1B /* JSDismissiveTextView.m */; };
+		3DB0E0C4216CD5E700357A65 /* FTCSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370961A49628E00ABFF1B /* FTCSwitchCell.m */; };
+		3DB0E0C5216CD5E700357A65 /* JSBubbleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370EF1A49682300ABFF1B /* JSBubbleMessageCell.m */; };
+		3DB0E0C7216CD5E700357A65 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E098216CD4DA00357A65 /* PgySDK.framework */; };
+		3DB0E0C8216CD5E700357A65 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E097216CD4DA00357A65 /* PgyUpdate.framework */; };
+		3DB0E0C9216CD5E700357A65 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9E27E71F3B3D3200B30056 /* libEasyLink.a */; };
+		3DB0E0CA216CD5E700357A65 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
+		3DB0E0CB216CD5E700357A65 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
+		3DB0E0CC216CD5E700357A65 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAEA03C191924320082D846 /* AudioToolbox.framework */; };
+		3DB0E0CD216CD5E700357A65 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
+		3DB0E0CE216CD5E700357A65 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
+		3DB0E0CF216CD5E700357A65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58617A247E30026E31E /* UIKit.framework */; };
+		3DB0E0D0216CD5E700357A65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58817A247E30026E31E /* Foundation.framework */; };
+		3DB0E0D1216CD5E700357A65 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58A17A247E30026E31E /* CoreGraphics.framework */; };
+		3DB0E0D2216CD5E700357A65 /* libPods-EasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7249A65E039CD4820DDA109A /* libPods-EasyLink.a */; };
+		3DB0E0D4216CD5E700357A65 /* bubble-default-incoming-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371021A49682300ABFF1B /* bubble-default-incoming-selected.png */; };
+		3DB0E0D5216CD5E700357A65 /* demo-avatar-ai.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16771A496CD100DBBE61 /* demo-avatar-ai.png */; };
+		3DB0E0D6216CD5E700357A65 /* bubble-square-incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371191A49682300ABFF1B /* bubble-square-incoming@2x.png */; };
+		3DB0E0D7216CD5E700357A65 /* bubble-square-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711C1A49682300ABFF1B /* bubble-square-outgoing.png */; };
+		3DB0E0D8216CD5E700357A65 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33712A1A49682300ABFF1B /* send.png */; };
+		3DB0E0D9216CD5E700357A65 /* easycloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16751A496CC200DBBE61 /* easycloud.png */; };
+		3DB0E0DA216CD5E700357A65 /* input-bar-flat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371201A49682300ABFF1B /* input-bar-flat.png */; };
+		3DB0E0DB216CD5E700357A65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371791A4968E700ABFF1B /* InfoPlist.strings */; };
+		3DB0E0DC216CD5E700357A65 /* bubble-default-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710A1A49682300ABFF1B /* bubble-default-outgoing.png */; };
+		3DB0E0DD216CD5E700357A65 /* bubble-flat-incoming-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710D1A49682300ABFF1B /* bubble-flat-incoming-selected@2x.png */; };
+		3DB0E0DE216CD5E700357A65 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
+		3DB0E0DF216CD5E700357A65 /* bubble-default-incoming-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371031A49682300ABFF1B /* bubble-default-incoming-selected@2x.png */; };
+		3DB0E0E0216CD5E700357A65 /* input-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371231A49682300ABFF1B /* input-bar@2x.png */; };
+		3DB0E0E1216CD5E700357A65 /* bubble-default-outgoing-green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371071A49682300ABFF1B /* bubble-default-outgoing-green@2x.png */; };
+		3DB0E0E2216CD5E700357A65 /* EMW3280.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167D1A496D0500DBBE61 /* EMW3280.png */; };
+		3DB0E0E3216CD5E700357A65 /* bubble-square-incoming-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371161A49682300ABFF1B /* bubble-square-incoming-selected.png */; };
+		3DB0E0E4216CD5E700357A65 /* input-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371221A49682300ABFF1B /* input-bar.png */; };
+		3DB0E0E5216CD5E700357A65 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
+		3DB0E0E6216CD5E700357A65 /* bubble-square-outgoing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711D1A49682300ABFF1B /* bubble-square-outgoing@2x.png */; };
+		3DB0E0E7216CD5E700357A65 /* bubble-default-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371041A49682300ABFF1B /* bubble-default-incoming.png */; };
+		3DB0E0E8216CD5E700357A65 /* PhotoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371261A49682300ABFF1B /* PhotoIcon.png */; };
+		3DB0E0E9216CD5E700357A65 /* bubble-flat-outgoing-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371131A49682300ABFF1B /* bubble-flat-outgoing-selected@2x.png */; };
+		3DB0E0EA216CD5E700357A65 /* bubble-flat-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710E1A49682300ABFF1B /* bubble-flat-incoming.png */; };
+		3DB0E0EB216CD5E700357A65 /* messageReceived.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 3D33712D1A49682300ABFF1B /* messageReceived.aiff */; };
+		3DB0E0EC216CD5E700357A65 /* launch_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D67394A1FBBF65000892F08 /* launch_image.png */; };
+		3DB0E0ED216CD5E700357A65 /* bubble-typing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711F1A49682300ABFF1B /* bubble-typing@2x.png */; };
+		3DB0E0EE216CD5E700357A65 /* bubble-default-outgoing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710B1A49682300ABFF1B /* bubble-default-outgoing@2x.png */; };
+		3DB0E0EF216CD5E700357A65 /* bubble-flat-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371141A49682300ABFF1B /* bubble-flat-outgoing.png */; };
+		3DB0E0F0216CD5E700357A65 /* bubble-flat-incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710F1A49682300ABFF1B /* bubble-flat-incoming@2x.png */; };
+		3DB0E0F1216CD5E700357A65 /* messageSent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 3D33712E1A49682300ABFF1B /* messageSent.aiff */; };
+		3DB0E0F2216CD5E700357A65 /* bubble-default-incoming-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371001A49682300ABFF1B /* bubble-default-incoming-green.png */; };
+		3DB0E0F3216CD5E700357A65 /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33712B1A49682300ABFF1B /* send@2x.png */; };
+		3DB0E0F4216CD5E700357A65 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
+		3DB0E0F5216CD5E700357A65 /* UnderConstruction@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16791A496CE100DBBE61 /* UnderConstruction@2x.png */; };
+		3DB0E0F6216CD5E700357A65 /* bubble-default-outgoing-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371081A49682300ABFF1B /* bubble-default-outgoing-selected.png */; };
+		3DB0E0F7216CD5E700357A65 /* send-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371291A49682300ABFF1B /* send-highlighted@2x.png */; };
+		3DB0E0F8216CD5E700357A65 /* bubble-typing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711E1A49682300ABFF1B /* bubble-typing.png */; };
+		3DB0E0F9216CD5E700357A65 /* bubble-default-outgoing-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371091A49682300ABFF1B /* bubble-default-outgoing-selected@2x.png */; };
+		3DB0E0FA216CD5E700357A65 /* input-bar-flat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371211A49682300ABFF1B /* input-bar-flat@2x.png */; };
+		3DB0E0FB216CD5E700357A65 /* bubble-square-incoming-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371171A49682300ABFF1B /* bubble-square-incoming-selected@2x.png */; };
+		3DB0E0FC216CD5E700357A65 /* PhotoIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371271A49682300ABFF1B /* PhotoIcon@2x.png */; };
+		3DB0E0FD216CD5E700357A65 /* bubble-flat-outgoing-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371121A49682300ABFF1B /* bubble-flat-outgoing-selected.png */; };
+		3DB0E0FE216CD5E700357A65 /* input-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371241A49682300ABFF1B /* input-field.png */; };
+		3DB0E0FF216CD5E700357A65 /* bubble-flat-outgoing-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371111A49682300ABFF1B /* bubble-flat-outgoing-old@2x.png */; };
+		3DB0E100216CD5E700357A65 /* send-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371281A49682300ABFF1B /* send-highlighted.png */; };
+		3DB0E101216CD5E700357A65 /* EasyLinkPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167B1A496CF900DBBE61 /* EasyLinkPhone.png */; };
+		3DB0E102216CD5E700357A65 /* bubble-flat-incoming-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33710C1A49682300ABFF1B /* bubble-flat-incoming-selected.png */; };
+		3DB0E103216CD5E700357A65 /* bubble-default-incoming-green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371011A49682300ABFF1B /* bubble-default-incoming-green@2x.png */; };
+		3DB0E104216CD5E700357A65 /* bubble-square-outgoing-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711B1A49682300ABFF1B /* bubble-square-outgoing-selected@2x.png */; };
+		3DB0E105216CD5E700357A65 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167F1A496E1B00DBBE61 /* known_logo.png */; };
+		3DB0E106216CD5E700357A65 /* bubble-flat-outgoing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371151A49682300ABFF1B /* bubble-flat-outgoing@2x.png */; };
+		3DB0E107216CD5E700357A65 /* input-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371251A49682300ABFF1B /* input-field@2x.png */; };
+		3DB0E108216CD5E700357A65 /* bubble-default-outgoing-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371061A49682300ABFF1B /* bubble-default-outgoing-green.png */; };
+		3DB0E109216CD5E700357A65 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
+		3DB0E10A216CD5E700357A65 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371761A4968BD00ABFF1B /* MainStoryboard.storyboard */; };
+		3DB0E10B216CD5E700357A65 /* bubble-flat-outgoing-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371101A49682300ABFF1B /* bubble-flat-outgoing-old.png */; };
+		3DB0E10C216CD5E700357A65 /* bubble-default-incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371051A49682300ABFF1B /* bubble-default-incoming@2x.png */; };
+		3DB0E10D216CD5E700357A65 /* bubble-square-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371181A49682300ABFF1B /* bubble-square-incoming.png */; };
+		3DB0E10E216CD5E700357A65 /* bubble-square-outgoing-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711A1A49682300ABFF1B /* bubble-square-outgoing-selected.png */; };
 		3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */; };
-		5547E863CEA9817D403C437E /* libPods-EasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DED7C3272D56FAD22BDD21C /* libPods-EasyLink.a */; };
+		B9FFA6E2FB2B6695B725584A /* libPods-EasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7249A65E039CD4820DDA109A /* libPods-EasyLink.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0398F2DE9E92BB91C636BBF9 /* Pods-EasyLink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.release.xcconfig"; sourceTree = "<group>"; };
+		15591D9D49E8CC6AF40E210D /* Pods-EasyLink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.debug.xcconfig"; sourceTree = "<group>"; };
 		3D2AD58317A247E30026E31E /* EasyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2AD58617A247E30026E31E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D2AD58817A247E30026E31E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -367,14 +353,6 @@
 		3D33717A1A4968E700ABFF1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = General/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		3D417CE81B5CEA0D00EA2E1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3D42C01D1BFDE35500E6D9DF /* EasyLink_Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyLink_Enterprise-Info.plist"; path = "/Users/William/Develop/EasyLink/EasyLink_Enterprise-Info.plist"; sourceTree = "<absolute>"; };
-		3D4B74612088DE8400FE8FCF /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = route.h; path = EasyLink/route.h; sourceTree = "<group>"; };
-		3D4B74722088DF3100FE8FCF /* EasyLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EasyLink.m; path = EasyLink/EasyLink.m; sourceTree = "<group>"; };
-		3D4B747B2088DFB100FE8FCF /* ELAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELAsyncSocket.h; path = EasyLink/ELCocoaAsyncSocket/ELAsyncSocket.h; sourceTree = "<group>"; };
-		3D4B747C2088DFB100FE8FCF /* ELAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELAsyncUdpSocket.m; path = EasyLink/ELCocoaAsyncSocket/ELAsyncUdpSocket.m; sourceTree = "<group>"; };
-		3D4B747D2088DFB100FE8FCF /* ELAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELAsyncSocket.m; path = EasyLink/ELCocoaAsyncSocket/ELAsyncSocket.m; sourceTree = "<group>"; };
-		3D4B747E2088DFB100FE8FCF /* ELAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELAsyncUdpSocket.h; path = EasyLink/ELCocoaAsyncSocket/ELAsyncUdpSocket.h; sourceTree = "<group>"; };
-		3D4B74832088DFBC00FE8FCF /* ELReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELReachability.m; path = EasyLink/ELReachability/ELReachability.m; sourceTree = "<group>"; };
-		3D4B74842088DFBC00FE8FCF /* ELReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELReachability.h; path = EasyLink/ELReachability/ELReachability.h; sourceTree = "<group>"; };
 		3D5442C31F3B2518002A7C32 /* EasyLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLink.h; path = EasyLink/EasyLink.h; sourceTree = "<group>"; };
 		3D6739311FB82EC900892F08 /* easylinkModeConfigTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = easylinkModeConfigTableViewController.h; sourceTree = SOURCE_ROOT; };
 		3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = easylinkModeConfigTableViewController.m; sourceTree = SOURCE_ROOT; };
@@ -382,12 +360,6 @@
 		3D67394A1FBBF65000892F08 /* launch_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image.png; path = Resources/Images/Common/launch_image.png; sourceTree = SOURCE_ROOT; };
 		3D6B82901BFEFCA3005A8263 /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/EMWHeader.h; sourceTree = SOURCE_ROOT; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
-		3D76B0C6200F8F2A009AFC05 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
-		3D76B0C7200F8F2A009AFC05 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
-		3D76B0CC200F8F6B009AFC05 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		3D76B0CE200F8F87009AFC05 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		3D76B0D0200F8F94009AFC05 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		3D76B0D2200F8F9F009AFC05 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3D9A16671A496ABF00DBBE61 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = Resources/Images/iPhone/EMW3161.png; sourceTree = SOURCE_ROOT; };
 		3D9A16681A496ABF00DBBE61 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = Resources/Images/iPhone/EMW3162.png; sourceTree = SOURCE_ROOT; };
 		3D9A16751A496CC200DBBE61 /* easycloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = easycloud.png; path = Resources/Images/Common/easycloud.png; sourceTree = SOURCE_ROOT; };
@@ -397,16 +369,20 @@
 		3D9A167D1A496D0500DBBE61 /* EMW3280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3280.png; path = Resources/Images/Common/EMW3280.png; sourceTree = SOURCE_ROOT; };
 		3D9A167F1A496E1B00DBBE61 /* known_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = known_logo.png; path = Resources/Images/Common/known_logo.png; sourceTree = SOURCE_ROOT; };
 		3D9E27E71F3B3D3200B30056 /* libEasyLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEasyLink.a; path = EasyLink/EasyLink/libEasyLink.a; sourceTree = "<group>"; };
+		3DA9AEC2216CD2BE00433682 /* EasyLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EasyLink.entitlements; sourceTree = "<group>"; };
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3DAA394D17A55486003806FE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3DAA394F17A554AD003806FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3DAEA03C191924320082D846 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3DAEA03D191924320082D846 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		3DFC238520A31FF9002FFA73 /* EasyLink Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyLink Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DB0E097216CD4DA00357A65 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
+		3DB0E098216CD4DA00357A65 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
+		3DB0E114216CD5E700357A65 /* EasyLink Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyLink Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DB0E115216CD5E800357A65 /* EasyLink copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyLink copy-Info.plist"; path = "/Users/william/Develop/EasyLink/EasyLink copy-Info.plist"; sourceTree = "<absolute>"; };
 		3DFC27CB1BFC377F008834C5 /* KNSemiModalStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KNSemiModalStoryboardSegue.h; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.h; sourceTree = "<group>"; };
 		3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KNSemiModalStoryboardSegue.m; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.m; sourceTree = "<group>"; };
-		8DED7C3272D56FAD22BDD21C /* libPods-EasyLink.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyLink.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B31C0E6C8E532B5D181649C4 /* Pods-EasyLink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.debug.xcconfig"; sourceTree = "<group>"; };
+		7249A65E039CD4820DDA109A /* libPods-EasyLink.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyLink.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAC930238BF292A335350F5D /* Pods-EasyLink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,43 +390,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D76B0D3200F8F9F009AFC05 /* CoreMotion.framework in Frameworks */,
-				3D76B0D1200F8F94009AFC05 /* OpenGLES.framework in Frameworks */,
-				3D76B0CF200F8F87009AFC05 /* AVFoundation.framework in Frameworks */,
-				3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */,
-				3D76B0CD200F8F6B009AFC05 /* CoreTelephony.framework in Frameworks */,
-				3D76B0C8200F8F2A009AFC05 /* PgySDK.framework in Frameworks */,
+				3DB0E09B216CD59B00357A65 /* PgySDK.framework in Frameworks */,
+				3DB0E09C216CD59B00357A65 /* PgyUpdate.framework in Frameworks */,
+				3D6739451FB88D3600892F08 /* libEasyLink.a in Frameworks */,
 				3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */,
 				3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */,
+				3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */,
 				3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */,
 				3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */,
 				3D2AD58717A247E30026E31E /* UIKit.framework in Frameworks */,
-				3D76B0CA200F8F2A009AFC05 /* PgyUpdate.framework in Frameworks */,
 				3D2AD58917A247E30026E31E /* Foundation.framework in Frameworks */,
 				3D2AD58B17A247E30026E31E /* CoreGraphics.framework in Frameworks */,
-				5547E863CEA9817D403C437E /* libPods-EasyLink.a in Frameworks */,
+				B9FFA6E2FB2B6695B725584A /* libPods-EasyLink.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3DFC233520A31FF9002FFA73 /* Frameworks */ = {
+		3DB0E0C6216CD5E700357A65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DFC233620A31FF9002FFA73 /* CoreMotion.framework in Frameworks */,
-				3DFC233720A31FF9002FFA73 /* OpenGLES.framework in Frameworks */,
-				3DFC233820A31FF9002FFA73 /* AVFoundation.framework in Frameworks */,
-				3DFC233920A31FF9002FFA73 /* AudioToolbox.framework in Frameworks */,
-				3DFC233A20A31FF9002FFA73 /* CoreTelephony.framework in Frameworks */,
-				3DFC233B20A31FF9002FFA73 /* PgySDK.framework in Frameworks */,
-				3DFC233C20A31FF9002FFA73 /* SystemConfiguration.framework in Frameworks */,
-				3DFC233D20A31FF9002FFA73 /* Security.framework in Frameworks */,
-				3DFC233E20A31FF9002FFA73 /* QuartzCore.framework in Frameworks */,
-				3DFC233F20A31FF9002FFA73 /* CFNetwork.framework in Frameworks */,
-				3DFC234020A31FF9002FFA73 /* UIKit.framework in Frameworks */,
-				3DFC234120A31FF9002FFA73 /* PgyUpdate.framework in Frameworks */,
-				3DFC234220A31FF9002FFA73 /* Foundation.framework in Frameworks */,
-				3DFC234320A31FF9002FFA73 /* CoreGraphics.framework in Frameworks */,
-				3DFC234420A31FF9002FFA73 /* libPods-EasyLink.a in Frameworks */,
+				3DB0E0C7216CD5E700357A65 /* PgySDK.framework in Frameworks */,
+				3DB0E0C8216CD5E700357A65 /* PgyUpdate.framework in Frameworks */,
+				3DB0E0C9216CD5E700357A65 /* libEasyLink.a in Frameworks */,
+				3DB0E0CA216CD5E700357A65 /* SystemConfiguration.framework in Frameworks */,
+				3DB0E0CB216CD5E700357A65 /* Security.framework in Frameworks */,
+				3DB0E0CC216CD5E700357A65 /* AudioToolbox.framework in Frameworks */,
+				3DB0E0CD216CD5E700357A65 /* QuartzCore.framework in Frameworks */,
+				3DB0E0CE216CD5E700357A65 /* CFNetwork.framework in Frameworks */,
+				3DB0E0CF216CD5E700357A65 /* UIKit.framework in Frameworks */,
+				3DB0E0D0216CD5E700357A65 /* Foundation.framework in Frameworks */,
+				3DB0E0D1216CD5E700357A65 /* CoreGraphics.framework in Frameworks */,
+				3DB0E0D2216CD5E700357A65 /* libPods-EasyLink.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,12 +447,14 @@
 		3D2AD57A17A247E20026E31E = {
 			isa = PBXGroup;
 			children = (
+				3DA9AEC2216CD2BE00433682 /* EasyLink.entitlements */,
 				3D71295518AA26430071D553 /* Images.xcassets */,
 				3D7ACE8418FACAD400747F32 /* UITemplate */,
 				3D2AD58C17A247E30026E31E /* MainUI */,
 				3D2AD58517A247E30026E31E /* Frameworks */,
 				3D2AD58417A247E30026E31E /* Products */,
-				CFBEF1C138F865E7ECE79F7F /* Pods */,
+				AE4D8FF7EF7B34C99D1E2976 /* Pods */,
+				3DB0E115216CD5E800357A65 /* EasyLink copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -490,7 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				3D2AD58317A247E30026E31E /* EasyLink.app */,
-				3DFC238520A31FF9002FFA73 /* EasyLink Enterprise.app */,
+				3DB0E114216CD5E700357A65 /* EasyLink Enterprise.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -498,12 +470,8 @@
 		3D2AD58517A247E30026E31E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3D76B0D2200F8F9F009AFC05 /* CoreMotion.framework */,
-				3D76B0D0200F8F94009AFC05 /* OpenGLES.framework */,
-				3D76B0CE200F8F87009AFC05 /* AVFoundation.framework */,
-				3D76B0CC200F8F6B009AFC05 /* CoreTelephony.framework */,
-				3D76B0C6200F8F2A009AFC05 /* PgySDK.framework */,
-				3D76B0C7200F8F2A009AFC05 /* PgyUpdate.framework */,
+				3DB0E098216CD4DA00357A65 /* PgySDK.framework */,
+				3DB0E097216CD4DA00357A65 /* PgyUpdate.framework */,
 				3D9E27E71F3B3D3200B30056 /* libEasyLink.a */,
 				3D417CE81B5CEA0D00EA2E1E /* Security.framework */,
 				3DAEA03C191924320082D846 /* AudioToolbox.framework */,
@@ -515,7 +483,7 @@
 				3D2AD58817A247E30026E31E /* Foundation.framework */,
 				3D2AD58A17A247E30026E31E /* CoreGraphics.framework */,
 				3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */,
-				8DED7C3272D56FAD22BDD21C /* libPods-EasyLink.a */,
+				7249A65E039CD4820DDA109A /* libPods-EasyLink.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -660,14 +628,6 @@
 		3D6B82701BFEEE6E005A8263 /* EasyLink */ = {
 			isa = PBXGroup;
 			children = (
-				3D4B74842088DFBC00FE8FCF /* ELReachability.h */,
-				3D4B74832088DFBC00FE8FCF /* ELReachability.m */,
-				3D4B747B2088DFB100FE8FCF /* ELAsyncSocket.h */,
-				3D4B747D2088DFB100FE8FCF /* ELAsyncSocket.m */,
-				3D4B747E2088DFB100FE8FCF /* ELAsyncUdpSocket.h */,
-				3D4B747C2088DFB100FE8FCF /* ELAsyncUdpSocket.m */,
-				3D4B74722088DF3100FE8FCF /* EasyLink.m */,
-				3D4B74612088DE8400FE8FCF /* route.h */,
 				3D5442C31F3B2518002A7C32 /* EasyLink.h */,
 			);
 			path = EasyLink;
@@ -791,11 +751,11 @@
 			name = KNSemiModalStoryboardSegue;
 			sourceTree = "<group>";
 		};
-		CFBEF1C138F865E7ECE79F7F /* Pods */ = {
+		AE4D8FF7EF7B34C99D1E2976 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B31C0E6C8E532B5D181649C4 /* Pods-EasyLink.debug.xcconfig */,
-				0398F2DE9E92BB91C636BBF9 /* Pods-EasyLink.release.xcconfig */,
+				15591D9D49E8CC6AF40E210D /* Pods-EasyLink.debug.xcconfig */,
+				AAC930238BF292A335350F5D /* Pods-EasyLink.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -807,11 +767,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D2AD5BE17A247E30026E31E /* Build configuration list for PBXNativeTarget "EasyLink" */;
 			buildPhases = (
-				AE94AAE46C7A0392947C9CD7 /* [CP] Check Pods Manifest.lock */,
+				DAED554A95AFAFDB8F42DEE6 /* [CP] Check Pods Manifest.lock */,
+				69D95AAC537D928840264F3C /* Check Pods Manifest.lock */,
 				3D2AD57F17A247E20026E31E /* Sources */,
 				3D2AD58017A247E20026E31E /* Frameworks */,
 				3D2AD58117A247E20026E31E /* Resources */,
-				8DE087CA8224AFA2B457D71C /* [CP] Copy Pods Resources */,
+				F4BBF953F94CAD4B8D0A50A4 /* Copy Pods Resources */,
+				F05442B1F4A48F6CDDABF23E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -822,15 +784,17 @@
 			productReference = 3D2AD58317A247E30026E31E /* EasyLink.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3DFC230920A31FF9002FFA73 /* EasyLink Enterprise */ = {
+		3DB0E09D216CD5E700357A65 /* EasyLink Enterprise */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3DFC238220A31FF9002FFA73 /* Build configuration list for PBXNativeTarget "EasyLink Enterprise" */;
+			buildConfigurationList = 3DB0E111216CD5E700357A65 /* Build configuration list for PBXNativeTarget "EasyLink Enterprise" */;
 			buildPhases = (
-				3DFC230A20A31FF9002FFA73 /* [CP] Check Pods Manifest.lock */,
-				3DFC230B20A31FF9002FFA73 /* Sources */,
-				3DFC233520A31FF9002FFA73 /* Frameworks */,
-				3DFC234520A31FF9002FFA73 /* Resources */,
-				3DFC238120A31FF9002FFA73 /* [CP] Copy Pods Resources */,
+				3DB0E09E216CD5E700357A65 /* [CP] Check Pods Manifest.lock */,
+				3DB0E09F216CD5E700357A65 /* Check Pods Manifest.lock */,
+				3DB0E0A0216CD5E700357A65 /* Sources */,
+				3DB0E0C6216CD5E700357A65 /* Frameworks */,
+				3DB0E0D3216CD5E700357A65 /* Resources */,
+				3DB0E10F216CD5E700357A65 /* Copy Pods Resources */,
+				3DB0E110216CD5E700357A65 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -838,7 +802,7 @@
 			);
 			name = "EasyLink Enterprise";
 			productName = "EMW ToolBox";
-			productReference = 3DFC238520A31FF9002FFA73 /* EasyLink Enterprise.app */;
+			productReference = 3DB0E114216CD5E700357A65 /* EasyLink Enterprise.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -848,12 +812,15 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = mxchip;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "MXCHIP Co;Ltd";
 				TargetAttributes = {
 					3D2AD58217A247E20026E31E = {
 						DevelopmentTeam = AYDR2YFZ4K;
 						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
 							com.apple.WAC = {
 								enabled = 0;
 							};
@@ -874,7 +841,7 @@
 			projectRoot = "";
 			targets = (
 				3D2AD58217A247E20026E31E /* EasyLink */,
-				3DFC230920A31FF9002FFA73 /* EasyLink Enterprise */,
+				3DB0E09D216CD5E700357A65 /* EasyLink Enterprise */,
 			);
 		};
 /* End PBXProject section */
@@ -946,76 +913,76 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3DFC234520A31FF9002FFA73 /* Resources */ = {
+		3DB0E0D3216CD5E700357A65 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DFC234620A31FF9002FFA73 /* bubble-default-incoming-selected.png in Resources */,
-				3DFC234720A31FF9002FFA73 /* demo-avatar-ai.png in Resources */,
-				3DFC234820A31FF9002FFA73 /* bubble-square-incoming@2x.png in Resources */,
-				3DFC234920A31FF9002FFA73 /* bubble-square-outgoing.png in Resources */,
-				3DFC234A20A31FF9002FFA73 /* send.png in Resources */,
-				3DFC234B20A31FF9002FFA73 /* easycloud.png in Resources */,
-				3DFC234C20A31FF9002FFA73 /* input-bar-flat.png in Resources */,
-				3DFC234D20A31FF9002FFA73 /* InfoPlist.strings in Resources */,
-				3DFC234E20A31FF9002FFA73 /* bubble-default-outgoing.png in Resources */,
-				3DFC234F20A31FF9002FFA73 /* bubble-flat-incoming-selected@2x.png in Resources */,
-				3DFC235020A31FF9002FFA73 /* EMW3161.png in Resources */,
-				3DFC235120A31FF9002FFA73 /* bubble-default-incoming-selected@2x.png in Resources */,
-				3DFC235220A31FF9002FFA73 /* input-bar@2x.png in Resources */,
-				3DFC235320A31FF9002FFA73 /* bubble-default-outgoing-green@2x.png in Resources */,
-				3DFC235420A31FF9002FFA73 /* EMW3280.png in Resources */,
-				3DFC235520A31FF9002FFA73 /* bubble-square-incoming-selected.png in Resources */,
-				3DFC235620A31FF9002FFA73 /* input-bar.png in Resources */,
-				3DFC235720A31FF9002FFA73 /* Images.xcassets in Resources */,
-				3DFC235820A31FF9002FFA73 /* bubble-square-outgoing@2x.png in Resources */,
-				3DFC235920A31FF9002FFA73 /* bubble-default-incoming.png in Resources */,
-				3DFC235A20A31FF9002FFA73 /* PhotoIcon.png in Resources */,
-				3DFC235B20A31FF9002FFA73 /* bubble-flat-outgoing-selected@2x.png in Resources */,
-				3DFC235C20A31FF9002FFA73 /* bubble-flat-incoming.png in Resources */,
-				3DFC235D20A31FF9002FFA73 /* messageReceived.aiff in Resources */,
-				3DFC235E20A31FF9002FFA73 /* launch_image.png in Resources */,
-				3DFC235F20A31FF9002FFA73 /* bubble-typing@2x.png in Resources */,
-				3DFC236020A31FF9002FFA73 /* bubble-default-outgoing@2x.png in Resources */,
-				3DFC236120A31FF9002FFA73 /* bubble-flat-outgoing.png in Resources */,
-				3DFC236220A31FF9002FFA73 /* bubble-flat-incoming@2x.png in Resources */,
-				3DFC236320A31FF9002FFA73 /* messageSent.aiff in Resources */,
-				3DFC236420A31FF9002FFA73 /* bubble-default-incoming-green.png in Resources */,
-				3DFC236520A31FF9002FFA73 /* send@2x.png in Resources */,
-				3DFC236620A31FF9002FFA73 /* EMW3162.png in Resources */,
-				3DFC236720A31FF9002FFA73 /* UnderConstruction@2x.png in Resources */,
-				3DFC236820A31FF9002FFA73 /* bubble-default-outgoing-selected.png in Resources */,
-				3DFC236920A31FF9002FFA73 /* send-highlighted@2x.png in Resources */,
-				3DFC236A20A31FF9002FFA73 /* bubble-typing.png in Resources */,
-				3DFC236B20A31FF9002FFA73 /* bubble-default-outgoing-selected@2x.png in Resources */,
-				3DFC236C20A31FF9002FFA73 /* input-bar-flat@2x.png in Resources */,
-				3DFC236D20A31FF9002FFA73 /* bubble-square-incoming-selected@2x.png in Resources */,
-				3DFC236E20A31FF9002FFA73 /* PhotoIcon@2x.png in Resources */,
-				3DFC236F20A31FF9002FFA73 /* bubble-flat-outgoing-selected.png in Resources */,
-				3DFC237020A31FF9002FFA73 /* input-field.png in Resources */,
-				3DFC237120A31FF9002FFA73 /* bubble-flat-outgoing-old@2x.png in Resources */,
-				3DFC237220A31FF9002FFA73 /* send-highlighted.png in Resources */,
-				3DFC237320A31FF9002FFA73 /* EasyLinkPhone.png in Resources */,
-				3DFC237420A31FF9002FFA73 /* bubble-flat-incoming-selected.png in Resources */,
-				3DFC237520A31FF9002FFA73 /* bubble-default-incoming-green@2x.png in Resources */,
-				3DFC237620A31FF9002FFA73 /* bubble-square-outgoing-selected@2x.png in Resources */,
-				3DFC237720A31FF9002FFA73 /* known_logo.png in Resources */,
-				3DFC237820A31FF9002FFA73 /* bubble-flat-outgoing@2x.png in Resources */,
-				3DFC237920A31FF9002FFA73 /* input-field@2x.png in Resources */,
-				3DFC237A20A31FF9002FFA73 /* bubble-default-outgoing-green.png in Resources */,
-				3DFC237B20A31FF9002FFA73 /* Launch Screen.storyboard in Resources */,
-				3DFC237C20A31FF9002FFA73 /* MainStoryboard.storyboard in Resources */,
-				3DFC237D20A31FF9002FFA73 /* bubble-flat-outgoing-old.png in Resources */,
-				3DFC237E20A31FF9002FFA73 /* bubble-default-incoming@2x.png in Resources */,
-				3DFC237F20A31FF9002FFA73 /* bubble-square-incoming.png in Resources */,
-				3DFC238020A31FF9002FFA73 /* bubble-square-outgoing-selected.png in Resources */,
+				3DB0E0D4216CD5E700357A65 /* bubble-default-incoming-selected.png in Resources */,
+				3DB0E0D5216CD5E700357A65 /* demo-avatar-ai.png in Resources */,
+				3DB0E0D6216CD5E700357A65 /* bubble-square-incoming@2x.png in Resources */,
+				3DB0E0D7216CD5E700357A65 /* bubble-square-outgoing.png in Resources */,
+				3DB0E0D8216CD5E700357A65 /* send.png in Resources */,
+				3DB0E0D9216CD5E700357A65 /* easycloud.png in Resources */,
+				3DB0E0DA216CD5E700357A65 /* input-bar-flat.png in Resources */,
+				3DB0E0DB216CD5E700357A65 /* InfoPlist.strings in Resources */,
+				3DB0E0DC216CD5E700357A65 /* bubble-default-outgoing.png in Resources */,
+				3DB0E0DD216CD5E700357A65 /* bubble-flat-incoming-selected@2x.png in Resources */,
+				3DB0E0DE216CD5E700357A65 /* EMW3161.png in Resources */,
+				3DB0E0DF216CD5E700357A65 /* bubble-default-incoming-selected@2x.png in Resources */,
+				3DB0E0E0216CD5E700357A65 /* input-bar@2x.png in Resources */,
+				3DB0E0E1216CD5E700357A65 /* bubble-default-outgoing-green@2x.png in Resources */,
+				3DB0E0E2216CD5E700357A65 /* EMW3280.png in Resources */,
+				3DB0E0E3216CD5E700357A65 /* bubble-square-incoming-selected.png in Resources */,
+				3DB0E0E4216CD5E700357A65 /* input-bar.png in Resources */,
+				3DB0E0E5216CD5E700357A65 /* Images.xcassets in Resources */,
+				3DB0E0E6216CD5E700357A65 /* bubble-square-outgoing@2x.png in Resources */,
+				3DB0E0E7216CD5E700357A65 /* bubble-default-incoming.png in Resources */,
+				3DB0E0E8216CD5E700357A65 /* PhotoIcon.png in Resources */,
+				3DB0E0E9216CD5E700357A65 /* bubble-flat-outgoing-selected@2x.png in Resources */,
+				3DB0E0EA216CD5E700357A65 /* bubble-flat-incoming.png in Resources */,
+				3DB0E0EB216CD5E700357A65 /* messageReceived.aiff in Resources */,
+				3DB0E0EC216CD5E700357A65 /* launch_image.png in Resources */,
+				3DB0E0ED216CD5E700357A65 /* bubble-typing@2x.png in Resources */,
+				3DB0E0EE216CD5E700357A65 /* bubble-default-outgoing@2x.png in Resources */,
+				3DB0E0EF216CD5E700357A65 /* bubble-flat-outgoing.png in Resources */,
+				3DB0E0F0216CD5E700357A65 /* bubble-flat-incoming@2x.png in Resources */,
+				3DB0E0F1216CD5E700357A65 /* messageSent.aiff in Resources */,
+				3DB0E0F2216CD5E700357A65 /* bubble-default-incoming-green.png in Resources */,
+				3DB0E0F3216CD5E700357A65 /* send@2x.png in Resources */,
+				3DB0E0F4216CD5E700357A65 /* EMW3162.png in Resources */,
+				3DB0E0F5216CD5E700357A65 /* UnderConstruction@2x.png in Resources */,
+				3DB0E0F6216CD5E700357A65 /* bubble-default-outgoing-selected.png in Resources */,
+				3DB0E0F7216CD5E700357A65 /* send-highlighted@2x.png in Resources */,
+				3DB0E0F8216CD5E700357A65 /* bubble-typing.png in Resources */,
+				3DB0E0F9216CD5E700357A65 /* bubble-default-outgoing-selected@2x.png in Resources */,
+				3DB0E0FA216CD5E700357A65 /* input-bar-flat@2x.png in Resources */,
+				3DB0E0FB216CD5E700357A65 /* bubble-square-incoming-selected@2x.png in Resources */,
+				3DB0E0FC216CD5E700357A65 /* PhotoIcon@2x.png in Resources */,
+				3DB0E0FD216CD5E700357A65 /* bubble-flat-outgoing-selected.png in Resources */,
+				3DB0E0FE216CD5E700357A65 /* input-field.png in Resources */,
+				3DB0E0FF216CD5E700357A65 /* bubble-flat-outgoing-old@2x.png in Resources */,
+				3DB0E100216CD5E700357A65 /* send-highlighted.png in Resources */,
+				3DB0E101216CD5E700357A65 /* EasyLinkPhone.png in Resources */,
+				3DB0E102216CD5E700357A65 /* bubble-flat-incoming-selected.png in Resources */,
+				3DB0E103216CD5E700357A65 /* bubble-default-incoming-green@2x.png in Resources */,
+				3DB0E104216CD5E700357A65 /* bubble-square-outgoing-selected@2x.png in Resources */,
+				3DB0E105216CD5E700357A65 /* known_logo.png in Resources */,
+				3DB0E106216CD5E700357A65 /* bubble-flat-outgoing@2x.png in Resources */,
+				3DB0E107216CD5E700357A65 /* input-field@2x.png in Resources */,
+				3DB0E108216CD5E700357A65 /* bubble-default-outgoing-green.png in Resources */,
+				3DB0E109216CD5E700357A65 /* Launch Screen.storyboard in Resources */,
+				3DB0E10A216CD5E700357A65 /* MainStoryboard.storyboard in Resources */,
+				3DB0E10B216CD5E700357A65 /* bubble-flat-outgoing-old.png in Resources */,
+				3DB0E10C216CD5E700357A65 /* bubble-default-incoming@2x.png in Resources */,
+				3DB0E10D216CD5E700357A65 /* bubble-square-incoming.png in Resources */,
+				3DB0E10E216CD5E700357A65 /* bubble-square-outgoing-selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3DFC230A20A31FF9002FFA73 /* [CP] Check Pods Manifest.lock */ = {
+		3DB0E09E216CD5E700357A65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1033,7 +1000,37 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3DFC238120A31FF9002FFA73 /* [CP] Copy Pods Resources */ = {
+		3DB0E09F216CD5E700357A65 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3DB0E10F216CD5E700357A65 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3DB0E110216CD5E700357A65 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1065,7 +1062,40 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DE087CA8224AFA2B457D71C /* [CP] Copy Pods Resources */ = {
+		69D95AAC537D928840264F3C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DAED554A95AFAFDB8F42DEE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EasyLink-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F05442B1F4A48F6CDDABF23E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1097,22 +1127,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AE94AAE46C7A0392947C9CD7 /* [CP] Check Pods Manifest.lock */ = {
+		F4BBF953F94CAD4B8D0A50A4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "Copy Pods Resources";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EasyLink-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1130,18 +1157,15 @@
 				3D33708A1A49622700ABFF1B /* commandsTableViewController.m in Sources */,
 				3D3371751A49686E00ABFF1B /* main.m in Sources */,
 				3D3370A91A4963BF00ABFF1B /* RootViewController.m in Sources */,
-				3D4B747F2088DFB100FE8FCF /* ELAsyncUdpSocket.m in Sources */,
 				3D3370891A49622700ABFF1B /* Protocols.m in Sources */,
 				3D33708C1A49622700ABFF1B /* talkToModuleViewController.m in Sources */,
 				3D3370A21A4962FE00ABFF1B /* EasyLinkOTATableViewController.m in Sources */,
 				3D3371381A49682300ABFF1B /* JSBubbleView.m in Sources */,
-				3D4B74852088DFBC00FE8FCF /* ELReachability.m in Sources */,
 				3D33713A1A49682300ABFF1B /* JSMessageInputView.m in Sources */,
 				3D3370B91A49658300ABFF1B /* easyLinkIpConfigTableViewController.m in Sources */,
 				3D33709B1A49628E00ABFF1B /* FTCStringSelectCell.m in Sources */,
 				3D3371701A49682400ABFF1B /* UIView+AnimationOptionsForCurve.m in Sources */,
 				3D3370AF1A4964C600ABFF1B /* mxchipAppDelegate.m in Sources */,
-				3D4B74732088DF3100FE8FCF /* EasyLink.m in Sources */,
 				3D33716D1A49682400ABFF1B /* UIButton+JSMessagesView.m in Sources */,
 				3D33713C1A49682300ABFF1B /* JSMessagesViewController.m in Sources */,
 				3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */,
@@ -1157,7 +1181,6 @@
 				3D33708B1A49622700ABFF1B /* messageViewController.m in Sources */,
 				3D3370B71A49658300ABFF1B /* EasyLinkMainViewController.m in Sources */,
 				3D33716E1A49682400ABFF1B /* UIColor+JSMessagesView.m in Sources */,
-				3D4B74812088DFB100FE8FCF /* ELAsyncSocket.m in Sources */,
 				3D33709C1A49628E00ABFF1B /* FTCSubMenuCell.m in Sources */,
 				3D3370EB1A4966D400ABFF1B /* moduleBrowserCell.m in Sources */,
 				3D3371391A49682300ABFF1B /* JSDismissiveTextView.m in Sources */,
@@ -1166,51 +1189,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3DFC230B20A31FF9002FFA73 /* Sources */ = {
+		3DB0E0A0216CD5E700357A65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DFC230C20A31FF9002FFA73 /* addNewCommandViewController.m in Sources */,
-				3DFC230D20A31FF9002FFA73 /* UIImage+JSMessagesView.m in Sources */,
-				3DFC230E20A31FF9002FFA73 /* FTCSelectViewController.m in Sources */,
-				3DFC230F20A31FF9002FFA73 /* NSString+JSMessagesView.m in Sources */,
-				3DFC231020A31FF9002FFA73 /* JSMessageTextView.m in Sources */,
-				3DFC231120A31FF9002FFA73 /* commandsTableViewController.m in Sources */,
-				3DFC231220A31FF9002FFA73 /* main.m in Sources */,
-				3DFC231320A31FF9002FFA73 /* RootViewController.m in Sources */,
-				3DFC231420A31FF9002FFA73 /* ELAsyncUdpSocket.m in Sources */,
-				3DFC231520A31FF9002FFA73 /* Protocols.m in Sources */,
-				3DFC231620A31FF9002FFA73 /* talkToModuleViewController.m in Sources */,
-				3DFC231720A31FF9002FFA73 /* EasyLinkOTATableViewController.m in Sources */,
-				3DFC231820A31FF9002FFA73 /* JSBubbleView.m in Sources */,
-				3DFC231920A31FF9002FFA73 /* ELReachability.m in Sources */,
-				3DFC231A20A31FF9002FFA73 /* JSMessageInputView.m in Sources */,
-				3DFC231B20A31FF9002FFA73 /* easyLinkIpConfigTableViewController.m in Sources */,
-				3DFC231C20A31FF9002FFA73 /* FTCStringSelectCell.m in Sources */,
-				3DFC231D20A31FF9002FFA73 /* UIView+AnimationOptionsForCurve.m in Sources */,
-				3DFC231E20A31FF9002FFA73 /* mxchipAppDelegate.m in Sources */,
-				3DFC231F20A31FF9002FFA73 /* EasyLink.m in Sources */,
-				3DFC232020A31FF9002FFA73 /* UIButton+JSMessagesView.m in Sources */,
-				3DFC232120A31FF9002FFA73 /* JSMessagesViewController.m in Sources */,
-				3DFC232220A31FF9002FFA73 /* KNSemiModalStoryboardSegue.m in Sources */,
-				3DFC232320A31FF9002FFA73 /* guideViewController.m in Sources */,
-				3DFC232420A31FF9002FFA73 /* ConThingsViewController.m in Sources */,
-				3DFC232520A31FF9002FFA73 /* newModuleTableViewCell.m in Sources */,
-				3DFC232620A31FF9002FFA73 /* bonjourDetailTableViewController.m in Sources */,
-				3DFC232720A31FF9002FFA73 /* easylinkModeConfigTableViewController.m in Sources */,
-				3DFC232820A31FF9002FFA73 /* browserViewController.m in Sources */,
-				3DFC232920A31FF9002FFA73 /* JSMessageSoundEffect.m in Sources */,
-				3DFC232A20A31FF9002FFA73 /* EasyLinkFTCTableViewController.m in Sources */,
-				3DFC232B20A31FF9002FFA73 /* FTCStringCell.m in Sources */,
-				3DFC232C20A31FF9002FFA73 /* messageViewController.m in Sources */,
-				3DFC232D20A31FF9002FFA73 /* EasyLinkMainViewController.m in Sources */,
-				3DFC232E20A31FF9002FFA73 /* UIColor+JSMessagesView.m in Sources */,
-				3DFC232F20A31FF9002FFA73 /* ELAsyncSocket.m in Sources */,
-				3DFC233020A31FF9002FFA73 /* FTCSubMenuCell.m in Sources */,
-				3DFC233120A31FF9002FFA73 /* moduleBrowserCell.m in Sources */,
-				3DFC233220A31FF9002FFA73 /* JSDismissiveTextView.m in Sources */,
-				3DFC233320A31FF9002FFA73 /* FTCSwitchCell.m in Sources */,
-				3DFC233420A31FF9002FFA73 /* JSBubbleMessageCell.m in Sources */,
+				3DB0E0A1216CD5E700357A65 /* addNewCommandViewController.m in Sources */,
+				3DB0E0A2216CD5E700357A65 /* UIImage+JSMessagesView.m in Sources */,
+				3DB0E0A3216CD5E700357A65 /* FTCSelectViewController.m in Sources */,
+				3DB0E0A4216CD5E700357A65 /* NSString+JSMessagesView.m in Sources */,
+				3DB0E0A5216CD5E700357A65 /* JSMessageTextView.m in Sources */,
+				3DB0E0A6216CD5E700357A65 /* commandsTableViewController.m in Sources */,
+				3DB0E0A7216CD5E700357A65 /* main.m in Sources */,
+				3DB0E0A8216CD5E700357A65 /* RootViewController.m in Sources */,
+				3DB0E0A9216CD5E700357A65 /* Protocols.m in Sources */,
+				3DB0E0AA216CD5E700357A65 /* talkToModuleViewController.m in Sources */,
+				3DB0E0AB216CD5E700357A65 /* EasyLinkOTATableViewController.m in Sources */,
+				3DB0E0AC216CD5E700357A65 /* JSBubbleView.m in Sources */,
+				3DB0E0AD216CD5E700357A65 /* JSMessageInputView.m in Sources */,
+				3DB0E0AE216CD5E700357A65 /* easyLinkIpConfigTableViewController.m in Sources */,
+				3DB0E0AF216CD5E700357A65 /* FTCStringSelectCell.m in Sources */,
+				3DB0E0B0216CD5E700357A65 /* UIView+AnimationOptionsForCurve.m in Sources */,
+				3DB0E0B1216CD5E700357A65 /* mxchipAppDelegate.m in Sources */,
+				3DB0E0B2216CD5E700357A65 /* UIButton+JSMessagesView.m in Sources */,
+				3DB0E0B3216CD5E700357A65 /* JSMessagesViewController.m in Sources */,
+				3DB0E0B4216CD5E700357A65 /* KNSemiModalStoryboardSegue.m in Sources */,
+				3DB0E0B5216CD5E700357A65 /* guideViewController.m in Sources */,
+				3DB0E0B6216CD5E700357A65 /* ConThingsViewController.m in Sources */,
+				3DB0E0B7216CD5E700357A65 /* newModuleTableViewCell.m in Sources */,
+				3DB0E0B8216CD5E700357A65 /* bonjourDetailTableViewController.m in Sources */,
+				3DB0E0B9216CD5E700357A65 /* easylinkModeConfigTableViewController.m in Sources */,
+				3DB0E0BA216CD5E700357A65 /* browserViewController.m in Sources */,
+				3DB0E0BB216CD5E700357A65 /* JSMessageSoundEffect.m in Sources */,
+				3DB0E0BC216CD5E700357A65 /* EasyLinkFTCTableViewController.m in Sources */,
+				3DB0E0BD216CD5E700357A65 /* FTCStringCell.m in Sources */,
+				3DB0E0BE216CD5E700357A65 /* messageViewController.m in Sources */,
+				3DB0E0BF216CD5E700357A65 /* EasyLinkMainViewController.m in Sources */,
+				3DB0E0C0216CD5E700357A65 /* UIColor+JSMessagesView.m in Sources */,
+				3DB0E0C1216CD5E700357A65 /* FTCSubMenuCell.m in Sources */,
+				3DB0E0C2216CD5E700357A65 /* moduleBrowserCell.m in Sources */,
+				3DB0E0C3216CD5E700357A65 /* JSDismissiveTextView.m in Sources */,
+				3DB0E0C4216CD5E700357A65 /* FTCSwitchCell.m in Sources */,
+				3DB0E0C5216CD5E700357A65 /* JSBubbleMessageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1251,44 +1270,27 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: wei xu (827P7DZFL8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1306,36 +1308,19 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MXCHIP Co.,Ltd (AYDR2YFZ4K)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MXCHIP Co.,Ltd (AYDR2YFZ4K)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = NO;
@@ -1349,9 +1334,10 @@
 		};
 		3D2AD5BF17A247E30026E31E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B31C0E6C8E532B5D181649C4 /* Pods-EasyLink.debug.xcconfig */;
+			baseConfigurationReference = 15591D9D49E8CC6AF40E210D /* Pods-EasyLink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EasyLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: wei xu (827P7DZFL8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
 				DEVELOPMENT_TEAM = AYDR2YFZ4K;
@@ -1362,7 +1348,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "General/EasyLink-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EasyLink",
@@ -1370,7 +1356,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = EasyLink;
 				PRODUCT_NAME = EasyLink;
-				PROVISIONING_PROFILE = "015d9856-7687-48f0-8368-9c18dd609731";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "EasyLink develop";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1380,9 +1366,10 @@
 		};
 		3D2AD5C017A247E30026E31E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0398F2DE9E92BB91C636BBF9 /* Pods-EasyLink.release.xcconfig */;
+			baseConfigurationReference = AAC930238BF292A335350F5D /* Pods-EasyLink.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EasyLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: wei xu (827P7DZFL8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
 				DEVELOPMENT_TEAM = AYDR2YFZ4K;
@@ -1393,7 +1380,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "General/EasyLink-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EasyLink",
@@ -1401,7 +1388,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = EasyLink;
 				PRODUCT_NAME = EasyLink;
-				PROVISIONING_PROFILE = "015d9856-7687-48f0-8368-9c18dd609731";
+				PROVISIONING_PROFILE = "f3bc4e96-3c8a-48b5-ace3-627322258c4c";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "EasyLink develop";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1409,42 +1396,12 @@
 			};
 			name = Release;
 		};
-		3DFC238320A31FF9002FFA73 /* Debug */ = {
+		3DB0E112216CD5E700357A65 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B31C0E6C8E532B5D181649C4 /* Pods-EasyLink.debug.xcconfig */;
+			baseConfigurationReference = 15591D9D49E8CC6AF40E210D /* Pods-EasyLink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: wei xu (827P7DZFL8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
-				DEVELOPMENT_TEAM = F49XPGKUF7;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
-				INFOPLIST_FILE = "EasyLink copy2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/EasyLink",
-					"$(PROJECT_DIR)/EasyLink/EasyLink",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = EasyLink.enterprise;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a29ebfa4-5cb7-472f-8def-7e36b733e25a";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "EasyLink Enterprise";
-				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		3DFC238420A31FF9002FFA73 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0398F2DE9E92BB91C636BBF9 /* Pods-EasyLink.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EasyLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Mxchip Information and Technology Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Mxchip Information and Technology Co., Ltd.";
 				DEVELOPMENT_TEAM = F49XPGKUF7;
@@ -1454,8 +1411,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
-				INFOPLIST_FILE = "EasyLink copy2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				INFOPLIST_FILE = "EasyLink copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EasyLink",
@@ -1463,7 +1420,39 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = EasyLink.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "605c7e74-08ff-4c80-859d-f36b30a45bcf";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "EasyLink Enterprise";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3DB0E113216CD5E700357A65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAC930238BF292A335350F5D /* Pods-EasyLink.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EasyLink.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Mxchip Information and Technology Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Mxchip Information and Technology Co., Ltd.";
+				DEVELOPMENT_TEAM = F49XPGKUF7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
+				INFOPLIST_FILE = "EasyLink copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EasyLink",
+					"$(PROJECT_DIR)/EasyLink/EasyLink",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = EasyLink.enterprise;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f3bc4e96-3c8a-48b5-ace3-627322258c4c";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "EasyLink Enterprise";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1492,11 +1481,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3DFC238220A31FF9002FFA73 /* Build configuration list for PBXNativeTarget "EasyLink Enterprise" */ = {
+		3DB0E111216CD5E700357A65 /* Build configuration list for PBXNativeTarget "EasyLink Enterprise" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3DFC238320A31FF9002FFA73 /* Debug */,
-				3DFC238420A31FF9002FFA73 /* Release */,
+				3DB0E112216CD5E700357A65 /* Debug */,
+				3DB0E113216CD5E700357A65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
