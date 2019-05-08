@@ -79,7 +79,7 @@
         }
         else{
             if([theDelegate respondsToSelector:@selector(onIgnored:)])
-                [theDelegate performSelector:@selector(onIgnored:) withObject:[_moduleInfo objectForKey:@"client"]];
+                [theDelegate performSelector:@selector(onIgnored:) withObject:_moduleInfo];
         }
     }else if(sender == _settingBtn){
         NSLog(@"Setting pressed, tag = %ld", (long)self.tag );
@@ -88,7 +88,7 @@
     }else if(sender == _ignoreBtn){
         NSLog(@"Ignore pressed");
         if([theDelegate respondsToSelector:@selector(onIgnored:)])
-            [theDelegate performSelector:@selector(onIgnored:) withObject:[_moduleInfo objectForKey:@"client"]];
+            [theDelegate performSelector:@selector(onIgnored:) withObject:_moduleInfo];
     }
 }
 

@@ -930,12 +930,16 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
                    withConfiguration:[configData objectForKey:@"update"] ];
 }
 
-
-- (void)onIgnored:(NSNumber *)client
+- (void)onIgnored:(NSMutableDictionary *)configData
 {
-    [easylink_config closeFTCClient: client];
+    if( [[configData objectForKey:@"FTC"] boolValue] == YES ){
+        [self onConfigured: configData];
+        [easylink_config closeFTCClient: [configData objectForKey:@"client"]];
+    }
+    else{
+        [self onDisconnectFromFTC:[configData objectForKey:@"client"] withError:NO];
+    }
 }
-
 
 #pragma mark - EasyLinkOTATableViewController delegate-
 
