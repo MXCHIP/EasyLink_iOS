@@ -54,5 +54,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>我们需要您的同意才能使用地理位置权限</string>
 </dict>
 </plist>

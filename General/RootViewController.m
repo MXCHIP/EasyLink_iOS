@@ -9,11 +9,12 @@
 #import "RootViewController.h"
 #import "ConThingsViewController.h"
 #import "browserViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface RootViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-
+@property (nonatomic, strong) CLLocationManager *manager;
 @end
 
 @implementation RootViewController
@@ -91,7 +92,8 @@
 //    [self.scrollView addSubview:conThings.view];
 //    [self addChildViewController:conThings];
 //    [conThings didMoveToParentViewController:self];
-
+    self.manager = [CLLocationManager new];
+    [self.manager requestWhenInUseAuthorization];
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
