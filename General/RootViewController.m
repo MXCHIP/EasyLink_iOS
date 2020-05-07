@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 #import "ConThingsViewController.h"
-#import "browserViewController.h"
+#import "EasyLink_Enterprise-Swift.h"
 #import <CoreLocation/CoreLocation.h>
 
 @interface RootViewController ()

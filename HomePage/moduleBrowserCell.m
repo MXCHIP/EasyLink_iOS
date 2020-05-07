@@ -75,7 +75,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setModuleService:(NSMutableDictionary *)newModuleService {
+- (void)setModuleService:(NSDictionary *)newModuleService {
 	_moduleService = newModuleService;
     
     NSString *serviceName, *hostName, *macAddress, *module;

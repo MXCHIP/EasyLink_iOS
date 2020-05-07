@@ -12,9 +12,7 @@
 
 @interface browserViewController : UIViewController <NSNetServiceBrowserDelegate,
 NSNetServiceDelegate>{
-    NSMutableArray *_objects;
     IBOutlet UITableView *browserTableView;
-    IBOutlet UISlider *ledControllerSlider;
 @private    
     NSMutableArray* _services, *_displayServices;
     NSNetServiceBrowser* _netServiceBrowser;

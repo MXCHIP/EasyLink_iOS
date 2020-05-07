@@ -255,7 +255,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
     NSString *userInfo = [userInfoField.text length]? userInfoField.text : @"";
 
     const char *temp = [userInfo cStringUsingEncoding:NSUTF8StringEncoding];
-    [easylink_config prepareEasyLink:wlanConfig info:[NSData dataWithBytes:temp length:strlen(temp)] mode:mode ];
+    [easylink_config prepareEasyLink_withFTC:wlanConfig info:[NSData dataWithBytes:temp length:strlen(temp)] mode:mode ];
     [self sendAction];
     targetSsid = [wlanConfig objectForKey:KEY_SSID];
 }
@@ -770,7 +770,6 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
                 reloadIndex = [self.foundModules indexOfObject:object];
                 [foundModule setObject:[object objectForKey:@"tag"] forKey:@"tag"];
             }
-            
         }
     }
 

@@ -10,13 +10,13 @@
 #import "AsyncSocket.h"
 
 @interface moduleBrowserCell : UITableViewCell{
-    NSMutableDictionary *_moduleService;
+    NSDictionary *_moduleService;
     IBOutlet UIImageView *lightStrengthView;
     AsyncSocket *socket;
     UIView *checkMarkView;
 }
 
-@property (nonatomic, retain, readwrite) NSMutableDictionary *moduleService;
+@property (nonatomic, retain, readwrite) NSDictionary *moduleService;
 
 - (void)startActivityIndicator: (BOOL) enable;
 - (void)startCheckIndicator: (BOOL) enable;

@@ -29,9 +29,7 @@
 		3D3370B71A49658300ABFF1B /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B21A49658300ABFF1B /* EasyLinkMainViewController.m */; };
 		3D3370B81A49658300ABFF1B /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B41A49658300ABFF1B /* newModuleTableViewCell.m */; };
 		3D3370B91A49658300ABFF1B /* easyLinkIpConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B61A49658300ABFF1B /* easyLinkIpConfigTableViewController.m */; };
-		3D3370EB1A4966D400ABFF1B /* moduleBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E61A4966D400ABFF1B /* moduleBrowserCell.m */; };
 		3D3370EC1A4966D400ABFF1B /* bonjourDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */; };
-		3D3370ED1A4966D400ABFF1B /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370EA1A4966D400ABFF1B /* browserViewController.m */; };
 		3D3371371A49682300ABFF1B /* JSBubbleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370EF1A49682300ABFF1B /* JSBubbleMessageCell.m */; };
 		3D3371381A49682300ABFF1B /* JSBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F11A49682300ABFF1B /* JSBubbleView.m */; };
 		3D3371391A49682300ABFF1B /* JSDismissiveTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F31A49682300ABFF1B /* JSDismissiveTextView.m */; };
@@ -96,10 +94,11 @@
 		3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
 		3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3D6739331FB82EC900892F08 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
-		3D6739451FB88D3600892F08 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9E27E71F3B3D3200B30056 /* libEasyLink.a */; };
 		3D6739481FBBF54D00892F08 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
 		3D67394B1FBBF65000892F08 /* launch_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D67394A1FBBF65000892F08 /* launch_image.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
+		3D918D3F23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D918D3E23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift */; };
+		3D918D4023ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D918D3E23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift */; };
 		3D9A166A1A496ABF00DBBE61 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
 		3D9A166B1A496ABF00DBBE61 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
 		3D9A16761A496CC200DBBE61 /* easycloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16751A496CC200DBBE61 /* easycloud.png */; };
@@ -110,7 +109,10 @@
 		3D9A16801A496E1B00DBBE61 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167F1A496E1B00DBBE61 /* known_logo.png */; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
+		3DAC115923DECFB800CA05D0 /* browserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAC115823DECFB800CA05D0 /* browserViewController.swift */; };
+		3DAC115A23DECFB800CA05D0 /* browserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAC115823DECFB800CA05D0 /* browserViewController.swift */; };
 		3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAEA03C191924320082D846 /* AudioToolbox.framework */; };
+		3DB03A5323EBAE6B003EB961 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9E27E71F3B3D3200B30056 /* libEasyLink.a */; };
 		3DB0E09B216CD59B00357A65 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E098216CD4DA00357A65 /* PgySDK.framework */; };
 		3DB0E09C216CD59B00357A65 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E097216CD4DA00357A65 /* PgyUpdate.framework */; };
 		3DB0E0A1216CD5E700357A65 /* addNewCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D33707F1A49622700ABFF1B /* addNewCommandViewController.m */; };
@@ -138,7 +140,6 @@
 		3DB0E0B7216CD5E700357A65 /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B41A49658300ABFF1B /* newModuleTableViewCell.m */; };
 		3DB0E0B8216CD5E700357A65 /* bonjourDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */; };
 		3DB0E0B9216CD5E700357A65 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
-		3DB0E0BA216CD5E700357A65 /* browserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370EA1A4966D400ABFF1B /* browserViewController.m */; };
 		3DB0E0BB216CD5E700357A65 /* JSMessageSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F71A49682300ABFF1B /* JSMessageSoundEffect.m */; };
 		3DB0E0BC216CD5E700357A65 /* EasyLinkFTCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370981A49628E00ABFF1B /* EasyLinkFTCTableViewController.m */; };
 		3DB0E0BD216CD5E700357A65 /* FTCStringCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370901A49628E00ABFF1B /* FTCStringCell.m */; };
@@ -146,13 +147,11 @@
 		3DB0E0BF216CD5E700357A65 /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B21A49658300ABFF1B /* EasyLinkMainViewController.m */; };
 		3DB0E0C0216CD5E700357A65 /* UIColor+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371321A49682300ABFF1B /* UIColor+JSMessagesView.m */; };
 		3DB0E0C1216CD5E700357A65 /* FTCSubMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370941A49628E00ABFF1B /* FTCSubMenuCell.m */; };
-		3DB0E0C2216CD5E700357A65 /* moduleBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E61A4966D400ABFF1B /* moduleBrowserCell.m */; };
 		3DB0E0C3216CD5E700357A65 /* JSDismissiveTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F31A49682300ABFF1B /* JSDismissiveTextView.m */; };
 		3DB0E0C4216CD5E700357A65 /* FTCSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370961A49628E00ABFF1B /* FTCSwitchCell.m */; };
 		3DB0E0C5216CD5E700357A65 /* JSBubbleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370EF1A49682300ABFF1B /* JSBubbleMessageCell.m */; };
 		3DB0E0C7216CD5E700357A65 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E098216CD4DA00357A65 /* PgySDK.framework */; };
 		3DB0E0C8216CD5E700357A65 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E097216CD4DA00357A65 /* PgyUpdate.framework */; };
-		3DB0E0C9216CD5E700357A65 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9E27E71F3B3D3200B30056 /* libEasyLink.a */; };
 		3DB0E0CA216CD5E700357A65 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3DB0E0CB216CD5E700357A65 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
 		3DB0E0CC216CD5E700357A65 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAEA03C191924320082D846 /* AudioToolbox.framework */; };
@@ -161,7 +160,6 @@
 		3DB0E0CF216CD5E700357A65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58617A247E30026E31E /* UIKit.framework */; };
 		3DB0E0D0216CD5E700357A65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58817A247E30026E31E /* Foundation.framework */; };
 		3DB0E0D1216CD5E700357A65 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58A17A247E30026E31E /* CoreGraphics.framework */; };
-		3DB0E0D2216CD5E700357A65 /* libPods-EasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7249A65E039CD4820DDA109A /* libPods-EasyLink.a */; };
 		3DB0E0D4216CD5E700357A65 /* bubble-default-incoming-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371021A49682300ABFF1B /* bubble-default-incoming-selected.png */; };
 		3DB0E0D5216CD5E700357A65 /* demo-avatar-ai.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16771A496CD100DBBE61 /* demo-avatar-ai.png */; };
 		3DB0E0D6216CD5E700357A65 /* bubble-square-incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371191A49682300ABFF1B /* bubble-square-incoming@2x.png */; };
@@ -221,12 +219,16 @@
 		3DB0E10C216CD5E700357A65 /* bubble-default-incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371051A49682300ABFF1B /* bubble-default-incoming@2x.png */; };
 		3DB0E10D216CD5E700357A65 /* bubble-square-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371181A49682300ABFF1B /* bubble-square-incoming.png */; };
 		3DB0E10E216CD5E700357A65 /* bubble-square-outgoing-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711A1A49682300ABFF1B /* bubble-square-outgoing-selected.png */; };
+		3DB6F49F23E956DD00FF39BB /* wifiDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */; };
+		3DB6F4A023E956DD00FF39BB /* wifiDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */; };
 		3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */; };
+		45C297C5C26050BA0C835837 /* libPods-EasyLink Enterprise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9ADA7BBB66958C192518BA /* libPods-EasyLink Enterprise.a */; };
+		61BA553545AE8E1587727C2B /* libPods-EasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7249A65E039CD4820DDA109A /* libPods-EasyLink.a */; };
 		B9FFA6E2FB2B6695B725584A /* libPods-EasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7249A65E039CD4820DDA109A /* libPods-EasyLink.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		15591D9D49E8CC6AF40E210D /* Pods-EasyLink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.debug.xcconfig"; sourceTree = "<group>"; };
+		16F9651EA5FC190F980FCD57 /* Pods-EasyLink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.debug.xcconfig"; sourceTree = "<group>"; };
 		3D2AD58317A247E30026E31E /* EasyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2AD58617A247E30026E31E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D2AD58817A247E30026E31E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -270,12 +272,8 @@
 		3D3370B41A49658300ABFF1B /* newModuleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newModuleTableViewCell.m; path = EasyLink/newModuleTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		3D3370B51A49658300ABFF1B /* easyLinkIpConfigTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = easyLinkIpConfigTableViewController.h; path = EasyLink/easyLinkIpConfigTableViewController.h; sourceTree = SOURCE_ROOT; };
 		3D3370B61A49658300ABFF1B /* easyLinkIpConfigTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = easyLinkIpConfigTableViewController.m; path = EasyLink/easyLinkIpConfigTableViewController.m; sourceTree = SOURCE_ROOT; };
-		3D3370E51A4966D400ABFF1B /* moduleBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = moduleBrowserCell.h; path = HomePage/moduleBrowserCell.h; sourceTree = SOURCE_ROOT; };
-		3D3370E61A4966D400ABFF1B /* moduleBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = moduleBrowserCell.m; path = HomePage/moduleBrowserCell.m; sourceTree = SOURCE_ROOT; };
 		3D3370E71A4966D400ABFF1B /* bonjourDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bonjourDetailTableViewController.h; path = HomePage/bonjourDetailTableViewController.h; sourceTree = SOURCE_ROOT; };
 		3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bonjourDetailTableViewController.m; path = HomePage/bonjourDetailTableViewController.m; sourceTree = SOURCE_ROOT; };
-		3D3370E91A4966D400ABFF1B /* browserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = browserViewController.h; path = HomePage/browserViewController.h; sourceTree = SOURCE_ROOT; };
-		3D3370EA1A4966D400ABFF1B /* browserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = browserViewController.m; path = HomePage/browserViewController.m; sourceTree = SOURCE_ROOT; };
 		3D3370EE1A49682300ABFF1B /* JSBubbleMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSBubbleMessageCell.h; path = UITemplate/MessagesTableViewController/JSBubbleMessageCell.h; sourceTree = "<group>"; };
 		3D3370EF1A49682300ABFF1B /* JSBubbleMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSBubbleMessageCell.m; path = UITemplate/MessagesTableViewController/JSBubbleMessageCell.m; sourceTree = "<group>"; };
 		3D3370F01A49682300ABFF1B /* JSBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSBubbleView.h; path = UITemplate/MessagesTableViewController/JSBubbleView.h; sourceTree = "<group>"; };
@@ -360,6 +358,7 @@
 		3D67394A1FBBF65000892F08 /* launch_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image.png; path = Resources/Images/Common/launch_image.png; sourceTree = SOURCE_ROOT; };
 		3D6B82901BFEFCA3005A8263 /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/EMWHeader.h; sourceTree = SOURCE_ROOT; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
+		3D918D3E23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = wifiDeviceDetailTableViewController.swift; path = HomePage/wifiDeviceDetailTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		3D9A16671A496ABF00DBBE61 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = Resources/Images/iPhone/EMW3161.png; sourceTree = SOURCE_ROOT; };
 		3D9A16681A496ABF00DBBE61 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = Resources/Images/iPhone/EMW3162.png; sourceTree = SOURCE_ROOT; };
 		3D9A16751A496CC200DBBE61 /* easycloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = easycloud.png; path = Resources/Images/Common/easycloud.png; sourceTree = SOURCE_ROOT; };
@@ -373,16 +372,23 @@
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3DAA394D17A55486003806FE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3DAA394F17A554AD003806FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3DAC115823DECFB800CA05D0 /* browserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = browserViewController.swift; path = HomePage/browserViewController.swift; sourceTree = SOURCE_ROOT; };
+		3DAC115B23DED10600CA05D0 /* EasyLink-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EasyLink-Bridging-Header.h"; sourceTree = "<group>"; };
+		3DAC115C23DED10600CA05D0 /* EasyLink Enterprise-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EasyLink Enterprise-Bridging-Header.h"; sourceTree = "<group>"; };
 		3DAEA03C191924320082D846 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3DAEA03D191924320082D846 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		3DB0E097216CD4DA00357A65 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
 		3DB0E098216CD4DA00357A65 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
 		3DB0E114216CD5E700357A65 /* EasyLink Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyLink Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DB0E115216CD5E800357A65 /* EasyLink copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyLink copy-Info.plist"; path = "/Users/william/Develop/EasyLink/EasyLink copy-Info.plist"; sourceTree = "<absolute>"; };
+		3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wifiDeviceCell.swift; sourceTree = SOURCE_ROOT; };
 		3DFC27CB1BFC377F008834C5 /* KNSemiModalStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KNSemiModalStoryboardSegue.h; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.h; sourceTree = "<group>"; };
 		3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KNSemiModalStoryboardSegue.m; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.m; sourceTree = "<group>"; };
+		5E71F907BF176D781884E856 /* Pods-EasyLink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.release.xcconfig"; sourceTree = "<group>"; };
 		7249A65E039CD4820DDA109A /* libPods-EasyLink.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyLink.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAC930238BF292A335350F5D /* Pods-EasyLink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.release.xcconfig"; sourceTree = "<group>"; };
+		AD9ADA7BBB66958C192518BA /* libPods-EasyLink Enterprise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyLink Enterprise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B700CF8154275168AE1B4C40 /* Pods-EasyLink Enterprise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink Enterprise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink Enterprise/Pods-EasyLink Enterprise.debug.xcconfig"; sourceTree = "<group>"; };
+		CBB2A8E9A5BA48374CA9F119 /* Pods-EasyLink Enterprise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink Enterprise.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink Enterprise/Pods-EasyLink Enterprise.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,7 +398,6 @@
 			files = (
 				3DB0E09B216CD59B00357A65 /* PgySDK.framework in Frameworks */,
 				3DB0E09C216CD59B00357A65 /* PgyUpdate.framework in Frameworks */,
-				3D6739451FB88D3600892F08 /* libEasyLink.a in Frameworks */,
 				3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */,
 				3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */,
 				3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */,
@@ -402,6 +407,7 @@
 				3D2AD58917A247E30026E31E /* Foundation.framework in Frameworks */,
 				3D2AD58B17A247E30026E31E /* CoreGraphics.framework in Frameworks */,
 				B9FFA6E2FB2B6695B725584A /* libPods-EasyLink.a in Frameworks */,
+				61BA553545AE8E1587727C2B /* libPods-EasyLink.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +417,6 @@
 			files = (
 				3DB0E0C7216CD5E700357A65 /* PgySDK.framework in Frameworks */,
 				3DB0E0C8216CD5E700357A65 /* PgyUpdate.framework in Frameworks */,
-				3DB0E0C9216CD5E700357A65 /* libEasyLink.a in Frameworks */,
 				3DB0E0CA216CD5E700357A65 /* SystemConfiguration.framework in Frameworks */,
 				3DB0E0CB216CD5E700357A65 /* Security.framework in Frameworks */,
 				3DB0E0CC216CD5E700357A65 /* AudioToolbox.framework in Frameworks */,
@@ -420,7 +425,8 @@
 				3DB0E0CF216CD5E700357A65 /* UIKit.framework in Frameworks */,
 				3DB0E0D0216CD5E700357A65 /* Foundation.framework in Frameworks */,
 				3DB0E0D1216CD5E700357A65 /* CoreGraphics.framework in Frameworks */,
-				3DB0E0D2216CD5E700357A65 /* libPods-EasyLink.a in Frameworks */,
+				45C297C5C26050BA0C835837 /* libPods-EasyLink Enterprise.a in Frameworks */,
+				3DB03A5323EBAE6B003EB961 /* libEasyLink.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +453,10 @@
 		3D2AD57A17A247E20026E31E = {
 			isa = PBXGroup;
 			children = (
+				3DAC115C23DED10600CA05D0 /* EasyLink Enterprise-Bridging-Header.h */,
+				3DAC115B23DED10600CA05D0 /* EasyLink-Bridging-Header.h */,
 				3DA9AEC2216CD2BE00433682 /* EasyLink.entitlements */,
+				3DFC27C71BFC371B008834C5 /* KNSemiModalStoryboardSegue */,
 				3D71295518AA26430071D553 /* Images.xcassets */,
 				3D7ACE8418FACAD400747F32 /* UITemplate */,
 				3D2AD58C17A247E30026E31E /* MainUI */,
@@ -484,6 +493,7 @@
 				3D2AD58A17A247E30026E31E /* CoreGraphics.framework */,
 				3D2AD5AD17A247E30026E31E /* SenTestingKit.framework */,
 				7249A65E039CD4820DDA109A /* libPods-EasyLink.a */,
+				AD9ADA7BBB66958C192518BA /* libPods-EasyLink Enterprise.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -545,12 +555,11 @@
 		3D3370E41A4966C600ABFF1B /* Home Page */ = {
 			isa = PBXGroup;
 			children = (
-				3D3370E51A4966D400ABFF1B /* moduleBrowserCell.h */,
-				3D3370E61A4966D400ABFF1B /* moduleBrowserCell.m */,
 				3D3370E71A4966D400ABFF1B /* bonjourDetailTableViewController.h */,
 				3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */,
-				3D3370E91A4966D400ABFF1B /* browserViewController.h */,
-				3D3370EA1A4966D400ABFF1B /* browserViewController.m */,
+				3DAC115823DECFB800CA05D0 /* browserViewController.swift */,
+				3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */,
+				3D918D3E23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift */,
 			);
 			name = "Home Page";
 			sourceTree = "<group>";
@@ -636,7 +645,6 @@
 		3D7ACE8418FACAD400747F32 /* UITemplate */ = {
 			isa = PBXGroup;
 			children = (
-				3DFC27C71BFC371B008834C5 /* KNSemiModalStoryboardSegue */,
 				3DAE9FB519191B350082D846 /* MessagesTableViewController */,
 			);
 			name = UITemplate;
@@ -754,8 +762,10 @@
 		AE4D8FF7EF7B34C99D1E2976 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				15591D9D49E8CC6AF40E210D /* Pods-EasyLink.debug.xcconfig */,
-				AAC930238BF292A335350F5D /* Pods-EasyLink.release.xcconfig */,
+				16F9651EA5FC190F980FCD57 /* Pods-EasyLink.debug.xcconfig */,
+				5E71F907BF176D781884E856 /* Pods-EasyLink.release.xcconfig */,
+				B700CF8154275168AE1B4C40 /* Pods-EasyLink Enterprise.debug.xcconfig */,
+				CBB2A8E9A5BA48374CA9F119 /* Pods-EasyLink Enterprise.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -788,13 +798,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3DB0E111216CD5E700357A65 /* Build configuration list for PBXNativeTarget "EasyLink Enterprise" */;
 			buildPhases = (
-				3DB0E09E216CD5E700357A65 /* [CP] Check Pods Manifest.lock */,
-				3DB0E09F216CD5E700357A65 /* Check Pods Manifest.lock */,
+				739DCE4A892DA6D6A3384E6A /* [CP] Check Pods Manifest.lock */,
 				3DB0E0A0216CD5E700357A65 /* Sources */,
 				3DB0E0C6216CD5E700357A65 /* Frameworks */,
 				3DB0E0D3216CD5E700357A65 /* Resources */,
-				3DB0E10F216CD5E700357A65 /* Copy Pods Resources */,
-				3DB0E110216CD5E700357A65 /* [CP] Copy Pods Resources */,
+				D5240BD71F4CDB2ECEFE96FC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -817,6 +825,7 @@
 				TargetAttributes = {
 					3D2AD58217A247E20026E31E = {
 						DevelopmentTeam = AYDR2YFZ4K;
+						LastSwiftMigration = 1130;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
 								enabled = 1;
@@ -827,6 +836,7 @@
 						};
 					};
 					3DB0E09D216CD5E700357A65 = {
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -986,25 +996,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3DB0E09E216CD5E700357A65 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EasyLink-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3DB0E09F216CD5E700357A65 /* Check Pods Manifest.lock */ = {
+		69D95AAC537D928840264F3C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1019,28 +1011,35 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		3DB0E10F216CD5E700357A65 /* Copy Pods Resources */ = {
+		739DCE4A892DA6D6A3384E6A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EasyLink Enterprise-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3DB0E110216CD5E700357A65 /* [CP] Copy Pods Resources */ = {
+		D5240BD71F4CDB2ECEFE96FC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EasyLink Enterprise/Pods-EasyLink Enterprise-resources.sh",
 				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle",
 				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Controllers/JSQMessagesViewController.xib",
 				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesCollectionViewCellIncoming.xib",
@@ -1063,22 +1062,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		69D95AAC537D928840264F3C /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EasyLink Enterprise/Pods-EasyLink Enterprise-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DAED554A95AFAFDB8F42DEE6 /* [CP] Check Pods Manifest.lock */ = {
@@ -1105,7 +1089,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh",
 				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle",
 				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Controllers/JSQMessagesViewController.xib",
 				"${PODS_ROOT}/JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesCollectionViewCellIncoming.xib",
@@ -1128,7 +1112,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EasyLink/Pods-EasyLink-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F4BBF953F94CAD4B8D0A50A4 /* Copy Pods Resources */ = {
@@ -1160,6 +1144,7 @@
 				3D33713D1A49682300ABFF1B /* JSMessageTextView.m in Sources */,
 				3D33708A1A49622700ABFF1B /* commandsTableViewController.m in Sources */,
 				3D3371751A49686E00ABFF1B /* main.m in Sources */,
+				3DAC115923DECFB800CA05D0 /* browserViewController.swift in Sources */,
 				3D3370A91A4963BF00ABFF1B /* RootViewController.m in Sources */,
 				3D3370891A49622700ABFF1B /* Protocols.m in Sources */,
 				3D33708C1A49622700ABFF1B /* talkToModuleViewController.m in Sources */,
@@ -1172,21 +1157,21 @@
 				3D3370AF1A4964C600ABFF1B /* mxchipAppDelegate.m in Sources */,
 				3D33716D1A49682400ABFF1B /* UIButton+JSMessagesView.m in Sources */,
 				3D33713C1A49682300ABFF1B /* JSMessagesViewController.m in Sources */,
+				3DB6F49F23E956DD00FF39BB /* wifiDeviceCell.swift in Sources */,
 				3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */,
 				3D3370A81A4963BF00ABFF1B /* guideViewController.m in Sources */,
 				3D3370AC1A49643A00ABFF1B /* ConThingsViewController.m in Sources */,
 				3D3370B81A49658300ABFF1B /* newModuleTableViewCell.m in Sources */,
 				3D3370EC1A4966D400ABFF1B /* bonjourDetailTableViewController.m in Sources */,
 				3D6739331FB82EC900892F08 /* easylinkModeConfigTableViewController.m in Sources */,
-				3D3370ED1A4966D400ABFF1B /* browserViewController.m in Sources */,
 				3D33713B1A49682300ABFF1B /* JSMessageSoundEffect.m in Sources */,
 				3D33709E1A49628E00ABFF1B /* EasyLinkFTCTableViewController.m in Sources */,
+				3D918D3F23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift in Sources */,
 				3D33709A1A49628E00ABFF1B /* FTCStringCell.m in Sources */,
 				3D33708B1A49622700ABFF1B /* messageViewController.m in Sources */,
 				3D3370B71A49658300ABFF1B /* EasyLinkMainViewController.m in Sources */,
 				3D33716E1A49682400ABFF1B /* UIColor+JSMessagesView.m in Sources */,
 				3D33709C1A49628E00ABFF1B /* FTCSubMenuCell.m in Sources */,
-				3D3370EB1A4966D400ABFF1B /* moduleBrowserCell.m in Sources */,
 				3D3371391A49682300ABFF1B /* JSDismissiveTextView.m in Sources */,
 				3D33709D1A49628E00ABFF1B /* FTCSwitchCell.m in Sources */,
 				3D3371371A49682300ABFF1B /* JSBubbleMessageCell.m in Sources */,
@@ -1204,6 +1189,7 @@
 				3DB0E0A5216CD5E700357A65 /* JSMessageTextView.m in Sources */,
 				3DB0E0A6216CD5E700357A65 /* commandsTableViewController.m in Sources */,
 				3DB0E0A7216CD5E700357A65 /* main.m in Sources */,
+				3DAC115A23DECFB800CA05D0 /* browserViewController.swift in Sources */,
 				3DB0E0A8216CD5E700357A65 /* RootViewController.m in Sources */,
 				3DB0E0A9216CD5E700357A65 /* Protocols.m in Sources */,
 				3DB0E0AA216CD5E700357A65 /* talkToModuleViewController.m in Sources */,
@@ -1216,21 +1202,21 @@
 				3DB0E0B1216CD5E700357A65 /* mxchipAppDelegate.m in Sources */,
 				3DB0E0B2216CD5E700357A65 /* UIButton+JSMessagesView.m in Sources */,
 				3DB0E0B3216CD5E700357A65 /* JSMessagesViewController.m in Sources */,
+				3DB6F4A023E956DD00FF39BB /* wifiDeviceCell.swift in Sources */,
 				3DB0E0B4216CD5E700357A65 /* KNSemiModalStoryboardSegue.m in Sources */,
 				3DB0E0B5216CD5E700357A65 /* guideViewController.m in Sources */,
 				3DB0E0B6216CD5E700357A65 /* ConThingsViewController.m in Sources */,
 				3DB0E0B7216CD5E700357A65 /* newModuleTableViewCell.m in Sources */,
 				3DB0E0B8216CD5E700357A65 /* bonjourDetailTableViewController.m in Sources */,
 				3DB0E0B9216CD5E700357A65 /* easylinkModeConfigTableViewController.m in Sources */,
-				3DB0E0BA216CD5E700357A65 /* browserViewController.m in Sources */,
 				3DB0E0BB216CD5E700357A65 /* JSMessageSoundEffect.m in Sources */,
 				3DB0E0BC216CD5E700357A65 /* EasyLinkFTCTableViewController.m in Sources */,
+				3D918D4023ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift in Sources */,
 				3DB0E0BD216CD5E700357A65 /* FTCStringCell.m in Sources */,
 				3DB0E0BE216CD5E700357A65 /* messageViewController.m in Sources */,
 				3DB0E0BF216CD5E700357A65 /* EasyLinkMainViewController.m in Sources */,
 				3DB0E0C0216CD5E700357A65 /* UIColor+JSMessagesView.m in Sources */,
 				3DB0E0C1216CD5E700357A65 /* FTCSubMenuCell.m in Sources */,
-				3DB0E0C2216CD5E700357A65 /* moduleBrowserCell.m in Sources */,
 				3DB0E0C3216CD5E700357A65 /* JSDismissiveTextView.m in Sources */,
 				3DB0E0C4216CD5E700357A65 /* FTCSwitchCell.m in Sources */,
 				3DB0E0C5216CD5E700357A65 /* JSBubbleMessageCell.m in Sources */,
@@ -1338,9 +1324,10 @@
 		};
 		3D2AD5BF17A247E30026E31E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15591D9D49E8CC6AF40E210D /* Pods-EasyLink.debug.xcconfig */;
+			baseConfigurationReference = 16F9651EA5FC190F980FCD57 /* Pods-EasyLink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EasyLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: wei xu (827P7DZFL8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
@@ -1353,6 +1340,7 @@
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "General/EasyLink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EasyLink",
@@ -1363,6 +1351,9 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "EasyLink develop";
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyLink-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1370,9 +1361,10 @@
 		};
 		3D2AD5C017A247E30026E31E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAC930238BF292A335350F5D /* Pods-EasyLink.release.xcconfig */;
+			baseConfigurationReference = 5E71F907BF176D781884E856 /* Pods-EasyLink.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EasyLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: wei xu (827P7DZFL8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei xu (827P7DZFL8)";
@@ -1385,6 +1377,7 @@
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "General/EasyLink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EasyLink",
@@ -1395,6 +1388,8 @@
 				PROVISIONING_PROFILE = "f3bc4e96-3c8a-48b5-ace3-627322258c4c";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "EasyLink Release";
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyLink-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1402,9 +1397,10 @@
 		};
 		3DB0E112216CD5E700357A65 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15591D9D49E8CC6AF40E210D /* Pods-EasyLink.debug.xcconfig */;
+			baseConfigurationReference = B700CF8154275168AE1B4C40 /* Pods-EasyLink Enterprise.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EasyLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1418,7 +1414,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EasyLink copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EasyLink",
@@ -1430,6 +1427,9 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = easylink_dev;
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyLink Enterprise-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1437,9 +1437,10 @@
 		};
 		3DB0E113216CD5E700357A65 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAC930238BF292A335350F5D /* Pods-EasyLink.release.xcconfig */;
+			baseConfigurationReference = CBB2A8E9A5BA48374CA9F119 /* Pods-EasyLink Enterprise.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EasyLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Mxchip Information and Technology Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Mxchip Information and Technology Co., Ltd.";
@@ -1453,7 +1454,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "EasyLink copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EasyLink",
@@ -1464,7 +1466,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f3bc4e96-3c8a-48b5-ace3-627322258c4c";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "EasyLink Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = Easylink.Enterprise;
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyLink Enterprise-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
