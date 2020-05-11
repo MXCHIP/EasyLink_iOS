@@ -1,16 +1,22 @@
 PODS:
-  - CocoaAsyncSocket (7.4.2)
-  - CustomIOSAlertView (0.9.3)
+  - CocoaAsyncSocket (7.4.3):
+    - CocoaAsyncSocket/All (= 7.4.3)
+  - CocoaAsyncSocket/All (7.4.3):
+    - CocoaAsyncSocket/GCD
+    - CocoaAsyncSocket/RunLoop
+  - CocoaAsyncSocket/GCD (7.4.3)
+  - CocoaAsyncSocket/RunLoop (7.4.3)
+  - CustomIOSAlertView (0.9.5)
   - GoldRaccoon (1.0.2)
-  - HMSegmentedControl (1.5.2)
-  - JSQMessagesViewController (7.2.0):
+  - HMSegmentedControl (1.5.5)
+  - JSQMessagesViewController (7.3.5):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - KNSemiModalViewController (0.3)
-  - MJRefresh (3.0.3)
-  - PulsingHalo (0.0.1)
+  - MJRefresh (3.0.8)
+  - PulsingHalo (0.2.8)
   - Reachability (3.1.1)
-  - RMMultipleViewsController (1.0.2)
+  - RMMultipleViewsController (1.0.3)
 
 DEPENDENCIES:
   - CocoaAsyncSocket (~> 7.4.2)
@@ -25,7 +31,7 @@ DEPENDENCIES:
   - RMMultipleViewsController (~> 1.0.2)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - CocoaAsyncSocket
     - CustomIOSAlertView
     - GoldRaccoon
@@ -39,18 +45,18 @@ SPEC REPOS:
     - RMMultipleViewsController
 
 SPEC CHECKSUMS:
-  CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
-  CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
+  CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
+  CustomIOSAlertView: cc4fa8e36219be3fd5ebcd40789f5b4aaae0f38e
   GoldRaccoon: a9143566afe37c2aba38589512aef83566a52573
-  HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
-  JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
+  HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
+  JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   KNSemiModalViewController: 8c0056377714b5170c52c65977d540200405411f
-  MJRefresh: 2460fca1a9c09a21aa4e13d47dd9e67c471d22ac
-  PulsingHalo: 1583823bd6c989fff3469bb417bc42f0d268f98e
+  MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
+  PulsingHalo: 64938e4bd3893b823abdf01478084cd92445af2b
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
-  RMMultipleViewsController: e00985ae6e90330f2a78037a2cc5e7ee2d5e6232
+  RMMultipleViewsController: 4152ae787a65877a4cdae6af60bdad31ea500ee9
 
-PODFILE CHECKSUM: f140f73c8afa08d8f965023179c4c00e9975bf2f
+PODFILE CHECKSUM: 772115f5da90cd7d4da00340bb102e54ca5ccc54
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.8.4
