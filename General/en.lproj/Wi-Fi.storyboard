@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,21 +27,18 @@
         <!--My Device Center-->
         <scene sceneID="ULL-wf-xba">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="egJ-Xp-hio" customClass="RootViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7Rh-Eg-nzv"/>
-                        <viewControllerLayoutGuide type="bottom" id="Vk2-ua-U0Z"/>
-                    </layoutGuides>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="egJ-Xp-hio" customClass="RootViewController" customModule="EasyLink_Enterprise" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dF3-Sa-Q7W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="FW5-I9-9cS"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="My Device Center" id="vhY-Iu-Rq7">
                         <barButtonItem key="leftBarButtonItem" title="Guide" id="UGB-jV-2Y0">
                             <connections>
-                                <action selector="guideButtonPressed:" destination="egJ-Xp-hio" id="d8t-aX-6EC"/>
+                                <action selector="guideButtonPressed:" destination="egJ-Xp-hio" id="LYi-fr-b3r"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Her-8z-KUQ">
@@ -57,11 +55,7 @@
         <!--Browser View Controller-->
         <scene sceneID="Wgs-mM-lMu">
             <objects>
-                <viewController storyboardIdentifier="Local Device" id="Az7-It-nhv" customClass="browserViewController" customModule="EasyLink_Enterprise" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9dJ-B4-lzh"/>
-                        <viewControllerLayoutGuide type="bottom" id="24G-f1-pKV"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="Wi-Fi" id="Az7-It-nhv" customClass="browserViewController" customModule="EasyLink_Enterprise" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vps-Y2-BUf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -125,10 +119,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="v9I-fj-FoW" firstAttribute="top" secondItem="Vps-Y2-BUf" secondAttribute="top" id="2rL-pN-niK"/>
-                            <constraint firstItem="24G-f1-pKV" firstAttribute="top" secondItem="v9I-fj-FoW" secondAttribute="bottom" id="NrI-F9-Uo0"/>
-                            <constraint firstAttribute="trailing" secondItem="v9I-fj-FoW" secondAttribute="trailing" id="lLX-rJ-HJw"/>
-                            <constraint firstItem="v9I-fj-FoW" firstAttribute="leading" secondItem="Vps-Y2-BUf" secondAttribute="leading" id="qfD-O2-a6P"/>
+                            <constraint firstItem="eqN-Vr-jCX" firstAttribute="bottom" secondItem="v9I-fj-FoW" secondAttribute="bottom" id="NrI-F9-Uo0"/>
+                            <constraint firstItem="eqN-Vr-jCX" firstAttribute="trailing" secondItem="v9I-fj-FoW" secondAttribute="trailing" id="lLX-rJ-HJw"/>
+                            <constraint firstItem="v9I-fj-FoW" firstAttribute="leading" secondItem="eqN-Vr-jCX" secondAttribute="leading" id="qfD-O2-a6P"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="eqN-Vr-jCX"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -145,14 +140,11 @@
         <scene sceneID="yY3-fH-8Ib">
             <objects>
                 <viewController id="pFb-am-YEX" customClass="talkToModuleViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fat-c6-6Xl"/>
-                        <viewControllerLayoutGuide type="bottom" id="qfB-6b-Cpf"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qbh-s3-CBZ" customClass="talk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="464"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="RXi-dh-kUU"/>
                     </view>
                     <navigationItem key="navigationItem" id="SKf-1H-AE7"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -166,14 +158,11 @@
         <scene sceneID="uRt-9C-1I6">
             <objects>
                 <viewController storyboardIdentifier="message view" title="Talk" id="ZSl-zY-V0G" customClass="messageViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zwe-Rh-h08"/>
-                        <viewControllerLayoutGuide type="bottom" id="zLz-Dw-KDT"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="m4c-tv-Zm0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="fJ6-lE-D7f"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                 </viewController>
@@ -259,10 +248,6 @@
         <scene sceneID="URv-2m-KLN">
             <objects>
                 <viewController storyboardIdentifier="add command" autoresizesArchivedViewToFullSize="NO" id="UoQ-nK-33v" customClass="addNewCommandViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Stt-MU-f8z"/>
-                        <viewControllerLayoutGuide type="bottom" id="J1X-cR-W86"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleAspectFit" id="UQK-OU-vj3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -374,6 +359,7 @@
                             <constraint firstItem="pIg-cr-kYQ" firstAttribute="leading" secondItem="UQK-OU-vj3" secondAttribute="leadingMargin" constant="-16" id="afZ-uO-Ls7"/>
                             <constraint firstItem="Euh-0c-SpZ" firstAttribute="leading" secondItem="UQK-OU-vj3" secondAttribute="leadingMargin" constant="-16" id="nRt-Zg-pkV"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="iWa-eE-B63"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -473,11 +459,7 @@
         <!--Con Things View Controller-->
         <scene sceneID="yGR-hC-uVg">
             <objects>
-                <viewController storyboardIdentifier="ConThings" id="FLg-g1-wn1" customClass="ConThingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ajL-FY-F6V"/>
-                        <viewControllerLayoutGuide type="bottom" id="tQw-S2-9hN"/>
-                    </layoutGuides>
+                <viewController id="FLg-g1-wn1" customClass="ConThingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TaS-5F-213">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="464"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -492,6 +474,7 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="LI5-69-Ejq"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -505,10 +488,6 @@
         <scene sceneID="c3i-g7-lJd">
             <objects>
                 <viewController storyboardIdentifier="EasyLink" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wtb-2v-kgF" customClass="EasyLinkMainViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SBj-Dq-LXZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="X3q-19-P2H"/>
-                    </layoutGuides>
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="Pgy-D5-0yK" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -844,26 +823,27 @@
                         </subviews>
                         <color key="backgroundColor" red="0.76470588235294112" green="0.85882352941176465" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="WqK-QA-90X" firstAttribute="centerX" secondItem="Pgy-D5-0yK" secondAttribute="centerX" id="0uN-EB-DOp"/>
+                            <constraint firstItem="WqK-QA-90X" firstAttribute="centerX" secondItem="eeR-dV-sup" secondAttribute="centerX" id="0uN-EB-DOp"/>
                             <constraint firstItem="NAE-PI-Hwe" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leadingMargin" constant="-5" id="1xU-KO-nzs"/>
-                            <constraint firstItem="NAE-PI-Hwe" firstAttribute="top" secondItem="SBj-Dq-LXZ" secondAttribute="bottom" constant="16" id="7qN-EX-PXH"/>
+                            <constraint firstItem="NAE-PI-Hwe" firstAttribute="top" secondItem="eeR-dV-sup" secondAttribute="top" constant="16" id="7qN-EX-PXH"/>
                             <constraint firstItem="rDw-gk-9YP" firstAttribute="top" secondItem="Ikv-72-Aya" secondAttribute="bottom" constant="8" id="8Sh-yv-gZy"/>
                             <constraint firstItem="kUu-dK-KRo" firstAttribute="top" secondItem="rDw-gk-9YP" secondAttribute="bottom" constant="8" id="9FH-uL-eqC"/>
-                            <constraint firstItem="rDw-gk-9YP" firstAttribute="centerX" secondItem="Pgy-D5-0yK" secondAttribute="centerX" id="Ac0-tb-Ihp"/>
+                            <constraint firstItem="rDw-gk-9YP" firstAttribute="centerX" secondItem="eeR-dV-sup" secondAttribute="centerX" id="Ac0-tb-Ihp"/>
                             <constraint firstItem="kUu-dK-KRo" firstAttribute="bottom" secondItem="Wpt-bW-NOb" secondAttribute="bottom" id="DbR-SB-bCF"/>
                             <constraint firstItem="Ikv-72-Aya" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leadingMargin" constant="-5" id="FZh-sW-Ygw"/>
                             <constraint firstItem="Wpt-bW-NOb" firstAttribute="leading" secondItem="kUu-dK-KRo" secondAttribute="trailing" id="Hsp-Ho-W67"/>
                             <constraint firstItem="Ikv-72-Aya" firstAttribute="top" secondItem="WqK-QA-90X" secondAttribute="bottom" constant="19" id="IM0-mx-Tsf"/>
                             <constraint firstItem="QJT-DO-kEJ" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leadingMargin" constant="-9" id="MsN-dh-sHb"/>
-                            <constraint firstAttribute="trailing" secondItem="QJT-DO-kEJ" secondAttribute="trailing" constant="7" id="RAa-PF-UCE"/>
-                            <constraint firstItem="QJT-DO-kEJ" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leading" constant="7" id="iNo-Hm-IGu"/>
+                            <constraint firstItem="eeR-dV-sup" firstAttribute="trailing" secondItem="QJT-DO-kEJ" secondAttribute="trailing" constant="7" id="RAa-PF-UCE"/>
+                            <constraint firstItem="QJT-DO-kEJ" firstAttribute="leading" secondItem="eeR-dV-sup" secondAttribute="leading" constant="7" id="iNo-Hm-IGu"/>
                             <constraint firstItem="WqK-QA-90X" firstAttribute="top" secondItem="NAE-PI-Hwe" secondAttribute="bottom" constant="11" id="nlI-DA-5JC"/>
-                            <constraint firstItem="rDw-gk-9YP" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leading" constant="7" id="nqm-KS-gg8"/>
+                            <constraint firstItem="rDw-gk-9YP" firstAttribute="leading" secondItem="eeR-dV-sup" secondAttribute="leading" constant="7" id="nqm-KS-gg8"/>
                             <constraint firstItem="WqK-QA-90X" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leadingMargin" constant="-9" id="oiM-v2-9TF"/>
                             <constraint firstItem="kUu-dK-KRo" firstAttribute="leading" secondItem="Pgy-D5-0yK" secondAttribute="leadingMargin" constant="-5" id="pFA-Zy-qFZ"/>
                             <constraint firstItem="QJT-DO-kEJ" firstAttribute="top" secondItem="Wpt-bW-NOb" secondAttribute="bottom" constant="11" id="pjW-QD-ukS"/>
-                            <constraint firstAttribute="trailing" secondItem="rDw-gk-9YP" secondAttribute="trailing" constant="7" id="qGl-Es-VRC"/>
+                            <constraint firstItem="eeR-dV-sup" firstAttribute="trailing" secondItem="rDw-gk-9YP" secondAttribute="trailing" constant="7" id="qGl-Es-VRC"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="eeR-dV-sup"/>
                     </view>
                     <navigationItem key="navigationItem" title="EasyLink" id="ZQi-po-HQp">
                         <barButtonItem key="backBarButtonItem" title=" " id="hKV-Is-SDk"/>
@@ -1249,14 +1229,14 @@
             <point key="canvasLocation" x="1475.3623188405797" y="-437.94642857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="DZf-Vi-XVy"/>
+        <segue reference="MnL-7g-rx9"/>
+        <segue reference="1Ll-OQ-cMg"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="UnderConstruction.png" width="153.60000610351562" height="122.87999725341797"/>
         <image name="easycloud.png" width="1159.9200439453125" height="387.60000610351562"/>
         <image name="known_logo.png" width="96" height="96"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="DZf-Vi-XVy"/>
-        <segue reference="C4e-vJ-7ar"/>
-        <segue reference="1Ll-OQ-cMg"/>
-    </inferredMetricsTieBreakers>
 </document>
