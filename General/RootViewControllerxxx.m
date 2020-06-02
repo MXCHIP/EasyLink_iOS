@@ -45,8 +45,7 @@
     float scrollWidth = self.view.bounds.size.width;
     float scrollHeight =  self.view.bounds.size.height - 44 - 40;
     
-    //ceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home", @"ConThings"]];
-    sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Home"]];
+    sceneSegment = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Wi-Fi", @"Bluetooth"]];
     sceneSegment.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     
     sceneSegment.frame = CGRectMake(0, 0, scrollWidth, 40);
@@ -68,14 +67,13 @@
     self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.contentSize = CGSizeMake(scrollWidth, scrollHeight);
+    self.scrollView.contentSize = CGSizeMake(scrollWidth * 2, scrollHeight);
     self.scrollView.delegate = self;
     [self.scrollView scrollRectToVisible:CGRectMake(0, 0, scrollWidth, scrollHeight) animated:YES];
     [self.view addSubview:self.scrollView];
 
-    //ConThingsViewController *ConThings = [self.storyboard instantiateViewControllerWithIdentifier:@"ConThings"];
     browserViewController *localDevice = [self.storyboard instantiateViewControllerWithIdentifier:@"Local Device"];
-    //ConThingsViewController *conThings = [self.storyboard instantiateViewControllerWithIdentifier:@"Local Device"];
+    ConThingsViewController *conThings = [self.storyboard instantiateViewControllerWithIdentifier:@"ConThings"];
     
     /*Local devices list*/
     localDevice.view.frame = CGRectMake(0, 0, scrollWidth, scrollHeight);
@@ -86,19 +84,23 @@
     
     
     /*Devices list on www.conthings.com*/
-//    conThings.view.frame = CGRectMake(320, 0, 320, 464);
-//    
-//    [conThings willMoveToParentViewController:self];
-//    [self.scrollView addSubview:conThings.view];
-//    [self addChildViewController:conThings];
-//    [conThings didMoveToParentViewController:self];
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    conThings.view.frame = CGRectMake(screenSize.width, 0, scrollWidth, scrollHeight);
+    
+    [conThings willMoveToParentViewController:self];
+    [self.scrollView addSubview:conThings.view];
+    [self addChildViewController:conThings];
+    [conThings didMoveToParentViewController:self];
+    
     self.manager = [CLLocationManager new];
     [self.manager requestWhenInUseAuthorization];
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
 	NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
-    [self.scrollView scrollRectToVisible:CGRectMake(segmentedControl.selectedSegmentIndex*320, 0, 320, 500) animated:YES];
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    
+    [self.scrollView scrollRectToVisible:CGRectMake(segmentedControl.selectedSegmentIndex*screenSize.width, 0, 320, 500) animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

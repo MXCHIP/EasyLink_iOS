@@ -112,17 +112,17 @@ class browserViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - NSNetServiceBrowserDelegate
     
     func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {
-        print("Service Search stoped");
+        print("Service Search stoped")
     }
     
     func netServiceBrowserWillSearch(_ browser: NetServiceBrowser) {
-        print("Service Search will start");
+        print("Service Search will start")
     }
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
         // If a service went away, stop resolving it if it's currently being resolved,
         // remove it from the list and update the table view if no more events are queued.
-        NSLog("Remove service: \(service.name)");
+        NSLog("Remove service: \(service.name)")
         
         if let index = _services.firstIndex(where: { $0.name == service.name }) {
             _services[index].bonjourService?.stop()

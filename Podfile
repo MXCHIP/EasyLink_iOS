@@ -25,4 +25,5 @@ target 'EasyLink Enterprise' do
   pod 'CustomIOSAlertView', '~>0.9.3'
   pod 'PulsingHalo'
   pod 'JSQMessagesViewController'
+  pod 'nRFMeshProvision', :path => './'
 end

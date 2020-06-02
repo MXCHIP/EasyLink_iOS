@@ -5,6 +5,7 @@
 #import "MJRefresh.h"
 #import "UIScrollView+MJRefresh.h"
 #import "bonjourDetailTableViewController.h"
+#import "HMSegmentedControl.h"
 
 
 #import <PgyUpdate/PgyUpdateManager.h>

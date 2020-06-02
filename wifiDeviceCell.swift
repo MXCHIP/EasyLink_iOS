@@ -15,7 +15,10 @@ extension Data {
         self.copyBytes(to: p_buf, count: Int(MemoryLayout<sockaddr>.size))
         
         let p_addrIn = UnsafeRawPointer(p_buf).bindMemory(to: sockaddr_in.self, capacity: 1)
-        var addrIn = p_addrIn.pointee
+        let p_addrIn6 = UnsafeRawPointer(p_buf).bindMemory(to: sockaddr_in6.self, capacity: 1)
+
+        let addrIn:sockaddr_in = p_addrIn.pointee
+        let addrIn6:sockaddr_in6 = p_addrIn6.pointee
                 
         if addrIn.sin_family == AF_INET {
             if let address = inet_ntoa(addrIn.sin_addr) {
@@ -26,8 +29,8 @@ extension Data {
             }
         }
         else if addrIn.sin_family == AF_INET6 {
-            let addr_in6: UnsafePointer<sockaddr_in6> = UnsafeRawPointer(&addrIn).bindMemory(to: sockaddr_in6.self, capacity: 1)
-            var ip6 = addr_in6.pointee.sin6_addr
+//            let addr_in6: UnsafePointer<sockaddr_in6> = UnsafeRawPointer(&addrIn).bindMemory(to: sockaddr_in6.self, capacity: 1)
+            var ip6 = addrIn6.sin6_addr
             var addrStr: [CChar] = Array(repeating: 0, count: Int(INET6_ADDRSTRLEN))
             inet_ntop(AF_INET6, &ip6, &addrStr, socklen_t(Int(INET6_ADDRSTRLEN)))
             return String(cString: &addrStr)

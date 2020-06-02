@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>我们需要您的同意才能使用低功耗蓝牙，用于访问蓝牙Mesh网络</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>我们需要您的同意才能使用地理位置权限，并用于在配网时获得当前连接的Wi-Fi网络名称</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

@@ -22,9 +22,6 @@
 		3D33709D1A49628E00ABFF1B /* FTCSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370961A49628E00ABFF1B /* FTCSwitchCell.m */; };
 		3D33709E1A49628E00ABFF1B /* EasyLinkFTCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370981A49628E00ABFF1B /* EasyLinkFTCTableViewController.m */; };
 		3D3370A21A4962FE00ABFF1B /* EasyLinkOTATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A11A4962FE00ABFF1B /* EasyLinkOTATableViewController.m */; };
-		3D3370A81A4963BF00ABFF1B /* guideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A51A4963BF00ABFF1B /* guideViewController.m */; };
-		3D3370A91A4963BF00ABFF1B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A71A4963BF00ABFF1B /* RootViewController.m */; };
-		3D3370AC1A49643A00ABFF1B /* ConThingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370AB1A49643A00ABFF1B /* ConThingsViewController.m */; };
 		3D3370AF1A4964C600ABFF1B /* mxchipAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370AE1A4964C600ABFF1B /* mxchipAppDelegate.m */; };
 		3D3370B71A49658300ABFF1B /* EasyLinkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B21A49658300ABFF1B /* EasyLinkMainViewController.m */; };
 		3D3370B81A49658300ABFF1B /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B41A49658300ABFF1B /* newModuleTableViewCell.m */; };
@@ -88,8 +85,6 @@
 		3D33716E1A49682400ABFF1B /* UIColor+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371321A49682300ABFF1B /* UIColor+JSMessagesView.m */; };
 		3D33716F1A49682400ABFF1B /* UIImage+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371341A49682300ABFF1B /* UIImage+JSMessagesView.m */; };
 		3D3371701A49682400ABFF1B /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371361A49682300ABFF1B /* UIView+AnimationOptionsForCurve.m */; };
-		3D3371751A49686E00ABFF1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371731A49686E00ABFF1B /* main.m */; };
-		3D3371781A4968BD00ABFF1B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371761A4968BD00ABFF1B /* MainStoryboard.storyboard */; };
 		3D33717B1A4968E700ABFF1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371791A4968E700ABFF1B /* InfoPlist.strings */; };
 		3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
 		3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
@@ -97,8 +92,10 @@
 		3D6739481FBBF54D00892F08 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
 		3D67394B1FBBF65000892F08 /* launch_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D67394A1FBBF65000892F08 /* launch_image.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
-		3D918D3F23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D918D3E23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift */; };
-		3D918D4023ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D918D3E23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift */; };
+		3D7CBD8B2475353700B7F3F1 /* MXGenericModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MXGenericModel.xib */; };
+		3D7CBD8D2475372A00B7F3F1 /* MXGenericModleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8C2475372A00B7F3F1 /* MXGenericModleViewCell.swift */; };
+		3D7CBD8E2475373200B7F3F1 /* MXGenericModleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8C2475372A00B7F3F1 /* MXGenericModleViewCell.swift */; };
+		3D7CBD8F2475461D00B7F3F1 /* MXGenericModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MXGenericModel.xib */; };
 		3D9A166A1A496ABF00DBBE61 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
 		3D9A166B1A496ABF00DBBE61 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
 		3D9A16761A496CC200DBBE61 /* easycloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16751A496CC200DBBE61 /* easycloud.png */; };
@@ -121,8 +118,6 @@
 		3DB0E0A4216CD5E700357A65 /* NSString+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370FD1A49682300ABFF1B /* NSString+JSMessagesView.m */; };
 		3DB0E0A5216CD5E700357A65 /* JSMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370FB1A49682300ABFF1B /* JSMessageTextView.m */; };
 		3DB0E0A6216CD5E700357A65 /* commandsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370831A49622700ABFF1B /* commandsTableViewController.m */; };
-		3DB0E0A7216CD5E700357A65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371731A49686E00ABFF1B /* main.m */; };
-		3DB0E0A8216CD5E700357A65 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A71A4963BF00ABFF1B /* RootViewController.m */; };
 		3DB0E0A9216CD5E700357A65 /* Protocols.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370811A49622700ABFF1B /* Protocols.m */; };
 		3DB0E0AA216CD5E700357A65 /* talkToModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370871A49622700ABFF1B /* talkToModuleViewController.m */; };
 		3DB0E0AB216CD5E700357A65 /* EasyLinkOTATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A11A4962FE00ABFF1B /* EasyLinkOTATableViewController.m */; };
@@ -135,8 +130,6 @@
 		3DB0E0B2216CD5E700357A65 /* UIButton+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371301A49682300ABFF1B /* UIButton+JSMessagesView.m */; };
 		3DB0E0B3216CD5E700357A65 /* JSMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370F91A49682300ABFF1B /* JSMessagesViewController.m */; };
 		3DB0E0B4216CD5E700357A65 /* KNSemiModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */; };
-		3DB0E0B5216CD5E700357A65 /* guideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370A51A4963BF00ABFF1B /* guideViewController.m */; };
-		3DB0E0B6216CD5E700357A65 /* ConThingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370AB1A49643A00ABFF1B /* ConThingsViewController.m */; };
 		3DB0E0B7216CD5E700357A65 /* newModuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370B41A49658300ABFF1B /* newModuleTableViewCell.m */; };
 		3DB0E0B8216CD5E700357A65 /* bonjourDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */; };
 		3DB0E0B9216CD5E700357A65 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
@@ -214,11 +207,208 @@
 		3DB0E107216CD5E700357A65 /* input-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371251A49682300ABFF1B /* input-field@2x.png */; };
 		3DB0E108216CD5E700357A65 /* bubble-default-outgoing-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371061A49682300ABFF1B /* bubble-default-outgoing-green.png */; };
 		3DB0E109216CD5E700357A65 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
-		3DB0E10A216CD5E700357A65 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371761A4968BD00ABFF1B /* MainStoryboard.storyboard */; };
 		3DB0E10B216CD5E700357A65 /* bubble-flat-outgoing-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371101A49682300ABFF1B /* bubble-flat-outgoing-old.png */; };
 		3DB0E10C216CD5E700357A65 /* bubble-default-incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371051A49682300ABFF1B /* bubble-default-incoming@2x.png */; };
 		3DB0E10D216CD5E700357A65 /* bubble-square-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371181A49682300ABFF1B /* bubble-square-incoming.png */; };
 		3DB0E10E216CD5E700357A65 /* bubble-square-outgoing-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D33711A1A49682300ABFF1B /* bubble-square-outgoing-selected.png */; };
+		3DB68A68246ABA3E00FF6585 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A67246ABA3E00FF6585 /* AppDelegate.swift */; };
+		3DB68A69246ABA7900FF6585 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A67246ABA3E00FF6585 /* AppDelegate.swift */; };
+		3DB68A6C246ABBC300FF6585 /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A6B246ABBC300FF6585 /* NetworkConnection.swift */; };
+		3DB68A6D246ABBC300FF6585 /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A6B246ABBC300FF6585 /* NetworkConnection.swift */; };
+		3DB68A73246ABBF500FF6585 /* GenericState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A6E246ABBF500FF6585 /* GenericState.swift */; };
+		3DB68A74246ABBF500FF6585 /* GenericState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A6E246ABBF500FF6585 /* GenericState.swift */; };
+		3DB68A75246ABBF500FF6585 /* GenericOnOffClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A6F246ABBF500FF6585 /* GenericOnOffClientDelegate.swift */; };
+		3DB68A76246ABBF500FF6585 /* GenericOnOffClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A6F246ABBF500FF6585 /* GenericOnOffClientDelegate.swift */; };
+		3DB68A77246ABBF500FF6585 /* GenericLevelClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A70246ABBF500FF6585 /* GenericLevelClientDelegate.swift */; };
+		3DB68A78246ABBF500FF6585 /* GenericLevelClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A70246ABBF500FF6585 /* GenericLevelClientDelegate.swift */; };
+		3DB68A79246ABBF500FF6585 /* GenericLevelServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A71246ABBF500FF6585 /* GenericLevelServerDelegate.swift */; };
+		3DB68A7A246ABBF500FF6585 /* GenericLevelServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A71246ABBF500FF6585 /* GenericLevelServerDelegate.swift */; };
+		3DB68A7B246ABBF500FF6585 /* GenericOnOffServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A72246ABBF500FF6585 /* GenericOnOffServerDelegate.swift */; };
+		3DB68A7C246ABBF500FF6585 /* GenericOnOffServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A72246ABBF500FF6585 /* GenericOnOffServerDelegate.swift */; };
+		3DB68A7F246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A7E246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift */; };
+		3DB68A80246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A7E246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift */; };
+		3DB68A86246ABC3800FF6585 /* SimpleOnOffGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A82246ABC3800FF6585 /* SimpleOnOffGet.swift */; };
+		3DB68A87246ABC3800FF6585 /* SimpleOnOffGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A82246ABC3800FF6585 /* SimpleOnOffGet.swift */; };
+		3DB68A88246ABC3800FF6585 /* SimpleOnOffSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A83246ABC3800FF6585 /* SimpleOnOffSet.swift */; };
+		3DB68A89246ABC3800FF6585 /* SimpleOnOffSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A83246ABC3800FF6585 /* SimpleOnOffSet.swift */; };
+		3DB68A8A246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A84246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift */; };
+		3DB68A8B246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A84246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift */; };
+		3DB68A8C246ABC3800FF6585 /* SimpleOnOffStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A85246ABC3800FF6585 /* SimpleOnOffStatus.swift */; };
+		3DB68A8D246ABC3800FF6585 /* SimpleOnOffStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A85246ABC3800FF6585 /* SimpleOnOffStatus.swift */; };
+		3DB68A92246AF2A100FF6585 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A8F246AF2A100FF6585 /* RootViewController.swift */; };
+		3DB68A93246AF2A100FF6585 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A8F246AF2A100FF6585 /* RootViewController.swift */; };
+		3DB68A94246AF2A100FF6585 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A90246AF2A100FF6585 /* ProgressViewController.swift */; };
+		3DB68A95246AF2A100FF6585 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A90246AF2A100FF6585 /* ProgressViewController.swift */; };
+		3DB68A96246AF2A100FF6585 /* ProgressCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A91246AF2A100FF6585 /* ProgressCollectionViewController.swift */; };
+		3DB68A97246AF2A100FF6585 /* ProgressCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A91246AF2A100FF6585 /* ProgressCollectionViewController.swift */; };
+		3DB68A9C246B991600FF6585 /* ElementSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A9B246B991600FF6585 /* ElementSectionView.swift */; };
+		3DB68A9D246B991600FF6585 /* ElementSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A9B246B991600FF6585 /* ElementSectionView.swift */; };
+		3DB68AA4246B996200FF6585 /* ModelControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A9E246B996200FF6585 /* ModelControlCell.swift */; };
+		3DB68AA5246B996200FF6585 /* ModelControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A9E246B996200FF6585 /* ModelControlCell.swift */; };
+		3DB68AA6246B996200FF6585 /* SimpleOnOffClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A9F246B996200FF6585 /* SimpleOnOffClientCell.swift */; };
+		3DB68AA7246B996200FF6585 /* SimpleOnOffClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68A9F246B996200FF6585 /* SimpleOnOffClientCell.swift */; };
+		3DB68AA8246B996200FF6585 /* GenericLevelServerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AA0246B996200FF6585 /* GenericLevelServerCell.swift */; };
+		3DB68AA9246B996200FF6585 /* GenericLevelServerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AA0246B996200FF6585 /* GenericLevelServerCell.swift */; };
+		3DB68AAA246B996200FF6585 /* GenericOnOffServerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AA1246B996200FF6585 /* GenericOnOffServerCell.swift */; };
+		3DB68AAB246B996200FF6585 /* GenericOnOffServerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AA1246B996200FF6585 /* GenericOnOffServerCell.swift */; };
+		3DB68AAC246B996200FF6585 /* GenericOnOffClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AA2246B996200FF6585 /* GenericOnOffClientCell.swift */; };
+		3DB68AAD246B996200FF6585 /* GenericOnOffClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AA2246B996200FF6585 /* GenericOnOffClientCell.swift */; };
+		3DB68AAE246B996300FF6585 /* GenericLevelClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AA3246B996200FF6585 /* GenericLevelClientCell.swift */; };
+		3DB68AAF246B996300FF6585 /* GenericLevelClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AA3246B996200FF6585 /* GenericLevelClientCell.swift */; };
+		3DB68AB1246B999100FF6585 /* ControlViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AB0246B999100FF6585 /* ControlViewCell.swift */; };
+		3DB68AB2246B999100FF6585 /* ControlViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AB0246B999100FF6585 /* ControlViewCell.swift */; };
+		3DB68AB6246B99E200FF6585 /* NodeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AB4246B99E200FF6585 /* NodeViewCell.swift */; };
+		3DB68AB7246B99E200FF6585 /* NodeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AB4246B99E200FF6585 /* NodeViewCell.swift */; };
+		3DB68AB8246B99E200FF6585 /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AB5246B99E200FF6585 /* NetworkViewController.swift */; };
+		3DB68AB9246B99E200FF6585 /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AB5246B99E200FF6585 /* NetworkViewController.swift */; };
+		3DB68AEF246B9A0400FF6585 /* NodeFeaturesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD3246B9A0400FF6585 /* NodeFeaturesCell.swift */; };
+		3DB68AF0246B9A0400FF6585 /* NodeFeaturesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD3246B9A0400FF6585 /* NodeFeaturesCell.swift */; };
+		3DB68AF1246B9A0400FF6585 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD4246B9A0400FF6585 /* ActionCell.swift */; };
+		3DB68AF2246B9A0400FF6585 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD4246B9A0400FF6585 /* ActionCell.swift */; };
+		3DB68AF3246B9A0400FF6585 /* PublicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD5246B9A0400FF6585 /* PublicationCell.swift */; };
+		3DB68AF4246B9A0400FF6585 /* PublicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD5246B9A0400FF6585 /* PublicationCell.swift */; };
+		3DB68AF5246B9A0400FF6585 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD6246B9A0400FF6585 /* SwitchCell.swift */; };
+		3DB68AF6246B9A0400FF6585 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD6246B9A0400FF6585 /* SwitchCell.swift */; };
+		3DB68AF7246B9A0400FF6585 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD7246B9A0400FF6585 /* SubscribeViewController.swift */; };
+		3DB68AF8246B9A0400FF6585 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD7246B9A0400FF6585 /* SubscribeViewController.swift */; };
+		3DB68AF9246B9A0400FF6585 /* NodeAppKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD8246B9A0400FF6585 /* NodeAppKeysViewController.swift */; };
+		3DB68AFA246B9A0400FF6585 /* NodeAppKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD8246B9A0400FF6585 /* NodeAppKeysViewController.swift */; };
+		3DB68AFB246B9A0400FF6585 /* ModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD9246B9A0400FF6585 /* ModelViewController.swift */; };
+		3DB68AFC246B9A0400FF6585 /* ModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AD9246B9A0400FF6585 /* ModelViewController.swift */; };
+		3DB68AFD246B9A0400FF6585 /* SetPublicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADA246B9A0400FF6585 /* SetPublicationViewController.swift */; };
+		3DB68AFE246B9A0400FF6585 /* SetPublicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADA246B9A0400FF6585 /* SetPublicationViewController.swift */; };
+		3DB68AFF246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADB246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift */; };
+		3DB68B00246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADB246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift */; };
+		3DB68B01246B9A0400FF6585 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADC246B9A0400FF6585 /* ConfigurationViewController.swift */; };
+		3DB68B02246B9A0400FF6585 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADC246B9A0400FF6585 /* ConfigurationViewController.swift */; };
+		3DB68B03246B9A0400FF6585 /* ConfigurationServerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADE246B9A0400FF6585 /* ConfigurationServerViewCell.swift */; };
+		3DB68B04246B9A0400FF6585 /* ConfigurationServerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADE246B9A0400FF6585 /* ConfigurationServerViewCell.swift */; };
+		3DB68B05246B9A0400FF6585 /* ModelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADF246B9A0400FF6585 /* ModelViewCell.swift */; };
+		3DB68B06246B9A0400FF6585 /* ModelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68ADF246B9A0400FF6585 /* ModelViewCell.swift */; };
+		3DB68B07246B9A0400FF6585 /* VendorModelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE0246B9A0400FF6585 /* VendorModelViewCell.swift */; };
+		3DB68B08246B9A0400FF6585 /* VendorModelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE0246B9A0400FF6585 /* VendorModelViewCell.swift */; };
+		3DB68B09246B9A0400FF6585 /* GenericOnOffViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE1246B9A0400FF6585 /* GenericOnOffViewCell.swift */; };
+		3DB68B0A246B9A0400FF6585 /* GenericOnOffViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE1246B9A0400FF6585 /* GenericOnOffViewCell.swift */; };
+		3DB68B0B246B9A0400FF6585 /* GenericLevelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE2246B9A0400FF6585 /* GenericLevelViewCell.swift */; };
+		3DB68B0C246B9A0400FF6585 /* GenericLevelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE2246B9A0400FF6585 /* GenericLevelViewCell.swift */; };
+		3DB68B0D246B9A0400FF6585 /* ModelBindAppKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE3246B9A0400FF6585 /* ModelBindAppKeyViewController.swift */; };
+		3DB68B0E246B9A0400FF6585 /* ModelBindAppKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE3246B9A0400FF6585 /* ModelBindAppKeyViewController.swift */; };
+		3DB68B0F246B9A0400FF6585 /* NodeAddNetworkKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE4246B9A0400FF6585 /* NodeAddNetworkKeyViewController.swift */; };
+		3DB68B10246B9A0400FF6585 /* NodeAddNetworkKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE4246B9A0400FF6585 /* NodeAddNetworkKeyViewController.swift */; };
+		3DB68B11246B9A0400FF6585 /* NodeAddAppKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE5246B9A0400FF6585 /* NodeAddAppKeyViewController.swift */; };
+		3DB68B12246B9A0400FF6585 /* NodeAddAppKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE5246B9A0400FF6585 /* NodeAddAppKeyViewController.swift */; };
+		3DB68B13246B9A0400FF6585 /* NodeNetworkKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE6246B9A0400FF6585 /* NodeNetworkKeysViewController.swift */; };
+		3DB68B14246B9A0400FF6585 /* NodeNetworkKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE6246B9A0400FF6585 /* NodeNetworkKeysViewController.swift */; };
+		3DB68B15246B9A0400FF6585 /* ElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE7246B9A0400FF6585 /* ElementViewController.swift */; };
+		3DB68B16246B9A0400FF6585 /* ElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE7246B9A0400FF6585 /* ElementViewController.swift */; };
+		3DB68B17246B9A0400FF6585 /* ProvisioningViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE9246B9A0400FF6585 /* ProvisioningViewDelegate.swift */; };
+		3DB68B18246B9A0400FF6585 /* ProvisioningViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AE9246B9A0400FF6585 /* ProvisioningViewDelegate.swift */; };
+		3DB68B19246B9A0400FF6585 /* OobSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AEA246B9A0400FF6585 /* OobSelector.swift */; };
+		3DB68B1A246B9A0400FF6585 /* OobSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AEA246B9A0400FF6585 /* OobSelector.swift */; };
+		3DB68B1B246B9A0400FF6585 /* NetworkKeySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AEB246B9A0400FF6585 /* NetworkKeySelectionViewController.swift */; };
+		3DB68B1C246B9A0400FF6585 /* NetworkKeySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AEB246B9A0400FF6585 /* NetworkKeySelectionViewController.swift */; };
+		3DB68B1D246B9A0400FF6585 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AEC246B9A0400FF6585 /* DeviceCell.swift */; };
+		3DB68B1E246B9A0400FF6585 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AEC246B9A0400FF6585 /* DeviceCell.swift */; };
+		3DB68B1F246B9A0400FF6585 /* ProvisioningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AED246B9A0400FF6585 /* ProvisioningViewController.swift */; };
+		3DB68B20246B9A0400FF6585 /* ProvisioningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AED246B9A0400FF6585 /* ProvisioningViewController.swift */; };
+		3DB68B21246B9A0400FF6585 /* ScannerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AEE246B9A0400FF6585 /* ScannerTableViewController.swift */; };
+		3DB68B22246B9A0400FF6585 /* ScannerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68AEE246B9A0400FF6585 /* ScannerTableViewController.swift */; };
+		3DB68B30246B9A4A00FF6585 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B25246B9A4A00FF6585 /* SectionView.swift */; };
+		3DB68B31246B9A4A00FF6585 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B25246B9A4A00FF6585 /* SectionView.swift */; };
+		3DB68B32246B9A4A00FF6585 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B26246B9A4A00FF6585 /* GroupCell.swift */; };
+		3DB68B33246B9A4A00FF6585 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B26246B9A4A00FF6585 /* GroupCell.swift */; };
+		3DB68B34246B9A4A00FF6585 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B27246B9A4A00FF6585 /* BottomSheetViewController.swift */; };
+		3DB68B35246B9A4A00FF6585 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B27246B9A4A00FF6585 /* BottomSheetViewController.swift */; };
+		3DB68B36246B9A4A00FF6585 /* BottomSheetSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B28246B9A4A00FF6585 /* BottomSheetSegue.swift */; };
+		3DB68B37246B9A4A00FF6585 /* BottomSheetSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B28246B9A4A00FF6585 /* BottomSheetSegue.swift */; };
+		3DB68B38246B9A4A00FF6585 /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B29246B9A4A00FF6585 /* AddGroupViewController.swift */; };
+		3DB68B39246B9A4A00FF6585 /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B29246B9A4A00FF6585 /* AddGroupViewController.swift */; };
+		3DB68B3A246B9A4A00FF6585 /* GenericOnOffGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2B246B9A4A00FF6585 /* GenericOnOffGroupCell.swift */; };
+		3DB68B3B246B9A4A00FF6585 /* GenericOnOffGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2B246B9A4A00FF6585 /* GenericOnOffGroupCell.swift */; };
+		3DB68B3C246B9A4A00FF6585 /* ModelGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2C246B9A4A00FF6585 /* ModelGroupCell.swift */; };
+		3DB68B3D246B9A4A00FF6585 /* ModelGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2C246B9A4A00FF6585 /* ModelGroupCell.swift */; };
+		3DB68B3E246B9A4A00FF6585 /* GenericLevelGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2D246B9A4A00FF6585 /* GenericLevelGroupCell.swift */; };
+		3DB68B3F246B9A4A00FF6585 /* GenericLevelGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2D246B9A4A00FF6585 /* GenericLevelGroupCell.swift */; };
+		3DB68B40246B9A4A00FF6585 /* GroupControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2E246B9A4A00FF6585 /* GroupControlViewController.swift */; };
+		3DB68B41246B9A4A00FF6585 /* GroupControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2E246B9A4A00FF6585 /* GroupControlViewController.swift */; };
+		3DB68B42246B9A4A00FF6585 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2F246B9A4A00FF6585 /* GroupsViewController.swift */; };
+		3DB68B43246B9A4A00FF6585 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B2F246B9A4A00FF6585 /* GroupsViewController.swift */; };
+		3DB68B52246B9A5E00FF6585 /* NetworkKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B45246B9A5E00FF6585 /* NetworkKeysViewController.swift */; };
+		3DB68B53246B9A5E00FF6585 /* NetworkKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B45246B9A5E00FF6585 /* NetworkKeysViewController.swift */; };
+		3DB68B54246B9A5E00FF6585 /* EditKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B46246B9A5E00FF6585 /* EditKeyViewController.swift */; };
+		3DB68B55246B9A5E00FF6585 /* EditKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B46246B9A5E00FF6585 /* EditKeyViewController.swift */; };
+		3DB68B56246B9A5E00FF6585 /* RangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B49246B9A5E00FF6585 /* RangeCell.swift */; };
+		3DB68B57246B9A5E00FF6585 /* RangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B49246B9A5E00FF6585 /* RangeCell.swift */; };
+		3DB68B58246B9A5E00FF6585 /* EditProvisionerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4A246B9A5E00FF6585 /* EditProvisionerViewController.swift */; };
+		3DB68B59246B9A5E00FF6585 /* EditProvisionerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4A246B9A5E00FF6585 /* EditProvisionerViewController.swift */; };
+		3DB68B5A246B9A5E00FF6585 /* ProvisionersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4B246B9A5E00FF6585 /* ProvisionersViewController.swift */; };
+		3DB68B5B246B9A5E00FF6585 /* ProvisionersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4B246B9A5E00FF6585 /* ProvisionersViewController.swift */; };
+		3DB68B5C246B9A5E00FF6585 /* EditRangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4C246B9A5E00FF6585 /* EditRangesViewController.swift */; };
+		3DB68B5D246B9A5E00FF6585 /* EditRangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4C246B9A5E00FF6585 /* EditRangesViewController.swift */; };
+		3DB68B5E246B9A5E00FF6585 /* RangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4E246B9A5E00FF6585 /* RangeView.swift */; };
+		3DB68B5F246B9A5E00FF6585 /* RangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4E246B9A5E00FF6585 /* RangeView.swift */; };
+		3DB68B60246B9A5F00FF6585 /* FabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4F246B9A5E00FF6585 /* FabView.swift */; };
+		3DB68B61246B9A5F00FF6585 /* FabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B4F246B9A5E00FF6585 /* FabView.swift */; };
+		3DB68B62246B9A5F00FF6585 /* AppKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B50246B9A5E00FF6585 /* AppKeysViewController.swift */; };
+		3DB68B63246B9A5F00FF6585 /* AppKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B50246B9A5E00FF6585 /* AppKeysViewController.swift */; };
+		3DB68B64246B9A5F00FF6585 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B51246B9A5E00FF6585 /* SettingsViewController.swift */; };
+		3DB68B65246B9A5F00FF6585 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B51246B9A5E00FF6585 /* SettingsViewController.swift */; };
+		3DB68B70246B9A7000FF6585 /* CustomAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B68246B9A7000FF6585 /* CustomAddressCell.swift */; };
+		3DB68B71246B9A7000FF6585 /* CustomAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B68246B9A7000FF6585 /* CustomAddressCell.swift */; };
+		3DB68B72246B9A7000FF6585 /* FilterTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B69246B9A7000FF6585 /* FilterTypeCell.swift */; };
+		3DB68B73246B9A7000FF6585 /* FilterTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B69246B9A7000FF6585 /* FilterTypeCell.swift */; };
+		3DB68B74246B9A7000FF6585 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6A246B9A7000FF6585 /* AddressCell.swift */; };
+		3DB68B75246B9A7000FF6585 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6A246B9A7000FF6585 /* AddressCell.swift */; };
+		3DB68B76246B9A7000FF6585 /* ConnectionModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6B246B9A7000FF6585 /* ConnectionModeCell.swift */; };
+		3DB68B77246B9A7000FF6585 /* ConnectionModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6B246B9A7000FF6585 /* ConnectionModeCell.swift */; };
+		3DB68B78246B9A7000FF6585 /* ProxyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6C246B9A7000FF6585 /* ProxyCell.swift */; };
+		3DB68B79246B9A7000FF6585 /* ProxyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6C246B9A7000FF6585 /* ProxyCell.swift */; };
+		3DB68B7A246B9A7000FF6585 /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6D246B9A7000FF6585 /* AddAddressViewController.swift */; };
+		3DB68B7B246B9A7000FF6585 /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6D246B9A7000FF6585 /* AddAddressViewController.swift */; };
+		3DB68B7C246B9A7000FF6585 /* ProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6E246B9A7000FF6585 /* ProxyViewController.swift */; };
+		3DB68B7D246B9A7000FF6585 /* ProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6E246B9A7000FF6585 /* ProxyViewController.swift */; };
+		3DB68B7E246B9A7000FF6585 /* ProxySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6F246B9A7000FF6585 /* ProxySelectorViewController.swift */; };
+		3DB68B7F246B9A7000FF6585 /* ProxySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B6F246B9A7000FF6585 /* ProxySelectorViewController.swift */; };
+		3DB68B88246B9A9200FF6585 /* UITableView+EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B81246B9A9200FF6585 /* UITableView+EmptyView.swift */; };
+		3DB68B89246B9A9200FF6585 /* UITableView+EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B81246B9A9200FF6585 /* UITableView+EmptyView.swift */; };
+		3DB68B8A246B9A9200FF6585 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B82246B9A9200FF6585 /* AppInfo.swift */; };
+		3DB68B8B246B9A9200FF6585 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B82246B9A9200FF6585 /* AppInfo.swift */; };
+		3DB68B8C246B9A9200FF6585 /* RangeObject+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B83246B9A9200FF6585 /* RangeObject+String.swift */; };
+		3DB68B8D246B9A9200FF6585 /* RangeObject+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B83246B9A9200FF6585 /* RangeObject+String.swift */; };
+		3DB68B8E246B9A9200FF6585 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B84246B9A9200FF6585 /* UIViewController+Alert.swift */; };
+		3DB68B8F246B9A9200FF6585 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B84246B9A9200FF6585 /* UIViewController+Alert.swift */; };
+		3DB68B90246B9A9200FF6585 /* Address+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B85246B9A9200FF6585 /* Address+String.swift */; };
+		3DB68B91246B9A9200FF6585 /* Address+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B85246B9A9200FF6585 /* Address+String.swift */; };
+		3DB68B92246B9A9200FF6585 /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B86246B9A9200FF6585 /* UIViewController+Toast.swift */; };
+		3DB68B93246B9A9200FF6585 /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B86246B9A9200FF6585 /* UIViewController+Toast.swift */; };
+		3DB68B94246B9A9200FF6585 /* UIColor+Nordic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B87246B9A9200FF6585 /* UIColor+Nordic.swift */; };
+		3DB68B95246B9A9200FF6585 /* UIColor+Nordic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB68B87246B9A9200FF6585 /* UIColor+Nordic.swift */; };
+		3DB68BAE246B9AAC00FF6585 /* SetPublication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68B99246B9AAC00FF6585 /* SetPublication.storyboard */; };
+		3DB68BAF246B9AAC00FF6585 /* SetPublication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68B99246B9AAC00FF6585 /* SetPublication.storyboard */; };
+		3DB68BB0246B9AAC00FF6585 /* Proxy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68B9B246B9AAC00FF6585 /* Proxy.storyboard */; };
+		3DB68BB1246B9AAC00FF6585 /* Proxy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68B9B246B9AAC00FF6585 /* Proxy.storyboard */; };
+		3DB68BB2246B9AAC00FF6585 /* Network.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68B9D246B9AAC00FF6585 /* Network.storyboard */; };
+		3DB68BB3246B9AAC00FF6585 /* Network.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68B9D246B9AAC00FF6585 /* Network.storyboard */; };
+		3DB68BB6246B9AAC00FF6585 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA1246B9AAC00FF6585 /* Groups.storyboard */; };
+		3DB68BB7246B9AAC00FF6585 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA1246B9AAC00FF6585 /* Groups.storyboard */; };
+		3DB68BB8246B9AAC00FF6585 /* Control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA3246B9AAC00FF6585 /* Control.storyboard */; };
+		3DB68BB9246B9AAC00FF6585 /* Control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA3246B9AAC00FF6585 /* Control.storyboard */; };
+		3DB68BBA246B9AAC00FF6585 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA5246B9AAC00FF6585 /* Settings.storyboard */; };
+		3DB68BBB246B9AAC00FF6585 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA5246B9AAC00FF6585 /* Settings.storyboard */; };
+		3DB68BBC246B9AAC00FF6585 /* VendorModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA8246B9AAC00FF6585 /* VendorModel.xib */; };
+		3DB68BBD246B9AAC00FF6585 /* VendorModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA8246B9AAC00FF6585 /* VendorModel.xib */; };
+		3DB68BBE246B9AAC00FF6585 /* GenericLevel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA9246B9AAC00FF6585 /* GenericLevel.xib */; };
+		3DB68BBF246B9AAC00FF6585 /* GenericLevel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BA9246B9AAC00FF6585 /* GenericLevel.xib */; };
+		3DB68BC0246B9AAC00FF6585 /* GenericOnOff.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BAA246B9AAC00FF6585 /* GenericOnOff.xib */; };
+		3DB68BC1246B9AAC00FF6585 /* GenericOnOff.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BAA246B9AAC00FF6585 /* GenericOnOff.xib */; };
+		3DB68BC2246B9AAC00FF6585 /* ConfigurationServer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BAB246B9AAC00FF6585 /* ConfigurationServer.xib */; };
+		3DB68BC3246B9AAC00FF6585 /* ConfigurationServer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BAB246B9AAC00FF6585 /* ConfigurationServer.xib */; };
+		3DB68BC5246B9AED00FF6585 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BC4246B9AED00FF6585 /* Images.xcassets */; };
+		3DB68BC6246B9AED00FF6585 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BC4246B9AED00FF6585 /* Images.xcassets */; };
+		3DB68BCD246BC90900FF6585 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BCB246BC90900FF6585 /* Main.storyboard */; };
+		3DB68BCE246BC90900FF6585 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BCB246BC90900FF6585 /* Main.storyboard */; };
+		3DB68BD1246BD54000FF6585 /* Wi-Fi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BCF246BD54000FF6585 /* Wi-Fi.storyboard */; };
+		3DB68BD2246BD54000FF6585 /* Wi-Fi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BCF246BD54000FF6585 /* Wi-Fi.storyboard */; };
 		3DB6F49F23E956DD00FF39BB /* wifiDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */; };
 		3DB6F4A023E956DD00FF39BB /* wifiDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */; };
 		3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */; };
@@ -258,12 +448,6 @@
 		3D3370981A49628E00ABFF1B /* EasyLinkFTCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EasyLinkFTCTableViewController.m; path = FTCConfigTable/EasyLinkFTCTableViewController.m; sourceTree = SOURCE_ROOT; };
 		3D3370A01A4962FE00ABFF1B /* EasyLinkOTATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLinkOTATableViewController.h; path = OTAPage/EasyLinkOTATableViewController.h; sourceTree = SOURCE_ROOT; };
 		3D3370A11A4962FE00ABFF1B /* EasyLinkOTATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EasyLinkOTATableViewController.m; path = OTAPage/EasyLinkOTATableViewController.m; sourceTree = SOURCE_ROOT; };
-		3D3370A41A4963BF00ABFF1B /* guideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = guideViewController.h; path = General/guideViewController.h; sourceTree = SOURCE_ROOT; };
-		3D3370A51A4963BF00ABFF1B /* guideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = guideViewController.m; path = General/guideViewController.m; sourceTree = SOURCE_ROOT; };
-		3D3370A61A4963BF00ABFF1B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = General/RootViewController.h; sourceTree = SOURCE_ROOT; };
-		3D3370A71A4963BF00ABFF1B /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = General/RootViewController.m; sourceTree = SOURCE_ROOT; };
-		3D3370AA1A49643A00ABFF1B /* ConThingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConThingsViewController.h; path = General/ConThingsViewController.h; sourceTree = SOURCE_ROOT; };
-		3D3370AB1A49643A00ABFF1B /* ConThingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConThingsViewController.m; path = General/ConThingsViewController.m; sourceTree = SOURCE_ROOT; };
 		3D3370AD1A4964C600ABFF1B /* mxchipAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mxchipAppDelegate.h; path = General/mxchipAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		3D3370AE1A4964C600ABFF1B /* mxchipAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = mxchipAppDelegate.m; path = General/mxchipAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		3D3370B11A49658300ABFF1B /* EasyLinkMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLinkMainViewController.h; path = EasyLink/EasyLinkMainViewController.h; sourceTree = SOURCE_ROOT; };
@@ -346,8 +530,6 @@
 		3D3371361A49682300ABFF1B /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+AnimationOptionsForCurve.m"; path = "UITemplate/MessagesTableViewController/UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		3D3371711A49686E00ABFF1B /* EasyLink-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "EasyLink-Info.plist"; path = "General/EasyLink-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3D3371721A49686E00ABFF1B /* EasyLink-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "EasyLink-Prefix.pch"; path = "General/EasyLink-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		3D3371731A49686E00ABFF1B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = General/main.m; sourceTree = SOURCE_ROOT; };
-		3D3371771A4968BD00ABFF1B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = General/en.lproj/MainStoryboard.storyboard; sourceTree = SOURCE_ROOT; };
 		3D33717A1A4968E700ABFF1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = General/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		3D417CE81B5CEA0D00EA2E1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3D42C01D1BFDE35500E6D9DF /* EasyLink_Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyLink_Enterprise-Info.plist"; path = "/Users/William/Develop/EasyLink/EasyLink_Enterprise-Info.plist"; sourceTree = "<absolute>"; };
@@ -358,7 +540,8 @@
 		3D67394A1FBBF65000892F08 /* launch_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image.png; path = Resources/Images/Common/launch_image.png; sourceTree = SOURCE_ROOT; };
 		3D6B82901BFEFCA3005A8263 /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/EMWHeader.h; sourceTree = SOURCE_ROOT; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
-		3D918D3E23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = wifiDeviceDetailTableViewController.swift; path = HomePage/wifiDeviceDetailTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		3D7CBD8A2475353700B7F3F1 /* MXGenericModel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MXGenericModel.xib; sourceTree = "<group>"; };
+		3D7CBD8C2475372A00B7F3F1 /* MXGenericModleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXGenericModleViewCell.swift; sourceTree = "<group>"; };
 		3D9A16671A496ABF00DBBE61 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = Resources/Images/iPhone/EMW3161.png; sourceTree = SOURCE_ROOT; };
 		3D9A16681A496ABF00DBBE61 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = Resources/Images/iPhone/EMW3162.png; sourceTree = SOURCE_ROOT; };
 		3D9A16751A496CC200DBBE61 /* easycloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = easycloud.png; path = Resources/Images/Common/easycloud.png; sourceTree = SOURCE_ROOT; };
@@ -379,8 +562,107 @@
 		3DAEA03D191924320082D846 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		3DB0E097216CD4DA00357A65 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
 		3DB0E098216CD4DA00357A65 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
-		3DB0E114216CD5E700357A65 /* EasyLink Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyLink Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DB0E114216CD5E700357A65 /* EasyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DB0E115216CD5E800357A65 /* EasyLink copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyLink copy-Info.plist"; path = "/Users/william/Develop/EasyLink/EasyLink copy-Info.plist"; sourceTree = "<absolute>"; };
+		3DB68A67246ABA3E00FF6585 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BTMesh/AppDelegate.swift; sourceTree = "<group>"; };
+		3DB68A6B246ABBC300FF6585 /* NetworkConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkConnection.swift; path = "BTMesh/Mesh Network/NetworkConnection.swift"; sourceTree = "<group>"; };
+		3DB68A6E246ABBF500FF6585 /* GenericState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericState.swift; path = "BTMesh/Mesh Network/GenericState.swift"; sourceTree = "<group>"; };
+		3DB68A6F246ABBF500FF6585 /* GenericOnOffClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericOnOffClientDelegate.swift; path = "BTMesh/Mesh Network/GenericOnOffClientDelegate.swift"; sourceTree = "<group>"; };
+		3DB68A70246ABBF500FF6585 /* GenericLevelClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericLevelClientDelegate.swift; path = "BTMesh/Mesh Network/GenericLevelClientDelegate.swift"; sourceTree = "<group>"; };
+		3DB68A71246ABBF500FF6585 /* GenericLevelServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericLevelServerDelegate.swift; path = "BTMesh/Mesh Network/GenericLevelServerDelegate.swift"; sourceTree = "<group>"; };
+		3DB68A72246ABBF500FF6585 /* GenericOnOffServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericOnOffServerDelegate.swift; path = "BTMesh/Mesh Network/GenericOnOffServerDelegate.swift"; sourceTree = "<group>"; };
+		3DB68A7E246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleOnOffClientDelegate.swift; path = "BTMesh/Mesh Network/Simple OnOff/SimpleOnOffClientDelegate.swift"; sourceTree = "<group>"; };
+		3DB68A82246ABC3800FF6585 /* SimpleOnOffGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleOnOffGet.swift; path = "BTMesh/Mesh Network/Simple OnOff/Messages/SimpleOnOffGet.swift"; sourceTree = "<group>"; };
+		3DB68A83246ABC3800FF6585 /* SimpleOnOffSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleOnOffSet.swift; path = "BTMesh/Mesh Network/Simple OnOff/Messages/SimpleOnOffSet.swift"; sourceTree = "<group>"; };
+		3DB68A84246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleOnOffSetUnacknowledged.swift; path = "BTMesh/Mesh Network/Simple OnOff/Messages/SimpleOnOffSetUnacknowledged.swift"; sourceTree = "<group>"; };
+		3DB68A85246ABC3800FF6585 /* SimpleOnOffStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleOnOffStatus.swift; path = "BTMesh/Mesh Network/Simple OnOff/Messages/SimpleOnOffStatus.swift"; sourceTree = "<group>"; };
+		3DB68A8F246AF2A100FF6585 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "BTMesh/View Controllers/RootViewController.swift"; sourceTree = "<group>"; };
+		3DB68A90246AF2A100FF6585 /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressViewController.swift; path = "BTMesh/View Controllers/ProgressViewController.swift"; sourceTree = "<group>"; };
+		3DB68A91246AF2A100FF6585 /* ProgressCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressCollectionViewController.swift; path = "BTMesh/View Controllers/ProgressCollectionViewController.swift"; sourceTree = "<group>"; };
+		3DB68A9B246B991600FF6585 /* ElementSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ElementSectionView.swift; path = "BTMesh/View Controllers/Control/Cells/ElementSectionView.swift"; sourceTree = "<group>"; };
+		3DB68A9E246B996200FF6585 /* ModelControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelControlCell.swift; path = "BTMesh/View Controllers/Control/Model/ModelControlCell.swift"; sourceTree = "<group>"; };
+		3DB68A9F246B996200FF6585 /* SimpleOnOffClientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleOnOffClientCell.swift; path = "BTMesh/View Controllers/Control/Model/SimpleOnOffClientCell.swift"; sourceTree = "<group>"; };
+		3DB68AA0246B996200FF6585 /* GenericLevelServerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericLevelServerCell.swift; path = "BTMesh/View Controllers/Control/Model/GenericLevelServerCell.swift"; sourceTree = "<group>"; };
+		3DB68AA1246B996200FF6585 /* GenericOnOffServerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericOnOffServerCell.swift; path = "BTMesh/View Controllers/Control/Model/GenericOnOffServerCell.swift"; sourceTree = "<group>"; };
+		3DB68AA2246B996200FF6585 /* GenericOnOffClientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericOnOffClientCell.swift; path = "BTMesh/View Controllers/Control/Model/GenericOnOffClientCell.swift"; sourceTree = "<group>"; };
+		3DB68AA3246B996200FF6585 /* GenericLevelClientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericLevelClientCell.swift; path = "BTMesh/View Controllers/Control/Model/GenericLevelClientCell.swift"; sourceTree = "<group>"; };
+		3DB68AB0246B999100FF6585 /* ControlViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ControlViewCell.swift; path = "BTMesh/View Controllers/Control/ControlViewCell.swift"; sourceTree = "<group>"; };
+		3DB68AB4246B99E200FF6585 /* NodeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NodeViewCell.swift; path = "BTMesh/View Controllers/Network/NodeViewCell.swift"; sourceTree = "<group>"; };
+		3DB68AB5246B99E200FF6585 /* NetworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkViewController.swift; path = "BTMesh/View Controllers/Network/NetworkViewController.swift"; sourceTree = "<group>"; };
+		3DB68AD3246B9A0400FF6585 /* NodeFeaturesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeFeaturesCell.swift; sourceTree = "<group>"; };
+		3DB68AD4246B9A0400FF6585 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
+		3DB68AD5246B9A0400FF6585 /* PublicationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicationCell.swift; sourceTree = "<group>"; };
+		3DB68AD6246B9A0400FF6585 /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		3DB68AD7246B9A0400FF6585 /* SubscribeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
+		3DB68AD8246B9A0400FF6585 /* NodeAppKeysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeAppKeysViewController.swift; sourceTree = "<group>"; };
+		3DB68AD9246B9A0400FF6585 /* ModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelViewController.swift; sourceTree = "<group>"; };
+		3DB68ADA246B9A0400FF6585 /* SetPublicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPublicationViewController.swift; sourceTree = "<group>"; };
+		3DB68ADB246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPublicationDestinationsViewController.swift; sourceTree = "<group>"; };
+		3DB68ADC246B9A0400FF6585 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		3DB68ADE246B9A0400FF6585 /* ConfigurationServerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationServerViewCell.swift; sourceTree = "<group>"; };
+		3DB68ADF246B9A0400FF6585 /* ModelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelViewCell.swift; sourceTree = "<group>"; };
+		3DB68AE0246B9A0400FF6585 /* VendorModelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorModelViewCell.swift; sourceTree = "<group>"; };
+		3DB68AE1246B9A0400FF6585 /* GenericOnOffViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericOnOffViewCell.swift; sourceTree = "<group>"; };
+		3DB68AE2246B9A0400FF6585 /* GenericLevelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelViewCell.swift; sourceTree = "<group>"; };
+		3DB68AE3246B9A0400FF6585 /* ModelBindAppKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBindAppKeyViewController.swift; sourceTree = "<group>"; };
+		3DB68AE4246B9A0400FF6585 /* NodeAddNetworkKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeAddNetworkKeyViewController.swift; sourceTree = "<group>"; };
+		3DB68AE5246B9A0400FF6585 /* NodeAddAppKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeAddAppKeyViewController.swift; sourceTree = "<group>"; };
+		3DB68AE6246B9A0400FF6585 /* NodeNetworkKeysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeNetworkKeysViewController.swift; sourceTree = "<group>"; };
+		3DB68AE7246B9A0400FF6585 /* ElementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementViewController.swift; sourceTree = "<group>"; };
+		3DB68AE9246B9A0400FF6585 /* ProvisioningViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProvisioningViewDelegate.swift; sourceTree = "<group>"; };
+		3DB68AEA246B9A0400FF6585 /* OobSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OobSelector.swift; sourceTree = "<group>"; };
+		3DB68AEB246B9A0400FF6585 /* NetworkKeySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkKeySelectionViewController.swift; sourceTree = "<group>"; };
+		3DB68AEC246B9A0400FF6585 /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
+		3DB68AED246B9A0400FF6585 /* ProvisioningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProvisioningViewController.swift; sourceTree = "<group>"; };
+		3DB68AEE246B9A0400FF6585 /* ScannerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerTableViewController.swift; sourceTree = "<group>"; };
+		3DB68B25246B9A4A00FF6585 /* SectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
+		3DB68B26246B9A4A00FF6585 /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		3DB68B27246B9A4A00FF6585 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		3DB68B28246B9A4A00FF6585 /* BottomSheetSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetSegue.swift; sourceTree = "<group>"; };
+		3DB68B29246B9A4A00FF6585 /* AddGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
+		3DB68B2B246B9A4A00FF6585 /* GenericOnOffGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericOnOffGroupCell.swift; sourceTree = "<group>"; };
+		3DB68B2C246B9A4A00FF6585 /* ModelGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGroupCell.swift; sourceTree = "<group>"; };
+		3DB68B2D246B9A4A00FF6585 /* GenericLevelGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelGroupCell.swift; sourceTree = "<group>"; };
+		3DB68B2E246B9A4A00FF6585 /* GroupControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupControlViewController.swift; sourceTree = "<group>"; };
+		3DB68B2F246B9A4A00FF6585 /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
+		3DB68B45246B9A5E00FF6585 /* NetworkKeysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkKeysViewController.swift; sourceTree = "<group>"; };
+		3DB68B46246B9A5E00FF6585 /* EditKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditKeyViewController.swift; sourceTree = "<group>"; };
+		3DB68B49246B9A5E00FF6585 /* RangeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeCell.swift; sourceTree = "<group>"; };
+		3DB68B4A246B9A5E00FF6585 /* EditProvisionerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProvisionerViewController.swift; sourceTree = "<group>"; };
+		3DB68B4B246B9A5E00FF6585 /* ProvisionersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProvisionersViewController.swift; sourceTree = "<group>"; };
+		3DB68B4C246B9A5E00FF6585 /* EditRangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRangesViewController.swift; sourceTree = "<group>"; };
+		3DB68B4E246B9A5E00FF6585 /* RangeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeView.swift; sourceTree = "<group>"; };
+		3DB68B4F246B9A5E00FF6585 /* FabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FabView.swift; sourceTree = "<group>"; };
+		3DB68B50246B9A5E00FF6585 /* AppKeysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppKeysViewController.swift; sourceTree = "<group>"; };
+		3DB68B51246B9A5E00FF6585 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3DB68B68246B9A7000FF6585 /* CustomAddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAddressCell.swift; sourceTree = "<group>"; };
+		3DB68B69246B9A7000FF6585 /* FilterTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTypeCell.swift; sourceTree = "<group>"; };
+		3DB68B6A246B9A7000FF6585 /* AddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
+		3DB68B6B246B9A7000FF6585 /* ConnectionModeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModeCell.swift; sourceTree = "<group>"; };
+		3DB68B6C246B9A7000FF6585 /* ProxyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyCell.swift; sourceTree = "<group>"; };
+		3DB68B6D246B9A7000FF6585 /* AddAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
+		3DB68B6E246B9A7000FF6585 /* ProxyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyViewController.swift; sourceTree = "<group>"; };
+		3DB68B6F246B9A7000FF6585 /* ProxySelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxySelectorViewController.swift; sourceTree = "<group>"; };
+		3DB68B81246B9A9200FF6585 /* UITableView+EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyView.swift"; sourceTree = "<group>"; };
+		3DB68B82246B9A9200FF6585 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		3DB68B83246B9A9200FF6585 /* RangeObject+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RangeObject+String.swift"; sourceTree = "<group>"; };
+		3DB68B84246B9A9200FF6585 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		3DB68B85246B9A9200FF6585 /* Address+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Address+String.swift"; sourceTree = "<group>"; };
+		3DB68B86246B9A9200FF6585 /* UIViewController+Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
+		3DB68B87246B9A9200FF6585 /* UIColor+Nordic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Nordic.swift"; sourceTree = "<group>"; };
+		3DB68B9A246B9AAC00FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SetPublication.storyboard; sourceTree = "<group>"; };
+		3DB68B9C246B9AAC00FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Proxy.storyboard; sourceTree = "<group>"; };
+		3DB68B9E246B9AAC00FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Network.storyboard; sourceTree = "<group>"; };
+		3DB68BA2246B9AAC00FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Groups.storyboard; sourceTree = "<group>"; };
+		3DB68BA4246B9AAC00FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Control.storyboard; sourceTree = "<group>"; };
+		3DB68BA6246B9AAC00FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
+		3DB68BA8246B9AAC00FF6585 /* VendorModel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendorModel.xib; sourceTree = "<group>"; };
+		3DB68BA9246B9AAC00FF6585 /* GenericLevel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenericLevel.xib; sourceTree = "<group>"; };
+		3DB68BAA246B9AAC00FF6585 /* GenericOnOff.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenericOnOff.xib; sourceTree = "<group>"; };
+		3DB68BAB246B9AAC00FF6585 /* ConfigurationServer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigurationServer.xib; sourceTree = "<group>"; };
+		3DB68BC4246B9AED00FF6585 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BTMesh/Images.xcassets; sourceTree = "<group>"; };
+		3DB68BCC246BC90900FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3DB68BD0246BD54000FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Wi-Fi.storyboard"; sourceTree = "<group>"; };
 		3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wifiDeviceCell.swift; sourceTree = SOURCE_ROOT; };
 		3DFC27CB1BFC377F008834C5 /* KNSemiModalStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KNSemiModalStoryboardSegue.h; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.h; sourceTree = "<group>"; };
 		3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KNSemiModalStoryboardSegue.m; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.m; sourceTree = "<group>"; };
@@ -453,14 +735,16 @@
 		3D2AD57A17A247E20026E31E = {
 			isa = PBXGroup;
 			children = (
+				3DB68A67246ABA3E00FF6585 /* AppDelegate.swift */,
 				3DAC115C23DED10600CA05D0 /* EasyLink Enterprise-Bridging-Header.h */,
 				3DAC115B23DED10600CA05D0 /* EasyLink-Bridging-Header.h */,
+				3D2AD58517A247E30026E31E /* Frameworks */,
 				3DA9AEC2216CD2BE00433682 /* EasyLink.entitlements */,
+				3DB68A66246AB94800FF6585 /* BTMesh */,
 				3DFC27C71BFC371B008834C5 /* KNSemiModalStoryboardSegue */,
 				3D71295518AA26430071D553 /* Images.xcassets */,
 				3D7ACE8418FACAD400747F32 /* UITemplate */,
 				3D2AD58C17A247E30026E31E /* MainUI */,
-				3D2AD58517A247E30026E31E /* Frameworks */,
 				3D2AD58417A247E30026E31E /* Products */,
 				AE4D8FF7EF7B34C99D1E2976 /* Pods */,
 				3DB0E115216CD5E800357A65 /* EasyLink copy-Info.plist */,
@@ -471,7 +755,7 @@
 			isa = PBXGroup;
 			children = (
 				3D2AD58317A247E30026E31E /* EasyLink.app */,
-				3DB0E114216CD5E700357A65 /* EasyLink Enterprise.app */,
+				3DB0E114216CD5E700357A65 /* EasyLink.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -501,7 +785,6 @@
 		3D2AD58C17A247E30026E31E /* MainUI */ = {
 			isa = PBXGroup;
 			children = (
-				3D3371761A4968BD00ABFF1B /* MainStoryboard.storyboard */,
 				3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */,
 				3D3370E41A4966C600ABFF1B /* Home Page */,
 				3D3370A31A4963B300ABFF1B /* General */,
@@ -522,7 +805,6 @@
 				3D3371711A49686E00ABFF1B /* EasyLink-Info.plist */,
 				3D42C01D1BFDE35500E6D9DF /* EasyLink_Enterprise-Info.plist */,
 				3D3371721A49686E00ABFF1B /* EasyLink-Prefix.pch */,
-				3D3371731A49686E00ABFF1B /* main.m */,
 				3DAA37F517A5446A003806FE /* Resources */,
 			);
 			name = "Supporting Files";
@@ -542,12 +824,6 @@
 			children = (
 				3D3370AD1A4964C600ABFF1B /* mxchipAppDelegate.h */,
 				3D3370AE1A4964C600ABFF1B /* mxchipAppDelegate.m */,
-				3D3370AA1A49643A00ABFF1B /* ConThingsViewController.h */,
-				3D3370AB1A49643A00ABFF1B /* ConThingsViewController.m */,
-				3D3370A41A4963BF00ABFF1B /* guideViewController.h */,
-				3D3370A51A4963BF00ABFF1B /* guideViewController.m */,
-				3D3370A61A4963BF00ABFF1B /* RootViewController.h */,
-				3D3370A71A4963BF00ABFF1B /* RootViewController.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -559,7 +835,6 @@
 				3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */,
 				3DAC115823DECFB800CA05D0 /* browserViewController.swift */,
 				3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */,
-				3D918D3E23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift */,
 			);
 			name = "Home Page";
 			sourceTree = "<group>";
@@ -714,6 +989,312 @@
 			name = MessagesTableViewController;
 			sourceTree = "<group>";
 		};
+		3DB68A66246AB94800FF6585 /* BTMesh */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68BC4246B9AED00FF6585 /* Images.xcassets */,
+				3DB68B96246B9AAC00FF6585 /* UI */,
+				3DB68B80246B9A9200FF6585 /* Utils */,
+				3DB68A8E246ABF6200FF6585 /* View Conrollers */,
+				3DB68A6A246ABB9E00FF6585 /* Mesh Neiwork */,
+			);
+			name = BTMesh;
+			sourceTree = "<group>";
+		};
+		3DB68A6A246ABB9E00FF6585 /* Mesh Neiwork */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68A7D246ABBFD00FF6585 /* Simple OnOff */,
+				3DB68A70246ABBF500FF6585 /* GenericLevelClientDelegate.swift */,
+				3DB68A71246ABBF500FF6585 /* GenericLevelServerDelegate.swift */,
+				3DB68A6F246ABBF500FF6585 /* GenericOnOffClientDelegate.swift */,
+				3DB68A72246ABBF500FF6585 /* GenericOnOffServerDelegate.swift */,
+				3DB68A6E246ABBF500FF6585 /* GenericState.swift */,
+				3DB68A6B246ABBC300FF6585 /* NetworkConnection.swift */,
+			);
+			name = "Mesh Neiwork";
+			sourceTree = "<group>";
+		};
+		3DB68A7D246ABBFD00FF6585 /* Simple OnOff */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68A81246ABC2900FF6585 /* Messages */,
+				3DB68A7E246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift */,
+			);
+			name = "Simple OnOff";
+			sourceTree = "<group>";
+		};
+		3DB68A81246ABC2900FF6585 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68A82246ABC3800FF6585 /* SimpleOnOffGet.swift */,
+				3DB68A83246ABC3800FF6585 /* SimpleOnOffSet.swift */,
+				3DB68A84246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift */,
+				3DB68A85246ABC3800FF6585 /* SimpleOnOffStatus.swift */,
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
+		3DB68A8E246ABF6200FF6585 /* View Conrollers */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B66246B9A7000FF6585 /* Proxy */,
+				3DB68B44246B9A5E00FF6585 /* Settings */,
+				3DB68B23246B9A4A00FF6585 /* Groups */,
+				3DB68AB3246B99CA00FF6585 /* Network */,
+				3DB68A98246AF2BA00FF6585 /* Control */,
+				3DB68A91246AF2A100FF6585 /* ProgressCollectionViewController.swift */,
+				3DB68A90246AF2A100FF6585 /* ProgressViewController.swift */,
+				3DB68A8F246AF2A100FF6585 /* RootViewController.swift */,
+			);
+			name = "View Conrollers";
+			sourceTree = "<group>";
+		};
+		3DB68A98246AF2BA00FF6585 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68AB0246B999100FF6585 /* ControlViewCell.swift */,
+				3DB68A9A246B98E800FF6585 /* Cell */,
+				3DB68A99246B98D900FF6585 /* Model */,
+			);
+			name = Control;
+			sourceTree = "<group>";
+		};
+		3DB68A99246B98D900FF6585 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68AA3246B996200FF6585 /* GenericLevelClientCell.swift */,
+				3DB68AA0246B996200FF6585 /* GenericLevelServerCell.swift */,
+				3DB68AA2246B996200FF6585 /* GenericOnOffClientCell.swift */,
+				3DB68AA1246B996200FF6585 /* GenericOnOffServerCell.swift */,
+				3DB68A9E246B996200FF6585 /* ModelControlCell.swift */,
+				3DB68A9F246B996200FF6585 /* SimpleOnOffClientCell.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3DB68A9A246B98E800FF6585 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68A9B246B991600FF6585 /* ElementSectionView.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		3DB68AB3246B99CA00FF6585 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68AD1246B9A0400FF6585 /* Configuration */,
+				3DB68AE8246B9A0400FF6585 /* Provisioning */,
+				3DB68AB5246B99E200FF6585 /* NetworkViewController.swift */,
+				3DB68AB4246B99E200FF6585 /* NodeViewCell.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		3DB68AD1246B9A0400FF6585 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68AD2246B9A0400FF6585 /* Cells */,
+				3DB68AD7246B9A0400FF6585 /* SubscribeViewController.swift */,
+				3DB68AD8246B9A0400FF6585 /* NodeAppKeysViewController.swift */,
+				3DB68AD9246B9A0400FF6585 /* ModelViewController.swift */,
+				3DB68ADA246B9A0400FF6585 /* SetPublicationViewController.swift */,
+				3DB68ADB246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift */,
+				3DB68ADC246B9A0400FF6585 /* ConfigurationViewController.swift */,
+				3DB68ADD246B9A0400FF6585 /* Model */,
+				3DB68AE3246B9A0400FF6585 /* ModelBindAppKeyViewController.swift */,
+				3DB68AE4246B9A0400FF6585 /* NodeAddNetworkKeyViewController.swift */,
+				3DB68AE5246B9A0400FF6585 /* NodeAddAppKeyViewController.swift */,
+				3DB68AE6246B9A0400FF6585 /* NodeNetworkKeysViewController.swift */,
+				3DB68AE7246B9A0400FF6585 /* ElementViewController.swift */,
+			);
+			name = Configuration;
+			path = "BTMesh/View Controllers/Network/Configuration";
+			sourceTree = "<group>";
+		};
+		3DB68AD2246B9A0400FF6585 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68AD3246B9A0400FF6585 /* NodeFeaturesCell.swift */,
+				3DB68AD4246B9A0400FF6585 /* ActionCell.swift */,
+				3DB68AD5246B9A0400FF6585 /* PublicationCell.swift */,
+				3DB68AD6246B9A0400FF6585 /* SwitchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3DB68ADD246B9A0400FF6585 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3D7CBD8C2475372A00B7F3F1 /* MXGenericModleViewCell.swift */,
+				3DB68ADE246B9A0400FF6585 /* ConfigurationServerViewCell.swift */,
+				3DB68ADF246B9A0400FF6585 /* ModelViewCell.swift */,
+				3DB68AE0246B9A0400FF6585 /* VendorModelViewCell.swift */,
+				3DB68AE1246B9A0400FF6585 /* GenericOnOffViewCell.swift */,
+				3DB68AE2246B9A0400FF6585 /* GenericLevelViewCell.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DB68AE8246B9A0400FF6585 /* Provisioning */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68AE9246B9A0400FF6585 /* ProvisioningViewDelegate.swift */,
+				3DB68AEA246B9A0400FF6585 /* OobSelector.swift */,
+				3DB68AEB246B9A0400FF6585 /* NetworkKeySelectionViewController.swift */,
+				3DB68AEC246B9A0400FF6585 /* DeviceCell.swift */,
+				3DB68AED246B9A0400FF6585 /* ProvisioningViewController.swift */,
+				3DB68AEE246B9A0400FF6585 /* ScannerTableViewController.swift */,
+			);
+			name = Provisioning;
+			path = "BTMesh/View Controllers/Network/Provisioning";
+			sourceTree = "<group>";
+		};
+		3DB68B23246B9A4A00FF6585 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B24246B9A4A00FF6585 /* Cells */,
+				3DB68B27246B9A4A00FF6585 /* BottomSheetViewController.swift */,
+				3DB68B28246B9A4A00FF6585 /* BottomSheetSegue.swift */,
+				3DB68B29246B9A4A00FF6585 /* AddGroupViewController.swift */,
+				3DB68B2A246B9A4A00FF6585 /* Model */,
+				3DB68B2E246B9A4A00FF6585 /* GroupControlViewController.swift */,
+				3DB68B2F246B9A4A00FF6585 /* GroupsViewController.swift */,
+			);
+			name = Groups;
+			path = "BTMesh/View Controllers/Groups";
+			sourceTree = "<group>";
+		};
+		3DB68B24246B9A4A00FF6585 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B25246B9A4A00FF6585 /* SectionView.swift */,
+				3DB68B26246B9A4A00FF6585 /* GroupCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3DB68B2A246B9A4A00FF6585 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B2B246B9A4A00FF6585 /* GenericOnOffGroupCell.swift */,
+				3DB68B2C246B9A4A00FF6585 /* ModelGroupCell.swift */,
+				3DB68B2D246B9A4A00FF6585 /* GenericLevelGroupCell.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DB68B44246B9A5E00FF6585 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B45246B9A5E00FF6585 /* NetworkKeysViewController.swift */,
+				3DB68B46246B9A5E00FF6585 /* EditKeyViewController.swift */,
+				3DB68B47246B9A5E00FF6585 /* Provisioners */,
+				3DB68B50246B9A5E00FF6585 /* AppKeysViewController.swift */,
+				3DB68B51246B9A5E00FF6585 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			path = "BTMesh/View Controllers/Settings";
+			sourceTree = "<group>";
+		};
+		3DB68B47246B9A5E00FF6585 /* Provisioners */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B48246B9A5E00FF6585 /* Cells */,
+				3DB68B4A246B9A5E00FF6585 /* EditProvisionerViewController.swift */,
+				3DB68B4B246B9A5E00FF6585 /* ProvisionersViewController.swift */,
+				3DB68B4C246B9A5E00FF6585 /* EditRangesViewController.swift */,
+				3DB68B4D246B9A5E00FF6585 /* Views */,
+			);
+			path = Provisioners;
+			sourceTree = "<group>";
+		};
+		3DB68B48246B9A5E00FF6585 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B49246B9A5E00FF6585 /* RangeCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3DB68B4D246B9A5E00FF6585 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B4E246B9A5E00FF6585 /* RangeView.swift */,
+				3DB68B4F246B9A5E00FF6585 /* FabView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3DB68B66246B9A7000FF6585 /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B67246B9A7000FF6585 /* Cells */,
+				3DB68B6D246B9A7000FF6585 /* AddAddressViewController.swift */,
+				3DB68B6E246B9A7000FF6585 /* ProxyViewController.swift */,
+				3DB68B6F246B9A7000FF6585 /* ProxySelectorViewController.swift */,
+			);
+			name = Proxy;
+			path = "BTMesh/View Controllers/Proxy";
+			sourceTree = "<group>";
+		};
+		3DB68B67246B9A7000FF6585 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B68246B9A7000FF6585 /* CustomAddressCell.swift */,
+				3DB68B69246B9A7000FF6585 /* FilterTypeCell.swift */,
+				3DB68B6A246B9A7000FF6585 /* AddressCell.swift */,
+				3DB68B6B246B9A7000FF6585 /* ConnectionModeCell.swift */,
+				3DB68B6C246B9A7000FF6585 /* ProxyCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3DB68B80246B9A9200FF6585 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68B81246B9A9200FF6585 /* UITableView+EmptyView.swift */,
+				3DB68B82246B9A9200FF6585 /* AppInfo.swift */,
+				3DB68B83246B9A9200FF6585 /* RangeObject+String.swift */,
+				3DB68B84246B9A9200FF6585 /* UIViewController+Alert.swift */,
+				3DB68B85246B9A9200FF6585 /* Address+String.swift */,
+				3DB68B86246B9A9200FF6585 /* UIViewController+Toast.swift */,
+				3DB68B87246B9A9200FF6585 /* UIColor+Nordic.swift */,
+			);
+			name = Utils;
+			path = BTMesh/Utils;
+			sourceTree = "<group>";
+		};
+		3DB68B96246B9AAC00FF6585 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68BCF246BD54000FF6585 /* Wi-Fi.storyboard */,
+				3DB68BCB246BC90900FF6585 /* Main.storyboard */,
+				3DB68B99246B9AAC00FF6585 /* SetPublication.storyboard */,
+				3DB68B9B246B9AAC00FF6585 /* Proxy.storyboard */,
+				3DB68B9D246B9AAC00FF6585 /* Network.storyboard */,
+				3DB68BA1246B9AAC00FF6585 /* Groups.storyboard */,
+				3DB68BA3246B9AAC00FF6585 /* Control.storyboard */,
+				3DB68BA5246B9AAC00FF6585 /* Settings.storyboard */,
+				3DB68BA7246B9AAC00FF6585 /* Model */,
+			);
+			name = UI;
+			path = BTMesh/UI;
+			sourceTree = "<group>";
+		};
+		3DB68BA7246B9AAC00FF6585 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DB68BA8246B9AAC00FF6585 /* VendorModel.xib */,
+				3D7CBD8A2475353700B7F3F1 /* MXGenericModel.xib */,
+				3DB68BA9246B9AAC00FF6585 /* GenericLevel.xib */,
+				3DB68BAA246B9AAC00FF6585 /* GenericOnOff.xib */,
+				3DB68BAB246B9AAC00FF6585 /* ConfigurationServer.xib */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3DE0C3301A494DFF00B7133F /* EasyLinkPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,7 +1391,7 @@
 			);
 			name = "EasyLink Enterprise";
 			productName = "EMW ToolBox";
-			productReference = 3DB0E114216CD5E700357A65 /* EasyLink Enterprise.app */;
+			productReference = 3DB0E114216CD5E700357A65 /* EasyLink.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -848,6 +1429,7 @@
 			knownRegions = (
 				English,
 				en,
+				Base,
 			);
 			mainGroup = 3D2AD57A17A247E20026E31E;
 			productRefGroup = 3D2AD58417A247E30026E31E /* Products */;
@@ -865,26 +1447,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB68BB6246B9AAC00FF6585 /* Groups.storyboard in Resources */,
 				3D3371411A49682300ABFF1B /* bubble-default-incoming-selected.png in Resources */,
+				3DB68BBA246B9AAC00FF6585 /* Settings.storyboard in Resources */,
 				3D9A16781A496CD100DBBE61 /* demo-avatar-ai.png in Resources */,
+				3DB68BC2246B9AAC00FF6585 /* ConfigurationServer.xib in Resources */,
 				3D3371581A49682400ABFF1B /* bubble-square-incoming@2x.png in Resources */,
+				3DB68BCD246BC90900FF6585 /* Main.storyboard in Resources */,
 				3D33715B1A49682400ABFF1B /* bubble-square-outgoing.png in Resources */,
 				3D3371691A49682400ABFF1B /* send.png in Resources */,
 				3D9A16761A496CC200DBBE61 /* easycloud.png in Resources */,
+				3DB68BC5246B9AED00FF6585 /* Images.xcassets in Resources */,
 				3D33715F1A49682400ABFF1B /* input-bar-flat.png in Resources */,
 				3D33717B1A4968E700ABFF1B /* InfoPlist.strings in Resources */,
 				3D3371491A49682300ABFF1B /* bubble-default-outgoing.png in Resources */,
+				3DB68BB2246B9AAC00FF6585 /* Network.storyboard in Resources */,
 				3D33714C1A49682300ABFF1B /* bubble-flat-incoming-selected@2x.png in Resources */,
 				3D9A166A1A496ABF00DBBE61 /* EMW3161.png in Resources */,
+				3DB68BD1246BD54000FF6585 /* Wi-Fi.storyboard in Resources */,
 				3D3371421A49682300ABFF1B /* bubble-default-incoming-selected@2x.png in Resources */,
 				3D3371621A49682400ABFF1B /* input-bar@2x.png in Resources */,
 				3D3371461A49682300ABFF1B /* bubble-default-outgoing-green@2x.png in Resources */,
 				3D9A167E1A496D0500DBBE61 /* EMW3280.png in Resources */,
+				3DB68BB0246B9AAC00FF6585 /* Proxy.storyboard in Resources */,
+				3DB68BC0246B9AAC00FF6585 /* GenericOnOff.xib in Resources */,
 				3D3371551A49682400ABFF1B /* bubble-square-incoming-selected.png in Resources */,
 				3D3371611A49682400ABFF1B /* input-bar.png in Resources */,
 				3D71295618AA26430071D553 /* Images.xcassets in Resources */,
 				3D33715C1A49682400ABFF1B /* bubble-square-outgoing@2x.png in Resources */,
 				3D3371431A49682300ABFF1B /* bubble-default-incoming.png in Resources */,
+				3DB68BBE246B9AAC00FF6585 /* GenericLevel.xib in Resources */,
 				3D3371651A49682400ABFF1B /* PhotoIcon.png in Resources */,
 				3D3371521A49682400ABFF1B /* bubble-flat-outgoing-selected@2x.png in Resources */,
 				3D33714D1A49682300ABFF1B /* bubble-flat-incoming.png in Resources */,
@@ -902,6 +1494,7 @@
 				3D3371471A49682300ABFF1B /* bubble-default-outgoing-selected.png in Resources */,
 				3D3371681A49682400ABFF1B /* send-highlighted@2x.png in Resources */,
 				3D33715D1A49682400ABFF1B /* bubble-typing.png in Resources */,
+				3DB68BB8246B9AAC00FF6585 /* Control.storyboard in Resources */,
 				3D3371481A49682300ABFF1B /* bubble-default-outgoing-selected@2x.png in Resources */,
 				3D3371601A49682400ABFF1B /* input-bar-flat@2x.png in Resources */,
 				3D3371561A49682400ABFF1B /* bubble-square-incoming-selected@2x.png in Resources */,
@@ -909,7 +1502,9 @@
 				3D3371511A49682400ABFF1B /* bubble-flat-outgoing-selected.png in Resources */,
 				3D3371631A49682400ABFF1B /* input-field.png in Resources */,
 				3D3371501A49682400ABFF1B /* bubble-flat-outgoing-old@2x.png in Resources */,
+				3DB68BBC246B9AAC00FF6585 /* VendorModel.xib in Resources */,
 				3D3371671A49682400ABFF1B /* send-highlighted.png in Resources */,
+				3D7CBD8B2475353700B7F3F1 /* MXGenericModel.xib in Resources */,
 				3D9A167C1A496CF900DBBE61 /* EasyLinkPhone.png in Resources */,
 				3D33714B1A49682300ABFF1B /* bubble-flat-incoming-selected.png in Resources */,
 				3D3371401A49682300ABFF1B /* bubble-default-incoming-green@2x.png in Resources */,
@@ -919,8 +1514,8 @@
 				3D3371641A49682400ABFF1B /* input-field@2x.png in Resources */,
 				3D3371451A49682300ABFF1B /* bubble-default-outgoing-green.png in Resources */,
 				3D6739481FBBF54D00892F08 /* Launch Screen.storyboard in Resources */,
-				3D3371781A4968BD00ABFF1B /* MainStoryboard.storyboard in Resources */,
 				3D33714F1A49682400ABFF1B /* bubble-flat-outgoing-old.png in Resources */,
+				3DB68BAE246B9AAC00FF6585 /* SetPublication.storyboard in Resources */,
 				3D3371441A49682300ABFF1B /* bubble-default-incoming@2x.png in Resources */,
 				3D3371571A49682400ABFF1B /* bubble-square-incoming.png in Resources */,
 				3D3371591A49682400ABFF1B /* bubble-square-outgoing-selected.png in Resources */,
@@ -931,26 +1526,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB68BB7246B9AAC00FF6585 /* Groups.storyboard in Resources */,
 				3DB0E0D4216CD5E700357A65 /* bubble-default-incoming-selected.png in Resources */,
+				3DB68BBB246B9AAC00FF6585 /* Settings.storyboard in Resources */,
 				3DB0E0D5216CD5E700357A65 /* demo-avatar-ai.png in Resources */,
+				3DB68BC3246B9AAC00FF6585 /* ConfigurationServer.xib in Resources */,
 				3DB0E0D6216CD5E700357A65 /* bubble-square-incoming@2x.png in Resources */,
+				3DB68BCE246BC90900FF6585 /* Main.storyboard in Resources */,
 				3DB0E0D7216CD5E700357A65 /* bubble-square-outgoing.png in Resources */,
 				3DB0E0D8216CD5E700357A65 /* send.png in Resources */,
 				3DB0E0D9216CD5E700357A65 /* easycloud.png in Resources */,
+				3DB68BC6246B9AED00FF6585 /* Images.xcassets in Resources */,
 				3DB0E0DA216CD5E700357A65 /* input-bar-flat.png in Resources */,
 				3DB0E0DB216CD5E700357A65 /* InfoPlist.strings in Resources */,
 				3DB0E0DC216CD5E700357A65 /* bubble-default-outgoing.png in Resources */,
+				3DB68BB3246B9AAC00FF6585 /* Network.storyboard in Resources */,
 				3DB0E0DD216CD5E700357A65 /* bubble-flat-incoming-selected@2x.png in Resources */,
 				3DB0E0DE216CD5E700357A65 /* EMW3161.png in Resources */,
+				3DB68BD2246BD54000FF6585 /* Wi-Fi.storyboard in Resources */,
 				3DB0E0DF216CD5E700357A65 /* bubble-default-incoming-selected@2x.png in Resources */,
 				3DB0E0E0216CD5E700357A65 /* input-bar@2x.png in Resources */,
 				3DB0E0E1216CD5E700357A65 /* bubble-default-outgoing-green@2x.png in Resources */,
 				3DB0E0E2216CD5E700357A65 /* EMW3280.png in Resources */,
+				3DB68BB1246B9AAC00FF6585 /* Proxy.storyboard in Resources */,
+				3DB68BC1246B9AAC00FF6585 /* GenericOnOff.xib in Resources */,
 				3DB0E0E3216CD5E700357A65 /* bubble-square-incoming-selected.png in Resources */,
 				3DB0E0E4216CD5E700357A65 /* input-bar.png in Resources */,
 				3DB0E0E5216CD5E700357A65 /* Images.xcassets in Resources */,
 				3DB0E0E6216CD5E700357A65 /* bubble-square-outgoing@2x.png in Resources */,
 				3DB0E0E7216CD5E700357A65 /* bubble-default-incoming.png in Resources */,
+				3DB68BBF246B9AAC00FF6585 /* GenericLevel.xib in Resources */,
+				3D7CBD8F2475461D00B7F3F1 /* MXGenericModel.xib in Resources */,
 				3DB0E0E8216CD5E700357A65 /* PhotoIcon.png in Resources */,
 				3DB0E0E9216CD5E700357A65 /* bubble-flat-outgoing-selected@2x.png in Resources */,
 				3DB0E0EA216CD5E700357A65 /* bubble-flat-incoming.png in Resources */,
@@ -968,6 +1574,7 @@
 				3DB0E0F6216CD5E700357A65 /* bubble-default-outgoing-selected.png in Resources */,
 				3DB0E0F7216CD5E700357A65 /* send-highlighted@2x.png in Resources */,
 				3DB0E0F8216CD5E700357A65 /* bubble-typing.png in Resources */,
+				3DB68BB9246B9AAC00FF6585 /* Control.storyboard in Resources */,
 				3DB0E0F9216CD5E700357A65 /* bubble-default-outgoing-selected@2x.png in Resources */,
 				3DB0E0FA216CD5E700357A65 /* input-bar-flat@2x.png in Resources */,
 				3DB0E0FB216CD5E700357A65 /* bubble-square-incoming-selected@2x.png in Resources */,
@@ -975,6 +1582,7 @@
 				3DB0E0FD216CD5E700357A65 /* bubble-flat-outgoing-selected.png in Resources */,
 				3DB0E0FE216CD5E700357A65 /* input-field.png in Resources */,
 				3DB0E0FF216CD5E700357A65 /* bubble-flat-outgoing-old@2x.png in Resources */,
+				3DB68BBD246B9AAC00FF6585 /* VendorModel.xib in Resources */,
 				3DB0E100216CD5E700357A65 /* send-highlighted.png in Resources */,
 				3DB0E101216CD5E700357A65 /* EasyLinkPhone.png in Resources */,
 				3DB0E102216CD5E700357A65 /* bubble-flat-incoming-selected.png in Resources */,
@@ -985,8 +1593,8 @@
 				3DB0E107216CD5E700357A65 /* input-field@2x.png in Resources */,
 				3DB0E108216CD5E700357A65 /* bubble-default-outgoing-green.png in Resources */,
 				3DB0E109216CD5E700357A65 /* Launch Screen.storyboard in Resources */,
-				3DB0E10A216CD5E700357A65 /* MainStoryboard.storyboard in Resources */,
 				3DB0E10B216CD5E700357A65 /* bubble-flat-outgoing-old.png in Resources */,
+				3DB68BAF246B9AAC00FF6585 /* SetPublication.storyboard in Resources */,
 				3DB0E10C216CD5E700357A65 /* bubble-default-incoming@2x.png in Resources */,
 				3DB0E10D216CD5E700357A65 /* bubble-square-incoming.png in Resources */,
 				3DB0E10E216CD5E700357A65 /* bubble-square-outgoing-selected.png in Resources */,
@@ -1138,43 +1746,125 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3370881A49622700ABFF1B /* addNewCommandViewController.m in Sources */,
+				3DB68B13246B9A0400FF6585 /* NodeNetworkKeysViewController.swift in Sources */,
+				3DB68B94246B9A9200FF6585 /* UIColor+Nordic.swift in Sources */,
 				3D33716F1A49682400ABFF1B /* UIImage+JSMessagesView.m in Sources */,
+				3DB68A68246ABA3E00FF6585 /* AppDelegate.swift in Sources */,
+				3DB68B58246B9A5E00FF6585 /* EditProvisionerViewController.swift in Sources */,
 				3D3370991A49628E00ABFF1B /* FTCSelectViewController.m in Sources */,
+				3DB68B7E246B9A7000FF6585 /* ProxySelectorViewController.swift in Sources */,
+				3DB68B19246B9A0400FF6585 /* OobSelector.swift in Sources */,
+				3DB68B7C246B9A7000FF6585 /* ProxyViewController.swift in Sources */,
 				3D33713E1A49682300ABFF1B /* NSString+JSMessagesView.m in Sources */,
 				3D33713D1A49682300ABFF1B /* JSMessageTextView.m in Sources */,
+				3DB68B1D246B9A0400FF6585 /* DeviceCell.swift in Sources */,
+				3DB68B21246B9A0400FF6585 /* ScannerTableViewController.swift in Sources */,
+				3DB68AF1246B9A0400FF6585 /* ActionCell.swift in Sources */,
+				3DB68B3A246B9A4A00FF6585 /* GenericOnOffGroupCell.swift in Sources */,
+				3DB68A96246AF2A100FF6585 /* ProgressCollectionViewController.swift in Sources */,
+				3DB68B07246B9A0400FF6585 /* VendorModelViewCell.swift in Sources */,
 				3D33708A1A49622700ABFF1B /* commandsTableViewController.m in Sources */,
-				3D3371751A49686E00ABFF1B /* main.m in Sources */,
+				3DB68A7B246ABBF500FF6585 /* GenericOnOffServerDelegate.swift in Sources */,
+				3DB68AB1246B999100FF6585 /* ControlViewCell.swift in Sources */,
+				3DB68B8E246B9A9200FF6585 /* UIViewController+Alert.swift in Sources */,
+				3DB68AFF246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift in Sources */,
+				3DB68A9C246B991600FF6585 /* ElementSectionView.swift in Sources */,
+				3DB68B60246B9A5F00FF6585 /* FabView.swift in Sources */,
+				3DB68B8C246B9A9200FF6585 /* RangeObject+String.swift in Sources */,
+				3DB68AAC246B996200FF6585 /* GenericOnOffClientCell.swift in Sources */,
+				3DB68B11246B9A0400FF6585 /* NodeAddAppKeyViewController.swift in Sources */,
+				3DB68B64246B9A5F00FF6585 /* SettingsViewController.swift in Sources */,
+				3DB68B01246B9A0400FF6585 /* ConfigurationViewController.swift in Sources */,
+				3DB68B36246B9A4A00FF6585 /* BottomSheetSegue.swift in Sources */,
 				3DAC115923DECFB800CA05D0 /* browserViewController.swift in Sources */,
-				3D3370A91A4963BF00ABFF1B /* RootViewController.m in Sources */,
+				3DB68B5C246B9A5E00FF6585 /* EditRangesViewController.swift in Sources */,
 				3D3370891A49622700ABFF1B /* Protocols.m in Sources */,
 				3D33708C1A49622700ABFF1B /* talkToModuleViewController.m in Sources */,
+				3DB68A8C246ABC3800FF6585 /* SimpleOnOffStatus.swift in Sources */,
 				3D3370A21A4962FE00ABFF1B /* EasyLinkOTATableViewController.m in Sources */,
+				3DB68AB6246B99E200FF6585 /* NodeViewCell.swift in Sources */,
+				3DB68AFB246B9A0400FF6585 /* ModelViewController.swift in Sources */,
 				3D3371381A49682300ABFF1B /* JSBubbleView.m in Sources */,
 				3D33713A1A49682300ABFF1B /* JSMessageInputView.m in Sources */,
 				3D3370B91A49658300ABFF1B /* easyLinkIpConfigTableViewController.m in Sources */,
+				3DB68B32246B9A4A00FF6585 /* GroupCell.swift in Sources */,
+				3DB68B1B246B9A0400FF6585 /* NetworkKeySelectionViewController.swift in Sources */,
+				3DB68A92246AF2A100FF6585 /* RootViewController.swift in Sources */,
 				3D33709B1A49628E00ABFF1B /* FTCStringSelectCell.m in Sources */,
 				3D3371701A49682400ABFF1B /* UIView+AnimationOptionsForCurve.m in Sources */,
+				3DB68B15246B9A0400FF6585 /* ElementViewController.swift in Sources */,
+				3DB68B78246B9A7000FF6585 /* ProxyCell.swift in Sources */,
 				3D3370AF1A4964C600ABFF1B /* mxchipAppDelegate.m in Sources */,
+				3DB68B3C246B9A4A00FF6585 /* ModelGroupCell.swift in Sources */,
+				3DB68A73246ABBF500FF6585 /* GenericState.swift in Sources */,
+				3DB68B92246B9A9200FF6585 /* UIViewController+Toast.swift in Sources */,
+				3DB68A86246ABC3800FF6585 /* SimpleOnOffGet.swift in Sources */,
 				3D33716D1A49682400ABFF1B /* UIButton+JSMessagesView.m in Sources */,
+				3DB68B1F246B9A0400FF6585 /* ProvisioningViewController.swift in Sources */,
+				3DB68B38246B9A4A00FF6585 /* AddGroupViewController.swift in Sources */,
 				3D33713C1A49682300ABFF1B /* JSMessagesViewController.m in Sources */,
+				3DB68B40246B9A4A00FF6585 /* GroupControlViewController.swift in Sources */,
+				3DB68B03246B9A0400FF6585 /* ConfigurationServerViewCell.swift in Sources */,
+				3DB68AF9246B9A0400FF6585 /* NodeAppKeysViewController.swift in Sources */,
+				3DB68A94246AF2A100FF6585 /* ProgressViewController.swift in Sources */,
 				3DB6F49F23E956DD00FF39BB /* wifiDeviceCell.swift in Sources */,
+				3DB68B0D246B9A0400FF6585 /* ModelBindAppKeyViewController.swift in Sources */,
+				3DB68B72246B9A7000FF6585 /* FilterTypeCell.swift in Sources */,
+				3DB68AFD246B9A0400FF6585 /* SetPublicationViewController.swift in Sources */,
+				3DB68AA8246B996200FF6585 /* GenericLevelServerCell.swift in Sources */,
+				3DB68B5E246B9A5E00FF6585 /* RangeView.swift in Sources */,
+				3DB68AAE246B996300FF6585 /* GenericLevelClientCell.swift in Sources */,
+				3DB68B0F246B9A0400FF6585 /* NodeAddNetworkKeyViewController.swift in Sources */,
 				3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */,
-				3D3370A81A4963BF00ABFF1B /* guideViewController.m in Sources */,
-				3D3370AC1A49643A00ABFF1B /* ConThingsViewController.m in Sources */,
+				3DB68B52246B9A5E00FF6585 /* NetworkKeysViewController.swift in Sources */,
+				3DB68B74246B9A7000FF6585 /* AddressCell.swift in Sources */,
 				3D3370B81A49658300ABFF1B /* newModuleTableViewCell.m in Sources */,
+				3DB68A7F246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift in Sources */,
+				3DB68AAA246B996200FF6585 /* GenericOnOffServerCell.swift in Sources */,
+				3DB68B54246B9A5E00FF6585 /* EditKeyViewController.swift in Sources */,
+				3DB68A8A246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift in Sources */,
+				3DB68AF3246B9A0400FF6585 /* PublicationCell.swift in Sources */,
+				3DB68A88246ABC3800FF6585 /* SimpleOnOffSet.swift in Sources */,
 				3D3370EC1A4966D400ABFF1B /* bonjourDetailTableViewController.m in Sources */,
+				3DB68AA6246B996200FF6585 /* SimpleOnOffClientCell.swift in Sources */,
+				3DB68A77246ABBF500FF6585 /* GenericLevelClientDelegate.swift in Sources */,
 				3D6739331FB82EC900892F08 /* easylinkModeConfigTableViewController.m in Sources */,
 				3D33713B1A49682300ABFF1B /* JSMessageSoundEffect.m in Sources */,
+				3DB68AF5246B9A0400FF6585 /* SwitchCell.swift in Sources */,
 				3D33709E1A49628E00ABFF1B /* EasyLinkFTCTableViewController.m in Sources */,
-				3D918D3F23ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift in Sources */,
+				3DB68B30246B9A4A00FF6585 /* SectionView.swift in Sources */,
+				3DB68AF7246B9A0400FF6585 /* SubscribeViewController.swift in Sources */,
 				3D33709A1A49628E00ABFF1B /* FTCStringCell.m in Sources */,
+				3DB68B8A246B9A9200FF6585 /* AppInfo.swift in Sources */,
 				3D33708B1A49622700ABFF1B /* messageViewController.m in Sources */,
+				3DB68B3E246B9A4A00FF6585 /* GenericLevelGroupCell.swift in Sources */,
+				3D7CBD8D2475372A00B7F3F1 /* MXGenericModleViewCell.swift in Sources */,
+				3DB68B34246B9A4A00FF6585 /* BottomSheetViewController.swift in Sources */,
+				3DB68B0B246B9A0400FF6585 /* GenericLevelViewCell.swift in Sources */,
+				3DB68AB8246B99E200FF6585 /* NetworkViewController.swift in Sources */,
 				3D3370B71A49658300ABFF1B /* EasyLinkMainViewController.m in Sources */,
+				3DB68B7A246B9A7000FF6585 /* AddAddressViewController.swift in Sources */,
 				3D33716E1A49682400ABFF1B /* UIColor+JSMessagesView.m in Sources */,
 				3D33709C1A49628E00ABFF1B /* FTCSubMenuCell.m in Sources */,
+				3DB68A75246ABBF500FF6585 /* GenericOnOffClientDelegate.swift in Sources */,
+				3DB68A79246ABBF500FF6585 /* GenericLevelServerDelegate.swift in Sources */,
+				3DB68B90246B9A9200FF6585 /* Address+String.swift in Sources */,
 				3D3371391A49682300ABFF1B /* JSDismissiveTextView.m in Sources */,
 				3D33709D1A49628E00ABFF1B /* FTCSwitchCell.m in Sources */,
+				3DB68B5A246B9A5E00FF6585 /* ProvisionersViewController.swift in Sources */,
+				3DB68B09246B9A0400FF6585 /* GenericOnOffViewCell.swift in Sources */,
+				3DB68B17246B9A0400FF6585 /* ProvisioningViewDelegate.swift in Sources */,
+				3DB68B70246B9A7000FF6585 /* CustomAddressCell.swift in Sources */,
 				3D3371371A49682300ABFF1B /* JSBubbleMessageCell.m in Sources */,
+				3DB68A6C246ABBC300FF6585 /* NetworkConnection.swift in Sources */,
+				3DB68B88246B9A9200FF6585 /* UITableView+EmptyView.swift in Sources */,
+				3DB68B62246B9A5F00FF6585 /* AppKeysViewController.swift in Sources */,
+				3DB68B42246B9A4A00FF6585 /* GroupsViewController.swift in Sources */,
+				3DB68AEF246B9A0400FF6585 /* NodeFeaturesCell.swift in Sources */,
+				3DB68B05246B9A0400FF6585 /* ModelViewCell.swift in Sources */,
+				3DB68B76246B9A7000FF6585 /* ConnectionModeCell.swift in Sources */,
+				3DB68AA4246B996200FF6585 /* ModelControlCell.swift in Sources */,
+				3DB68B56246B9A5E00FF6585 /* RangeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1182,58 +1872,132 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB68B14246B9A0400FF6585 /* NodeNetworkKeysViewController.swift in Sources */,
+				3DB68B95246B9A9200FF6585 /* UIColor+Nordic.swift in Sources */,
 				3DB0E0A1216CD5E700357A65 /* addNewCommandViewController.m in Sources */,
+				3DB68A69246ABA7900FF6585 /* AppDelegate.swift in Sources */,
+				3DB68B59246B9A5E00FF6585 /* EditProvisionerViewController.swift in Sources */,
 				3DB0E0A2216CD5E700357A65 /* UIImage+JSMessagesView.m in Sources */,
+				3DB68B7F246B9A7000FF6585 /* ProxySelectorViewController.swift in Sources */,
+				3DB68B1A246B9A0400FF6585 /* OobSelector.swift in Sources */,
+				3DB68B7D246B9A7000FF6585 /* ProxyViewController.swift in Sources */,
 				3DB0E0A3216CD5E700357A65 /* FTCSelectViewController.m in Sources */,
 				3DB0E0A4216CD5E700357A65 /* NSString+JSMessagesView.m in Sources */,
+				3DB68B1E246B9A0400FF6585 /* DeviceCell.swift in Sources */,
+				3DB68B22246B9A0400FF6585 /* ScannerTableViewController.swift in Sources */,
+				3DB68AF2246B9A0400FF6585 /* ActionCell.swift in Sources */,
+				3DB68B3B246B9A4A00FF6585 /* GenericOnOffGroupCell.swift in Sources */,
+				3DB68A97246AF2A100FF6585 /* ProgressCollectionViewController.swift in Sources */,
+				3DB68B08246B9A0400FF6585 /* VendorModelViewCell.swift in Sources */,
 				3DB0E0A5216CD5E700357A65 /* JSMessageTextView.m in Sources */,
 				3DB0E0A6216CD5E700357A65 /* commandsTableViewController.m in Sources */,
-				3DB0E0A7216CD5E700357A65 /* main.m in Sources */,
+				3DB68AB2246B999100FF6585 /* ControlViewCell.swift in Sources */,
+				3DB68B8F246B9A9200FF6585 /* UIViewController+Alert.swift in Sources */,
+				3DB68B00246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift in Sources */,
+				3DB68A9D246B991600FF6585 /* ElementSectionView.swift in Sources */,
+				3DB68B61246B9A5F00FF6585 /* FabView.swift in Sources */,
+				3DB68B8D246B9A9200FF6585 /* RangeObject+String.swift in Sources */,
+				3DB68AAD246B996200FF6585 /* GenericOnOffClientCell.swift in Sources */,
+				3DB68B12246B9A0400FF6585 /* NodeAddAppKeyViewController.swift in Sources */,
+				3DB68B65246B9A5F00FF6585 /* SettingsViewController.swift in Sources */,
+				3DB68B02246B9A0400FF6585 /* ConfigurationViewController.swift in Sources */,
+				3DB68B37246B9A4A00FF6585 /* BottomSheetSegue.swift in Sources */,
+				3DB68A7C246ABBF500FF6585 /* GenericOnOffServerDelegate.swift in Sources */,
+				3DB68B5D246B9A5E00FF6585 /* EditRangesViewController.swift in Sources */,
 				3DAC115A23DECFB800CA05D0 /* browserViewController.swift in Sources */,
-				3DB0E0A8216CD5E700357A65 /* RootViewController.m in Sources */,
 				3DB0E0A9216CD5E700357A65 /* Protocols.m in Sources */,
 				3DB0E0AA216CD5E700357A65 /* talkToModuleViewController.m in Sources */,
+				3DB68A8D246ABC3800FF6585 /* SimpleOnOffStatus.swift in Sources */,
 				3DB0E0AB216CD5E700357A65 /* EasyLinkOTATableViewController.m in Sources */,
+				3DB68AB7246B99E200FF6585 /* NodeViewCell.swift in Sources */,
+				3DB68AFC246B9A0400FF6585 /* ModelViewController.swift in Sources */,
 				3DB0E0AC216CD5E700357A65 /* JSBubbleView.m in Sources */,
 				3DB0E0AD216CD5E700357A65 /* JSMessageInputView.m in Sources */,
 				3DB0E0AE216CD5E700357A65 /* easyLinkIpConfigTableViewController.m in Sources */,
+				3DB68B33246B9A4A00FF6585 /* GroupCell.swift in Sources */,
+				3DB68B1C246B9A0400FF6585 /* NetworkKeySelectionViewController.swift in Sources */,
+				3DB68A93246AF2A100FF6585 /* RootViewController.swift in Sources */,
 				3DB0E0AF216CD5E700357A65 /* FTCStringSelectCell.m in Sources */,
 				3DB0E0B0216CD5E700357A65 /* UIView+AnimationOptionsForCurve.m in Sources */,
+				3DB68B16246B9A0400FF6585 /* ElementViewController.swift in Sources */,
+				3DB68B79246B9A7000FF6585 /* ProxyCell.swift in Sources */,
 				3DB0E0B1216CD5E700357A65 /* mxchipAppDelegate.m in Sources */,
+				3DB68B3D246B9A4A00FF6585 /* ModelGroupCell.swift in Sources */,
+				3DB68A74246ABBF500FF6585 /* GenericState.swift in Sources */,
+				3DB68B93246B9A9200FF6585 /* UIViewController+Toast.swift in Sources */,
+				3DB68A87246ABC3800FF6585 /* SimpleOnOffGet.swift in Sources */,
 				3DB0E0B2216CD5E700357A65 /* UIButton+JSMessagesView.m in Sources */,
+				3DB68B20246B9A0400FF6585 /* ProvisioningViewController.swift in Sources */,
+				3DB68B39246B9A4A00FF6585 /* AddGroupViewController.swift in Sources */,
 				3DB0E0B3216CD5E700357A65 /* JSMessagesViewController.m in Sources */,
+				3DB68B41246B9A4A00FF6585 /* GroupControlViewController.swift in Sources */,
+				3DB68B04246B9A0400FF6585 /* ConfigurationServerViewCell.swift in Sources */,
+				3DB68AFA246B9A0400FF6585 /* NodeAppKeysViewController.swift in Sources */,
+				3DB68A95246AF2A100FF6585 /* ProgressViewController.swift in Sources */,
 				3DB6F4A023E956DD00FF39BB /* wifiDeviceCell.swift in Sources */,
+				3DB68B0E246B9A0400FF6585 /* ModelBindAppKeyViewController.swift in Sources */,
+				3DB68B73246B9A7000FF6585 /* FilterTypeCell.swift in Sources */,
+				3DB68AFE246B9A0400FF6585 /* SetPublicationViewController.swift in Sources */,
+				3DB68AA9246B996200FF6585 /* GenericLevelServerCell.swift in Sources */,
+				3DB68B5F246B9A5E00FF6585 /* RangeView.swift in Sources */,
+				3DB68AAF246B996300FF6585 /* GenericLevelClientCell.swift in Sources */,
+				3DB68B10246B9A0400FF6585 /* NodeAddNetworkKeyViewController.swift in Sources */,
 				3DB0E0B4216CD5E700357A65 /* KNSemiModalStoryboardSegue.m in Sources */,
-				3DB0E0B5216CD5E700357A65 /* guideViewController.m in Sources */,
-				3DB0E0B6216CD5E700357A65 /* ConThingsViewController.m in Sources */,
+				3DB68B53246B9A5E00FF6585 /* NetworkKeysViewController.swift in Sources */,
+				3DB68B75246B9A7000FF6585 /* AddressCell.swift in Sources */,
 				3DB0E0B7216CD5E700357A65 /* newModuleTableViewCell.m in Sources */,
+				3DB68A80246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift in Sources */,
+				3DB68AAB246B996200FF6585 /* GenericOnOffServerCell.swift in Sources */,
+				3DB68B55246B9A5E00FF6585 /* EditKeyViewController.swift in Sources */,
+				3DB68A8B246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift in Sources */,
+				3DB68AF4246B9A0400FF6585 /* PublicationCell.swift in Sources */,
+				3DB68A89246ABC3800FF6585 /* SimpleOnOffSet.swift in Sources */,
 				3DB0E0B8216CD5E700357A65 /* bonjourDetailTableViewController.m in Sources */,
+				3DB68AA7246B996200FF6585 /* SimpleOnOffClientCell.swift in Sources */,
+				3DB68A78246ABBF500FF6585 /* GenericLevelClientDelegate.swift in Sources */,
 				3DB0E0B9216CD5E700357A65 /* easylinkModeConfigTableViewController.m in Sources */,
 				3DB0E0BB216CD5E700357A65 /* JSMessageSoundEffect.m in Sources */,
+				3DB68AF6246B9A0400FF6585 /* SwitchCell.swift in Sources */,
 				3DB0E0BC216CD5E700357A65 /* EasyLinkFTCTableViewController.m in Sources */,
-				3D918D4023ED1E51008EDEC5 /* wifiDeviceDetailTableViewController.swift in Sources */,
+				3DB68B31246B9A4A00FF6585 /* SectionView.swift in Sources */,
+				3DB68AF8246B9A0400FF6585 /* SubscribeViewController.swift in Sources */,
 				3DB0E0BD216CD5E700357A65 /* FTCStringCell.m in Sources */,
+				3DB68B8B246B9A9200FF6585 /* AppInfo.swift in Sources */,
 				3DB0E0BE216CD5E700357A65 /* messageViewController.m in Sources */,
+				3DB68B3F246B9A4A00FF6585 /* GenericLevelGroupCell.swift in Sources */,
+				3D7CBD8E2475373200B7F3F1 /* MXGenericModleViewCell.swift in Sources */,
+				3DB68B35246B9A4A00FF6585 /* BottomSheetViewController.swift in Sources */,
+				3DB68B0C246B9A0400FF6585 /* GenericLevelViewCell.swift in Sources */,
+				3DB68AB9246B99E200FF6585 /* NetworkViewController.swift in Sources */,
 				3DB0E0BF216CD5E700357A65 /* EasyLinkMainViewController.m in Sources */,
+				3DB68B7B246B9A7000FF6585 /* AddAddressViewController.swift in Sources */,
 				3DB0E0C0216CD5E700357A65 /* UIColor+JSMessagesView.m in Sources */,
 				3DB0E0C1216CD5E700357A65 /* FTCSubMenuCell.m in Sources */,
+				3DB68A76246ABBF500FF6585 /* GenericOnOffClientDelegate.swift in Sources */,
+				3DB68A7A246ABBF500FF6585 /* GenericLevelServerDelegate.swift in Sources */,
+				3DB68B91246B9A9200FF6585 /* Address+String.swift in Sources */,
 				3DB0E0C3216CD5E700357A65 /* JSDismissiveTextView.m in Sources */,
 				3DB0E0C4216CD5E700357A65 /* FTCSwitchCell.m in Sources */,
+				3DB68B5B246B9A5E00FF6585 /* ProvisionersViewController.swift in Sources */,
+				3DB68B0A246B9A0400FF6585 /* GenericOnOffViewCell.swift in Sources */,
+				3DB68B18246B9A0400FF6585 /* ProvisioningViewDelegate.swift in Sources */,
+				3DB68B71246B9A7000FF6585 /* CustomAddressCell.swift in Sources */,
 				3DB0E0C5216CD5E700357A65 /* JSBubbleMessageCell.m in Sources */,
+				3DB68A6D246ABBC300FF6585 /* NetworkConnection.swift in Sources */,
+				3DB68B89246B9A9200FF6585 /* UITableView+EmptyView.swift in Sources */,
+				3DB68B63246B9A5F00FF6585 /* AppKeysViewController.swift in Sources */,
+				3DB68B43246B9A4A00FF6585 /* GroupsViewController.swift in Sources */,
+				3DB68AF0246B9A0400FF6585 /* NodeFeaturesCell.swift in Sources */,
+				3DB68B06246B9A0400FF6585 /* ModelViewCell.swift in Sources */,
+				3DB68B77246B9A7000FF6585 /* ConnectionModeCell.swift in Sources */,
+				3DB68AA5246B996200FF6585 /* ModelControlCell.swift in Sources */,
+				3DB68B57246B9A5E00FF6585 /* RangeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3D3371761A4968BD00ABFF1B /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D3371771A4968BD00ABFF1B /* en */,
-			);
-			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
 		3D3371791A4968E700ABFF1B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1248,6 +2012,70 @@
 				3D6739471FBBF54C00892F08 /* en */,
 			);
 			name = "Launch Screen.storyboard";
+			sourceTree = "<group>";
+		};
+		3DB68B99246B9AAC00FF6585 /* SetPublication.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DB68B9A246B9AAC00FF6585 /* Base */,
+			);
+			name = SetPublication.storyboard;
+			sourceTree = "<group>";
+		};
+		3DB68B9B246B9AAC00FF6585 /* Proxy.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DB68B9C246B9AAC00FF6585 /* Base */,
+			);
+			name = Proxy.storyboard;
+			sourceTree = "<group>";
+		};
+		3DB68B9D246B9AAC00FF6585 /* Network.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DB68B9E246B9AAC00FF6585 /* Base */,
+			);
+			name = Network.storyboard;
+			sourceTree = "<group>";
+		};
+		3DB68BA1246B9AAC00FF6585 /* Groups.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DB68BA2246B9AAC00FF6585 /* Base */,
+			);
+			name = Groups.storyboard;
+			sourceTree = "<group>";
+		};
+		3DB68BA3246B9AAC00FF6585 /* Control.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DB68BA4246B9AAC00FF6585 /* Base */,
+			);
+			name = Control.storyboard;
+			sourceTree = "<group>";
+		};
+		3DB68BA5246B9AAC00FF6585 /* Settings.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DB68BA6246B9AAC00FF6585 /* Base */,
+			);
+			name = Settings.storyboard;
+			sourceTree = "<group>";
+		};
+		3DB68BCB246BC90900FF6585 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DB68BCC246BC90900FF6585 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3DB68BCF246BD54000FF6585 /* Wi-Fi.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DB68BD0246BD54000FF6585 /* Base */,
+			);
+			name = "Wi-Fi.storyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1421,9 +2249,9 @@
 					"$(PROJECT_DIR)/EasyLink",
 					"$(PROJECT_DIR)/EasyLink/EasyLink",
 				);
-				MARKETING_VERSION = 3.4.0;
+				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = EasyLink.enterprise;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EasyLink;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = easylink_dev;
@@ -1461,9 +2289,9 @@
 					"$(PROJECT_DIR)/EasyLink",
 					"$(PROJECT_DIR)/EasyLink/EasyLink",
 				);
-				MARKETING_VERSION = 3.4.0;
+				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = EasyLink.enterprise;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EasyLink;
 				PROVISIONING_PROFILE = "f3bc4e96-3c8a-48b5-ace3-627322258c4c";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = Easylink.Enterprise;
