@@ -32,8 +32,16 @@ import Foundation
 
 public extension Model {
     
+    var isMXCHIPAssigned: Bool {
+        return companyIdentifier == 0x005D
+    }
+    
     /// The Model name as defined in Bluetooth Mesh Model Specification.
     var name: String? {
+        if isMXCHIPAssigned {
+            return "MXCHIP Model"
+        }
+        
         if !isBluetoothSIGAssigned {
             return "Vendor Model"
         }

@@ -119,15 +119,15 @@ private class Section {
 
         if let model = cellInfos[indexPath.row] as? Model {
             return model
-           }
+        }
            
-        guard let node = cellInfos[indexPath.row] as? Node else {
+        guard let node = cellInfos[indexPath.row] as? Node, node.models.count > 0 else {
             return nil
         }
         
         if isExtracted(node) {
             var indexPaths: [IndexPath] = []
-            for index in 1...(indexPath.row + node.models.count) {
+            for index in 1...node.models.count {
                 indexPaths.append(IndexPath(item: indexPath.row + index, section: indexPath.section))
             }
             removeExtractedNode(node)
@@ -136,7 +136,7 @@ private class Section {
         } else {
             let modles = node.models
             var indexPaths: [IndexPath] = []
-            for index in 1...(indexPath.row + node.models.count) {
+            for index in 1...node.models.count {
                 indexPaths.append(IndexPath(item: indexPath.row + index, section: indexPath.section))
             }
             addExtractedNode(node)
@@ -155,7 +155,6 @@ class NetworkViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.setEmptyView(title: "No Nodes", message: "Click + to provision a new device.", messageImage: #imageLiteral(resourceName: "baseline-network"))
-        reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -163,6 +162,8 @@ class NetworkViewController: UITableViewController {
         tableView.reloadData()
         
         MeshNetworkManager.instance.delegate = self
+        
+        reloadData()
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

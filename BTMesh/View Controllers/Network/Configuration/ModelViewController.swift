@@ -52,7 +52,7 @@ class ModelViewController: ProgressViewController {
         tableView.register(UINib(nibName: "ConfigurationServer", bundle: nil), forCellReuseIdentifier: "0000")
         tableView.register(UINib(nibName: "GenericOnOff", bundle: nil), forCellReuseIdentifier: "1000")
         tableView.register(UINib(nibName: "GenericLevel", bundle: nil), forCellReuseIdentifier: "1002")
-        tableView.register(UINib(nibName: "MXGenericModel", bundle: nil), forCellReuseIdentifier: "005D0001")
+        tableView.register(UINib(nibName: "MxModel", bundle: nil), forCellReuseIdentifier: "005D0001")
         tableView.register(UINib(nibName: "VendorModel", bundle: nil), forCellReuseIdentifier: "vendor")
     }
     
@@ -667,10 +667,8 @@ private extension IndexSet {
 
 }
 
-private extension Model {
-    var isMXCHIPAssigned: Bool {
-        return companyIdentifier == 0x005D
-    }
+extension Model {
+
     
     var hasCustomUI: Bool {
         return !isBluetoothSIGAssigned   // Vendor Movels.

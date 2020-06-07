@@ -92,10 +92,20 @@
 		3D6739481FBBF54D00892F08 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
 		3D67394B1FBBF65000892F08 /* launch_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D67394A1FBBF65000892F08 /* launch_image.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
-		3D7CBD8B2475353700B7F3F1 /* MXGenericModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MXGenericModel.xib */; };
-		3D7CBD8D2475372A00B7F3F1 /* MXGenericModleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8C2475372A00B7F3F1 /* MXGenericModleViewCell.swift */; };
-		3D7CBD8E2475373200B7F3F1 /* MXGenericModleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8C2475372A00B7F3F1 /* MXGenericModleViewCell.swift */; };
-		3D7CBD8F2475461D00B7F3F1 /* MXGenericModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MXGenericModel.xib */; };
+		3D7CBD8B2475353700B7F3F1 /* MxModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MxModel.xib */; };
+		3D7CBD8D2475372A00B7F3F1 /* MxModelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8C2475372A00B7F3F1 /* MxModelViewCell.swift */; };
+		3D7CBD8E2475373200B7F3F1 /* MxModelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8C2475372A00B7F3F1 /* MxModelViewCell.swift */; };
+		3D7CBD8F2475461D00B7F3F1 /* MxModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MxModel.xib */; };
+		3D88DF68248A28A30018D695 /* MxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF65248A28A30018D695 /* MxMessage.swift */; };
+		3D88DF69248A28A30018D695 /* MxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF65248A28A30018D695 /* MxMessage.swift */; };
+		3D88DF6A248A28A30018D695 /* MxQuadruplesGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF66248A28A30018D695 /* MxQuadruplesGet.swift */; };
+		3D88DF6B248A28A30018D695 /* MxQuadruplesGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF66248A28A30018D695 /* MxQuadruplesGet.swift */; };
+		3D88DF6C248A28A30018D695 /* MxQuadruplesStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF67248A28A30018D695 /* MxQuadruplesStatus.swift */; };
+		3D88DF6D248A28A30018D695 /* MxQuadruplesStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF67248A28A30018D695 /* MxQuadruplesStatus.swift */; };
+		3D88DF7A248A48760018D695 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF79248A48760018D695 /* Data.swift */; };
+		3D88DF7B248A48760018D695 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF79248A48760018D695 /* Data.swift */; };
+		3D88DF7D248A4BB10018D695 /* MxQuadruplesSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF7C248A4BB10018D695 /* MxQuadruplesSet.swift */; };
+		3D88DF7E248A4BB10018D695 /* MxQuadruplesSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF7C248A4BB10018D695 /* MxQuadruplesSet.swift */; };
 		3D9A166A1A496ABF00DBBE61 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
 		3D9A166B1A496ABF00DBBE61 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
 		3D9A16761A496CC200DBBE61 /* easycloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16751A496CC200DBBE61 /* easycloud.png */; };
@@ -411,6 +421,8 @@
 		3DB68BD2246BD54000FF6585 /* Wi-Fi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB68BCF246BD54000FF6585 /* Wi-Fi.storyboard */; };
 		3DB6F49F23E956DD00FF39BB /* wifiDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */; };
 		3DB6F4A023E956DD00FF39BB /* wifiDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */; };
+		3DC14FB22489337E006A9C59 /* MxClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14FB12489337E006A9C59 /* MxClientDelegate.swift */; };
+		3DC14FB32489337E006A9C59 /* MxClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC14FB12489337E006A9C59 /* MxClientDelegate.swift */; };
 		3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */; };
 		45C297C5C26050BA0C835837 /* libPods-EasyLink Enterprise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9ADA7BBB66958C192518BA /* libPods-EasyLink Enterprise.a */; };
 		61BA553545AE8E1587727C2B /* libPods-EasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7249A65E039CD4820DDA109A /* libPods-EasyLink.a */; };
@@ -540,8 +552,13 @@
 		3D67394A1FBBF65000892F08 /* launch_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image.png; path = Resources/Images/Common/launch_image.png; sourceTree = SOURCE_ROOT; };
 		3D6B82901BFEFCA3005A8263 /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/EMWHeader.h; sourceTree = SOURCE_ROOT; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
-		3D7CBD8A2475353700B7F3F1 /* MXGenericModel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MXGenericModel.xib; sourceTree = "<group>"; };
-		3D7CBD8C2475372A00B7F3F1 /* MXGenericModleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXGenericModleViewCell.swift; sourceTree = "<group>"; };
+		3D7CBD8A2475353700B7F3F1 /* MxModel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MxModel.xib; sourceTree = "<group>"; };
+		3D7CBD8C2475372A00B7F3F1 /* MxModelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxModelViewCell.swift; sourceTree = "<group>"; };
+		3D88DF65248A28A30018D695 /* MxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxMessage.swift; sourceTree = "<group>"; };
+		3D88DF66248A28A30018D695 /* MxQuadruplesGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxQuadruplesGet.swift; sourceTree = "<group>"; };
+		3D88DF67248A28A30018D695 /* MxQuadruplesStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxQuadruplesStatus.swift; sourceTree = "<group>"; };
+		3D88DF79248A48760018D695 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Data.swift; path = "Utils/Type Extensions/Data.swift"; sourceTree = "<group>"; };
+		3D88DF7C248A4BB10018D695 /* MxQuadruplesSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxQuadruplesSet.swift; sourceTree = "<group>"; };
 		3D9A16671A496ABF00DBBE61 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = Resources/Images/iPhone/EMW3161.png; sourceTree = SOURCE_ROOT; };
 		3D9A16681A496ABF00DBBE61 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = Resources/Images/iPhone/EMW3162.png; sourceTree = SOURCE_ROOT; };
 		3D9A16751A496CC200DBBE61 /* easycloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = easycloud.png; path = Resources/Images/Common/easycloud.png; sourceTree = SOURCE_ROOT; };
@@ -664,6 +681,7 @@
 		3DB68BCC246BC90900FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3DB68BD0246BD54000FF6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Wi-Fi.storyboard"; sourceTree = "<group>"; };
 		3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wifiDeviceCell.swift; sourceTree = SOURCE_ROOT; };
+		3DC14FB12489337E006A9C59 /* MxClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MxClientDelegate.swift; sourceTree = "<group>"; };
 		3DFC27CB1BFC377F008834C5 /* KNSemiModalStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KNSemiModalStoryboardSegue.h; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.h; sourceTree = "<group>"; };
 		3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KNSemiModalStoryboardSegue.m; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.m; sourceTree = "<group>"; };
 		5E71F907BF176D781884E856 /* Pods-EasyLink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyLink.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.release.xcconfig"; sourceTree = "<group>"; };
@@ -735,6 +753,7 @@
 		3D2AD57A17A247E20026E31E = {
 			isa = PBXGroup;
 			children = (
+				3D88DF77248A47720018D695 /* Utils */,
 				3DB68A67246ABA3E00FF6585 /* AppDelegate.swift */,
 				3DAC115C23DED10600CA05D0 /* EasyLink Enterprise-Bridging-Header.h */,
 				3DAC115B23DED10600CA05D0 /* EasyLink-Bridging-Header.h */,
@@ -925,6 +944,22 @@
 			name = UITemplate;
 			sourceTree = "<group>";
 		};
+		3D88DF77248A47720018D695 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3D88DF78248A477C0018D695 /* Type Extension */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		3D88DF78248A477C0018D695 /* Type Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3D88DF79248A48760018D695 /* Data.swift */,
+			);
+			name = "Type Extension";
+			sourceTree = "<group>";
+		};
 		3DAA37F517A5446A003806FE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1004,6 +1039,7 @@
 		3DB68A6A246ABB9E00FF6585 /* Mesh Neiwork */ = {
 			isa = PBXGroup;
 			children = (
+				3DC14FC324893A88006A9C59 /* MXCHIP */,
 				3DB68A7D246ABBFD00FF6585 /* Simple OnOff */,
 				3DB68A70246ABBF500FF6585 /* GenericLevelClientDelegate.swift */,
 				3DB68A71246ABBF500FF6585 /* GenericLevelServerDelegate.swift */,
@@ -1011,6 +1047,7 @@
 				3DB68A72246ABBF500FF6585 /* GenericOnOffServerDelegate.swift */,
 				3DB68A6E246ABBF500FF6585 /* GenericState.swift */,
 				3DB68A6B246ABBC300FF6585 /* NetworkConnection.swift */,
+				3DC14FB12489337E006A9C59 /* MxClientDelegate.swift */,
 			);
 			name = "Mesh Neiwork";
 			sourceTree = "<group>";
@@ -1127,7 +1164,7 @@
 		3DB68ADD246B9A0400FF6585 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3D7CBD8C2475372A00B7F3F1 /* MXGenericModleViewCell.swift */,
+				3D7CBD8C2475372A00B7F3F1 /* MxModelViewCell.swift */,
 				3DB68ADE246B9A0400FF6585 /* ConfigurationServerViewCell.swift */,
 				3DB68ADF246B9A0400FF6585 /* ModelViewCell.swift */,
 				3DB68AE0246B9A0400FF6585 /* VendorModelViewCell.swift */,
@@ -1287,12 +1324,24 @@
 			isa = PBXGroup;
 			children = (
 				3DB68BA8246B9AAC00FF6585 /* VendorModel.xib */,
-				3D7CBD8A2475353700B7F3F1 /* MXGenericModel.xib */,
+				3D7CBD8A2475353700B7F3F1 /* MxModel.xib */,
 				3DB68BA9246B9AAC00FF6585 /* GenericLevel.xib */,
 				3DB68BAA246B9AAC00FF6585 /* GenericOnOff.xib */,
 				3DB68BAB246B9AAC00FF6585 /* ConfigurationServer.xib */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3DC14FC324893A88006A9C59 /* MXCHIP */ = {
+			isa = PBXGroup;
+			children = (
+				3D88DF7C248A4BB10018D695 /* MxQuadruplesSet.swift */,
+				3D88DF65248A28A30018D695 /* MxMessage.swift */,
+				3D88DF66248A28A30018D695 /* MxQuadruplesGet.swift */,
+				3D88DF67248A28A30018D695 /* MxQuadruplesStatus.swift */,
+			);
+			name = MXCHIP;
+			path = "BTMesh/Mesh Network/MXCHIP";
 			sourceTree = "<group>";
 		};
 		3DE0C3301A494DFF00B7133F /* EasyLinkPage */ = {
@@ -1504,7 +1553,7 @@
 				3D3371501A49682400ABFF1B /* bubble-flat-outgoing-old@2x.png in Resources */,
 				3DB68BBC246B9AAC00FF6585 /* VendorModel.xib in Resources */,
 				3D3371671A49682400ABFF1B /* send-highlighted.png in Resources */,
-				3D7CBD8B2475353700B7F3F1 /* MXGenericModel.xib in Resources */,
+				3D7CBD8B2475353700B7F3F1 /* MxModel.xib in Resources */,
 				3D9A167C1A496CF900DBBE61 /* EasyLinkPhone.png in Resources */,
 				3D33714B1A49682300ABFF1B /* bubble-flat-incoming-selected.png in Resources */,
 				3D3371401A49682300ABFF1B /* bubble-default-incoming-green@2x.png in Resources */,
@@ -1556,7 +1605,7 @@
 				3DB0E0E6216CD5E700357A65 /* bubble-square-outgoing@2x.png in Resources */,
 				3DB0E0E7216CD5E700357A65 /* bubble-default-incoming.png in Resources */,
 				3DB68BBF246B9AAC00FF6585 /* GenericLevel.xib in Resources */,
-				3D7CBD8F2475461D00B7F3F1 /* MXGenericModel.xib in Resources */,
+				3D7CBD8F2475461D00B7F3F1 /* MxModel.xib in Resources */,
 				3DB0E0E8216CD5E700357A65 /* PhotoIcon.png in Resources */,
 				3DB0E0E9216CD5E700357A65 /* bubble-flat-outgoing-selected@2x.png in Resources */,
 				3DB0E0EA216CD5E700357A65 /* bubble-flat-incoming.png in Resources */,
@@ -1752,6 +1801,7 @@
 				3DB68A68246ABA3E00FF6585 /* AppDelegate.swift in Sources */,
 				3DB68B58246B9A5E00FF6585 /* EditProvisionerViewController.swift in Sources */,
 				3D3370991A49628E00ABFF1B /* FTCSelectViewController.m in Sources */,
+				3D88DF7A248A48760018D695 /* Data.swift in Sources */,
 				3DB68B7E246B9A7000FF6585 /* ProxySelectorViewController.swift in Sources */,
 				3DB68B19246B9A0400FF6585 /* OobSelector.swift in Sources */,
 				3DB68B7C246B9A7000FF6585 /* ProxyViewController.swift in Sources */,
@@ -1769,6 +1819,7 @@
 				3DB68B8E246B9A9200FF6585 /* UIViewController+Alert.swift in Sources */,
 				3DB68AFF246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift in Sources */,
 				3DB68A9C246B991600FF6585 /* ElementSectionView.swift in Sources */,
+				3D88DF68248A28A30018D695 /* MxMessage.swift in Sources */,
 				3DB68B60246B9A5F00FF6585 /* FabView.swift in Sources */,
 				3DB68B8C246B9A9200FF6585 /* RangeObject+String.swift in Sources */,
 				3DB68AAC246B996200FF6585 /* GenericOnOffClientCell.swift in Sources */,
@@ -1784,6 +1835,7 @@
 				3D3370A21A4962FE00ABFF1B /* EasyLinkOTATableViewController.m in Sources */,
 				3DB68AB6246B99E200FF6585 /* NodeViewCell.swift in Sources */,
 				3DB68AFB246B9A0400FF6585 /* ModelViewController.swift in Sources */,
+				3D88DF6A248A28A30018D695 /* MxQuadruplesGet.swift in Sources */,
 				3D3371381A49682300ABFF1B /* JSBubbleView.m in Sources */,
 				3D33713A1A49682300ABFF1B /* JSMessageInputView.m in Sources */,
 				3D3370B91A49658300ABFF1B /* easyLinkIpConfigTableViewController.m in Sources */,
@@ -1838,17 +1890,20 @@
 				3DB68B8A246B9A9200FF6585 /* AppInfo.swift in Sources */,
 				3D33708B1A49622700ABFF1B /* messageViewController.m in Sources */,
 				3DB68B3E246B9A4A00FF6585 /* GenericLevelGroupCell.swift in Sources */,
-				3D7CBD8D2475372A00B7F3F1 /* MXGenericModleViewCell.swift in Sources */,
+				3D7CBD8D2475372A00B7F3F1 /* MxModelViewCell.swift in Sources */,
 				3DB68B34246B9A4A00FF6585 /* BottomSheetViewController.swift in Sources */,
 				3DB68B0B246B9A0400FF6585 /* GenericLevelViewCell.swift in Sources */,
 				3DB68AB8246B99E200FF6585 /* NetworkViewController.swift in Sources */,
 				3D3370B71A49658300ABFF1B /* EasyLinkMainViewController.m in Sources */,
 				3DB68B7A246B9A7000FF6585 /* AddAddressViewController.swift in Sources */,
 				3D33716E1A49682400ABFF1B /* UIColor+JSMessagesView.m in Sources */,
+				3D88DF6C248A28A30018D695 /* MxQuadruplesStatus.swift in Sources */,
 				3D33709C1A49628E00ABFF1B /* FTCSubMenuCell.m in Sources */,
 				3DB68A75246ABBF500FF6585 /* GenericOnOffClientDelegate.swift in Sources */,
 				3DB68A79246ABBF500FF6585 /* GenericLevelServerDelegate.swift in Sources */,
 				3DB68B90246B9A9200FF6585 /* Address+String.swift in Sources */,
+				3DC14FB22489337E006A9C59 /* MxClientDelegate.swift in Sources */,
+				3D88DF7D248A4BB10018D695 /* MxQuadruplesSet.swift in Sources */,
 				3D3371391A49682300ABFF1B /* JSDismissiveTextView.m in Sources */,
 				3D33709D1A49628E00ABFF1B /* FTCSwitchCell.m in Sources */,
 				3DB68B5A246B9A5E00FF6585 /* ProvisionersViewController.swift in Sources */,
@@ -1879,6 +1934,7 @@
 				3DB68B59246B9A5E00FF6585 /* EditProvisionerViewController.swift in Sources */,
 				3DB0E0A2216CD5E700357A65 /* UIImage+JSMessagesView.m in Sources */,
 				3DB68B7F246B9A7000FF6585 /* ProxySelectorViewController.swift in Sources */,
+				3D88DF7B248A48760018D695 /* Data.swift in Sources */,
 				3DB68B1A246B9A0400FF6585 /* OobSelector.swift in Sources */,
 				3DB68B7D246B9A7000FF6585 /* ProxyViewController.swift in Sources */,
 				3DB0E0A3216CD5E700357A65 /* FTCSelectViewController.m in Sources */,
@@ -1896,6 +1952,7 @@
 				3DB68B00246B9A0400FF6585 /* SetPublicationDestinationsViewController.swift in Sources */,
 				3DB68A9D246B991600FF6585 /* ElementSectionView.swift in Sources */,
 				3DB68B61246B9A5F00FF6585 /* FabView.swift in Sources */,
+				3D88DF69248A28A30018D695 /* MxMessage.swift in Sources */,
 				3DB68B8D246B9A9200FF6585 /* RangeObject+String.swift in Sources */,
 				3DB68AAD246B996200FF6585 /* GenericOnOffClientCell.swift in Sources */,
 				3DB68B12246B9A0400FF6585 /* NodeAddAppKeyViewController.swift in Sources */,
@@ -1911,6 +1968,7 @@
 				3DB0E0AB216CD5E700357A65 /* EasyLinkOTATableViewController.m in Sources */,
 				3DB68AB7246B99E200FF6585 /* NodeViewCell.swift in Sources */,
 				3DB68AFC246B9A0400FF6585 /* ModelViewController.swift in Sources */,
+				3D88DF6B248A28A30018D695 /* MxQuadruplesGet.swift in Sources */,
 				3DB0E0AC216CD5E700357A65 /* JSBubbleView.m in Sources */,
 				3DB0E0AD216CD5E700357A65 /* JSMessageInputView.m in Sources */,
 				3DB0E0AE216CD5E700357A65 /* easyLinkIpConfigTableViewController.m in Sources */,
@@ -1965,17 +2023,20 @@
 				3DB68B8B246B9A9200FF6585 /* AppInfo.swift in Sources */,
 				3DB0E0BE216CD5E700357A65 /* messageViewController.m in Sources */,
 				3DB68B3F246B9A4A00FF6585 /* GenericLevelGroupCell.swift in Sources */,
-				3D7CBD8E2475373200B7F3F1 /* MXGenericModleViewCell.swift in Sources */,
+				3D7CBD8E2475373200B7F3F1 /* MxModelViewCell.swift in Sources */,
 				3DB68B35246B9A4A00FF6585 /* BottomSheetViewController.swift in Sources */,
 				3DB68B0C246B9A0400FF6585 /* GenericLevelViewCell.swift in Sources */,
 				3DB68AB9246B99E200FF6585 /* NetworkViewController.swift in Sources */,
 				3DB0E0BF216CD5E700357A65 /* EasyLinkMainViewController.m in Sources */,
 				3DB68B7B246B9A7000FF6585 /* AddAddressViewController.swift in Sources */,
 				3DB0E0C0216CD5E700357A65 /* UIColor+JSMessagesView.m in Sources */,
+				3D88DF6D248A28A30018D695 /* MxQuadruplesStatus.swift in Sources */,
 				3DB0E0C1216CD5E700357A65 /* FTCSubMenuCell.m in Sources */,
 				3DB68A76246ABBF500FF6585 /* GenericOnOffClientDelegate.swift in Sources */,
 				3DB68A7A246ABBF500FF6585 /* GenericLevelServerDelegate.swift in Sources */,
 				3DB68B91246B9A9200FF6585 /* Address+String.swift in Sources */,
+				3DC14FB32489337E006A9C59 /* MxClientDelegate.swift in Sources */,
+				3D88DF7E248A4BB10018D695 /* MxQuadruplesSet.swift in Sources */,
 				3DB0E0C3216CD5E700357A65 /* JSDismissiveTextView.m in Sources */,
 				3DB0E0C4216CD5E700357A65 /* FTCSwitchCell.m in Sources */,
 				3DB68B5B246B9A5E00FF6585 /* ProvisionersViewController.swift in Sources */,
