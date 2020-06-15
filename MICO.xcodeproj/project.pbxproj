@@ -114,6 +114,8 @@
 		3D9A167C1A496CF900DBBE61 /* EasyLinkPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167B1A496CF900DBBE61 /* EasyLinkPhone.png */; };
 		3D9A167E1A496D0500DBBE61 /* EMW3280.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167D1A496D0500DBBE61 /* EMW3280.png */; };
 		3D9A16801A496E1B00DBBE61 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167F1A496E1B00DBBE61 /* known_logo.png */; };
+		3D9B2E762492686E00561284 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B2E752492686E00561284 /* UUID.swift */; };
+		3D9B2E772492686E00561284 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B2E752492686E00561284 /* UUID.swift */; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
 		3DAC115923DECFB800CA05D0 /* browserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAC115823DECFB800CA05D0 /* browserViewController.swift */; };
@@ -567,6 +569,7 @@
 		3D9A167B1A496CF900DBBE61 /* EasyLinkPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EasyLinkPhone.png; path = Resources/Images/Common/EasyLinkPhone.png; sourceTree = SOURCE_ROOT; };
 		3D9A167D1A496D0500DBBE61 /* EMW3280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3280.png; path = Resources/Images/Common/EMW3280.png; sourceTree = SOURCE_ROOT; };
 		3D9A167F1A496E1B00DBBE61 /* known_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = known_logo.png; path = Resources/Images/Common/known_logo.png; sourceTree = SOURCE_ROOT; };
+		3D9B2E752492686E00561284 /* UUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UUID.swift; path = "Utils/Type Extensions/UUID.swift"; sourceTree = "<group>"; };
 		3D9E27E71F3B3D3200B30056 /* libEasyLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEasyLink.a; path = EasyLink/EasyLink/libEasyLink.a; sourceTree = "<group>"; };
 		3DA9AEC2216CD2BE00433682 /* EasyLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EasyLink.entitlements; sourceTree = "<group>"; };
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -955,6 +958,7 @@
 		3D88DF78248A477C0018D695 /* Type Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3D9B2E752492686E00561284 /* UUID.swift */,
 				3D88DF79248A48760018D695 /* Data.swift */,
 			);
 			name = "Type Extension";
@@ -1870,6 +1874,7 @@
 				3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */,
 				3DB68B52246B9A5E00FF6585 /* NetworkKeysViewController.swift in Sources */,
 				3DB68B74246B9A7000FF6585 /* AddressCell.swift in Sources */,
+				3D9B2E762492686E00561284 /* UUID.swift in Sources */,
 				3D3370B81A49658300ABFF1B /* newModuleTableViewCell.m in Sources */,
 				3DB68A7F246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift in Sources */,
 				3DB68AAA246B996200FF6585 /* GenericOnOffServerCell.swift in Sources */,
@@ -2003,6 +2008,7 @@
 				3DB0E0B4216CD5E700357A65 /* KNSemiModalStoryboardSegue.m in Sources */,
 				3DB68B53246B9A5E00FF6585 /* NetworkKeysViewController.swift in Sources */,
 				3DB68B75246B9A7000FF6585 /* AddressCell.swift in Sources */,
+				3D9B2E772492686E00561284 /* UUID.swift in Sources */,
 				3DB0E0B7216CD5E700357A65 /* newModuleTableViewCell.m in Sources */,
 				3DB68A80246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift in Sources */,
 				3DB68AAB246B996200FF6585 /* GenericOnOffServerCell.swift in Sources */,

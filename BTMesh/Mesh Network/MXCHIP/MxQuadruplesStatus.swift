@@ -25,8 +25,7 @@ public struct MxQuadruplesStatus: MxMessage {
         
         var data = Data()
         let seperator = Data([0x20])
-        data += productIdBytes
-        data += seperator
+        
         data += productKeyBytes
         data += seperator
         data += productSecretBytes
@@ -34,6 +33,8 @@ public struct MxQuadruplesStatus: MxMessage {
         data += deviceNameBytes
         data += seperator
         data += deviceSecretBytes
+        data += seperator
+        data += productIdBytes
         
         return data
         
@@ -77,11 +78,12 @@ public struct MxQuadruplesStatus: MxMessage {
             return nil
         }
 
-        productId = String(data: quadruples[0], encoding: .ascii)
-        productKey = String(data: quadruples[1], encoding: .ascii)
-        productSecret = String(data: quadruples[2], encoding: .ascii)
-        deviceName = String(data: quadruples[3], encoding: .ascii)
-        deviceSecret = String(data: quadruples[4], encoding: .ascii)
+        
+        productKey = String(data: quadruples[0], encoding: .ascii)
+        productSecret = String(data: quadruples[1], encoding: .ascii)
+        deviceName = String(data: quadruples[2], encoding: .ascii)
+        deviceSecret = String(data: quadruples[3], encoding: .ascii)
+        productId = String(data: quadruples[4], encoding: .ascii)
     }
     
 }

@@ -92,6 +92,12 @@ public protocol Transmitter: class {
 /// to the mesh network.
 public protocol Bearer: Transmitter {
     
+    var logger: LoggerDelegate? { get set }
+    
+    var name: String? { get }
+    
+    var identifier: UUID { get }
+    
     /// The Bearer delegate object will receive callbacks whenever the
     /// Bearer state changes.
     var delegate: BearerDelegate? { get set }
@@ -126,6 +132,10 @@ public protocol MeshBearer: Bearer {
 
 public protocol ProvisioningBearer: Bearer {
     // Empty.
+}
+
+public protocol MxProvisioningBearer: ProvisioningBearer, MeshBearer {
+    func switchToProxyBear() -> Bool
 }
 
 extension ProvisioningBearer {

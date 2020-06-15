@@ -48,7 +48,7 @@ class MxModelViewCell: ModelViewCell, UITextFieldDelegate {
     @IBOutlet weak var deviceSecretField: UITextField!
 
     @IBAction func editingDidChange(_ sender: UITextField) {
-        if let _ = UInt32(productIdField.text ?? ""),
+        if let _ = UInt32(productIdField.text ?? "", radix: 16),
            let pk = productKeyField.text, pk.count > 0,
            let ps = productSecretField.text, ps.count > 0,
            let dn = deviceNameField.text, dn.count > 0,

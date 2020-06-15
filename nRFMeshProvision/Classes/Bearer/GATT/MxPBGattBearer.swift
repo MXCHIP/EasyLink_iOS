@@ -36,7 +36,7 @@ import CoreBluetooth
 /// This object is not required to be used with nRF Mesh Provisioning library.
 /// Bearers are separate from the mesh networking part and the data must be
 /// passed to and from by the application.
-open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentralManagerDelegate, CBPeripheralDelegate {
+open class MxPBGattBearer: NSObject, MxProvisioningBearer, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     // MARK: - Properties
     public weak var delegate: BearerDelegate?
@@ -64,7 +64,7 @@ open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentra
     }
     
     /// The UUID associated with the peer.
-    public var identifier: UUID
+    public let identifier: UUID
     
     /// The name of the peripheral.
     ///
@@ -78,6 +78,9 @@ open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentra
     
     private var dataInCharacteristic:  CBCharacteristic?
     private var dataOutCharacteristic: CBCharacteristic?
+    
+    private var proxyDataInCharacteristic:  CBCharacteristic?
+    private var proxyDataOutCharacteristic: CBCharacteristic?
     
     // MARK: - Public API
     
@@ -111,9 +114,22 @@ open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentra
     open func close() {
         if basePeripheral?.state == .connected || basePeripheral?.state == .connecting {
             logger?.v(.bearer, "Cancelling connection...")
-            centralManager.cancelPeripheralConnection(basePeripheral)            
+            centralManager.cancelPeripheralConnection(basePeripheral)
         }
         isOpened = false
+    }
+    
+    open func switchToProxyBear() -> Bool {
+        // Ensure all required characteristics were found.
+        guard let dataOutCharacteristic = proxyDataOutCharacteristic, let _ = proxyDataInCharacteristic,
+            dataOutCharacteristic.properties.contains(.notify) else {
+                logger?.e(.bearer, "Proxy feature is not supported")
+                return false
+        }
+        self.dataOutCharacteristic = dataOutCharacteristic
+        self.dataInCharacteristic = proxyDataInCharacteristic
+        enableNotifications(for: dataOutCharacteristic)
+        return true
     }
     
     open func send(_ data: Data, ofType type: PduType) throws {
@@ -174,7 +190,7 @@ open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentra
     /// Starts service discovery, only given Service.
     private func discoverServices() {
         logger?.v(.bearer, "Discovering services...")
-        basePeripheral.discoverServices([Service.uuid])
+        basePeripheral.discoverServices([MeshProxyService.uuid, MeshProvisioningService.uuid])
     }
     
     /// Starts characteristic discovery for Data In and Data Out Characteristics.
@@ -182,7 +198,11 @@ open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentra
     /// - parameter service: The service to look for the characteristics in.
     private func discoverCharacteristics(for service: CBService) {
         logger?.v(.bearer, "Discovering characteristrics...")
-        basePeripheral.discoverCharacteristics([Service.dataInUuid, Service.dataOutUuid], for: service)
+        if MeshProxyService.matches(service) {
+            basePeripheral.discoverCharacteristics([MeshProxyService.dataInUuid, MeshProxyService.dataOutUuid], for: service)
+        } else if MeshProvisioningService.matches(service) {
+            basePeripheral.discoverCharacteristics([MeshProvisioningService.dataInUuid, MeshProvisioningService.dataOutUuid], for: service)
+        }
     }
     
     /// Enables notification for the given characteristic.
@@ -250,28 +270,47 @@ open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentra
     // MARK: - CBPeripheralDelegate
     
     open func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        var serviceFound = false
         if let services = peripheral.services {
             for service in services {
-                if Service.matches(service) {
-                    logger?.v(.bearer, "Service found")
+                if MeshProvisioningService.matches(service) || MeshProxyService.matches(service) {
+                    serviceFound = true
+                    logger?.v(.bearer, "Provisioning service found")
                     discoverCharacteristics(for: service)
-                    return
                 }
             }
         }
-        // Required service not found.
-        logger?.e(.bearer, "Device not supported")
-        close()
+        if serviceFound == false {
+            // Required service not found.
+            logger?.e(.bearer, "Device not supported")
+            close()
+        }
     }
     
     open func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        // Look for optional proxy characteristics.
+        if MeshProxyService.matches(service) {
+            if let characteristics = service.characteristics {
+                for characteristic in characteristics {
+                    if MeshProxyService.dataInUuid == characteristic.uuid {
+                        logger?.v(.bearer, "Data In characteristic found")
+                        proxyDataInCharacteristic = characteristic
+                    } else if MeshProxyService.dataOutUuid == characteristic.uuid {
+                        logger?.v(.bearer, "Data Out characteristic found")
+                        proxyDataOutCharacteristic = characteristic
+                    }
+                }
+            }
+            return
+        }
+        
         // Look for required characteristics.
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
-                if Service.dataInUuid == characteristic.uuid {
+                if MeshProvisioningService.dataInUuid == characteristic.uuid {
                     logger?.v(.bearer, "Data In characteristic found")
                     dataInCharacteristic = characteristic
-                } else if Service.dataOutUuid == characteristic.uuid {
+                } else if MeshProvisioningService.dataOutUuid == characteristic.uuid {
                     logger?.v(.bearer, "Data Out characteristic found")
                     dataOutCharacteristic = characteristic
                 }
@@ -340,18 +379,18 @@ open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentra
     
 }
 
-extension CBManagerState: CustomDebugStringConvertible {
+//extension CBManagerState: CustomDebugStringConvertible {
+//
+//    public var debugDescription: String {
+//        switch self {
+//        case .unknown: return ".unknown"
+//        case .resetting: return ".resetting"
+//        case .unsupported: return ".unsupported"
+//        case .unauthorized: return ".unauthorized"
+//        case .poweredOff: return ".poweredOff"
+//        case .poweredOn: return ".poweredOn"
+//        default: return "Unknown"
+//        }
+//    }
     
-    public var debugDescription: String {
-        switch self {
-        case .unknown: return ".unknown"
-        case .resetting: return ".resetting"
-        case .unsupported: return ".unsupported"
-        case .unauthorized: return ".unauthorized"
-        case .poweredOff: return ".poweredOff"
-        case .poweredOn: return ".poweredOn"
-        default: return "Unknown"
-        }
-    }
-    
-}
+//}

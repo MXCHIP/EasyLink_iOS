@@ -168,7 +168,7 @@
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Product ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5LP-Ar-8XH">
                         <rect key="frame" x="227.5" y="11" width="103.5" height="34"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                         <connections>
                             <action selector="editingDidChange:" destination="sQu-aL-470" eventType="editingChanged" id="Vej-N4-h2W"/>
                         </connections>

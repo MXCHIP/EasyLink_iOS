@@ -54,9 +54,11 @@ class NetworkConnection: NSObject, Bearer {
     /// The Mesh Network for this connection.
     let meshNetwork: MeshNetwork
     /// The list of connected GATT Proxies.
-    var proxies: [GattBearer] = []
+    var proxies: [MeshBearer] = []
     /// A flag set to `true` when any of the underlying bearers is open.
     var isOpen: Bool = false
+            
+    var identifier = UUID()
     
     weak var delegate: BearerDelegate?
     weak var dataDelegate: BearerDataDelegate?
@@ -69,7 +71,7 @@ class NetworkConnection: NSObject, Bearer {
     }
     
     public var supportedPduTypes: PduTypes {
-        return [.networkPdu, .meshBeacon, .proxyConfiguration]
+        return [.provisioningPdu, .networkPdu, .meshBeacon, .proxyConfiguration]
     }
     
     /// A flag indicating whether the network connection is open.
@@ -104,6 +106,7 @@ class NetworkConnection: NSObject, Bearer {
         self.meshNetwork = meshNetwork
         super.init()
         centralManager.delegate = self
+        
         
         // By default, the connection mode is automatic.
         UserDefaults.standard.register(defaults: [connectionModeKey : true])
@@ -141,10 +144,10 @@ class NetworkConnection: NSObject, Bearer {
     /// proxy that will be used by the mesh network.
     ///
     /// - parameter bearer: The GATT Bearer proxy to use.
-    func use(proxy bearer: GattBearer) {
-        guard !isConnectionModeAutomatic else {
-            return
-        }
+    func use(proxy bearer: MeshBearer) {
+//        guard !isConnectionModeAutomatic else {
+//            return
+//        }
         
         bearer.delegate = self
         bearer.dataDelegate = self
@@ -220,7 +223,7 @@ extension NetworkConnection: GattBearerDelegate, BearerDataDelegate {
     }
     
     func bearer(_ bearer: Bearer, didClose error: Error?) {
-        if let index = proxies.firstIndex(of: bearer as! GattBearer) {
+        if let index = proxies.firstIndex(where: {$0.identifier == bearer.identifier }) {
             proxies.remove(at: index)
         }
         if isStarted && isConnectionModeAutomatic &&

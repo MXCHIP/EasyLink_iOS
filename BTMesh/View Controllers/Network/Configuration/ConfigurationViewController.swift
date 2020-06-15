@@ -157,6 +157,10 @@ class ConfigurationViewController: ProgressViewController {
         }
         if indexPath.isNodeSection {
             cell.textLabel?.text = indexPath.title
+            if indexPath.isUuid {
+                cell.detailTextLabel?.text = node.uuid.hex
+                cell.accessoryType = .disclosureIndicator
+            }
             if indexPath.isUnicastAddress {
                 cell.detailTextLabel?.text = node.unicastAddress.asString()
                 cell.accessoryType = .none
@@ -270,6 +274,9 @@ class ConfigurationViewController: ProgressViewController {
         if indexPath.isName {
             presentNameDialog()
         }
+        if indexPath.isUuid {
+            presentUuidDialog()
+        }
         if indexPath.isTtl {
             presentTTLDialog()
         }
@@ -327,6 +334,12 @@ private extension ConfigurationViewController {
                             }
         }
     }
+    
+    func presentUuidDialog() {
+        presentAlert(title: "MXCHIP Style UUID Format",
+                     message: "Version = \(self.node.uuid.version)\nProduct ID = \(self.node.uuid.productID)\nMAC address = \(self.node.uuid.macString)")
+    }
+    
     
     /// Presents a dialog to edit the default TTL.
     func presentTTLDialog() {
@@ -588,7 +601,7 @@ private extension IndexPath {
         "Name"
     ]
     static let nodeTitles = [
-        "Unicast Address", "Default TTL", "Device Key"
+        "UUID", "Unicast Address", "Default TTL", "Device Key"
     ]
     static let keysTitles = [
         "Network Keys", "Application Keys"
@@ -656,7 +669,7 @@ private extension IndexPath {
     }
     
     var isHighlightable: Bool {
-        return isName || isTtl || isDeviceKey || isElementsSection || isKeysSection || isActionsSection
+        return isName || isUuid || isTtl || isDeviceKey || isElementsSection || isKeysSection || isActionsSection
     }
     
     var isName: Bool {
@@ -671,16 +684,20 @@ private extension IndexPath {
         return section == IndexPath.actionsSection && row == 1
     }
     
-    var isUnicastAddress: Bool {
+    var isUuid: Bool {
         return isNodeSection && row == 0
     }
     
-    var isTtl: Bool {
+    var isUnicastAddress: Bool {
         return isNodeSection && row == 1
     }
     
-    var isDeviceKey: Bool {
+    var isTtl: Bool {
         return isNodeSection && row == 2
+    }
+    
+    var isDeviceKey: Bool {
+        return isNodeSection && row == 3
     }
     
     var isNetworkKeys: Bool {

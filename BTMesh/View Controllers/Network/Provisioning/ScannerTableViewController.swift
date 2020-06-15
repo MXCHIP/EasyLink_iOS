@@ -74,7 +74,7 @@ class ScannerTableViewController: UITableViewController {
         if segue.identifier == "identify" {
             let destination = segue.destination as! ProvisioningViewController
             destination.unprovisionedDevice = self.selectedDevice
-            destination.bearer = sender as? ProvisioningBearer
+            destination.bearer = sender as? MxProvisioningBearer
             destination.delegate = delegate
             selectedDevice = nil
         }
@@ -100,7 +100,7 @@ class ScannerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let bearer = PBGattBearer(target: discoveredPeripherals[indexPath.row].peripheral)
+        let bearer = MxPBGattBearer(target: discoveredPeripherals[indexPath.row].peripheral)
         bearer.logger = MeshNetworkManager.instance.logger
         bearer.delegate = self
         

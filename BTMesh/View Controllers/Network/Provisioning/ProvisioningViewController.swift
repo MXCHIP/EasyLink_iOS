@@ -66,7 +66,7 @@ class ProvisioningViewController: UITableViewController {
     
     weak var delegate: ProvisioningViewDelegate?
     var unprovisionedDevice: UnprovisionedDevice!
-    var bearer: ProvisioningBearer!
+    var bearer: MxProvisioningBearer!
     
     private var publicKey: PublicKey?
     private var authenticationMethod: AuthenticationMethod?
@@ -378,8 +378,27 @@ extension ProvisioningViewController: ProvisioningDelegate {
                 }
                 
             case .complete:
-                self.bearer.close()
-                self.presentStatusDialog(message: "Disconnecting...")
+                if self.bearer.switchToProxyBear() {
+                    self.provisioningManager.bearer(self.bearer, didClose: nil)
+                    MeshNetworkManager.bearer.use(proxy: self.bearer)
+                    self.dismissStatusDialog() {
+                        //self.presentAlert(title: "Success", message: "Provisioning complete.") { _ in
+                            if MeshNetworkManager.instance.save() {
+                                self.dismiss(animated: true) {
+                                    let network = MeshNetworkManager.instance.meshNetwork!
+                                    if let node = network.node(for: self.unprovisionedDevice) {
+                                        self.delegate?.provisionerDidProvisionNewDevice(node)
+                                    }
+                                }
+                            } else {
+                                self.presentAlert(title: "Error", message: "Mesh configuration could not be saved.")
+                            }
+                        //d}
+                    }
+                } else {
+                    self.bearer.close()
+                    self.presentStatusDialog(message: "Disconnecting...")
+                }
                 
             case let .fail(error):
                 self.dismissStatusDialog() {
