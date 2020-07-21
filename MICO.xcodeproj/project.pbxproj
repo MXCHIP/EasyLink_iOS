@@ -86,6 +86,7 @@
 		3D33716F1A49682400ABFF1B /* UIImage+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371341A49682300ABFF1B /* UIImage+JSMessagesView.m */; };
 		3D3371701A49682400ABFF1B /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371361A49682300ABFF1B /* UIView+AnimationOptionsForCurve.m */; };
 		3D33717B1A4968E700ABFF1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371791A4968E700ABFF1B /* InfoPlist.strings */; };
+		3D3F869F2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3F869D2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard */; };
 		3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
 		3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3D6739331FB82EC900892F08 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
@@ -116,6 +117,8 @@
 		3D9A16801A496E1B00DBBE61 /* known_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A167F1A496E1B00DBBE61 /* known_logo.png */; };
 		3D9B2E762492686E00561284 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B2E752492686E00561284 /* UUID.swift */; };
 		3D9B2E772492686E00561284 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B2E752492686E00561284 /* UUID.swift */; };
+		3D9C2C1724C5E74A00EF8494 /* DisconnectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C2C1624C5E74A00EF8494 /* DisconnectCell.swift */; };
+		3D9C2C1824C5E74A00EF8494 /* DisconnectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C2C1624C5E74A00EF8494 /* DisconnectCell.swift */; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
 		3DAC115923DECFB800CA05D0 /* browserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAC115823DECFB800CA05D0 /* browserViewController.swift */; };
@@ -545,6 +548,7 @@
 		3D3371711A49686E00ABFF1B /* EasyLink-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "EasyLink-Info.plist"; path = "General/EasyLink-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3D3371721A49686E00ABFF1B /* EasyLink-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "EasyLink-Prefix.pch"; path = "General/EasyLink-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		3D33717A1A4968E700ABFF1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = General/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		3D3F869E2497A0B000EFA3F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FwUpdateOverBLE.storyboard; sourceTree = "<group>"; };
 		3D417CE81B5CEA0D00EA2E1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3D42C01D1BFDE35500E6D9DF /* EasyLink_Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyLink_Enterprise-Info.plist"; path = "/Users/William/Develop/EasyLink/EasyLink_Enterprise-Info.plist"; sourceTree = "<absolute>"; };
 		3D5442C31F3B2518002A7C32 /* EasyLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLink.h; path = EasyLink/EasyLink.h; sourceTree = "<group>"; };
@@ -570,6 +574,7 @@
 		3D9A167D1A496D0500DBBE61 /* EMW3280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3280.png; path = Resources/Images/Common/EMW3280.png; sourceTree = SOURCE_ROOT; };
 		3D9A167F1A496E1B00DBBE61 /* known_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = known_logo.png; path = Resources/Images/Common/known_logo.png; sourceTree = SOURCE_ROOT; };
 		3D9B2E752492686E00561284 /* UUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UUID.swift; path = "Utils/Type Extensions/UUID.swift"; sourceTree = "<group>"; };
+		3D9C2C1624C5E74A00EF8494 /* DisconnectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectCell.swift; sourceTree = "<group>"; };
 		3D9E27E71F3B3D3200B30056 /* libEasyLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEasyLink.a; path = EasyLink/EasyLink/libEasyLink.a; sourceTree = "<group>"; };
 		3DA9AEC2216CD2BE00433682 /* EasyLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EasyLink.entitlements; sourceTree = "<group>"; };
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1283,6 +1288,7 @@
 		3DB68B67246B9A7000FF6585 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3D9C2C1624C5E74A00EF8494 /* DisconnectCell.swift */,
 				3DB68B68246B9A7000FF6585 /* CustomAddressCell.swift */,
 				3DB68B69246B9A7000FF6585 /* FilterTypeCell.swift */,
 				3DB68B6A246B9A7000FF6585 /* AddressCell.swift */,
@@ -1310,6 +1316,7 @@
 		3DB68B96246B9AAC00FF6585 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3D3F869D2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard */,
 				3DB68BCF246BD54000FF6585 /* Wi-Fi.storyboard */,
 				3DB68BCB246BC90900FF6585 /* Main.storyboard */,
 				3DB68B99246B9AAC00FF6585 /* SetPublication.storyboard */,
@@ -1556,6 +1563,7 @@
 				3D3371631A49682400ABFF1B /* input-field.png in Resources */,
 				3D3371501A49682400ABFF1B /* bubble-flat-outgoing-old@2x.png in Resources */,
 				3DB68BBC246B9AAC00FF6585 /* VendorModel.xib in Resources */,
+				3D3F869F2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard in Resources */,
 				3D3371671A49682400ABFF1B /* send-highlighted.png in Resources */,
 				3D7CBD8B2475353700B7F3F1 /* MxModel.xib in Resources */,
 				3D9A167C1A496CF900DBBE61 /* EasyLinkPhone.png in Resources */,
@@ -1919,6 +1927,7 @@
 				3DB68A6C246ABBC300FF6585 /* NetworkConnection.swift in Sources */,
 				3DB68B88246B9A9200FF6585 /* UITableView+EmptyView.swift in Sources */,
 				3DB68B62246B9A5F00FF6585 /* AppKeysViewController.swift in Sources */,
+				3D9C2C1724C5E74A00EF8494 /* DisconnectCell.swift in Sources */,
 				3DB68B42246B9A4A00FF6585 /* GroupsViewController.swift in Sources */,
 				3DB68AEF246B9A0400FF6585 /* NodeFeaturesCell.swift in Sources */,
 				3DB68B05246B9A0400FF6585 /* ModelViewCell.swift in Sources */,
@@ -2053,6 +2062,7 @@
 				3DB68A6D246ABBC300FF6585 /* NetworkConnection.swift in Sources */,
 				3DB68B89246B9A9200FF6585 /* UITableView+EmptyView.swift in Sources */,
 				3DB68B63246B9A5F00FF6585 /* AppKeysViewController.swift in Sources */,
+				3D9C2C1824C5E74A00EF8494 /* DisconnectCell.swift in Sources */,
 				3DB68B43246B9A4A00FF6585 /* GroupsViewController.swift in Sources */,
 				3DB68AF0246B9A0400FF6585 /* NodeFeaturesCell.swift in Sources */,
 				3DB68B06246B9A0400FF6585 /* ModelViewCell.swift in Sources */,
@@ -2071,6 +2081,14 @@
 				3D33717A1A4968E700ABFF1B /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3D3F869D2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D3F869E2497A0B000EFA3F4 /* Base */,
+			);
+			name = FwUpdateOverBLE.storyboard;
 			sourceTree = "<group>";
 		};
 		3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */ = {

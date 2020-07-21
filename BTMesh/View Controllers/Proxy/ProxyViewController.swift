@@ -76,9 +76,9 @@ class ProxyViewController: ProgressViewController, Editable {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return 2
-        case 1:
+        case IndexPath.statusSection:
+            return 3
+        case IndexPath.proxyTypeSection:
             return 1
         default:
             return MeshNetworkManager.instance.proxyFilter?.addresses.count ?? 0
@@ -116,10 +116,17 @@ class ProxyViewController: ProgressViewController, Editable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "status", for: indexPath)
             let bearer = MeshNetworkManager.bearer!
             cell.detailTextLabel?.text = bearer.isOpen ?
-                "\(bearer.name ?? "Unknown device")" :
+                "\(proxyFilter.proxy?.name ?? bearer.name ?? "Unknown device")" :
                 bearer.isConnectionModeAutomatic ? "Connecting..." : "Not selected"
             cell.accessoryType = bearer.isConnectionModeAutomatic ? .none : .disclosureIndicator
             cell.selectionStyle = bearer.isConnectionModeAutomatic ? .none : .default
+            return cell
+        }
+        if indexPath == .action {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "disconnect", for: indexPath) as! DisconnectCell
+            let bearer = MeshNetworkManager.bearer!
+            cell.disconnectButton.isEnabled = bearer.isOpen &&
+                                             !bearer.isConnectionModeAutomatic
             return cell
         }
         if indexPath == .control {
@@ -130,7 +137,12 @@ class ProxyViewController: ProgressViewController, Editable {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "subtitle", for: indexPath) as! AddressCell
-        cell.address = proxyFilter.addresses.sorted()[indexPath.row]
+        let addresses = proxyFilter.addresses.sorted()
+        guard addresses.count > indexPath.row else {
+            cell.address = .unassignedAddress
+            return cell
+        }
+        cell.address = addresses.sorted()[indexPath.row]
         return cell
     }
     
@@ -142,7 +154,9 @@ class ProxyViewController: ProgressViewController, Editable {
         return indexPath.section == IndexPath.addressesSection
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
         let proxyFilter = MeshNetworkManager.instance.proxyFilter!
         let address = proxyFilter.addresses.sorted()[indexPath.row]
         deleteAddress(address)
@@ -163,11 +177,15 @@ extension ProxyViewController: BearerDelegate {
     
     func bearerDidOpen(_ bearer: Bearer) {
         addButton.isEnabled = true
-        tableView.reloadRows(at: [.status, .control], with: .automatic)
+        tableView.reloadRows(at: [.status, .action, .control], with: .automatic)
     }
     
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         addButton.isEnabled = false
+        // The bearer has closed. Attempt to send a message
+        // will fail, but the Proxy Filter will receive .bearerClosed
+        // error, upon which it will clear the filter list and notify
+        // the delegate.
         MeshNetworkManager.instance.proxyFilter?.clear()
     }
     
@@ -176,7 +194,7 @@ extension ProxyViewController: BearerDelegate {
 extension ProxyViewController: ConnectionModeDelegate {
     
     func connectionModeDidChange(automatic: Bool) {
-        tableView.reloadRows(at: [.status], with: .automatic)
+        tableView.reloadRows(at: [.status, .action], with: .automatic)
     }
     
 }
@@ -207,11 +225,6 @@ extension ProxyViewController: ProxyFilterDelegate {
     func proxyFilterUpdated(type: ProxyFilerType, addresses: Set<Address>) {
         done() {
             self.tableView.reloadData()
-            if addresses.isEmpty {
-                self.showEmptyView()
-            } else {
-                self.hideEmptyView()
-            }
         }
     }
     
@@ -241,6 +254,7 @@ private extension IndexPath {
     
     static let mode    = IndexPath(row: 0, section: IndexPath.statusSection)
     static let status  = IndexPath(row: 1, section: IndexPath.statusSection)
+    static let action  = IndexPath(row: 2, section: IndexPath.statusSection)
     static let control = IndexPath(row: 0, section: IndexPath.proxyTypeSection)
 }
 

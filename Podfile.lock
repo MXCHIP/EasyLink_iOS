@@ -14,7 +14,7 @@ PODS:
   - JSQSystemSoundPlayer (2.0.1)
   - KNSemiModalViewController (0.3)
   - MJRefresh (3.0.8)
-  - nRFMeshProvision (2.2.1):
+  - nRFMeshProvision (2.2.3):
     - OpenSSL-Universal (= 1.0.2.19)
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
@@ -64,7 +64,7 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   KNSemiModalViewController: 8c0056377714b5170c52c65977d540200405411f
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
-  nRFMeshProvision: 3ba41cf56bb468cbfa2162b20ee1bca8407a2fbc
+  nRFMeshProvision: ecb20ce595bb421f2350e539f05d7391dd507724
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
   PulsingHalo: 64938e4bd3893b823abdf01478084cd92445af2b
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893

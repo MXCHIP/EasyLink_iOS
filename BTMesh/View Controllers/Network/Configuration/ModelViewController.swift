@@ -37,6 +37,10 @@ class ModelViewController: ProgressViewController {
     
     var model: Model!
     
+    // Calculate acknowledged message loop time
+    private var sendTimestamp: Date?
+    private var responseOpCode: UInt32?
+    
     private weak var modelViewCell: ModelViewCell?
     
     // MARK: - View Controller
@@ -364,6 +368,14 @@ extension ModelViewController: ModelViewCellDelegate {
     
     func send(_ message: MeshMessage, description: String) {
         start(description) {
+            self.responseOpCode = nil
+            if let acknowledgedMessage =  message as? AcknowledgedMeshMessage {
+                self.responseOpCode = acknowledgedMessage.responseOpCode
+                self.sendTimestamp = Date()
+            }
+           
+            //private var timeSend: Data?
+            //private var responseOpCode: UInt32?
             return try MeshNetworkManager.instance.send(message, to: self.model)
         }
     }
@@ -663,7 +675,7 @@ private extension IndexSet {
     static let subscriptions = IndexSet(integer: IndexPath.subscribeSection)
     static let bindingsAndPublication = IndexSet([IndexPath.bindingsSection, IndexPath.publishSection])
     static let configurationServer = IndexSet(integer: IndexPath.configurationServerSection)
-    static let custom = IndexSet(integer: IndexPath.subscribeSection + 1)
+    static let custom = IndexSet(integer: IndexPath.customUISection)
 
 }
 

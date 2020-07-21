@@ -32,6 +32,12 @@ import UIKit
 import CoreBluetooth
 import nRFMeshProvision
 
+typealias DiscoveredPeripheral = (
+    device: UnprovisionedDevice,
+    peripheral: CBPeripheral,
+    rssi: Int
+)
+
 class ScannerTableViewController: UITableViewController {
     
     // MARK: - Outlets and Actions
@@ -46,7 +52,7 @@ class ScannerTableViewController: UITableViewController {
     weak var delegate: ProvisioningViewDelegate?
     
     private var centralManager: CBCentralManager!
-    private var discoveredPeripherals = [(device: UnprovisionedDevice, peripheral: CBPeripheral, rssi: Int)]()
+    private var discoveredPeripherals: [DiscoveredPeripheral] = []
     
     private var alert: UIAlertController?
     private var selectedDevice: UnprovisionedDevice?
@@ -55,7 +61,9 @@ class ScannerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.setEmptyView(title: "Can't see your device?", message: "1. Make sure the device is turned on\nand connected to a power source.\n\n2. Make sure the relevant firmware\nand SoftDevices are flashed.", messageImage: #imageLiteral(resourceName: "baseline-bluetooth"))
+        tableView.setEmptyView(title: "Can't see your device?",
+                               message: "1. Make sure the device is turned on\nand connected to a power source.\n\n2. Make sure the relevant firmware\nand SoftDevices are flashed.",
+                               messageImage: #imageLiteral(resourceName: "baseline-bluetooth"))
         centralManager = CBCentralManager()
         
         tableView.showEmptyView()
@@ -139,17 +147,17 @@ extension ScannerTableViewController: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
                         advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if !discoveredPeripherals.contains(where: { $0.peripheral == peripheral }) {
+        if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == peripheral }) {
+            if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DeviceCell {
+                let device = discoveredPeripherals[index].device
+                device.name = advertisementData.localName
+                cell.deviceDidUpdate(device, andRSSI: RSSI.intValue)
+            }
+        } else {
             if let unprovisionedDevice = UnprovisionedDevice(advertisementData: advertisementData) {
                 discoveredPeripherals.append((unprovisionedDevice, peripheral, RSSI.intValue))
                 tableView.insertRows(at: [IndexPath(row: discoveredPeripherals.count - 1, section: 0)], with: .fade)
                 tableView.hideEmptyView()
-            }
-        } else {
-            if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == peripheral }) {
-                if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DeviceCell {
-                    cell.deviceDidUpdate(discoveredPeripherals[index].device, andRSSI: RSSI.intValue)
-                }
             }
         }
     }

@@ -364,9 +364,9 @@ extension ProvisioningViewController: ProvisioningDelegate {
                         // If the device got disconnected after the capabilities were received
                         // the first time, the app had to send invitation again.
                         // This time we can just directly proceed with provisioning.
-                        if capabilitiesWereAlreadyReceived {
+                        //if capabilitiesWereAlreadyReceived {
                             self.startProvisioning()
-                        }
+                        //}
                     } else {
                         if !deviceSupported {
                             self.presentAlert(title: "Error", message: "Selected device is not supported.")

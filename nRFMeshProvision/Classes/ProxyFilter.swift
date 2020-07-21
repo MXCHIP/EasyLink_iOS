@@ -85,15 +85,26 @@ public extension ProxyFilterDelegate {
 public class ProxyFilter {
     internal var manager: MeshNetworkManager
     
+    private let mutex = DispatchQueue(label: "ProxyFilterMutex")
+    /// The counter is used to prevent from refreshing the filter in a loop when the Proxy Server
+    /// responds with an unexpected list size.
     private var counter = 0
+    /// The flag is set to `true` when a request hsa been sent to the connected proxy.
+    /// It is cleared when a response was received, or in case of an error.
     private var busy = false
+    /// A queue of proxy configuration messages enqueued to be sent.
     private var buffer: [ProxyConfigurationMessage] = []
-    
+    /// A shortcut to the manager's logger.
     private var logger: LoggerDelegate? {
         return manager.logger
     }
     
     // MARK: - Proxy Filter properties
+    
+    /// A queue to call delegate methods on.
+    ///
+    /// The value is set in the `MeshNetworkManager` initializer.
+    internal let delegateQueue: DispatchQueue
     
     /// The delegate to be informed about Proxy Filter changes.
     public weak var delegate: ProxyFilterDelegate?
@@ -106,10 +117,16 @@ public class ProxyFilter {
     /// By default the Proxy Filter is set to `.whitelist`.
     public internal(set) var type: ProxyFilerType = .whitelist
     
+    /// The connected Proxy Node. This may be `nil` if the connected Node is unknown
+    /// to the provisioner, that is if a Node with the proxy Unicast Address was not found
+    /// in the local mesh network database. It is also `nil` if no proxy is connected.
+    public internal(set) var proxy: Node?
+    
     // MARK: - Implementation
     
     internal init(_ manager: MeshNetworkManager) {
         self.manager = manager
+        self.delegateQueue = manager.delegateQueue
     }
 }
 
@@ -242,6 +259,11 @@ internal extension ProxyFilter {
     /// its Unicast Addresses and All Nodes address.
     func newProxyDidConnect() {
         logger?.i(.proxy, "New Proxy connected")
+        mutex.sync {
+            busy = false
+            // The proxy Node is unknown at the moment.
+            proxy = nil
+        }
         reset()
         if let localProvisioner = manager.meshNetwork?.localProvisioner {
             setup(for: localProvisioner)
@@ -254,20 +276,24 @@ internal extension ProxyFilter {
     ///
     /// - parameter message: The message sent.
     func managerDidDeliverMessage(_ message: ProxyConfigurationMessage) {
-        switch message {
-        case let request as AddAddressesToFilter:
-            addresses.formUnion(request.addresses)
-        case let request as RemoveAddressesFromFilter:
-            addresses.subtract(request.addresses)
-        case let request as SetFilterType:
-            type = request.filterType
-            addresses.removeAll()
-        default:
-            // Ignore.
-            break
+        mutex.sync {
+            switch message {
+            case let request as AddAddressesToFilter:
+                addresses.formUnion(request.addresses)
+            case let request as RemoveAddressesFromFilter:
+                addresses.subtract(request.addresses)
+            case let request as SetFilterType:
+                type = request.filterType
+                addresses.removeAll()
+            default:
+                // Ignore.
+                break
+            }
         }
         // And notify the app.
-        delegate?.proxyFilterUpdated(type: type, addresses: addresses)
+        delegateQueue.async {
+            self.delegate?.proxyFilterUpdated(type: self.type, addresses: self.addresses)
+        }
     }
     
     /// Callback called when the manager failed to send the Proxy
@@ -276,15 +302,23 @@ internal extension ProxyFilter {
     /// This method clears the local filter and sets it back to `.whitelist`.
     /// All the messages waiting to be sent are cancelled.
     ///
-    /// - parameter message: The message that has not been sent.
-    /// - parameter error: The error received.
+    /// - parameters:
+    ///   - message: The message that has not been sent.
+    ///   - error: The error received.
     func managerFailedToDeliverMessage(_ message: ProxyConfigurationMessage, error: Error) {
-        type = .whitelist
-        addresses.removeAll()
-        buffer.removeAll()
-        busy = false
+        mutex.sync {
+            type = .whitelist
+            addresses.removeAll()
+            buffer.removeAll()
+            busy = false
+        }
+        if case BearerError.bearerClosed = error {
+            proxy = nil
+        }
         // And notify the app.
-        delegate?.proxyFilterUpdated(type: type, addresses: addresses)
+        delegateQueue.async {
+            self.delegate?.proxyFilterUpdated(type: self.type, addresses: self.addresses)
+        }
     }
     
     /// Handler for the received Proxy Configuration Messages.
@@ -295,17 +329,23 @@ internal extension ProxyFilter {
     /// the list size received, the method will try to clear the remote
     /// filter and send all the addresses again.
     ///
-    /// - parameter message: The message received.
-    func handle(_ message: ProxyConfigurationMessage) {
+    /// - parameters:
+    ///   - message: The message received.
+    ///   - proxy: The connected Proxy Node, or `nil` if the Node is uknown.
+    func handle(_ message: ProxyConfigurationMessage, sentFrom proxy: Node?) {
         switch message {
         case let status as FilterStatus:
+            self.proxy = proxy
             // Handle buffered messages.
-            guard buffer.isEmpty else {
-                let message = buffer.removeFirst()
+            let bufferEmpty = mutex.sync { buffer.isEmpty }
+            guard bufferEmpty else {
+                let message = mutex.sync { buffer.removeFirst() }
                 try? manager.send(message)
                 return
             }
-            busy = false
+            mutex.sync {
+                busy = false
+            }
             
             // Ensure the current information about the filter is up to date.
             guard type == status.filterType && addresses.count == status.listSize else {
@@ -331,10 +371,14 @@ internal extension ProxyFilter {
                     logger?.w(.proxy, "Limited Proxy Filter detected.")
                     reset()
                     if let address = manager.meshNetwork?.localProvisioner?.unicastAddress {
-                        addresses = [address]
+                        mutex.sync {
+                            addresses = [address]
+                        }
                         add(addresses: addresses)
                     }
-                    delegate?.limitedProxyFilterDetected(maxSize: 1)
+                    delegateQueue.async {
+                        self.delegate?.limitedProxyFilterDetected(maxSize: 1)
+                    }
                 } else {
                     logger?.w(.proxy, "Refreshing Proxy Filter...")
                     let addresses = self.addresses // reset() will erase addresses, store it.
@@ -362,15 +406,23 @@ private extension ProxyFilter {
     ///
     /// - parameter message: The message to be sent.
     func send(_ message: ProxyConfigurationMessage) {
-        guard !busy else {
-            buffer.append(message)
+        let wasBusy = mutex.sync { return busy }
+        guard !wasBusy else {
+            mutex.sync {
+                buffer.append(message)
+            }
             return
         }
-        busy = true
+        mutex.sync {
+            busy = true
+        }
+        
         do {
             try manager.send(message)
         } catch {
-            busy = false
+            mutex.sync {
+                busy = false
+            }
         }
     }
     

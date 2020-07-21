@@ -32,6 +32,8 @@ import UIKit
 import CoreBluetooth
 import nRFMeshProvision
 
+typealias DiscoveredProxy = (device: GattBearer, rssi: Int)
+
 class ProxySelectorViewController: UITableViewController {
     
     // MARK: - Outlets and Actions
@@ -47,7 +49,7 @@ class ProxySelectorViewController: UITableViewController {
     var meshNetwork: MeshNetwork?
     
     private var centralManager: CBCentralManager!
-    private var proxies = [(device: GattBearer, rssi: Int)]()
+    private var proxies: [DiscoveredProxy] = []
     
     private var alert: UIAlertController?
     private var selectedDevice: GattBearer?
@@ -56,7 +58,9 @@ class ProxySelectorViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.setEmptyView(title: "Can't see your proxy?", message: "1. Make sure the device is turned on\nand connected to a power source.\n\n2. Make sure it's provisioned to this mesh network.", messageImage: #imageLiteral(resourceName: "baseline-bluetooth"))
+        tableView.setEmptyView(title: "Can't see your proxy?",
+                               message: "1. Make sure the device is turned on\nand connected to a power source.\n\n2. Make sure it's provisioned to this mesh network.",
+                               messageImage: #imageLiteral(resourceName: "baseline-bluetooth"))
         centralManager = CBCentralManager()
         
         tableView.showEmptyView()

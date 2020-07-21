@@ -45,6 +45,7 @@ open class MxPBGattBearer: NSObject, MxProvisioningBearer, CBCentralManagerDeleg
     
     private let centralManager: CBCentralManager
     private var basePeripheral: CBPeripheral!
+    private let mutex = DispatchQueue(label: "GattBearer")
     
     /// The protocol used for segmentation and reassembly.
     private let protocolHandler: ProxyProtocolHandler
@@ -60,7 +61,8 @@ open class MxPBGattBearer: NSObject, MxProvisioningBearer, CBCentralManagerDeleg
     }
     
     public var isOpen: Bool {
-        return dataOutCharacteristic?.isNotifying ?? false
+        return basePeripheral.state == .connected &&
+               dataOutCharacteristic?.isNotifying ?? false
     }
     
     /// The UUID associated with the peer.
@@ -150,14 +152,20 @@ open class MxPBGattBearer: NSObject, MxProvisioningBearer, CBCentralManagerDeleg
         // to send more data, a `peripheralIsReady(toSendWriteWithoutResponse:)` callback
         // will be called, which will send the next packet.
         if #available(iOS 11.0, *) {
-            let queueWasEmpty = queue.isEmpty
-            queue.append(contentsOf: packets)
+            let packet: Data? = mutex.sync {
+                let queueWasEmpty = queue.isEmpty
+                queue.append(contentsOf: packets)
             
-            // Don't look at `basePeripheral.canSendWriteWithoutResponse`. If often returns
-            // `false` even when nothing was sent before and no callback is called afterwards.
-            // Just assume, that the first packet can always be sent.
-            if queueWasEmpty {
-                let packet = queue.remove(at: 0)
+                // Don't look at `basePeripheral.canSendWriteWithoutResponse`. If often returns
+                // `false` even when nothing was sent before and no callback is called afterwards.
+                // Just assume, that the first packet can always be sent.
+                if queueWasEmpty {
+                    return queue.remove(at: 0)
+                } else {
+                    return nil
+                }
+            }
+            if let packet = packet {
                 logger?.d(.bearer, "-> 0x\(packet.hex)")
                 basePeripheral.writeValue(packet, for: dataInCharacteristic, type: .withoutResponse)
             }
@@ -293,10 +301,10 @@ open class MxPBGattBearer: NSObject, MxProvisioningBearer, CBCentralManagerDeleg
             if let characteristics = service.characteristics {
                 for characteristic in characteristics {
                     if MeshProxyService.dataInUuid == characteristic.uuid {
-                        logger?.v(.bearer, "Data In characteristic found")
+                        logger?.v(.bearer, "Proxy Data In characteristic found")
                         proxyDataInCharacteristic = characteristic
                     } else if MeshProxyService.dataOutUuid == characteristic.uuid {
-                        logger?.v(.bearer, "Data Out characteristic found")
+                        logger?.v(.bearer, "Proxy Data Out characteristic found")
                         proxyDataOutCharacteristic = characteristic
                     }
                 }
@@ -308,10 +316,10 @@ open class MxPBGattBearer: NSObject, MxProvisioningBearer, CBCentralManagerDeleg
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
                 if MeshProvisioningService.dataInUuid == characteristic.uuid {
-                    logger?.v(.bearer, "Data In characteristic found")
+                    logger?.v(.bearer, "Provisioning Data In characteristic found")
                     dataInCharacteristic = characteristic
                 } else if MeshProvisioningService.dataOutUuid == characteristic.uuid {
-                    logger?.v(.bearer, "Data Out characteristic found")
+                    logger?.v(.bearer, "Provisioning Data Out characteristic found")
                     dataOutCharacteristic = characteristic
                 }
             }
@@ -368,15 +376,19 @@ open class MxPBGattBearer: NSObject, MxProvisioningBearer, CBCentralManagerDeleg
     
     // This method is available only on iOS 11+.
     open func peripheralIsReady(toSendWriteWithoutResponse peripheral: CBPeripheral) {
-        guard !queue.isEmpty else {
-            return
+        let packet: Data? = mutex.sync {
+                if queue.isEmpty {
+                    return nil
+                } else {
+                    return queue.remove(at: 0)
+                }
+            }
+            if let packet = packet {
+                logger?.d(.bearer, "-> 0x\(packet.hex)")
+                peripheral.writeValue(packet, for: dataInCharacteristic!, type: .withoutResponse)
+            }
         }
-        
-        let packet = queue.remove(at: 0)
-        logger?.d(.bearer, "-> 0x\(packet.hex)")
-        peripheral.writeValue(packet, for: dataInCharacteristic!, type: .withoutResponse)
-    }
-    
+
 }
 
 //extension CBManagerState: CustomDebugStringConvertible {

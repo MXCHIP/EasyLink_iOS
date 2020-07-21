@@ -52,7 +52,7 @@ class ConfigurationViewController: ProgressViewController {
         super.viewWillAppear(animated)
         
         // Element name might have been updated.
-        tableView.reloadSections(.keysAndElementsSections, with: .automatic)
+        tableView.reloadSections(.editableSections, with: .automatic)
         
         // Check if the local Provisioner has configuration capabilities.
         let localProvisioner = MeshNetworkManager.instance.meshNetwork?.localProvisioner
@@ -301,7 +301,8 @@ class ConfigurationViewController: ProgressViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            accessoryButtonTappedForRowWith indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             presentAlert(title: "Info", message: "Mark a node as configured when you finished setting it up.")
@@ -530,8 +531,9 @@ extension ConfigurationViewController: MeshNetworkDelegate {
                     index += 1
                     self.bindAppKey(to: node.models[index], with: node.applicationKeys[0])
                 } else {
-                    done()
-                    refreshControl?.endRefreshing()
+                    done() {
+                        self.refreshControl?.endRefreshing()
+                    }
                 }
             } else {
                 done() {
@@ -743,7 +745,7 @@ private extension IndexPath {
 }
 
 private extension IndexSet {
-    
-    static let keysAndElementsSections = IndexSet(integersIn: IndexPath.keysSection...IndexPath.elementsSection)
-    
+
+    static let editableSections = IndexSet(integersIn: IndexPath.keysSection...IndexPath.compositionDataSection)
+
 }

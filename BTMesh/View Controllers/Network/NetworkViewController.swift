@@ -82,6 +82,18 @@ private class Section {
         extractedNodes.removeAll(where: { $0 == node })
     }
     
+    func removeAllExtractedNodes(_ tableView: UITableView, at section: Int) {
+        extractedNodes.removeAll()
+        var indexPaths: [IndexPath] = []
+        for index in 0..<cellInfos.count {
+            if cellInfos[index] is Model {
+                indexPaths.append(IndexPath(row: index, section: section))
+            }
+        }
+        cellInfos.removeAll(where: { $0 is Model })
+        tableView.deleteRows(at: indexPaths, with: .top)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if cellInfos[indexPath.row] is Node {
@@ -90,6 +102,8 @@ private class Section {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "model", for: indexPath)
+            cell.isSelected = true
+            
             let model = cellInfos[indexPath.row] as! Model
             
             if model.isBluetoothSIGAssigned {
@@ -111,7 +125,6 @@ private class Section {
             cell.detailTextLabel?.text?.append(" | address: \(UInt16(address).asString())")
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> Model? {
@@ -148,13 +161,18 @@ private class Section {
 }
 
 class NetworkViewController: UITableViewController {
+    @IBOutlet weak var selectionButton: UIBarButtonItem!
+    
     private var sections: [Section] = []
+    private var selectedNodes: [Node] = []
     
     // MARK: - Implementation
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.setEmptyView(title: "No Nodes", message: "Click + to provision a new device.", messageImage: #imageLiteral(resourceName: "baseline-network"))
+        tableView.setEmptyView(title: "No Nodes",
+                               message: "Click + to provision a new device.",
+                               messageImage: #imageLiteral(resourceName: "baseline-network"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -165,6 +183,22 @@ class NetworkViewController: UITableViewController {
         
         reloadData()
     }
+    
+    @IBAction func selectionTapped(_ sender: UIBarButtonItem) {
+        selectedNodes = []
+        if self.tableView.isEditing == false {
+            for index in 0..<sections.count {
+                sections[index].removeAllExtractedNodes(tableView, at: index)
+            }
+            sender.title = "Cancel"
+            self.tableView.setEditing(true, animated: true)
+        } else {
+            sender.title = "Select"
+            self.tableView.setEditing(false, animated: true)
+        }
+    }
+        
+        
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "provision" {
@@ -231,10 +265,29 @@ class NetworkViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing == true {
+            if let node = sections[indexPath.section].cellInfos[indexPath.row] as? Node {
+                selectedNodes.append(node)
+            }
+            print("selectedNodes has \(selectedNodes.count) elements")
+            return
+        }
+        
         if let model = sections[indexPath.section].tableView(tableView, didSelectRowAt: indexPath) {
             performSegue(withIdentifier: "showModelFromNetwork", sender: model)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing == true {
+            if let node = sections[indexPath.section].cellInfos[indexPath.row] as? Node {
+                selectedNodes.removeAll(where: { $0 == node })
+            }
+            print("selectedNodes has \(selectedNodes.count) elements")
+            return
+        }
     }
 }
 
