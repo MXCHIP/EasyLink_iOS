@@ -324,6 +324,21 @@ extension ProvisioningViewController: GattBearerDelegate {
         }
     }
     
+    
+    func bearerDidSwitchedToProxy(_ bearer: Bearer) {
+        MeshNetworkManager.bearer.use(proxy: self.bearer)
+        self.dismissStatusDialog() {
+            if MeshNetworkManager.instance.save() {
+                let network = MeshNetworkManager.instance.meshNetwork!
+                if let node = network.node(for: self.unprovisionedDevice) {
+                    self.delegate?.provisionerDidProvisionNewDevice(node)
+                }
+            } else {
+                self.presentAlert(title: "Error", message: "Mesh configuration could not be saved.")
+            }
+        }
+    }
+    
 }
 
 extension ProvisioningViewController: ProvisioningDelegate {
@@ -379,22 +394,7 @@ extension ProvisioningViewController: ProvisioningDelegate {
                 
             case .complete:
                 if self.bearer.switchToProxyBear() {
-                    self.provisioningManager.bearer(self.bearer, didClose: nil)
-                    MeshNetworkManager.bearer.use(proxy: self.bearer)
-                    self.dismissStatusDialog() {
-                        //self.presentAlert(title: "Success", message: "Provisioning complete.") { _ in
-                            if MeshNetworkManager.instance.save() {
-                                self.dismiss(animated: true) {
-                                    let network = MeshNetworkManager.instance.meshNetwork!
-                                    if let node = network.node(for: self.unprovisionedDevice) {
-                                        self.delegate?.provisionerDidProvisionNewDevice(node)
-                                    }
-                                }
-                            } else {
-                                self.presentAlert(title: "Error", message: "Mesh configuration could not be saved.")
-                            }
-                        //d}
-                    }
+                    self.provisioningManager.removeBearer()
                 } else {
                     self.bearer.close()
                     self.presentStatusDialog(message: "Disconnecting...")

@@ -182,13 +182,18 @@ internal class LowerTransportLayer {
             return .success(.none)
         }
         // Process the message on the original queue.
-        switch try? result.get() {
-        case .lowerTransportPdu(let pdu)?:
-            networkManager.upperTransportLayer.handle(lowerTransportPdu: pdu)
-        case .acknowledgement(let ack)?:
-            handle(ack: ack)
-        default:
-            break
+        // MXCHIP: We have changed bearer message handler to
+        // serial queue, to resolve checkAgainstReplayAttack
+        // error,and add to cocurrent mode here to improve performance
+        DispatchQueue.global(qos: .background).async {
+            switch try? result.get() {
+            case .lowerTransportPdu(let pdu)?:
+                self.networkManager.upperTransportLayer.handle(lowerTransportPdu: pdu)
+            case .acknowledgement(let ack)?:
+                self.handle(ack: ack)
+            default:
+                break
+            }
         }
     }
     

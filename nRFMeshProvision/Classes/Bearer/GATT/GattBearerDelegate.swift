@@ -51,6 +51,12 @@ public protocol GattBearerDelegate: BearerDelegate {
     ///   - RSSI:   The Received Signal Strength Indication
     ///             value, from -127 to around 4.
     func bearer(_ bearer: Bearer, didReadRSSI RSSI: NSNumber)
+    
+    /// Callback called when the Bearer is switched from provision bearer to proxy bearer.
+    ///
+    /// - parameters:
+    ///   - bearer: The Bearer.
+    func bearerDidSwitchedToProxy(_ bearer: Bearer)
 }
 
 public extension GattBearerDelegate {
@@ -64,6 +70,10 @@ public extension GattBearerDelegate {
     }
     
     func bearer(_ bearer: Bearer, didReadRSSI RSSI: NSNumber) {
+        // This method is optional.
+    }
+    
+    func bearerDidSwitchedToProxy(_ bearer: Bearer) {
         // This method is optional.
     }
     

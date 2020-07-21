@@ -66,8 +66,9 @@ extension DataConvertible {
     
     static func + (lhs: Data, rhs: Self) -> Data {
         var value = rhs
-        let data = withUnsafePointer(to: &value) { pointer -> Data in
-            return Data(buffer: UnsafeBufferPointer(start: pointer, count: 1))
+        var data = Data()
+        withUnsafePointer(to: &value) {
+            data.append(Data(buffer: UnsafeBufferPointer(start: $0, count: 1)))
         }
         return lhs + data
     }

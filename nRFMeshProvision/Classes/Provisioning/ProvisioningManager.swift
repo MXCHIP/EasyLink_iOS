@@ -275,6 +275,16 @@ public class ProvisioningManager {
             obtainAuthValue()
         }
     }
+    
+    public func removeBearer() {
+        // Restore original delegates.
+        bearer.delegate = bearerDelegate
+        bearer.dataDelegate = bearerDataDelegate
+        bearerDelegate = nil
+        bearerDataDelegate = nil
+        
+        reset()
+    }
 }
 
 extension ProvisioningManager: BearerDelegate, BearerDataDelegate {

@@ -348,9 +348,15 @@ open class MxPBGattBearer: NSObject, MxProvisioningBearer, CBCentralManagerDeleg
             return
         }
         
-        logger?.v(.bearer, "Data Out notifications enabled")
-        logger?.i(.bearer, "GATT Bearer open and ready")
-        delegate?.bearerDidOpen(self)
+        if characteristic.uuid == MeshProvisioningService.dataOutUuid {
+            logger?.v(.bearer, "Provisioner Data Out notifications enabled")
+            logger?.i(.bearer, "GATT Bearer open and ready")
+            delegate?.bearerDidOpen(self)
+        } else if characteristic.uuid == MeshProxyService.dataOutUuid {
+            if let delegate = delegate as? GattBearerDelegate {
+                 delegate.bearerDidSwitchedToProxy(self)
+             }
+        }
     }
     
     open func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {

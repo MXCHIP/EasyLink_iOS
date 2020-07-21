@@ -161,8 +161,14 @@ public class MeshNetworkManager {
     ///   - delegateQueue: The DispatQueue to call delegate methods on.
     ///                    By default the global main queue will be used.
     /// - seeAlso: `LocalStorage`
+    
+    ///
+    /// MXCHIP: Changed bearer message handler to serial queue,
+    /// to resolve checkAgainstReplayAttack error in concurrent mode
+    /// error,and add to cocurrent mode after LowTransportLayer handler
+    /// original: queue: DispatchQueue = DispatchQueue.global(qos: .background),
     public init(using storage: Storage = LocalStorage(),
-                queue: DispatchQueue = DispatchQueue.global(qos: .background),
+                queue: DispatchQueue = DispatchQueue(label: "Bearer"),
                 delegateQueue: DispatchQueue = DispatchQueue.main) {
         self.storage = storage
         self.meshData = MeshData()
