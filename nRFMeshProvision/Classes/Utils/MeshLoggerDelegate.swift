@@ -72,6 +72,8 @@ public enum LogCategory: String {
     case foundationModel = "FoundationModel"
     case model           = "Model"
     case provisioning    = "Provisioning"
+    
+    case mxNodeStatus    = "MxNodeStatus"
 }
 
 /// The Logger delegate.
@@ -88,7 +90,7 @@ public protocol LoggerDelegate: class {
     func log(message: String, ofCategory category: LogCategory, withLevel level: LogLevel)
 }
 
-internal extension LoggerDelegate {
+public extension LoggerDelegate {
     
     func d(_ category: LogCategory, _ message: String) {
         log(message: message, ofCategory: category, withLevel: .debug)

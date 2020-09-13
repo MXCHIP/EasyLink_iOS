@@ -1942,6 +1942,7 @@ public struct CompanyIdentifier {
         case 0x07C2: return "Radinn AB"
         case 0x07C3: return "CIMTechniques, Inc."
         case 0x07C4: return "Johnson Health Tech NA"
+        case 0x0922: return "MXCHIP"
             
         case 0xFFFF: return "Unassigned"
         default:     return nil

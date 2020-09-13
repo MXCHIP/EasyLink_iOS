@@ -17,20 +17,33 @@ extension Data {
     ///
     /// - parameter offset: The offset from where the bytes are to be read.
     /// - returns: The value of type of the return type.
-    func read<R: FixedWidthInteger>(fromOffset offset: Int = 0) -> R {
+    func read<R: FixedWidthInteger>(fromOffset offset: Int = 0) -> R? {
         let length = MemoryLayout<R>.size
         
         #if swift(>=5.0)
-        return subdata(in: offset ..< offset + length).withUnsafeBytes { $0.load(as: R.self) }
+        return subdata(in: offset ..< offset + length).to(type: R.self)
         #else
         return subdata(in: offset ..< offset + length).withUnsafeBytes { $0.pointee }
         #endif
     }
     
-    func readBigEndian<R: FixedWidthInteger>(fromOffset offset: Int = 0) -> R {
-        let r: R = read(fromOffset: offset)
-        return r.bigEndian
+    func readBigEndian<R: FixedWidthInteger>(fromOffset offset: Int = 0) -> R? {
+        let r: R? = read(fromOffset: offset)
+        return r?.bigEndian
     }
+    
+    /// Above methold need data bytes are aligned, below is a more generic solution
+    init<T>(from value: T) {
+        self = Swift.withUnsafeBytes(of: value) { Data($0) }
+    }
+    
+    func to<T>(type: T.Type) -> T? where T: ExpressibleByIntegerLiteral {
+        var value: T = 0
+        guard count >= MemoryLayout.size(ofValue: value) else { return nil }
+        _ = Swift.withUnsafeMutableBytes(of: &value, { copyBytes(to: $0) } )
+        return value
+    }
+    
 }
 
 // Source: http://stackoverflow.com/a/42241894/2115352

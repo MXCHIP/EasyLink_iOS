@@ -33,7 +33,7 @@ import Foundation
 public extension Model {
     
     var isMXCHIPAssigned: Bool {
-        return companyIdentifier == 0x005D
+        return companyIdentifier == 0x0922
     }
     
     /// The Model name as defined in Bluetooth Mesh Model Specification.

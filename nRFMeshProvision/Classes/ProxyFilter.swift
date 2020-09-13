@@ -60,11 +60,23 @@ public protocol ProxyFilterDelegate: class {
     ///
     /// - parameter maxSize: The maximum Proxy Filter list size.
     func limitedProxyFilterDetected(maxSize: Int)
+    
+    /// Method called when a new Proxy is conneceted and roxy Filter  has been setup.
+    ///
+    /// - parameters:
+    ///   - type: The current Proxy Filter type.
+    ///   - addresses: The addresses in the filter.
+    func newProxyDidSetup(type: ProxyFilerType, addresses: Set<Address>)
+
 }
 
 public extension ProxyFilterDelegate {
     
     func limitedProxyFilterDetected(maxSize: Int) {
+        // Do nothing.
+    }
+    
+    func newProxyDidSetup(type: ProxyFilerType, addresses: Set<Address>) {
         // Do nothing.
     }
     
@@ -92,6 +104,9 @@ public class ProxyFilter {
     /// The flag is set to `true` when a request hsa been sent to the connected proxy.
     /// It is cleared when a response was received, or in case of an error.
     private var busy = false
+    /// The flag is set to `true` when a new proxy is connected and waiting for setup.
+    /// It is cleared when a response was received.
+    private var waitingForSetup = false
     /// A queue of proxy configuration messages enqueued to be sent.
     private var buffer: [ProxyConfigurationMessage] = []
     /// A shortcut to the manager's logger.
@@ -233,6 +248,8 @@ public extension ProxyFilter {
         addresses.formUnion(subscriptions.map({ $0.address.address }))
         // Add All Nodes group address.
         addresses.insert(Address.allNodes)
+        // Add MXCHIP Beacon and ATT Status group address.
+        addresses.insert(Address.MxATTReportGroupAddress)
         // Submit.
         add(addresses: addresses)
     }
@@ -266,6 +283,7 @@ internal extension ProxyFilter {
         }
         reset()
         if let localProvisioner = manager.meshNetwork?.localProvisioner {
+            waitingForSetup = true
             setup(for: localProvisioner)
         }
     }
@@ -388,6 +406,15 @@ internal extension ProxyFilter {
                 return
             }
             counter = 0
+            
+            // And notify the app.
+            if waitingForSetup {
+                waitingForSetup = false
+                delegateQueue.async {
+                    self.delegate?.newProxyDidSetup(type: self.type, addresses: self.addresses)
+                }
+            }
+            
         default:
             // Ignore.
             break

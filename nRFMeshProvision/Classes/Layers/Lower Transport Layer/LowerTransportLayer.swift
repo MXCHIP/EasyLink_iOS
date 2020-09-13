@@ -506,14 +506,14 @@ private extension LowerTransportLayer {
     ///   - ack: The Segment Acknowledgment Message to sent.
     ///   - ttl: Initial Time To Live (TTL) value.
     func sendAck(_ ack: SegmentAcknowledgmentMessage, withTtl ttl: UInt8) {
-        DispatchQueue.global(qos: .background).async {
+        //DispatchQueue.global(qos: .background).async {
             self.logger?.d(.lowerTransport, "Sending \(ack)")
             do {
                 try self.networkManager.networkLayer.send(lowerTransportPdu: ack, ofType: .networkPdu, withTtl: ttl)
             } catch {
                 self.logger?.w(.lowerTransport, error)
             }
-        }
+        //}
     }
     
     /// Sends all non-`nil` segments from `outgoingSegments` map from the given

@@ -41,24 +41,39 @@ extension UUID {
         return withUnsafeBytes(of: uuid, { Data($0) })
     }
     
-    /// MXCHIP format, version.
-    var version: UInt8 {
-        return withUnsafeBytes(of: uuid, { Data($0)[0] })
-        
+    
+    /// MXCHIP format,
+    var companyIdentifier: UInt16 {
+        return data.read()!
     }
     
-    /// MXCHIP format, product id.
     var productID: UInt32 {
-        let productID: UInt32 = withUnsafeBytes(of: uuid, { Data($0) }).read(fromOffset: 1)
-        return UInt32(bigEndian: productID)
+        let productID: UInt32! = withUnsafeBytes(of: uuid, { Data($0) }).read(fromOffset: 3)
+        return productID
     }
 
-    /// MXCHIP format, mac address.
     var macString: String {
-        let mac = withUnsafeBytes(of: uuid, { Data($0)[5...10] })
-        var macString = mac.map{ String(format: "%02X:", $0) }.joined()
-        macString.removeLast()
-        return macString
+        let macData = withUnsafeBytes(of: uuid, { Data($0).subdata(in: 7..<13)})
+        return String(format: "%02X:%02X:%02X:%02X:%02X:%02X", macData[5], macData[4],macData[3],macData[2],macData[1],macData[0])
     }
     
+    var version: UInt8 {
+        let features: UInt8! = withUnsafeBytes(of: uuid, { Data($0) }).read(fromOffset: 13)
+        return features >> 1
+    }
+    
+    var advType: AdvType {
+        let features: UInt8! = withUnsafeBytes(of: uuid, { Data($0) }).read(fromOffset: 13)
+        return AdvType(rawValue: features & 0x1 )!
+    }
+    
+    var isMXCHIPFormat: Bool {
+        return companyIdentifier == 0x01A8 || companyIdentifier == 0x0922
+    }
+    
+}
+
+enum AdvType: UInt8 {
+    case unprovisionedBeacon = 0x0
+    case sclienceBeacon      = 0x1
 }
