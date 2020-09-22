@@ -78,6 +78,27 @@ class GenericOnOffViewCell: ModelViewCell {
     @IBAction func readTapped(_ sender: UIButton) {
         readGenericOnOffState()
     }
+    @IBOutlet weak var repeatButton: UIButton!
+    @IBAction func repeatTapped(_ sender: UIButton) {
+        
+        turnOn = true
+        sendCount = 0
+        receiveCount = 0
+        repeatTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(Double(repeatIntervalField.text ?? "1")!),
+                                           repeats: true) { _ in
+            self.sendGenericOnOffMessage(turnOn: self.turnOn)
+            self.turnOn = (self.turnOn == true) ? false : true
+        }
+        self.repeatTimer?.fire()
+    }
+    
+    func stopRepeat() {
+        repeatTimer?.invalidate()
+        repeatTimer = nil
+    }
+    
+    @IBOutlet weak var repeatIntervalField: UITextField!
+    @IBOutlet weak var summaryLable: UILabel!
     
     // MARK: - Properties
     
@@ -85,8 +106,23 @@ class GenericOnOffViewCell: ModelViewCell {
     private var stepResolution: StepResolution = .hundredsOfMilliseconds
     private var delay: UInt8 = 0
     
+    private var sendCount: Int = 0
+    private var receiveCount: Int = 0
+    private var turnOn: Bool = true
+    
+    private var repeatTimer: Timer?
+    
     // MARK: - Implementation
     
+    override func awakeFromNib() {        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.contentView.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.contentView.endEditing(true)
+    }
+
     override func reload(using model: Model) {
         let localProvisioner = MeshNetworkManager.instance.meshNetwork?.localProvisioner
         let isEnabled = localProvisioner?.hasConfigurationCapabilities ?? false
@@ -96,6 +132,8 @@ class GenericOnOffViewCell: ModelViewCell {
         onButton.isEnabled = isEnabled
         offButton.isEnabled = isEnabled
         readButton.isEnabled = isEnabled
+        
+        repeatIntervalField.text = "1"
     }
     
     override func meshNetworkManager(_ manager: MeshNetworkManager,
@@ -113,9 +151,13 @@ class GenericOnOffViewCell: ModelViewCell {
             } else {
                 targetStatusLabel.text = "N/A"
             }
+            receiveCount += 1
             
         default:
             break
+        }
+        if repeatTimer?.isValid ?? false {
+            return true
         }
         return false
     }
@@ -124,8 +166,13 @@ class GenericOnOffViewCell: ModelViewCell {
                                      didSendMessage message: MeshMessage,
                                      from localElement: Element, to destination: Address) -> Bool {
         // For acknowledged messages wait for the Acknowledgement Message.
+        sendCount += 1
+        if repeatTimer?.isValid ?? false {
+            return true
+        }
         return message is AcknowledgedMeshMessage
     }
+
 }
 
 private extension GenericOnOffViewCell {
@@ -183,12 +230,6 @@ private extension GenericOnOffViewCell {
     }
     
     func sendGenericOnOffMessage(turnOn: Bool) {
-        guard !model.boundApplicationKeys.isEmpty else {
-            parentViewController?.presentAlert(
-                title: "Bound key required",
-                message: "Bind at least one Application Key before sending the message.")
-            return
-        }
         
         // Clear the response fields.
         currentStatusLabel.text = nil
@@ -211,8 +252,13 @@ private extension GenericOnOffViewCell {
                 message = GenericOnOffSetUnacknowledged(turnOn, transitionTime: transitionTime, delay: delay)
             }
         }
-            
-        delegate?.send(message, description: "Sending...")
+        if repeatTimer?.isValid == true {
+            delegate?.send(message,
+                           description: "Sending \(self.sendCount + 1) package\r\n Received \(self.receiveCount) packages",
+                           delegate: self)
+        } else {
+            delegate?.send(message, description: "Sending...")
+        }
     }
     
     func readGenericOnOffState() {
@@ -225,4 +271,23 @@ private extension GenericOnOffViewCell {
         
         delegate?.send(GenericOnOffGet(), description: "Reading state...")
     }
+    
+
 }
+
+extension GenericOnOffViewCell: ProgressViewDelegate {
+    
+    func alertWillCancelled() {
+        stopRepeat()
+        summaryLable.text = String(format: "\(sendCount)/\(receiveCount), %.2f%%", (Float(receiveCount)/Float(sendCount)*100))
+
+    }
+    
+}
+
+//TODO MXCHIP 需要增加发送失败，退出repeat的回调
+//TODO MXCHIP 增加键盘退出的处理
+//TODO MXCHIP 速度快的时候，GATT连接丢包的原因是什么
+
+
+

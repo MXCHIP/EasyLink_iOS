@@ -98,7 +98,7 @@ class ControlViewController: ProgressCollectionViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
     }
 
     // MARK: - UICollectionViewDataSource

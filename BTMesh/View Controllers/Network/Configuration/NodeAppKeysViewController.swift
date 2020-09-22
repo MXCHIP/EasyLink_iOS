@@ -83,7 +83,7 @@ class NodeAppKeysViewController: ProgressViewController, Editable {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -141,7 +141,7 @@ class NodeAppKeysViewController: ProgressViewController, Editable {
 extension NodeAppKeysViewController: UIAdaptivePresentationControllerDelegate {
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
     }
     
 }

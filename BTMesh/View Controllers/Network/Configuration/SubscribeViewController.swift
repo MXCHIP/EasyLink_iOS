@@ -63,7 +63,7 @@ class SubscribeViewController: ProgressViewController {
                                message: "Go to Groups to create a group.",
                                messageImage: #imageLiteral(resourceName: "baseline-groups"))
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
         
         let network = MeshNetworkManager.instance.meshNetwork!
         let alreadySubscribedGroups = model.subscriptions

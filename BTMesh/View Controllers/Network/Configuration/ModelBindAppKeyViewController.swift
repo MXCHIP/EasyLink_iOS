@@ -65,7 +65,7 @@ class ModelBindAppKeyViewController: ProgressViewController {
                                message: "Add a new key to the node first.",
                                messageImage: #imageLiteral(resourceName: "baseline-key"))
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
         
         keys = model.parentElement?.parentNode?.applicationKeysAvailableFor(model)
         if keys.isEmpty {

@@ -100,7 +100,7 @@ class SetPublicationViewController: ProgressViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
         
         if let publish = model.publish {
             destination = publish.publicationAddress

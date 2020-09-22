@@ -71,9 +71,15 @@ class ScannerTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        MeshNetworkManager.bearer.close()
         if centralManager.state == .poweredOn {
             startScanning()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        MeshNetworkManager.bearer.open()
+        super.viewWillDisappear(animated)
     }
     
     // MARK: - Segue and navigation
@@ -147,18 +153,18 @@ extension ScannerTableViewController: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
                         advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == peripheral }) {
+        guard let unprovisionedDevice = UnprovisionedDevice(advertisementData: advertisementData) else { return }
+        
+        if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == peripheral && $0.device.uuid == unprovisionedDevice.uuid}) {
             if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DeviceCell {
                 let device = discoveredPeripherals[index].device
                 device.name = advertisementData.localName
                 cell.deviceDidUpdate(device, andRSSI: RSSI.intValue)
             }
         } else {
-            if let unprovisionedDevice = UnprovisionedDevice(advertisementData: advertisementData) {
-                discoveredPeripherals.append((unprovisionedDevice, peripheral, RSSI.intValue))
-                tableView.insertRows(at: [IndexPath(row: discoveredPeripherals.count - 1, section: 0)], with: .fade)
-                tableView.hideEmptyView()
-            }
+            discoveredPeripherals.append((unprovisionedDevice, peripheral, RSSI.intValue))
+            tableView.insertRows(at: [IndexPath(row: discoveredPeripherals.count - 1, section: 0)], with: .fade)
+            tableView.hideEmptyView()
         }
     }
     

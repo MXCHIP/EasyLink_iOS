@@ -72,7 +72,7 @@ class NodeAddNetworkKeyViewController: ProgressViewController {
                                message: "Go to Settings to create a new key.",
                                messageImage: #imageLiteral(resourceName: "ic_vpn_key_24pt"))
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
         
         let meshNetwork = MeshNetworkManager.instance.meshNetwork!
         keys = meshNetwork.networkKeys.notKnownTo(node: node)

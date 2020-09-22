@@ -327,15 +327,19 @@ extension ProvisioningViewController: GattBearerDelegate {
     
     func bearerDidSwitchedToProxy(_ bearer: Bearer) {
         MeshNetworkManager.bearer.use(proxy: self.bearer)
-        self.dismissStatusDialog() {
-            if MeshNetworkManager.instance.save() {
-                let network = MeshNetworkManager.instance.meshNetwork!
-                if let node = network.node(for: self.unprovisionedDevice) {
-                    self.delegate?.provisionerDidProvisionNewDevice(node)
+        dismissStatusDialog() {
+            self.presentAlert(title: "Success", message: "Provisioning complete.") //{ _ in
+                if MeshNetworkManager.instance.save() {
+                    self.dismiss(animated: true) {
+                        let network = MeshNetworkManager.instance.meshNetwork!
+                        if let node = network.node(for: self.unprovisionedDevice) {
+                            self.delegate?.provisionerDidProvisionNewDevice(node)
+                        }
+                    }
+                }else {
+                    self.presentAlert(title: "Error", message: "Mesh configuration could not be saved.")
                 }
-            } else {
-                self.presentAlert(title: "Error", message: "Mesh configuration could not be saved.")
-            }
+            //}
         }
     }
     

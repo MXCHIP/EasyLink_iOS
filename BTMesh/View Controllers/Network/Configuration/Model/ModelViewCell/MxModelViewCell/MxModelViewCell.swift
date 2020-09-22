@@ -98,12 +98,17 @@ class MxModelViewCell: ModelViewCell, UITextFieldDelegate {
                                      sentFrom source: Address, to destination: Address) -> Bool {
         switch message {
         //case let status as MxQuadruplesStatus where status.isQuadruplesKnown:
-        case let status as MxQuadruplesStatus:
-            productIdField.text = status.productId
-            productKeyField.text = status.productKey
-            productSecretField.text = status.productSecret
-            deviceNameField.text = status.deviceName
-            deviceSecretField.text = status.deviceSecret
+        case let status as MxAttributesStatus:
+            status.attributes.forEach {
+                if case let .quintuples(pk, ps, dn, ds, pid, _) = $0 {
+                    productKeyField.text = pk
+                    productSecretField.text = ps
+                    deviceNameField.text = dn
+                    deviceSecretField.text = ds
+                    productIdField.text = pid
+                }
+            }
+            
             
         default:
             break
@@ -117,8 +122,8 @@ class MxModelViewCell: ModelViewCell, UITextFieldDelegate {
                                      from localElement: Element, to destination: Address) -> Bool {
         // For acknowledged messages wait for the Acknowledgement Message.
         switch message {
-        case _ as MxQuadruplesSet: fallthrough
-        case _ as MxQuadruplesGet:
+        case _ as MxAttributesSet: fallthrough
+        case _ as MxAttributesGet:
             return true
             
         default:
@@ -133,31 +138,21 @@ private extension MxModelViewCell {
     /// Sends the MXCHIP Message with the opcode and parameters given
     /// by the user.
     func sendQuadruplesState() {
-        guard !model.boundApplicationKeys.isEmpty else {
-            parentViewController?.presentAlert(
-                title: "Bound key required",
-                message: "Bind at least one Application Key before sending the message.")
-            return
-        }
-        
-        let message = MxQuadruplesSet(pid: productIdField.text!, pk: productKeyField.text!, ps: productSecretField.text!, dn: deviceNameField.text!, ds: deviceSecretField.text!)
+        let quintuplesAttr: MxAttribute = .quintuples(pk: productKeyField.text!, ps: productSecretField.text!,
+                                                      dn: deviceNameField.text!, ds: deviceSecretField.text!,
+                                                      pid: productIdField.text!)
+        let message = MxAttributesSet(tid: 0, attributes: [quintuplesAttr])
             
         delegate?.send(message, description: "Sending...")
     }
     
     func readQuadruplesState() {
-        guard !model.boundApplicationKeys.isEmpty else {
-            parentViewController?.presentAlert(
-                title: "Bound key required",
-                message: "Bind at least one Application Key before sending the message.")
-            return
-        }
         productIdField.text = nil
         productKeyField.text = nil
         productSecretField.text = nil
         deviceNameField.text = nil
         deviceSecretField.text = nil
         
-        delegate?.send(MxQuadruplesGet(), description: "Reading quadruples state...")
+        delegate?.send(MxAttributesGet(tid: 0, types: [.quintuplesType]), description: "Reading quadruples state...")
     }
 }

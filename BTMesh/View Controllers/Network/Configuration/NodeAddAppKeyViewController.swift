@@ -71,7 +71,7 @@ class NodeAddAppKeyViewController: ProgressViewController {
                                message: "Go to Settings to create a new key,\nor add a bound Network Key first.",
                                messageImage: #imageLiteral(resourceName: "baseline-key"))
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
         
         let meshNetwork = MeshNetworkManager.instance.meshNetwork!
         keys = meshNetwork.applicationKeys.notKnownTo(node: node).filter {

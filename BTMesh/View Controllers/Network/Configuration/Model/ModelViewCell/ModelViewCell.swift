@@ -40,6 +40,8 @@ protocol ModelViewCellDelegate: class {
     /// - parameter description: The message to be displayed for the user.
     func send(_ message: MeshMessage, description: String)
     
+    func send(_ message: MeshMessage, description: String, delegate: ProgressViewDelegate?)
+    
     /// Sends Configuration Message to the given Node to which the Model belongs to.
     ///
     /// - parameter message: The message to be sent.
@@ -50,7 +52,14 @@ protocol ModelViewCellDelegate: class {
     var isRefreshing: Bool { get }
 }
 
-class ModelViewCell: UITableViewCell {
+extension ModelViewCellDelegate {
+    
+    func send(_ message: MeshMessage, description: String) {
+        send( message, description: description, delegate: nil)
+    }
+}
+
+class ModelViewCell: UITableViewCell {    
     
     // MARK: - Properties
     
@@ -111,6 +120,50 @@ class ModelViewCell: UITableViewCell {
                             didSendMessage message: MeshMessage,
                             from localElement: Element, to destination: Address) -> Bool {
         return false
+    }
+    
+    /// A callback called when a message failed to be sent to the target
+    /// Node, or the respnse for an acknowledged message hasn't been received
+    /// before the time run out.
+    ///
+    /// For unsegmented unacknowledged messages this callback will be invoked when
+    /// the `transmitter` was set to `nil`, or has thrown an exception from
+    /// `send(data:ofType)`.
+    ///
+    /// For segmented unacknowledged messages targeting a Unicast Address,
+    /// besides that, it may also be called when sending timed out before all of
+    /// the segments were acknowledged by the target Node, or when the target
+    /// Node is busy and not able to proceed the message at the moment.
+    ///
+    /// For acknowledged messages the callback will be called when the response
+    /// has not been received before the time set by `acknowledgmentMessageTimeout`
+    /// run out. The message might have been retransmitted multiple times
+    /// and might have been received by the target Node. For acknowledged messages
+    /// sent to a Group or Virtual Address this will be called when the response
+    /// has not been received from any Node.
+    ///
+    /// Possible errors are:
+    /// - Any error thrown by the `transmitter`.
+    /// - `BearerError.bearerClosed` - when the `transmitter` object was net set.
+    /// - `LowerTransportError.busy` - when the target Node is busy and can't
+    ///   accept the message.
+    /// - `LowerTransportError.timeout` - when the segmented message targeting
+    ///   a Unicast Address was not acknowledgned before the `retransmissionLimit`
+    ///   was reached (for unacknowledged messages only).
+    /// - `AccessError.timeout` - when the response for an acknowledged message
+    ///   has not been received before the time run out (for acknowledged messages
+    ///   only).
+    ///
+    /// - parameters:
+    ///   - manager:      The manager used to send the message.
+    ///   - message:      The message that has failed to be delivered.
+    ///   - localElement: The local Element used as a source of this message.
+    ///   - destination:  The address to which the message was sent.
+    ///   - error:        The error that occurred.
+    func meshNetworkManager(_ manager: MeshNetworkManager,
+                            failedToSendMessage message: MeshMessage,
+                            from localElement: Element, to destination: Address,
+                            error: Error) {
     }
 
 }

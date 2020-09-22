@@ -70,7 +70,8 @@ class AddAddressViewController: ProgressViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        MeshNetworkManager.instance.proxyFilter?.delegate = self
+        
+        MeshNetworkManager.delegateCenter.proxyFilterDelegate = self
         
         let network = MeshNetworkManager.instance.meshNetwork!
         let proxyFilter = MeshNetworkManager.instance.proxyFilter!

@@ -31,6 +31,10 @@
 import UIKit
 import nRFMeshProvision
 
+protocol ProgressViewDelegate {
+    func alertWillCancelled()
+}
+
 class ProgressViewController: UITableViewController {
     
     // MARK: - Properties
@@ -76,7 +80,7 @@ class ProgressViewController: UITableViewController {
     ///
     /// - parameter message: Message to be displayed to the user.
     /// - parameter completion: A completion handler.
-    func start(_ message: String, completion: @escaping (() throws -> MessageHandle?)) {
+    func start(_ message: String, delegate: ProgressViewDelegate? = nil, completion: @escaping (() throws -> MessageHandle?)) {
         DispatchQueue.main.async {
             do {
                 self.messageHandle = try completion()
@@ -91,6 +95,7 @@ class ProgressViewController: UITableViewController {
                         self.messageHandle?.cancel()
                         self.alert = nil
                         self.refreshControl?.endRefreshing()
+                        delegate?.alertWillCancelled()
                     }))
                     self.present(self.alert!, animated: true)
                 } else {

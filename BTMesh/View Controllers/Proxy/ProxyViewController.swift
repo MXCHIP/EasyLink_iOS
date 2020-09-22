@@ -48,7 +48,7 @@ class ProxyViewController: ProgressViewController, Editable {
         super.viewDidAppear(animated)
         tableView.reloadData()
         
-        MeshNetworkManager.instance.proxyFilter?.delegate = self
+        MeshNetworkManager.delegateCenter.proxyFilterDelegate = self
         addButton.isEnabled = MeshNetworkManager.bearer.isOpen
         
         if MeshNetworkManager.instance.proxyFilter?.addresses.isEmpty == false {

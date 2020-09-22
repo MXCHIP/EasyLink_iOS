@@ -41,7 +41,7 @@ class ModelViewController: ProgressViewController {
     private var sendTimestamp: Date?
     private var responseOpCode: UInt32?
     
-    private weak var modelViewCell: ModelViewCell?
+    private var customSection: ModelViewSectionProtocol!
     
     // MARK: - View Controller
     
@@ -53,11 +53,11 @@ class ModelViewController: ProgressViewController {
             navigationItem.rightBarButtonItem = editButtonItem
         }
         
-        tableView.register(UINib(nibName: "ConfigurationServer", bundle: nil), forCellReuseIdentifier: "0000")
-        tableView.register(UINib(nibName: "GenericOnOff", bundle: nil), forCellReuseIdentifier: "1000")
-        tableView.register(UINib(nibName: "GenericLevel", bundle: nil), forCellReuseIdentifier: "1002")
-        tableView.register(UINib(nibName: "MxModel", bundle: nil), forCellReuseIdentifier: "005D0001")
-        tableView.register(UINib(nibName: "VendorModel", bundle: nil), forCellReuseIdentifier: "vendor")
+        if model.isMXCHIPAssigned {
+            customSection = MxModelViewSection(model: model, delegate: self, under: self.tableView)
+        } else {
+            customSection = GenericModelViewSection(model: model, delegate: self, under: self.tableView)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +83,8 @@ class ModelViewController: ProgressViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
+        customSection.viewDidAppear(animated)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,65 +112,51 @@ class ModelViewController: ProgressViewController {
     // MARK: - Table View Controller
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if model.isConfigurationServer {
-            return 3
-        }
-        if model.isConfigurationClient {
-            return 2
-        }
-        if model.hasCustomUI {
-            return 5
-        }
-        return 4
+        let numberOfStanadrdSections = (model.isConfigurationServer || model.isConfigurationClient) ? 1:4
+        return numberOfStanadrdSections + customSection.numberOfSections(in: tableView)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case IndexPath.detailsSection:
-            return IndexPath.detailsTitles.count
-        case IndexPath.configurationServerSection where model.isConfigurationServer:
-            return 1
-        case IndexPath.bindingsSection:
+        case detailsSection:
+            return ModelViewController.detailsTitles.count
+        case bindingsSection:
             return model.boundApplicationKeys.count + 1 // Add Action.
-        case IndexPath.publishSection:
+        case publishSection:
             return 1 // Set Publication Action or the Publication.
-        case IndexPath.subscribeSection:
+        case subscribeSection:
             return model.subscriptions.count + 1 // Add Action.
-        case IndexPath.customUISection where model.hasCustomUI == false:
-                return 0 // Add custom UI.
         default:
-            // If we went that far, there has to be a supported UI for the Model.
-            return 1
+            // If we went that far, there may be has custom sections for the Model.
+            return customSection.tableView(self.tableView, numberOfRowsInSection: section)
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case IndexPath.configurationServerSection where model.isConfigurationServer:
-            return "Relay Count & Interval"
-        case IndexPath.bindingsSection:
+        case bindingsSection:
             return "Bound Application Keys"
-        case IndexPath.publishSection:
+        case publishSection:
             return "Publication"
-        case IndexPath.subscribeSection:
+        case subscribeSection:
             return "Subscriptions"
-        case IndexPath.detailsSection:
-                return "Company"
+        case detailsSection:
+            return "Company"
         default:
-            return "Controls"
+            return customSection.tableView(self.tableView, titleForHeaderInSection: section)
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let localProvisioner = MeshNetworkManager.instance.meshNetwork?.localProvisioner
         
-        if indexPath.isDetailsSection {
+        if isDetailsSection(at: indexPath) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "normal", for: indexPath)
-            cell.textLabel?.text = indexPath.title
-            if indexPath.isModelId {
+            cell.textLabel?.text = detailSectionTitle(indexPath)
+            if isModelIdRow(at: indexPath) {
                 cell.detailTextLabel?.text = model.modelIdentifier.asString()
             }
-            if indexPath.isCompany {
+            if isCompanyRow(at: indexPath) {
                 if model.isBluetoothSIGAssigned {
                     cell.detailTextLabel?.text = "Bluetooth SIG"
                 } else {
@@ -186,7 +173,7 @@ class ModelViewController: ProgressViewController {
             }
             return cell
         }
-        if indexPath.isBindingsSection && !model.isConfigurationServer {
+        if isBindingsSection(at: indexPath) && !model.isConfigurationServer {
             guard indexPath.row < model.boundApplicationKeys.count else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "action", for: indexPath)
                 cell.textLabel?.text = "Bind Application Key"
@@ -200,7 +187,7 @@ class ModelViewController: ProgressViewController {
             cell.detailTextLabel?.text = "Bound to \(applicationKey.boundNetworkKey.name)"
             return cell
         }
-        if indexPath.isPublishSection {
+        if isPublishSection(at: indexPath) {
             guard let publish = model.publish else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "action", for: indexPath)
                 cell.textLabel?.text = "Set Publication"
@@ -211,7 +198,7 @@ class ModelViewController: ProgressViewController {
             cell.publish = publish
             return cell
         }
-        if indexPath.isSubscribeSection {
+        if isSubscribeSection(at: indexPath) {
             guard indexPath.row < model.subscriptions.count else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "action", for: indexPath)
                 cell.textLabel?.text = "Subscribe"
@@ -224,16 +211,8 @@ class ModelViewController: ProgressViewController {
             cell.detailTextLabel?.text = nil
             return cell
         }
-        // A custom cell for the Model.
-        var identifier: String = model.modelIdentifier.hex
-        if let companyIdentifier = model.companyIdentifier {
-            identifier = model.isMXCHIPAssigned ? "\(companyIdentifier.hex)\(model.modelIdentifier.hex)" : "vendor"
-        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ModelViewCell
-        cell.delegate = self
-        cell.model    = model
-        modelViewCell = cell
+        let cell = customSection.tableView(self.tableView, cellForRowAt: indexPath)
         return cell
     }
     
@@ -243,13 +222,13 @@ class ModelViewController: ProgressViewController {
             return false
         }
         
-        if indexPath.isBindingsSection && !model.isConfigurationServer {
+        if isBindingsSection(at: indexPath) && !model.isConfigurationServer {
             return indexPath.row == model.boundApplicationKeys.count
         }
-        if indexPath.isPublishSection {
+        if isPublishSection(at: indexPath) {
             return true
         }
-        if indexPath.isSubscribeSection {
+        if isSubscribeSection(at: indexPath) {
             return indexPath.row == model.subscriptions.count
         }
         return false
@@ -258,38 +237,38 @@ class ModelViewController: ProgressViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.isBindingsSection {
+        if isBindingsSection(at: indexPath) {
             // Only the "Bind" row is selectable.
             performSegue(withIdentifier: "bind", sender: indexPath)
         }
-        if indexPath.isPublishSection {
+        if isPublishSection(at: indexPath) {
             guard !model.boundApplicationKeys.isEmpty else {
                 presentAlert(title: "Application Key required", message: "Bind at least one Application Key before setting the publication.")
                 return
             }
             performSegue(withIdentifier: "publish", sender: indexPath)
         }
-        if indexPath.isSubscribeSection {
+        if isSubscribeSection(at: indexPath) {
             // Only the "Subscribe" row is selectable.
             performSegue(withIdentifier: "subscribe", sender: indexPath)
         }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.isBindingsSection {
+        if isBindingsSection(at: indexPath) {
             return indexPath.row < model.boundApplicationKeys.count
         }
-        if indexPath.isPublishSection {
+        if isPublishSection(at: indexPath) {
             return indexPath.row == 0 && model.publish != nil
         }
-        if indexPath.isSubscribeSection {
+        if isSubscribeSection(at: indexPath) {
             return indexPath.row < model.subscriptions.count
         }
         return false
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        if indexPath.isBindingsSection {
+        if isBindingsSection(at: indexPath) {
             return [UITableViewRowAction(style: .destructive, title: "Unbind", handler: { _, indexPath in
                 guard indexPath.row < self.model.boundApplicationKeys.count else {
                         return
@@ -345,10 +324,10 @@ class ModelViewController: ProgressViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if indexPath.isPublishSection {
+        if isPublishSection(at: indexPath) {
             removePublication()
         }
-        if indexPath.isSubscribeSection {
+        if isSubscribeSection(at: indexPath) {
             let group = model.subscriptions[indexPath.row]
             unsubscribe(from: group)
         }
@@ -359,23 +338,30 @@ class ModelViewController: ProgressViewController {
 extension ModelViewController: UIAdaptivePresentationControllerDelegate {
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
     }
     
 }
 
 extension ModelViewController: ModelViewCellDelegate {
-    
-    func send(_ message: MeshMessage, description: String) {
-        start(description) {
+
+    func send(_ message: MeshMessage, description: String, delegate: ProgressViewDelegate?) {
+        
+        guard !model.boundApplicationKeys.isEmpty else {
+            presentAlert(
+                title: "Bound key required",
+                message: "Bind at least one Application Key before sending the message.")
+            delegate?.alertWillCancelled()
+            return
+        }
+        
+        start(description, delegate: delegate) {
             self.responseOpCode = nil
             if let acknowledgedMessage =  message as? AcknowledgedMeshMessage {
                 self.responseOpCode = acknowledgedMessage.responseOpCode
                 self.sendTimestamp = Date()
             }
            
-            //private var timeSend: Data?
-            //private var responseOpCode: UInt32?
             return try MeshNetworkManager.instance.send(message, to: self.model)
         }
     }
@@ -395,11 +381,10 @@ extension ModelViewController: ModelViewCellDelegate {
 private extension ModelViewController {
     
     @objc func reload(_ sender: Any) {
-        switch model! {
-        case let model where model.isConfigurationServer:
-            _ = modelViewCell?.startRefreshing()
-        default:
+        if !model.isConfigurationServer {
             reloadBindings()
+        } else {
+            _ = customSection.startRefreshing()
         }
     }
     
@@ -482,7 +467,7 @@ extension ModelViewController: MeshNetworkDelegate {
             done()
             
             if status.isSuccess {
-                tableView.reloadSections(.bindingsAndPublication, with: .automatic)
+                tableView.reloadSections(bindingsAndPublication, with: .automatic)
                 setEditing(false, animated: true)
             } else {
                 presentAlert(title: "Error", message: status.message)
@@ -492,16 +477,16 @@ extension ModelViewController: MeshNetworkDelegate {
             // If the Model is being refreshed, the Bindings, Subscriptions
             // and Publication has been read. If the Model has custom UI,
             // try refreshing it as well.
-            if let cell = modelViewCell, refreshControl?.isRefreshing ?? false, cell.startRefreshing() {
-                break
-            }
             done()
         
             if status.isSuccess {
-                tableView.reloadSections(.publication, with: .automatic)
+                tableView.reloadSections(publication, with: .automatic)
                 setEditing(false, animated: true)
             } else {
                 presentAlert(title: "Error", message: status.message)
+            }
+            if customSection.startRefreshing() {
+                break
             }
             refreshControl?.endRefreshing()
             
@@ -509,7 +494,7 @@ extension ModelViewController: MeshNetworkDelegate {
             done()
             
             if status.isSuccess {
-                tableView.reloadSections(.subscriptions, with: .automatic)
+                tableView.reloadSections(subscriptions, with: .automatic)
                 setEditing(false, animated: true)
             } else {
                 presentAlert(title: "Error", message: status.message)
@@ -517,7 +502,7 @@ extension ModelViewController: MeshNetworkDelegate {
             
         case let list as ConfigModelAppList:
             if list.isSuccess {
-                tableView.reloadSections(.bindingsAndPublication, with: .automatic)
+                tableView.reloadSections(bindingsAndPublication, with: .automatic)
                 reloadSubscriptions()
             } else {
                 done() {
@@ -528,7 +513,7 @@ extension ModelViewController: MeshNetworkDelegate {
             
         case let list as ConfigModelSubscriptionList:
             if list.isSuccess {
-                tableView.reloadSections(.subscriptions, with: .automatic)
+                tableView.reloadSections(subscriptions, with: .automatic)
                 reloadPublication()
             } else {
                 done() {
@@ -538,17 +523,13 @@ extension ModelViewController: MeshNetworkDelegate {
             }
             
         default:
-            let isMore = modelViewCell?.meshNetworkManager(manager, didReceiveMessage: message,
-                                                           sentFrom: source, to: destination) ?? false
+              let isMore = customSection.meshNetworkManager(manager, didReceiveMessage: message,
+                                                            sentFrom: source, to: destination)
             if !isMore {
                 done()
                 
                 if let status = message as? StatusMessage, !status.isSuccess {
                     presentAlert(title: "Error", message: status.message)
-                } else {
-                    if model.isConfigurationServer {
-                        tableView.reloadSections(.configurationServer, with: .automatic)
-                    }
                 }
                 refreshControl?.endRefreshing()
             }
@@ -571,8 +552,8 @@ extension ModelViewController: MeshNetworkDelegate {
             break
             
         default:
-            let isMore = modelViewCell?.meshNetworkManager(manager, didSendMessage: message,
-                                                           from: localElement, to: destination) ?? false
+            let isMore = customSection.meshNetworkManager(manager, didSendMessage: message,
+                                                          from: localElement, to: destination)
             if !isMore {
                 done()
             }
@@ -583,6 +564,9 @@ extension ModelViewController: MeshNetworkDelegate {
                             failedToSendMessage message: MeshMessage,
                             from localElement: Element, to destination: Address,
                             error: Error) {
+        customSection.meshNetworkManager(manager, failedToSendMessage: message,
+                                         from: localElement, to: destination, error: error)
+        
         done() {
             self.presentAlert(title: "Error", message: error.localizedDescription)
             self.refreshControl?.endRefreshing()
@@ -594,15 +578,15 @@ extension ModelViewController: MeshNetworkDelegate {
 extension ModelViewController: BindAppKeyDelegate, PublicationDelegate, SubscriptionDelegate {
     
     func keyBound() {
-        tableView.reloadSections(.bindings, with: .automatic)
+        tableView.reloadSections(bindings, with: .automatic)
     }
     
     func publicationChanged() {
-        tableView.reloadSections(.publication, with: .automatic)
+        tableView.reloadSections(publication, with: .automatic)
     }
     
     func subscriptionAdded() {
-        tableView.reloadSections(.subscriptions, with: .automatic)
+        tableView.reloadSections(subscriptions, with: .automatic)
     }
     
 }
@@ -619,73 +603,54 @@ private extension Model {
     
 }
 
-private extension IndexPath {
-    static let customUISection  = 0
-    static let detailsSection   = 1
-    static let bindingsSection  = 2
-    static let configurationServerSection = 2
-    static let publishSection   = 3
-    static let subscribeSection = 4
+// MARK: - Sections helper
+
+private extension ModelViewController {
     
-    static let detailsTitles = [
-        "Model ID", "Company"
-    ]
+    var customUISection: Int { return 0 }
+    var detailsSection: Int { return customSection.numberOfSections(in: tableView) }
+    var bindingsSection: Int { return detailsSection + 1 }
+    var publishSection: Int { return detailsSection + 2 }
+    var subscribeSection: Int { return detailsSection + 3 }
     
-    var title: String? {
-        if isDetailsSection {
-            return IndexPath.detailsTitles[row]
+    static let detailsTitles = [ "Model ID", "Company" ]
+    
+    func detailSectionTitle(_ indexPath: IndexPath) -> String? {
+        if isDetailsSection(at: indexPath) {
+            return Self.detailsTitles[indexPath.row]
         }
         return nil
     }
-    
-    var isModelId: Bool {
-        return isDetailsSection && row == 0
-    }
-    
-    var isCompany: Bool {
-        return isDetailsSection && row == 1
-    }
-    
-    var isDetailsSection: Bool {
-        return section == IndexPath.detailsSection
-    }
-    
-    var isBindingsSection: Bool {
-        return section == IndexPath.bindingsSection
-    }
-    
-    var isConfigurationServer: Bool {
-        return section == IndexPath.configurationServerSection
-    }
-    
-    var isPublishSection: Bool {
-        return section == IndexPath.publishSection
-    }
-    
-    var isSubscribeSection: Bool {
-        return section == IndexPath.subscribeSection
-    }
-    
-}
 
-private extension IndexSet {
-
-    static let bindings = IndexSet(integer: IndexPath.bindingsSection)
-    static let publication = IndexSet(integer: IndexPath.publishSection)
-    static let subscriptions = IndexSet(integer: IndexPath.subscribeSection)
-    static let bindingsAndPublication = IndexSet([IndexPath.bindingsSection, IndexPath.publishSection])
-    static let configurationServer = IndexSet(integer: IndexPath.configurationServerSection)
-    static let custom = IndexSet(integer: IndexPath.customUISection)
+    func isModelIdRow(at indexPath: IndexPath) -> Bool {
+        return isDetailsSection(at: indexPath) && indexPath.row == 0
+    }
+    
+    func isCompanyRow(at indexPath: IndexPath) -> Bool {
+        return isDetailsSection(at: indexPath) && indexPath.row == 1
+    }
+    
+    func isDetailsSection(at indexPath: IndexPath) -> Bool {
+        return indexPath.section == self.detailsSection
+    }
+    
+    func isBindingsSection(at indexPath: IndexPath) -> Bool {
+        return indexPath.section == self.bindingsSection
+    }
+    
+    func isPublishSection(at indexPath: IndexPath) -> Bool {
+        return indexPath.section == self.publishSection
+    }
+    
+    func isSubscribeSection(at indexPath: IndexPath) -> Bool {
+        return indexPath.section == self.subscribeSection
+    }
+    
+    var customs: IndexSet { return IndexSet(Array(0..<customSection.numberOfSections(in: tableView))) }
+    var bindings: IndexSet { return IndexSet(integer: bindingsSection) }
+    var publication: IndexSet { return IndexSet(integer: publishSection) }
+    var subscriptions: IndexSet { return IndexSet(integer: subscribeSection) }
+    var bindingsAndPublication: IndexSet { return IndexSet([bindingsSection, publishSection]) }
 
 }
 
-extension Model {
-
-    
-    var hasCustomUI: Bool {
-        return !isBluetoothSIGAssigned   // Vendor Movels.
-            || modelIdentifier == 0x1000 // Generic On Off Server.
-            || modelIdentifier == 0x1002 // Generic Level Server.
-    }
-    
-}

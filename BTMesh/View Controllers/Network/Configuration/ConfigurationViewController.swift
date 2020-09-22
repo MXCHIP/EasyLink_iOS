@@ -72,7 +72,7 @@ class ConfigurationViewController: ProgressViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
         
         // Check if the local Provisioner has configuration capabilities.
         let localProvisioner = network.localProvisioner
@@ -320,7 +320,7 @@ private extension ConfigurationViewController {
     /// Presents a dialog to edit the node name.
     func presentNameDialog() {
         presentTextAlert(title: "Name", message: nil, text: node.name,
-                         placeHolder: "E.g. Bedroom Light", type: .name) { name in
+                         placeHolder: "E.g. Bedroom Light", type: .name, handler: { name in
                             if name.isEmpty {
                                 self.node.name = nil
                             } else {
@@ -333,7 +333,7 @@ private extension ConfigurationViewController {
                             } else {
                                 self.presentAlert(title: "Error", message: "Mesh configuration could not be saved.")
                             }
-        }
+                         })
     }
     
     func presentUuidDialog() {
@@ -347,10 +347,10 @@ private extension ConfigurationViewController {
         presentTextAlert(title: "Default TTL",
                          message: "TTL = Time To Live\n\nTTL limits the number of times a message can be relayed.\nMax value is 127.",
                          text: node.defaultTTL != nil ? "\(node.defaultTTL!)" : nil,
-                         type: .ttlRequired) { value in
+                         type: .ttlRequired, handler:  { value in
                             let ttl = UInt8(value)!
                             self.setTtl(ttl)
-        }
+                         })
     }
     
     /// Presents a dialog with resetting confirmation.
