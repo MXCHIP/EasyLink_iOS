@@ -15,7 +15,7 @@
 #import "ELAsyncSocket.h"
 #import "ELReachability.h"
 
-#define EASYLINK_VERSION  @"4.2.3"
+#define EASYLINK_VERSION  @"4.2.4"
 
 //#define AWS_COMPATIBLE
 
@@ -61,8 +61,8 @@
     
     if (((dataIdx)%8)==7) {
         (*blockIndex)++;
-        [self addObject:[NSDictionary dictionaryWithObjectsAndKeys: [NSMutableData dataWithLength:(224 + *blockIndex)], @"sendData", [NSNumber numberWithFloat:delay], @"Delay", nil]];
-        [self addObject:[NSDictionary dictionaryWithObjectsAndKeys: [NSMutableData dataWithLength:(224 + *blockIndex)], @"sendData", [NSNumber numberWithFloat:delay], @"Delay", nil]];
+        [self addObject:[NSDictionary dictionaryWithObjectsAndKeys: [NSMutableData dataWithLength:(992 + *blockIndex)], @"sendData", [NSNumber numberWithFloat:delay], @"Delay", nil]];
+        [self addObject:[NSDictionary dictionaryWithObjectsAndKeys: [NSMutableData dataWithLength:(992 + *blockIndex)], @"sendData", [NSNumber numberWithFloat:delay], @"Delay", nil]];
     }
 }
 
@@ -679,9 +679,9 @@ static void encode_chinese(uint8_t *in, uint8_t in_len, uint8_t *out, uint8_t *o
     [awsArray removeAllObjects];
     
     /* EasyLink Header */
-    [awsArray insertEasyLinkAWSHeader:0xE0 delay:easyLinkAWSDelayPerByte];
-    [awsArray insertEasyLinkAWSHeader:0xE0 delay:easyLinkAWSDelayPerByte];
-    [awsArray insertEasyLinkAWSHeader:0xE0 delay:easyLinkAWSDelayPerByte];
+    [awsArray insertEasyLinkAWSHeader:0x4E0 delay:easyLinkAWSDelayPerByte];
+    [awsArray insertEasyLinkAWSHeader:0x4E0 delay:easyLinkAWSDelayPerByte];
+    [awsArray insertEasyLinkAWSHeader:0x4E0 delay:easyLinkAWSDelayPerByte];
 
     /*Total len*/
     totalLen = ssidLength + passwdLength + 6; // total_len | flag | ssid_len | key_len | <ssid> | <key> | crc16_high | crc16_low
@@ -1453,7 +1453,7 @@ static void encode_chinese(uint8_t *in, uint8_t in_len, uint8_t *out, uint8_t *o
             CFDataRef httpData = CFHTTPMessageCopySerializedMessage ( httpRespondMessage );
             CFRelease(httpRespondMessage);
             [sock writeData:(__bridge_transfer NSData*)httpData withTimeout:20 tag:[[client objectForKey:@"Tag"] longValue]];
-            //[self stopTransmitting];
+            [self stopTransmitting];
             if([theDelegate respondsToSelector:@selector(onFoundByFTC: withConfiguration:)]){
                 configuration = [NSJSONSerialization JSONObjectWithData:body
                                                                 options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
@@ -1534,8 +1534,9 @@ static void encode_chinese(uint8_t *in, uint8_t in_len, uint8_t *out, uint8_t *o
     NetworkStatus netStatus = [wifiReachability currentReachabilityStatus];
     
     if ( netStatus != NotReachable ) {
-        if(_softAPSending == true){
+        if(_softAPSending == true && ![[EASYLINK ssidForConnectedNetwork]  isEqual: @""]){
             [self transmitSettings];
+            EasyLinkLog(@"Current SSID:%@", [EASYLINK ssidForConnectedNetwork]);
             if ([[EASYLINK ssidDataForConnectedNetwork] isEqual: [_configDict objectForKey:KEY_SSID]]){
                 if(_softAPStage != eState_initialize)
                     _softAPStage = eState_connect_to_target_wlan;
@@ -1629,8 +1630,9 @@ static void encode_chinese(uint8_t *in, uint8_t in_len, uint8_t *out, uint8_t *o
     NetworkStatus netStatus = [verifyConnection currentReachabilityStatus];
     
     if ( netStatus != NotReachable ) {
-        if(_softAPSending == true){
+        if(_softAPSending == true && ![[EASYLINK ssidForConnectedNetwork]  isEqual: @""]){
             [self transmitSettings];
+            EasyLinkLog(@"Current SSID:%@", [EASYLINK ssidForConnectedNetwork]);
             if ([[EASYLINK ssidDataForConnectedNetwork] isEqual: [_configDict objectForKey:KEY_SSID]]){
                 if(_softAPStage != eState_initialize)
                     _softAPStage = eState_connect_to_target_wlan;

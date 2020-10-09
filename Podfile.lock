@@ -19,8 +19,8 @@ PODS:
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
   - OpenSSL-Universal/Static (1.0.2.19)
-  - PulsingHalo (0.2.8)
-  - Reachability (3.1.1)
+  - PulsingHalo (0.2.10)
+  - Reachability (3.2)
   - RMMultipleViewsController (1.0.3)
 
 DEPENDENCIES:
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.0.3)
   - nRFMeshProvision (from `./`)
   - PulsingHalo
-  - Reachability (~> 3.1.0)
+  - Reachability (> 3.1.0)
   - RMMultipleViewsController (~> 1.0.2)
 
 SPEC REPOS:
@@ -66,10 +66,10 @@ SPEC CHECKSUMS:
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   nRFMeshProvision: ecb20ce595bb421f2350e539f05d7391dd507724
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
-  PulsingHalo: 64938e4bd3893b823abdf01478084cd92445af2b
-  Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
+  PulsingHalo: 1a9c6b65a8e12ac9eee1627fc8476efcce8e1918
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   RMMultipleViewsController: 4152ae787a65877a4cdae6af60bdad31ea500ee9
 
-PODFILE CHECKSUM: eec2b55f2e86916cab5bfbd3b2ef8d0c1f8efde8
+PODFILE CHECKSUM: 174f45052813b7d2b81b18d009455930afabfc1b
 
 COCOAPODS: 1.8.4

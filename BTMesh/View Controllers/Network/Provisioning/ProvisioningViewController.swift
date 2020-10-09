@@ -150,10 +150,10 @@ private extension ProvisioningViewController {
     func presentNameDialog() {
         presentTextAlert(title: "Device name", message: nil,
                          text: unprovisionedDevice.name, placeHolder: "Name",
-                         type: .nameRequired) { newName in
+                         type: .nameRequired, handler:  { newName in
                             self.unprovisionedDevice.name = newName
                             self.nameLabel.text = newName
-        }
+                         })
     }
     
     /// Presents a dialog to edit or unbind the Provisioner Unicast Address.
@@ -168,7 +168,7 @@ private extension ProvisioningViewController {
         }
         presentTextAlert(title: "Unicast address", message: "Hexadecimal value in Provisioner's range.",
                          text: manager.unicastAddress?.hex, placeHolder: "Address", type: .unicastAddressRequired,
-                         option: action) { text in
+                         option: action, handler:  { text in
                             manager.unicastAddress = Address(text, radix: 16)
                             self.unicastAddressLabel.text = manager.unicastAddress!.asString()
                             let deviceSupported = manager.isDeviceSupported == true
@@ -177,7 +177,7 @@ private extension ProvisioningViewController {
                             if !addressValid {
                                 self.presentAlert(title: "Error", message: "Address is not available.")
                             }
-        }
+                         })
     }
     
     func presentStatusDialog(message: String, animated flag: Bool = true, completion: (() -> Void)? = nil) {
@@ -373,7 +373,7 @@ extension ProvisioningViewController: ProvisioningDelegate {
                 self.unicastAddressLabel.text = self.provisioningManager.unicastAddress?.asString() ?? "No address available"
                 self.actionProvision.isEnabled = addressValid
                 
-                let capabilitiesWereAlreadyReceived = self.capabilitiesReceived
+                //let capabilitiesWereAlreadyReceived = self.capabilitiesReceived
                 self.capabilitiesReceived = true
                 
                 let deviceSupported = self.provisioningManager.isDeviceSupported == true
@@ -421,9 +421,9 @@ extension ProvisioningViewController: ProvisioningDelegate {
         case let .provideStaticKey(callback: callback):
             self.dismissStatusDialog() {
                 let message = "Enter 16-character hexadecimal string."
-                self.presentTextAlert(title: "Static OOB Key", message: message, type: .keyRequired) { hex in
+                self.presentTextAlert(title: "Static OOB Key", message: message, type: .keyRequired, handler:  { hex in
                     callback(Data(hex: hex)!)
-                }
+                })
             }
         case let .provideNumeric(maximumNumberOfDigits: _, outputAction: action, callback: callback):
             self.dismissStatusDialog() {
@@ -440,16 +440,16 @@ extension ProvisioningViewController: ProvisioningDelegate {
                 default:
                     message = "Action \(action) is not supported."
                 }
-                self.presentTextAlert(title: "Authentication", message: message, type: .unsignedNumberRequired) { text in
+                self.presentTextAlert(title: "Authentication", message: message, type: .unsignedNumberRequired, handler:  { text in
                     callback(UInt(text)!)
-                }
+                })
             }
         case let .provideAlphanumeric(maximumNumberOfCharacters: _, callback: callback):
             self.dismissStatusDialog() {
                 let message = "Enter the text displayed on the device."
-                self.presentTextAlert(title: "Authentication", message: message, type: .nameRequired) { text in
+                self.presentTextAlert(title: "Authentication", message: message, type: .nameRequired, handler:  { text in
                     callback(text)
-                }
+                })
             }
         case let .displayAlphanumeric(text):
             self.presentStatusDialog(message: "Enter the following text on your device:\n\n\(text)")

@@ -218,10 +218,10 @@ private extension EditProvisionerViewController {
     func presentNameDialog() {
         presentTextAlert(title: "Provisioner name", message: nil,
                          text: newName ?? provisioner.provisionerName, placeHolder: "Name",
-                         type: .nameRequired) { newName in
+                         type: .nameRequired, handler:  { newName in
                             self.newName = newName
                             self.nameLabel.text = newName
-        }
+                         })
     }
     
     /// Presents a dialog to edit or unbind the Provisioner Unicast Address.
@@ -246,7 +246,7 @@ private extension EditProvisionerViewController {
         }
         presentTextAlert(title: "Unicast address", message: "Hexadecimal value in range\n0001 - 7FFF.",
                          text: address, placeHolder: "Address", type: .unicastAddressRequired,
-                         option: action) { text in
+                         option: action, handler:  { text in
                             let address = Address(text, radix: 16)
                             self.unicastAddressLabel.text = address!.asString()
                             self.disableConfigCapabilities = false
@@ -262,7 +262,7 @@ private extension EditProvisionerViewController {
                                 self.deviceKeyCell.detailTextLabel?.text = "Unknown"
                                 self.deviceKeyCell.detailTextLabel?.font = .systemFont(ofSize: 17)
                             }
-        }
+                         })
     }
     
     /// Presents a dialog to edit the default TTL.
@@ -272,11 +272,11 @@ private extension EditProvisionerViewController {
         presentTextAlert(title: "Default TTL",
                          message: "TTL = Time To Live\n\nTTL limits the number of times a message can be relayed.\nMax value is 127.",
                          text: "\(node?.defaultTTL ?? 5)", placeHolder: "Default is 5",
-                         type: .ttlRequired) { value in
+                         type: .ttlRequired, handler:  { value in
                             let ttl = UInt8(value)!
                             self.newTtl = ttl
                             self.ttlCell.detailTextLabel?.text = "\(ttl)"
-        }
+                         })
      }
     
     /// Saves the edited or new Provisioner and pops the view contoller if saving

@@ -115,7 +115,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
     
     deviceIPConfig = [[NSMutableDictionary alloc] initWithCapacity:5];
     targetSsid = [NSData data];
-    easylinkMode = EASYLINK_AWS;
+    easylinkMode = EASYLINK_SOFT_AP;
     //startEasyLinkBTN.titleLabel.text = [[NSString alloc] initWithFormat:@"Start %@ Mode", easylinkModeFieldText[easylinkMode]];
 
     //配置表格加边框
@@ -409,6 +409,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
     
     /*Pop up a Easylink sending dialog*/
     easyLinkUAPSendingView = [[CustomIOSAlertView alloc] init];
+    easyLinkUAPSendingView.delegate = nil;
     
     UIScrollView *alertContentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 290, 300)];
     
@@ -1026,7 +1027,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
         [ssidField setReturnKeyType:UIReturnKeyDone];
         [ssidField setText:SSID];
         
-        [cell addSubview:ssidField];
+        [cell.contentView addSubview:ssidField];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"SSID";
@@ -1042,7 +1043,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
         [passwordField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
         [passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
         [passwordField setBackgroundColor:[UIColor clearColor]];
-        [cell addSubview:passwordField];
+        [cell.contentView addSubview:passwordField];
         NSString *password = [apInforRecord objectForKey:ssidField.text];
         if(password == nil) password = @"";
         [passwordField setText:password];
@@ -1063,7 +1064,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
         [userInfoField setReturnKeyType:UIReturnKeyDone];
         [userInfoField setBackgroundColor:[UIColor clearColor]];
         
-        [cell addSubview:userInfoField];
+        [cell.contentView addSubview:userInfoField];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"Extra Data";
@@ -1087,7 +1088,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
         else
             [ipAddress setText:[deviceIPConfig objectForKey:@"IP"]];
 
-        [cell addSubview:ipAddress];
+        [cell.contentView addSubview:ipAddress];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"IP Address";
@@ -1110,7 +1111,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
         
         [easylinkModeField setText:easylinkModeFieldText[easylinkMode]];
         
-        [cell addSubview:easylinkModeField];
+        [cell.contentView addSubview:easylinkModeField];
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.textLabel.text = @"Mode";
