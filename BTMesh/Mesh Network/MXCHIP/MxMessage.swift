@@ -9,6 +9,10 @@
 import Foundation
 import nRFMeshProvision
 
+public protocol MxAttributeStatusMessage: MxMessage {
+    var attributes: [MxAttribute] { get }
+}
+
 public protocol MxMessage: StaticMeshMessage {
     // No additional fields.
 }

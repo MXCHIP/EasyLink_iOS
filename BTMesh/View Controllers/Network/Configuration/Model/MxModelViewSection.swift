@@ -30,6 +30,8 @@ class MxModelViewSection: NSObject, ModelViewSectionProtocol {
                 tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: IndexPath.identifiers[section])
             }
         }
+        
+        attributes = MeshNetworkManager.statusManager.getMxAttributes(ofNode: (model.parentElement?.parentNode)!)
     }
     
     // MARK: - UIView
@@ -96,7 +98,7 @@ class MxModelViewSection: NSObject, ModelViewSectionProtocol {
             return quadruplesCell?.meshNetworkManager(manager, didReceiveMessage: message,
                                                      sentFrom: source, to: destination) ?? false
         }
-        self.attributes = status.attributes.sorted{ $0.type < $1.type }
+        self.attributes.insert(status.attributes)
         tableView.reloadSections(IndexSet([IndexPath.attSection]), with: .automatic)
         return false
         

@@ -57,6 +57,15 @@ class NodeViewCell: UITableViewCell {
                 company.text = "Unknown"
                 models.text = "Configuration not complete"
             }
+            
+            switch node.status {
+            case .online: fallthrough
+            case .allwaysOnline:
+                self.backgroundColor = UIColor.white
+            default:
+                self.backgroundColor = UIColor.lightGray
+            }
+
         }
     }
     

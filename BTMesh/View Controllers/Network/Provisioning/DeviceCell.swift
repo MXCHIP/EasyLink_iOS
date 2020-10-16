@@ -48,7 +48,14 @@ class DeviceCell: UITableViewCell {
     
     func setupView(withDevice device: UnprovisionedDevice, andRSSI rssi: Int) {
         name.text = device.name ?? "Unknown Device"
-        uuid.text = device.uuid.uuidString
+        
+        if device.uuid.isMXCHIPFormat, let companyString = CompanyIdentifier.name(for: device.uuid.companyIdentifier) {
+            let macString = device.uuid.macString
+            let productIDString = device.uuid.productID.description
+            uuid.text = companyString + "|" + macString + "|" + productIDString
+        } else {
+            uuid.text = device.uuid.uuidString
+        }
         updateRssi(rssi)
     }
     

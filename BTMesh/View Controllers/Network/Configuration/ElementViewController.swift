@@ -49,15 +49,17 @@ class ElementViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showModel" {
-            let indexPath = sender as! IndexPath
-            let model = element.models[indexPath.row]
+        let model = sender as! Model
+        switch segue.identifier {
+        case "showModel":
             let destination = segue.destination as! ModelViewController
             destination.model = model
+        default:
+            break
         }
     }
 
@@ -147,7 +149,8 @@ class ElementViewController: UITableViewController {
             presentNameDialog()
         }
         if indexPath.isModelsSection {
-            performSegue(withIdentifier: "showModel", sender: indexPath)
+            let model = element.models[indexPath.row]
+            performSegue(withIdentifier: "showModel", sender: model)
         }
     }
 }
@@ -183,7 +186,7 @@ private extension ElementViewController {
     /// Presents a dialog to edit the Element name.
     func presentNameDialog() {
         presentTextAlert(title: "Network Name", message: nil, text: element.name,
-                         placeHolder: "E.g. My House", type: .name) { name in
+                         placeHolder: "E.g. My House", type: .name, handler:  { name in
                             self.element.name = name.isEmpty ? nil : name
                             
                             if MeshNetworkManager.instance.save() {
@@ -192,7 +195,7 @@ private extension ElementViewController {
                             } else {
                                 self.presentAlert(title: "Error", message: "Mesh configuration could not be saved.")
                             }
-        }
+                         })
     }
     
 }

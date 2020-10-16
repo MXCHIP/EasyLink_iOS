@@ -152,6 +152,7 @@ class NetworkConnection: NSObject, Bearer {
 //        guard !isConnectionModeAutomatic else {
 //            return
 //        }
+        isStarted = true
         
         bearer.delegate = self
         bearer.dataDelegate = self

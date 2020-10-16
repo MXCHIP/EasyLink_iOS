@@ -173,13 +173,15 @@ class NetworkViewController: UITableViewController {
         tableView.setEmptyView(title: "No Nodes",
                                message: "Click + to provision a new device.",
                                messageImage: #imageLiteral(resourceName: "baseline-network"))
+        MeshNetworkManager.statusManager.statusDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
         
-        MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.delegateCenter.messageDelegate = self
+        MeshNetworkManager.bearer.open()
         
         reloadData()
     }
@@ -237,7 +239,7 @@ class NetworkViewController: UITableViewController {
             let cell = sender as! NodeViewCell
             let destination = segue.destination as! ConfigurationViewController
             destination.node = cell.node
-        case  "showModelFromNetwork":
+        case  "showModel":
             let model = sender as! Model
             let destination = segue.destination as! ModelViewController
             destination.model = model
@@ -274,7 +276,7 @@ class NetworkViewController: UITableViewController {
         }
         
         if let model = sections[indexPath.section].tableView(tableView, didSelectRowAt: indexPath) {
-            performSegue(withIdentifier: "showModelFromNetwork", sender: model)
+            performSegue(withIdentifier: "showModel", sender: model)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -348,18 +350,54 @@ private extension Node {
         var models: [Model] = []
 
         for element in elements {
-            models.append(contentsOf: element.models.filter{
-                !$0.isConfigurationServer && !$0.isConfigurationClient && !$0.isHealthServer && !$0.isHealthClient && !($0.name ?? "").contains("Client") }
+            models.append(contentsOf: element.models.filter{ $0.isSupported }
             )
         }
         return models
     }
 }
 
+private extension Model {
+    
+    var isSupported: Bool {
+        if (name ?? "").contains("Client") {
+            return false
+        }
+        
+        if isBluetoothSIGAssigned {
+            // 不支持以下model的显示
+            return modelIdentifier != 0x0000 && modelIdentifier != 0x0002 && modelIdentifier != 0xFE00 && modelIdentifier != 0xFF00
+        } else {
+            return true
+        }
+    }
+
+}
+
 extension NetworkViewController: ProvisioningViewDelegate {
     
     func provisionerDidProvisionNewDevice(_ node: Node) {
         performSegue(withIdentifier: "configure", sender: node)
+    }
+    
+}
+
+
+extension NetworkViewController: MxNodeStatusDelegate {
+    func update(to nodes: [Node]) {
+        for node in nodes {
+            for (i, section) in sections.enumerated() {
+                if section.type == .thisProvisioner {
+                    break;
+                }
+                for (j, cellInfo) in section.cellInfos.enumerated() {
+                    if cellInfo is Node, cellInfo as! Node == node {
+                        let indexPath = IndexPath(row: j, section: i)
+                        tableView.reloadRows(at: [indexPath], with: .none)
+                    }
+                }
+            }
+        }
     }
     
 }

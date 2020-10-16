@@ -402,6 +402,7 @@ extension ProvisioningViewController: ProvisioningDelegate {
                 } else {
                     self.bearer.close()
                     self.presentStatusDialog(message: "Disconnecting...")
+                    MeshNetworkManager.bearer.open()
                 }
                 
             case let .fail(error):

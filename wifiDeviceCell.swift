@@ -78,7 +78,7 @@ class wifiDeviceCell: UITableViewCell {
             }
             self.textLabel!.text = serviceName
             self.textLabel!.backgroundColor = UIColor(ciColor: .clear)
-            self.textLabel!.textColor = UIColor(ciColor: .black)
+            //self.textLabel!.textColor = UIColor(cgColor: .black)
             
             // Display ip adress and mac address
             let ip = bonjourService.addresses?[0] ?? Data()

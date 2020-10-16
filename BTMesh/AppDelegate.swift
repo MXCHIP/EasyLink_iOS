@@ -30,14 +30,26 @@
 
 import UIKit
 import os.log
+import CoreLocation
 import nRFMeshProvision
 
+protocol MeshNetworkDelegateCenter: class {
+    var messageDelegate: MeshNetworkDelegate?  { get set }
+    var proxyFilterDelegate: ProxyFilterDelegate?  { get set }
+}
+
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MeshNetworkDelegateCenter {
+    var proxyFilterDelegate: ProxyFilterDelegate?
+    var messageDelegate: MeshNetworkDelegate?
 
     var meshNetworkManager: MeshNetworkManager!
     var connection: NetworkConnection!
+    var nodeStatusManager: MxNodeStatusManager!
     var window: UIWindow?
+    
+    var locationManager = CLLocationManager()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -55,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Then, leave 10 seconds for until the incomplete message times out.
         meshNetworkManager.acknowledgmentMessageTimeout = 40.0
         meshNetworkManager.logger = self
+        
+        locationManager.requestWhenInUseAuthorization()
         
         // Try loading the saved configuration.
         var loaded = false
@@ -96,7 +110,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Sets up the local Elements and reinitializes the `NetworkConnection`
     /// so that it starts scanning for devices advertising the new Network ID.
     func meshNetworkDidChange() {
+        meshNetworkManager.delegate = self
+        meshNetworkManager.proxyFilter!.delegate = self
+        
         connection?.close()
+        nodeStatusManager?.clear()
         
         let meshNetwork = meshNetworkManager.meshNetwork!
         
@@ -109,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Model(sigModelId: 0x1003, delegate: GenericLevelClientDelegate()),
             // A simple vendor model:
             Model(vendorModelId: 0x0001, companyId: 0x0059, delegate: SimpleOnOffClientDelegate()),
-            Model(vendorModelId: 0x0002, companyId: 0x005D, delegate: MxClientDelegate())
+            Model(vendorModelId: 0x0001, companyId: 0x0922, delegate: MxClientDelegate())
             
         ])
         let element1 = Element(name: "Secondary Element", location: .second, models: [
@@ -120,11 +138,72 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ])
         meshNetworkManager.localElements = [element0, element1]
         
+        nodeStatusManager = MxNodeStatusManager(meshNetworkManager, messageTimeout: 90, interactiveTimeout: 120)
+        nodeStatusManager.immediatelyShow = false
+        
         connection = NetworkConnection(to: meshNetwork)
         connection!.dataDelegate = meshNetworkManager
         connection!.logger = self
         meshNetworkManager.transmitter = connection
         connection!.open()
+        
+        connection.delegate = nodeStatusManager
+        
+    }
+}
+
+
+// MARK: - MeshNetworkDelegate
+
+extension AppDelegate: MeshNetworkDelegate {
+
+    func meshNetworkManager(_ manager: MeshNetworkManager,
+                            didReceiveMessage message: MeshMessage,
+                            sentFrom source: Address, to destination: Address) {
+        DispatchQueue.main.async {
+            self.nodeStatusManager?.handle(incomingMessage: message, sentFrom: source, to: destination)
+        }
+        self.messageDelegate?.meshNetworkManager(meshNetworkManager, didReceiveMessage: message,
+                                                 sentFrom: source, to: destination)
+    }
+
+    func meshNetworkManager(_ manager: MeshNetworkManager,
+                            didSendMessage message: MeshMessage,
+                            from localElement: Element, to destination: Address) {
+        self.messageDelegate?.meshNetworkManager(meshNetworkManager, didSendMessage: message,
+                                                 from: localElement, to: destination)
+    }
+
+    func meshNetworkManager(_ manager: MeshNetworkManager,
+                            failedToSendMessage message: MeshMessage,
+                            from localElement: Element, to destination: Address,
+                            error: Error) {
+        self.messageDelegate?.meshNetworkManager(meshNetworkManager, failedToSendMessage: message,
+                                                 from: localElement, to: destination, error: error)
+    }
+}
+
+// MARK: - ProxyFilterDelegate
+
+// 0xD000: MXCHIP Beacon and ATT Status Report group address.
+// 0xD003: MXCHIP Status Trigger group address.
+let mxchipGroupAddress: Set<Address> = Set([0xD000, 0xD003])
+
+extension AppDelegate: ProxyFilterDelegate {
+    func proxyFilterUpdated(type: ProxyFilerType, addresses: Set<Address>) {
+        if mxchipGroupAddress.isSubset(of: addresses) {
+            nodeStatusManager.newProxyDidSetup(type: type, addresses: addresses)
+        }
+        self.proxyFilterDelegate?.proxyFilterUpdated(type: type, addresses: addresses)
+    }
+    
+    func limitedProxyFilterDetected(maxSize: Int) {
+        self.proxyFilterDelegate?.limitedProxyFilterDetected(maxSize: maxSize)
+    }
+    
+    func newProxyDidSetup(type: ProxyFilerType, addresses: Set<Address>) {
+
+        meshNetworkManager.proxyFilter!.add(addresses: mxchipGroupAddress)
     }
 }
 
@@ -138,6 +217,13 @@ extension MeshNetworkManager {
         return (UIApplication.shared.delegate as! AppDelegate).connection
     }
     
+    static var delegateCenter: MeshNetworkDelegateCenter! {
+        return (UIApplication.shared.delegate as! MeshNetworkDelegateCenter)
+    }
+    
+    static var statusManager: MxNodeStatusManager! {
+        return (UIApplication.shared.delegate as! AppDelegate).nodeStatusManager
+    }
 }
 
 // MARK: - Logger

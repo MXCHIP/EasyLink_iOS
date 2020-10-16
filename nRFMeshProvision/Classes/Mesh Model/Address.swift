@@ -48,8 +48,6 @@ public extension Address {
     static let allRelays:         Address = 0xFFFE
     static let allNodes:          Address = 0xFFFF
     
-    static let MxATTReportGroupAddress: Address = 0xD000
-    
 }
 
 // MARK: - Helper methods

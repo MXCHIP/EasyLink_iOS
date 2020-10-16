@@ -15,7 +15,8 @@ class MxClientDelegate: ModelDelegate {
     
     init() {
         let types: [MxMessage.Type] = [
-            MxQuadruplesStatus.self
+            MxAttributesStatus.self,
+            MxHeartbeat.self
         ]
         messageTypes = types.toMap()
     }

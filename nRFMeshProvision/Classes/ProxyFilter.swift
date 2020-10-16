@@ -248,8 +248,6 @@ public extension ProxyFilter {
         addresses.formUnion(subscriptions.map({ $0.address.address }))
         // Add All Nodes group address.
         addresses.insert(Address.allNodes)
-        // Add MXCHIP Beacon and ATT Status group address.
-        addresses.insert(Address.MxATTReportGroupAddress)
         // Submit.
         add(addresses: addresses)
     }

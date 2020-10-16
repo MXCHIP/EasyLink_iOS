@@ -78,8 +78,11 @@ class ScannerTableViewController: UITableViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        MeshNetworkManager.bearer.open()
         super.viewWillDisappear(animated)
+        if self.navigationController?.topViewController is ProvisioningViewController {
+            return
+        }
+        MeshNetworkManager.bearer.open()
     }
     
     // MARK: - Segue and navigation
