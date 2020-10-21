@@ -28,9 +28,6 @@ typedef enum{
 NSString * const easylinkModeFieldText[] = { @"EasyLink V1", @"EasyLink V2", @"EasyLink Plus", @"EasyLink Combo", @"EasyLink AWS", @"EasyLink Soft AP"};
 NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink V2 sending...", @"EasyLink Plus sending...", @"EasyLink Combo sending...", @"EasyLink AWS sending...", @"EsyLink Soft AP sending..."};
 
-@interface EasyLinkMainViewController ()
-
-@end
 
 @interface EasyLinkMainViewController (Private)
 
@@ -96,6 +93,8 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
     
     NSString *title = [NSString stringWithFormat:@"EasyLink v%@", [EASYLINK version]];
     [self setTitle:title];
+    
+    _locationManager = [[CLLocationManager alloc] init];
 
     // Do any additional setup after loading the view from its nib.
     bgView.showsVerticalScrollIndicator = NO;
@@ -153,6 +152,7 @@ NSString * const easylinkSendingText[] = { @"EasyLink V1 sending...", @"EasyLink
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self.locationManager requestWhenInUseAuthorization];
     /*Update IP config cell*/
     [ipAddress setUserInteractionEnabled:NO];
     if(ipAddress != nil){

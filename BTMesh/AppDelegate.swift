@@ -30,7 +30,6 @@
 
 import UIKit
 import os.log
-import CoreLocation
 import nRFMeshProvision
 
 protocol MeshNetworkDelegateCenter: class {
@@ -49,10 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MeshNetworkDelegateCenter
     var nodeStatusManager: MxNodeStatusManager!
     var window: UIWindow?
     
-    var locationManager = CLLocationManager()
-
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // 蒲公英检查更新
+        PgyUpdateManager.sharedPgy().start(withAppId:PGY_APP_ID)
+        
         // Create the main MeshNetworkManager instance and customize
         // configuration values.
         meshNetworkManager = MeshNetworkManager()
@@ -67,9 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MeshNetworkDelegateCenter
         // Then, leave 10 seconds for until the incomplete message times out.
         meshNetworkManager.acknowledgmentMessageTimeout = 40.0
         meshNetworkManager.logger = self
-        
-        locationManager.requestWhenInUseAuthorization()
-        
+                
         // Try loading the saved configuration.
         var loaded = false
         do {

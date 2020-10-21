@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "Reachability.h"
 #include <time.h>
 #import "EMWHeader.h"
@@ -37,8 +38,12 @@
     CustomIOSAlertView *easyLinkSendingView, *easyLinkUAPSendingView;
 
     Reachability *wifiReachability;
+    
 }
 
+@property (nonatomic, strong) CLLocationManager* locationManager;
 @property (strong, nonatomic) NSMutableArray *foundModules;
+
+
 
 @end

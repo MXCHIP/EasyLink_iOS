@@ -89,6 +89,8 @@
 		3D3F869F2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3F869D2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard */; };
 		3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
 		3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
+		3D565374253BE3E500D4EA72 /* wifiNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D565373253BE3E500D4EA72 /* wifiNetworkViewController.swift */; };
+		3D565375253BE3E500D4EA72 /* wifiNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D565373253BE3E500D4EA72 /* wifiNetworkViewController.swift */; };
 		3D629AD125305DC70016FD6C /* EasyLink-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D629AD025305DC70016FD6C /* EasyLink-Info.plist */; };
 		3D629AD225305DC70016FD6C /* EasyLink-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D629AD025305DC70016FD6C /* EasyLink-Info.plist */; };
 		3D6739331FB82EC900892F08 /* easylinkModeConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */; };
@@ -113,8 +115,6 @@
 		3D9C2C1824C5E74A00EF8494 /* DisconnectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C2C1624C5E74A00EF8494 /* DisconnectCell.swift */; };
 		3DAA394C17A55426003806FE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394B17A55426003806FE /* CFNetwork.framework */; };
 		3DAA395017A554AD003806FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394F17A554AD003806FE /* QuartzCore.framework */; };
-		3DAC115923DECFB800CA05D0 /* browserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAC115823DECFB800CA05D0 /* browserViewController.swift */; };
-		3DAC115A23DECFB800CA05D0 /* browserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAC115823DECFB800CA05D0 /* browserViewController.swift */; };
 		3DAEA03E191924320082D846 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAEA03C191924320082D846 /* AudioToolbox.framework */; };
 		3DB0E09B216CD59B00357A65 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E098216CD4DA00357A65 /* PgySDK.framework */; };
 		3DB0E09C216CD59B00357A65 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB0E097216CD4DA00357A65 /* PgyUpdate.framework */; };
@@ -579,6 +579,7 @@
 		3D417CE81B5CEA0D00EA2E1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3D42C01D1BFDE35500E6D9DF /* EasyLink_Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyLink_Enterprise-Info.plist"; path = "/Users/William/Develop/EasyLink/EasyLink_Enterprise-Info.plist"; sourceTree = "<absolute>"; };
 		3D5442C31F3B2518002A7C32 /* EasyLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLink.h; path = EasyLink/EasyLink.h; sourceTree = "<group>"; };
+		3D565373253BE3E500D4EA72 /* wifiNetworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = wifiNetworkViewController.swift; path = HomePage/wifiNetworkViewController.swift; sourceTree = SOURCE_ROOT; };
 		3D629AD025305DC70016FD6C /* EasyLink-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "EasyLink-Info.plist"; sourceTree = "<group>"; };
 		3D6739311FB82EC900892F08 /* easylinkModeConfigTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = easylinkModeConfigTableViewController.h; sourceTree = SOURCE_ROOT; };
 		3D6739321FB82EC900892F08 /* easylinkModeConfigTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = easylinkModeConfigTableViewController.m; sourceTree = SOURCE_ROOT; };
@@ -603,7 +604,6 @@
 		3DAA394B17A55426003806FE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3DAA394D17A55486003806FE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3DAA394F17A554AD003806FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		3DAC115823DECFB800CA05D0 /* browserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = browserViewController.swift; path = HomePage/browserViewController.swift; sourceTree = SOURCE_ROOT; };
 		3DAC115B23DED10600CA05D0 /* EasyLink-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EasyLink-Bridging-Header.h"; sourceTree = "<group>"; };
 		3DAC115C23DED10600CA05D0 /* EasyLink Enterprise-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EasyLink Enterprise-Bridging-Header.h"; sourceTree = "<group>"; };
 		3DAEA03C191924320082D846 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -898,9 +898,9 @@
 		3D3370E41A4966C600ABFF1B /* Home Page */ = {
 			isa = PBXGroup;
 			children = (
+				3D565373253BE3E500D4EA72 /* wifiNetworkViewController.swift */,
 				3D3370E71A4966D400ABFF1B /* bonjourDetailTableViewController.h */,
 				3D3370E81A4966D400ABFF1B /* bonjourDetailTableViewController.m */,
-				3DAC115823DECFB800CA05D0 /* browserViewController.swift */,
 				3DB6F49E23E956DD00FF39BB /* wifiDeviceCell.swift */,
 			);
 			name = "Home Page";
@@ -1830,6 +1830,7 @@
 				3DD246872530397200D97A32 /* MxModelViewSection.swift in Sources */,
 				3D33716F1A49682400ABFF1B /* UIImage+JSMessagesView.m in Sources */,
 				3DB68A68246ABA3E00FF6585 /* AppDelegate.swift in Sources */,
+				3D565374253BE3E500D4EA72 /* wifiNetworkViewController.swift in Sources */,
 				3DB68B58246B9A5E00FF6585 /* EditProvisionerViewController.swift in Sources */,
 				3D3370991A49628E00ABFF1B /* FTCSelectViewController.m in Sources */,
 				3DD246792530397200D97A32 /* ModelViewCell.swift in Sources */,
@@ -1858,7 +1859,6 @@
 				3DB68B64246B9A5F00FF6585 /* SettingsViewController.swift in Sources */,
 				3DB68B01246B9A0400FF6585 /* ConfigurationViewController.swift in Sources */,
 				3DB68B36246B9A4A00FF6585 /* BottomSheetSegue.swift in Sources */,
-				3DAC115923DECFB800CA05D0 /* browserViewController.swift in Sources */,
 				3DD246B225303A2B00D97A32 /* ClosedRange.swift in Sources */,
 				3DD246B825303A2B00D97A32 /* Data+Hex.swift in Sources */,
 				3DB68B5C246B9A5E00FF6585 /* EditRangesViewController.swift in Sources */,
@@ -1979,6 +1979,7 @@
 				3DD246882530397200D97A32 /* MxModelViewSection.swift in Sources */,
 				3DB68A69246ABA7900FF6585 /* AppDelegate.swift in Sources */,
 				3DB68B59246B9A5E00FF6585 /* EditProvisionerViewController.swift in Sources */,
+				3D565375253BE3E500D4EA72 /* wifiNetworkViewController.swift in Sources */,
 				3DB0E0A2216CD5E700357A65 /* UIImage+JSMessagesView.m in Sources */,
 				3DB68B7F246B9A7000FF6585 /* ProxySelectorViewController.swift in Sources */,
 				3DD2467A2530397200D97A32 /* ModelViewCell.swift in Sources */,
@@ -2010,7 +2011,6 @@
 				3DB68B5D246B9A5E00FF6585 /* EditRangesViewController.swift in Sources */,
 				3DD246B325303A2B00D97A32 /* ClosedRange.swift in Sources */,
 				3DD246B925303A2B00D97A32 /* Data+Hex.swift in Sources */,
-				3DAC115A23DECFB800CA05D0 /* browserViewController.swift in Sources */,
 				3DB0E0A9216CD5E700357A65 /* Protocols.m in Sources */,
 				3DB0E0AA216CD5E700357A65 /* talkToModuleViewController.m in Sources */,
 				3DB68A8D246ABC3800FF6585 /* SimpleOnOffStatus.swift in Sources */,
@@ -2371,7 +2371,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/EasyLink-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2411,7 +2411,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "General/EasyLink-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/EasyLink-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

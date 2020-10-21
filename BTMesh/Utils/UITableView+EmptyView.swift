@@ -46,6 +46,7 @@ extension UIView {
             let titleLabel = UILabel()
             let messageLabel = UILabel()
             
+            messageImageView.contentMode = .scaleAspectFit
             messageImageView.backgroundColor = .clear
             messageImageView.alpha = 0.6
             messageImageView.tag   = 99
@@ -81,13 +82,16 @@ extension UIView {
                 titleLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
                 
                 messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-                messageLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor)
+                messageLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
+                messageLabel.leadingAnchor.constraint(equalTo: emptyView.layoutMarginsGuide.leadingAnchor),
+                messageLabel.trailingAnchor.constraint(equalTo: emptyView.layoutMarginsGuide.trailingAnchor)
+
             ])
             
             messageImageView.image = messageImage
             titleLabel.text = title.uppercased()
             messageLabel.text = message
-            messageLabel.numberOfLines = 0
+            messageLabel.numberOfLines = 2
             messageLabel.textAlignment = .center
             
             emptyView.translatesAutoresizingMaskIntoConstraints = false
@@ -145,7 +149,7 @@ protocol Editable {
     /// Shows the 'Empty View'.
     func showEmptyView()
     /// Hides the 'Empty View'.
-    func hideEmptyView(_ animated: Bool)
+    func hideEmptyView(_ animated: Bool, _ editale: Bool)
 }
 
 extension Editable where Self: UIViewController {
@@ -161,11 +165,13 @@ extension Editable where Self: UIViewController {
         tableView.setEditing(false, animated: false)
     }
     
-    func hideEmptyView(_ animated: Bool = true) {
-        if !navigationItem.rightBarButtonItems!.contains(editButtonItem) {
+    func hideEmptyView(_ animated: Bool = true, _ editale: Bool = true) {
+        if editale && !navigationItem.rightBarButtonItems!.contains(editButtonItem) {
             navigationItem.rightBarButtonItems!.append(editButtonItem)
         }
         tableView.hideEmptyView(animated)
     }
+    
+    
     
 }
