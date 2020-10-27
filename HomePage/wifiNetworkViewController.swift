@@ -34,7 +34,12 @@ class wifiNetworkViewController: UITableViewController, Editable, NetServiceBrow
         super.viewDidLoad()
         
         _netServiceBrowser.delegate = self
-        tableView.setEmptyView(title: "No device found", message: "Devices should advertise service: \(kWebServiceType) under current network.", messageImage: UIImage(systemName: "wifi")! )
+        if #available(iOS 13.0, *) {
+            tableView.setEmptyView(title: "No device found", message: "Devices should advertise service: \(kWebServiceType) under current network.", messageImage: UIImage(systemName: "wifi")! )
+        } else {
+            // Fallback on earlier versions
+            tableView.setEmptyView(title: "No device found", message: "Devices should advertise service: \(kWebServiceType) under current network.", messageImage: #imageLiteral(resourceName: "baseline-wifi") )
+        }
         showEmptyView()
         
         NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object:nil, queue:nil) { _ in

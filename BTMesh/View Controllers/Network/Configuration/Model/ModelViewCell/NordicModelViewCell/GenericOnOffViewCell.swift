@@ -106,8 +106,16 @@ class GenericOnOffViewCell: ModelViewCell {
     private var stepResolution: StepResolution = .hundredsOfMilliseconds
     private var delay: UInt8 = 0
     
-    private var sendCount: Int = 0
-    private var receiveCount: Int = 0
+    private var sendCount: Int = 0 {
+        didSet {
+            summaryLable.text = String(format: "\(sendCount)/\(receiveCount), %.2f%%", (Float(receiveCount)/Float(sendCount)*100))
+        }
+    }
+    private var receiveCount: Int = 0 {
+        didSet {
+            summaryLable.text = String(format: "\(sendCount)/\(receiveCount), %.2f%%", (Float(receiveCount)/Float(sendCount)*100))
+        }
+    }
     private var turnOn: Bool = true
     
     private var repeatTimer: Timer?
@@ -240,6 +248,7 @@ private extension GenericOnOffViewCell {
         if acknowledgmentSwitch.isOn {
             if defaultTransitionSettingsSwitch.isOn {
                 message = GenericOnOffSet(turnOn)
+                //message.isSegmented = true
             } else {
                 let transitionTime = TransitionTime(steps: steps, stepResolution: stepResolution)
                 message = GenericOnOffSet(turnOn, transitionTime: transitionTime, delay: delay)
@@ -279,8 +288,6 @@ extension GenericOnOffViewCell: ProgressViewDelegate {
     
     func alertWillCancelled() {
         stopRepeat()
-        summaryLable.text = String(format: "\(sendCount)/\(receiveCount), %.2f%%", (Float(receiveCount)/Float(sendCount)*100))
-
     }
     
 }
