@@ -9,12 +9,12 @@
 import Foundation
 import nRFMeshProvision
 
-public struct MxSync: MxMessage {
+struct MxSync: MxMessage {
     public static let opCode: UInt32 = 0xD52209
     let tid: UInt8
-    let sync: MxAttribute
+    let sync: MxAttribute.Sync
 
-    public var parameters: Data? {
+    var parameters: Data? {
         guard let data = sync.pdu, !(data.isEmpty) else {
             return nil
         }
@@ -22,20 +22,20 @@ public struct MxSync: MxMessage {
     }
 
     
-    public init(tid: UInt8, range: RangeOfSync, maxDelay seconds: UInt16) {
+    init(tid: UInt8, range: MxAttribute.Sync.RangeOfSync, maxDelay seconds: UInt16) {
         self.tid = tid
-        self.sync = .sync(range, seconds)
+        self.sync = MxAttribute.Sync(seconds, range)
     }
     
-    public init?(parameters: Data) {
+    init?(parameters: Data) {
         /// Should have tid and aync attribute
-        guard let attribute = MxAttribute(pdu: parameters.subdata(in: 1..<parameters.count)),
-              case .sync = attribute else {
+        guard let attribute = MxAttribute.decode(pdu: parameters.subdata(in: 1..<parameters.count)),
+              case let sync as MxAttribute.Sync = attribute else {
             return nil
         }
         
         self.tid =  parameters[0]
-        self.sync = attribute
+        self.sync = sync
     }
 }
 

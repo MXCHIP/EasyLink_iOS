@@ -6,13 +6,13 @@
 //  Copyright © 2020 MXCHIP Co;Ltd. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import nRFMeshProvision
 
 class MxModelViewSection: NSObject, ModelViewSectionProtocol {
 
     // MARK: - Properties
-    var attributes: [MxAttribute] = []
+    var attributes: [MxGenericAttribute] = []
     private weak var quadruplesCell: ModelViewCell?
     
     var model: Model!
@@ -49,10 +49,14 @@ class MxModelViewSection: NSObject, ModelViewSectionProtocol {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numberOfRows: Int = 0
         if IndexPath.isATTSection(section) {
-            numberOfRows = attributes.count
+            numberOfRows = attributes.show.count
         }
         
         if IndexPath.isQuadruplesSection(section) {
+            numberOfRows = 1
+        }
+        
+        if IndexPath.isAdvanceSection(section) {
             numberOfRows = 1
         }
         
@@ -64,21 +68,78 @@ class MxModelViewSection: NSObject, ModelViewSectionProtocol {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.cellIdentifier, for: indexPath)
         
         if indexPath.isATTSection {
-            cell.textLabel?.text = attributes[indexPath.row].type.hex
-            cell.textLabel?.text = MxAttributeType(rawValue: attributes[indexPath.row].type)?.name
-            cell.detailTextLabel?.text = "\(attributes[indexPath.row])"
+            let attributes = self.attributes.show
+            let cell = tableView.dequeueReusableCell(withIdentifier: attributes[indexPath.row].cellIdentifier, for: indexPath)
+            
+            switch attributes[indexPath.row] {
+            case let attribute as MxRange:
+                if let cell = cell as? MxRangeAttrubuteCell {
+                    cell.attribute = attribute
+                    cell.delegate = delegate
+                }
+            case let attribute as MxBoolValue:
+                if let cell = cell as? MxBoolAttrubuteCell {
+                    cell.attribute = attribute
+                    cell.delegate = delegate
+                }
+            case let attribute as MxStringValue:
+                cell.textLabel?.text = attribute.name
+                cell.detailTextLabel?.text = attribute.value
+            default:
+                cell.textLabel?.text = "\(attributes[indexPath.row])"
+            }
+            
+            return cell
         }
         
-        if indexPath.isQuadruplesSection, let cell = cell as? ModelViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.cellIdentifier, for: indexPath)
+        
+        if indexPath.isAutoRow {
+            cell.textLabel?.text = "本地自动化"
+            cell.textLabel?.isEnabled = true
+            return cell
+        }
+            
+        if indexPath.isQuadruplesSection, let cell = cell as? MxQuadruplesCell {
             cell.delegate  = delegate
             cell.model     = model
             quadruplesCell = cell
+            if let quintuples = attributes.first(where: {
+                $0.typeValue == MxAttributeType.quintuplesType.rawValue
+            }) as? MxAttribute.Quintuples {
+                cell.quintuples = quintuples
+            }
         }
   
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.isAutoRow {
+            delegate.performSegue(withIdentifier: "auto", sender: indexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.isAutoRow {
+            return true
+        }
+        return false
+    }
+    
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationController = segue.destination as? UINavigationController
+        
+        switch segue.identifier {
+        case .some("auto"):
+            let viewController = navigationController?.topViewController as! MxAutomationViewController
+            viewController.model = model
+        default:
+            break
+        }
     }
     
     // MARK: - ModelViewSectionProtocol
@@ -94,7 +155,7 @@ class MxModelViewSection: NSObject, ModelViewSectionProtocol {
                             sentFrom source: Address, to destination: Address) -> Bool {
         guard case let status as MxAttributesStatus = message else { return false }
         
-        if case .quintuples = status.attributes[0] {
+        if case _ as MxAttribute.Quintuples = status.attributes[0] {
             return quadruplesCell?.meshNetworkManager(manager, didReceiveMessage: message,
                                                      sentFrom: source, to: destination) ?? false
         }
@@ -107,25 +168,28 @@ class MxModelViewSection: NSObject, ModelViewSectionProtocol {
 
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage,
                             from localElement: Element, to destination: Address) -> Bool {
-        guard case let status as MxAttributesStatus = message else { return false }
+        //guard case let status as MxAttributesSet = message else { return false }
         
-        if case .quintuples = status.attributes[0] {
-            return quadruplesCell?.meshNetworkManager(manager, didSendMessage: message,
-                                                      from: localElement, to: destination) ?? false
-        }
-        return false
+//        if case _ as MxAttribute.Quintuples = status.attributes[0]  {
+//            return quadruplesCell?.meshNetworkManager(manager, didSendMessage: message,
+//                                                      from: localElement, to: destination) ?? false
+//        }
+        return true
     }
     
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage,
                             from localElement: Element, to destination: Address, error: Error) {
         
-        guard case let status as MxAttributesStatus = message else { return }
+        quadruplesCell?.meshNetworkManager(manager, failedToSendMessage: message,
+                                           from: localElement, to: destination, error: error)
         
-        if case .quintuples = status.attributes[0] {
-            quadruplesCell?.meshNetworkManager(manager, failedToSendMessage: message,
-                                               from: localElement, to: destination, error: error)
-        }
+//        guard case let status as MxAttributesStatus = message else { return }
+//
+//        if case _ as MxAttribute.Quintuples = status.attributes[0] {
+//            quadruplesCell?.meshNetworkManager(manager, failedToSendMessage: message,
+//                                               from: localElement, to: destination, error: error)
+//        }
     }
 
 }
@@ -143,13 +207,15 @@ private extension MxModelViewSection {
 private extension IndexPath {
 
     static let attSection = 0
-    static let quadruplesSection = 1
-    static let numberOfSections = 2
+    static let advanceSection = 1
+    static let quadruplesSection = 2
+    static let numberOfSections = 3
     
-    static let identifiers = ["normal", "quadruple"]
-    static let nibNames = [nil, "MxModel"]
-    static let titles = ["MXCHIP Attributes", "飞燕五元组"]
+    static let autoRow = 0
     
+    static let identifiers = ["normal", "action", "quadruple"]
+    static let nibNames = [nil, nil, "MxQuadruples"]
+    static let titles = ["MXCHIP Attributes", "高级功能", "飞燕五元组" ]
     
     var cellIdentifier: String {
         return Self.identifiers[self.section]
@@ -171,5 +237,40 @@ private extension IndexPath {
         return section == IndexPath.quadruplesSection
     }
     
+    var isAdvanceSection: Bool {
+        return section == IndexPath.advanceSection
+    }
+    
+    var isAutoRow: Bool {
+        return self.isAdvanceSection && row == IndexPath.autoRow
+    }
+    
+    static func isAdvanceSection(_ section: Int) -> Bool {
+        return section == IndexPath.advanceSection
+    }
+    
+}
+//self.typeValue is MxIntegerValue
+private extension MxGenericAttribute {
+    var cellIdentifier: String {
+        switch self {
+        case _ as MxBoolValue:
+            return "bool attribute"
+        case _ as MxRange:
+            return "range attribute"
+        default:
+            return "normal"
+        }
+    }
 }
 
+private extension Array where Element == MxGenericAttribute {
+    
+    var show: [MxGenericAttribute] {
+        return self.filter{
+            $0.typeValue != MxAttributeType.quintuplesType.rawValue
+        }
+    }
+    
+
+}

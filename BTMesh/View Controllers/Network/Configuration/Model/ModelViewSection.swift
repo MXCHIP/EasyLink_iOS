@@ -19,7 +19,11 @@ protocol ModelViewSectionProtocol: class, UITableViewDelegate, UITableViewDataSo
     func numberOfSections(in tableView: UITableView) -> Int
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-            
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool 
+    
+    func prepare(for segue: UIStoryboardSegue, sender: Any?)
+                
     // MARK: - API
     
     /// Initializes reading of all fields in the Model View. This should
@@ -74,6 +78,14 @@ extension ModelViewSectionProtocol {
     
     func viewDidAppear(_ animated: Bool) {
         /// Reversed
+    }
+    
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /// Reversed
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) -> Bool {

@@ -9,23 +9,19 @@
 import Foundation
 import nRFMeshProvision
 
-public protocol MxAttributeStatusMessage: MxMessage {
-    var attributes: [MxAttribute] { get }
-}
-
-public protocol MxMessage: StaticMeshMessage {
+protocol MxMessage: StaticMeshMessage {
     // No additional fields.
 }
 
-public protocol AcknowledgedMxMessage: MxMessage, StaticAcknowledgedMeshMessage {
+protocol AcknowledgedMxMessage: MxMessage, StaticAcknowledgedMeshMessage {
     // No additional fields.
 }
 
-public protocol MxStatusMessage: StatusMessage {
+protocol MxStatusMessage: StatusMessage {
     // No additional fields.
 }
 
-public extension Array where Element == MxMessage.Type {
+extension Array where Element == MxMessage.Type {
     
     /// A helper method that can create a map of message types required
     /// by the `ModelDelegate` from a list of `MXMessage`s.

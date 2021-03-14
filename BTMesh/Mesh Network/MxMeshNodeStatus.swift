@@ -56,7 +56,7 @@ class MxNodeStatusManager {
     /// The node records
     private var nodeStatus: [Node: StatusContext] = [:]
     private var latestMessage: [Node: MeshMessage] = [:]
-    private var attrinutes: [Node: [MxAttribute]] = [:]
+    private var attributes: [Node: [MxGenericAttribute]] = [:]
     
     /// A shortcut to the manager's logger.
     private var logger: LoggerDelegate? {
@@ -91,9 +91,9 @@ class MxNodeStatusManager {
         latestMessage[node] = message
         
         if case let status as MxAttributeStatusMessage = message {
-            var new = attrinutes[node] ?? Array<MxAttribute>()
+            var new = attributes[node] ?? Array<MxGenericAttribute>()
             new.insert(status.attributes)
-            attrinutes[node] = new
+            attributes[node] = new
         }
     }
     
@@ -246,8 +246,8 @@ extension MxNodeStatusManager {
     }
     
     // 获取MXCHIP属性值
-    func getMxAttributes(ofNode node: Node) -> [MxAttribute] {
-        return attrinutes[node] ?? Array<MxAttribute>()
+    func getMxAttributes(ofNode node: Node) -> [MxGenericAttribute] {
+        return attributes[node] ?? Array<MxGenericAttribute>()
     }
     
     func sendSyncMessage() {

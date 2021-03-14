@@ -10,14 +10,17 @@ import Foundation
 import nRFMeshProvision
 
 
-public struct MxAttributesSet: MxMessage {
-    public static let opCode: UInt32 = 0xD12209
-    public static let isSegmented: Bool = true
+struct MxAttributesSet: MxMessage {
+    static let opCode: UInt32 = 0xD12209
     
-    var attributes: [MxAttribute]
+    public var isSegmented: Bool {
+        return true
+    }
+    
+    var attributes: [MxGenericAttribute]
     var tid: UInt8
 
-    public var parameters: Data? {
+    var parameters: Data? {
         var data = Data()
         
         attributes.forEach{
@@ -32,25 +35,27 @@ public struct MxAttributesSet: MxMessage {
         return Data([tid]) + data
     }
     
-    public init(tid: UInt8, attributes: [MxAttribute]) {
+    init(tid: UInt8, attributes: [MxGenericAttribute]) {
         self.tid = tid
         self.attributes = attributes
     }
     
-    public init?(parameters: Data) {
+    init?(parameters: Data) {
         /// Should have tid and at least one attribute type
         guard parameters.count >= 3 else {
             return nil
         }
-        var attributes: [MxAttribute] = []
+        var attributes: [MxGenericAttribute] = []
         var index = 1
 
         while index < parameters.count {
-            guard let attribute = MxAttribute(pdu: parameters[index...]) else {
+            guard let attribute = MxAttribute.decode(pdu: parameters[index...]) else {
                 return nil
             }
             attributes.append(attribute)
-            index += attribute.length
+            
+            guard case let fixedLengthAttribute as MxFixedLengthAttribute = attribute else { break }
+            index += fixedLengthAttribute.length
         }
         
         self.tid =  parameters[0]

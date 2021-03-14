@@ -10,9 +10,9 @@ import Foundation
 import nRFMeshProvision
 
 
-public struct MxHeartbeat: MxAttributeStatusMessage {
-    public static let opCode: UInt32 = 0xD42209
-    public let attributes: [MxAttribute]
+struct MxHeartbeat: MxAttributeStatusMessage {
+    static let opCode: UInt32 = 0xD42209
+    let attributes: [BaseAttribute]
     let tid: UInt8
 
     public var parameters: Data? {
@@ -32,21 +32,21 @@ public struct MxHeartbeat: MxAttributeStatusMessage {
     }
 
     
-    public init(tid: UInt8, attributes: [MxAttribute]) {
+    init(tid: UInt8, attributes: [BaseAttribute]) {
         self.attributes = attributes
         self.tid = tid
     }
     
-    public init?(parameters: Data) {
+    init?(parameters: Data) {
         /// Should have tid and at least one attribute type and value pair
         guard parameters.count >= 3 else {
             return nil
         }
-        var attributes: [MxAttribute] = []
+        var attributes: [BaseAttribute] = []
         var index = 1
 
         while index < parameters.count {
-            guard let attribute = MxAttribute(pdu: parameters.subdata(in: index..<parameters.count)) else {
+            guard let attribute = MxAttribute.decode(pdu: parameters[index...]) else {
                 return nil
             }
             attributes.append(attribute)

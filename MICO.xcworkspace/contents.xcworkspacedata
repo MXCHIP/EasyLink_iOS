@@ -4,16 +4,6 @@
    <FileRef
       location = "group:MICO.xcodeproj">
    </FileRef>
-   <Group
-      location = "group:"
-      name = "Pods">
-      <FileRef
-         location = "group:Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.debug.xcconfig">
-      </FileRef>
-      <FileRef
-         location = "group:Pods/Target Support Files/Pods-EasyLink/Pods-EasyLink.release.xcconfig">
-      </FileRef>
-   </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>

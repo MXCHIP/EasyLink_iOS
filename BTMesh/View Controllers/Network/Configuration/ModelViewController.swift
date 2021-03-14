@@ -105,6 +105,7 @@ class ModelViewController: ProgressViewController {
             viewController.model = model
             viewController.delegate = self
         default:
+            customSection.prepare(for: segue, sender: sender)
             break
         }
     }
@@ -231,7 +232,8 @@ class ModelViewController: ProgressViewController {
         if isSubscribeSection(at: indexPath) {
             return indexPath.row == model.subscriptions.count
         }
-        return false
+        
+        return customSection.tableView(self.tableView, shouldHighlightRowAt: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -252,6 +254,8 @@ class ModelViewController: ProgressViewController {
             // Only the "Subscribe" row is selectable.
             performSegue(withIdentifier: "subscribe", sender: indexPath)
         }
+        
+        customSection.tableView?(self.tableView, didSelectRowAt: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -477,18 +481,19 @@ extension ModelViewController: MeshNetworkDelegate {
             // If the Model is being refreshed, the Bindings, Subscriptions
             // and Publication has been read. If the Model has custom UI,
             // try refreshing it as well.
-            done()
+            
         
             if status.isSuccess {
                 tableView.reloadSections(publication, with: .automatic)
                 setEditing(false, animated: true)
+                _ = customSection.startRefreshing()
             } else {
                 presentAlert(title: "Error", message: status.message)
+                done(){
+                    self.refreshControl?.endRefreshing()
+                    self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl!.frame.size.height)
+                }
             }
-            if customSection.startRefreshing() {
-                break
-            }
-            refreshControl?.endRefreshing()
             
         case let status as ConfigModelSubscriptionStatus:
             done()
@@ -508,6 +513,7 @@ extension ModelViewController: MeshNetworkDelegate {
                 done() {
                     self.presentAlert(title: "Error", message: list.message)
                     self.refreshControl?.endRefreshing()
+                    self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl!.frame.size.height)
                 }
             }
             
@@ -519,6 +525,7 @@ extension ModelViewController: MeshNetworkDelegate {
                 done() {
                     self.presentAlert(title: "Error", message: list.message)
                     self.refreshControl?.endRefreshing()
+                    self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl!.frame.size.height)
                 }
             }
             
@@ -531,7 +538,10 @@ extension ModelViewController: MeshNetworkDelegate {
                 if let status = message as? StatusMessage, !status.isSuccess {
                     presentAlert(title: "Error", message: status.message)
                 }
-                refreshControl?.endRefreshing()
+                if isRefreshing {
+                    refreshControl!.endRefreshing()
+                    tableView.contentOffset = CGPoint(x: 0, y: -refreshControl!.frame.size.height)
+                }
             }
         }
     }
@@ -570,6 +580,7 @@ extension ModelViewController: MeshNetworkDelegate {
         done() {
             self.presentAlert(title: "Error", message: error.localizedDescription)
             self.refreshControl?.endRefreshing()
+            self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl!.frame.size.height)
         }
     }
     

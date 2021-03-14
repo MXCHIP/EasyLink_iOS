@@ -9,26 +9,26 @@
 import Foundation
 import nRFMeshProvision
 
-public struct MxAttributesGet: AcknowledgedMxMessage {
-    public static let opCode: UInt32 = 0xD02209
-    public static let responseType: StaticMeshMessage.Type = MxAttributesStatus.self
+struct MxAttributesGet: AcknowledgedMxMessage {
+    static let opCode: UInt32 = 0xD02209
+    static let responseType: StaticMeshMessage.Type = MxAttributesStatus.self
     
     let tid: UInt8
     let types: [MxAttributeType]
     
-    public var parameters: Data? {
+    var parameters: Data? {
         var data = Data()
         data += tid
         types.forEach { data += $0.pdu }
         return data
     }
     
-    public init(tid: UInt8, types: [MxAttributeType]) {
+    init(tid: UInt8, types: [MxAttributeType]) {
         self.types = types
         self.tid = tid
     }
     
-    public init?(parameters: Data) {
+    init?(parameters: Data) {
         /// Should have tid and at least one attribute type
         guard parameters.count >= 3 else {
             return nil

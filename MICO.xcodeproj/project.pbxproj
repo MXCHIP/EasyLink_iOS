@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D2207E4255D268B001382ED /* MxRangeAttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2207E3255D268B001382ED /* MxRangeAttributeCell.swift */; };
+		3D2207E5255D268B001382ED /* MxRangeAttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2207E3255D268B001382ED /* MxRangeAttributeCell.swift */; };
 		3D2AD58717A247E30026E31E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58617A247E30026E31E /* UIKit.framework */; };
 		3D2AD58917A247E30026E31E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58817A247E30026E31E /* Foundation.framework */; };
 		3D2AD58B17A247E30026E31E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2AD58A17A247E30026E31E /* CoreGraphics.framework */; };
@@ -86,8 +88,24 @@
 		3D33716F1A49682400ABFF1B /* UIImage+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371341A49682300ABFF1B /* UIImage+JSMessagesView.m */; };
 		3D3371701A49682400ABFF1B /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3371361A49682300ABFF1B /* UIView+AnimationOptionsForCurve.m */; };
 		3D33717B1A4968E700ABFF1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D3371791A4968E700ABFF1B /* InfoPlist.strings */; };
+		3D342510255A3A1800262036 /* MxQuadruplesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D34250F255A3A1800262036 /* MxQuadruplesCell.swift */; };
+		3D342511255A3A1800262036 /* MxQuadruplesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D34250F255A3A1800262036 /* MxQuadruplesCell.swift */; };
+		3D34251B255A4BE400262036 /* MxBoolAttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D34251A255A4BE400262036 /* MxBoolAttributeCell.swift */; };
+		3D34251C255A4BE400262036 /* MxBoolAttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D34251A255A4BE400262036 /* MxBoolAttributeCell.swift */; };
+		3D3BA398256E471200180622 /* LocalAutomation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3BA397256E471200180622 /* LocalAutomation.storyboard */; };
+		3D3BA399256E471200180622 /* LocalAutomation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3BA397256E471200180622 /* LocalAutomation.storyboard */; };
 		3D3F869F2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3F869D2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard */; };
 		3D417CE91B5CEA0D00EA2E1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D417CE81B5CEA0D00EA2E1E /* Security.framework */; };
+		3D4267B8254BFC4D00DF59CC /* MxAttributes+Quintuples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267B7254BFC4D00DF59CC /* MxAttributes+Quintuples.swift */; };
+		3D4267B9254BFC4D00DF59CC /* MxAttributes+Quintuples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267B7254BFC4D00DF59CC /* MxAttributes+Quintuples.swift */; };
+		3D4267BF254BFCD800DF59CC /* MxAttributesStatus+MxHeartbeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267BE254BFCD800DF59CC /* MxAttributesStatus+MxHeartbeat.swift */; };
+		3D4267C0254BFCD800DF59CC /* MxAttributesStatus+MxHeartbeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267BE254BFCD800DF59CC /* MxAttributesStatus+MxHeartbeat.swift */; };
+		3D4267C6254BFD1C00DF59CC /* MxAttributes+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267C5254BFD1C00DF59CC /* MxAttributes+Sync.swift */; };
+		3D4267C7254BFD1C00DF59CC /* MxAttributes+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267C5254BFD1C00DF59CC /* MxAttributes+Sync.swift */; };
+		3D4267CE254BFE6600DF59CC /* MxAttributes+IntegerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267CC254BFE6600DF59CC /* MxAttributes+IntegerValue.swift */; };
+		3D4267CF254BFE6600DF59CC /* MxAttributes+IntegerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267CC254BFE6600DF59CC /* MxAttributes+IntegerValue.swift */; };
+		3D4267D0254BFE6600DF59CC /* MxAttributes+BoolValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267CD254BFE6600DF59CC /* MxAttributes+BoolValue.swift */; };
+		3D4267D1254BFE6600DF59CC /* MxAttributes+BoolValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4267CD254BFE6600DF59CC /* MxAttributes+BoolValue.swift */; };
 		3D5442E81F3B3642002A7C32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA394D17A55486003806FE /* SystemConfiguration.framework */; };
 		3D565374253BE3E500D4EA72 /* wifiNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D565373253BE3E500D4EA72 /* wifiNetworkViewController.swift */; };
 		3D565375253BE3E500D4EA72 /* wifiNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D565373253BE3E500D4EA72 /* wifiNetworkViewController.swift */; };
@@ -97,10 +115,12 @@
 		3D6739481FBBF54D00892F08 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6739461FBBF54C00892F08 /* Launch Screen.storyboard */; };
 		3D67394B1FBBF65000892F08 /* launch_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D67394A1FBBF65000892F08 /* launch_image.png */; };
 		3D71295618AA26430071D553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D71295518AA26430071D553 /* Images.xcassets */; };
-		3D7CBD8B2475353700B7F3F1 /* MxModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MxModel.xib */; };
-		3D7CBD8F2475461D00B7F3F1 /* MxModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MxModel.xib */; };
+		3D7CBD8B2475353700B7F3F1 /* MxQuadruples.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MxQuadruples.xib */; };
+		3D7CBD8F2475461D00B7F3F1 /* MxQuadruples.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CBD8A2475353700B7F3F1 /* MxQuadruples.xib */; };
 		3D88DF7A248A48760018D695 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF79248A48760018D695 /* Data.swift */; };
 		3D88DF7B248A48760018D695 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88DF79248A48760018D695 /* Data.swift */; };
+		3D8EB74E256EA23500A455E4 /* MxAutomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8EB74D256EA23500A455E4 /* MxAutomationViewController.swift */; };
+		3D8EB74F256EA23500A455E4 /* MxAutomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8EB74D256EA23500A455E4 /* MxAutomationViewController.swift */; };
 		3D9A166A1A496ABF00DBBE61 /* EMW3161.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16671A496ABF00DBBE61 /* EMW3161.png */; };
 		3D9A166B1A496ABF00DBBE61 /* EMW3162.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16681A496ABF00DBBE61 /* EMW3162.png */; };
 		3D9A16761A496CC200DBBE61 /* easycloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9A16751A496CC200DBBE61 /* easycloud.png */; };
@@ -419,8 +439,6 @@
 		3DD246802530397200D97A32 /* GenericOnOffViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246722530397100D97A32 /* GenericOnOffViewCell.swift */; };
 		3DD246812530397200D97A32 /* GenericLevelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246732530397100D97A32 /* GenericLevelViewCell.swift */; };
 		3DD246822530397200D97A32 /* GenericLevelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246732530397100D97A32 /* GenericLevelViewCell.swift */; };
-		3DD246832530397200D97A32 /* MxModelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246752530397100D97A32 /* MxModelViewCell.swift */; };
-		3DD246842530397200D97A32 /* MxModelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246752530397100D97A32 /* MxModelViewCell.swift */; };
 		3DD246852530397200D97A32 /* ModelViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246762530397100D97A32 /* ModelViewSection.swift */; };
 		3DD246862530397200D97A32 /* ModelViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246762530397100D97A32 /* ModelViewSection.swift */; };
 		3DD246872530397200D97A32 /* MxModelViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246772530397100D97A32 /* MxModelViewSection.swift */; };
@@ -429,14 +447,10 @@
 		3DD2468A2530397200D97A32 /* GenericModelViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246782530397100D97A32 /* GenericModelViewSection.swift */; };
 		3DD2468E253039AD00D97A32 /* MxMeshNodeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2468D253039AD00D97A32 /* MxMeshNodeStatus.swift */; };
 		3DD2468F253039AD00D97A32 /* MxMeshNodeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2468D253039AD00D97A32 /* MxMeshNodeStatus.swift */; };
-		3DD2469D253039DB00D97A32 /* MxHeartbeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD24696253039DB00D97A32 /* MxHeartbeat.swift */; };
-		3DD2469E253039DB00D97A32 /* MxHeartbeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD24696253039DB00D97A32 /* MxHeartbeat.swift */; };
 		3DD2469F253039DB00D97A32 /* MxSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD24697253039DB00D97A32 /* MxSync.swift */; };
 		3DD246A0253039DB00D97A32 /* MxSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD24697253039DB00D97A32 /* MxSync.swift */; };
 		3DD246A1253039DB00D97A32 /* MxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD24698253039DB00D97A32 /* MxMessage.swift */; };
 		3DD246A2253039DB00D97A32 /* MxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD24698253039DB00D97A32 /* MxMessage.swift */; };
-		3DD246A3253039DB00D97A32 /* MxAttributesStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD24699253039DB00D97A32 /* MxAttributesStatus.swift */; };
-		3DD246A4253039DB00D97A32 /* MxAttributesStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD24699253039DB00D97A32 /* MxAttributesStatus.swift */; };
 		3DD246A5253039DB00D97A32 /* MxAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2469A253039DB00D97A32 /* MxAttributes.swift */; };
 		3DD246A6253039DB00D97A32 /* MxAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2469A253039DB00D97A32 /* MxAttributes.swift */; };
 		3DD246A7253039DB00D97A32 /* MxAttributesSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2469B253039DB00D97A32 /* MxAttributesSet.swift */; };
@@ -459,10 +473,15 @@
 		3DD246E525303ADC00D97A32 /* ELAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246DA25303ADC00D97A32 /* ELAsyncUdpSocket.m */; };
 		3DD246E625303ADC00D97A32 /* ELAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246DB25303ADC00D97A32 /* ELAsyncSocket.m */; };
 		3DD246E725303ADC00D97A32 /* ELAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD246DB25303ADC00D97A32 /* ELAsyncSocket.m */; };
+		3DD2BF4E256AAC0100798701 /* MxAttributes+Automation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2BF4D256AAC0000798701 /* MxAttributes+Automation.swift */; };
+		3DD2BF4F256AAC0100798701 /* MxAttributes+Automation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2BF4D256AAC0000798701 /* MxAttributes+Automation.swift */; };
+		3DDA47EC254C136B002A3146 /* MxAttributes+FwVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDA47EB254C136B002A3146 /* MxAttributes+FwVersion.swift */; };
+		3DDA47ED254C136B002A3146 /* MxAttributes+FwVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDA47EB254C136B002A3146 /* MxAttributes+FwVersion.swift */; };
 		3DFC27CD1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D2207E3255D268B001382ED /* MxRangeAttributeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxRangeAttributeCell.swift; sourceTree = "<group>"; };
 		3D2AD58317A247E30026E31E /* EasyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2AD58617A247E30026E31E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D2AD58817A247E30026E31E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -575,8 +594,16 @@
 		3D3371711A49686E00ABFF1B /* EasyLink-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "EasyLink-Info.plist"; path = "General/EasyLink-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3D3371721A49686E00ABFF1B /* EasyLink-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "EasyLink-Prefix.pch"; path = "General/EasyLink-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		3D33717A1A4968E700ABFF1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = General/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		3D34250F255A3A1800262036 /* MxQuadruplesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxQuadruplesCell.swift; sourceTree = "<group>"; };
+		3D34251A255A4BE400262036 /* MxBoolAttributeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MxBoolAttributeCell.swift; sourceTree = "<group>"; };
+		3D3BA397256E471200180622 /* LocalAutomation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocalAutomation.storyboard; sourceTree = "<group>"; };
 		3D3F869E2497A0B000EFA3F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FwUpdateOverBLE.storyboard; sourceTree = "<group>"; };
 		3D417CE81B5CEA0D00EA2E1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3D4267B7254BFC4D00DF59CC /* MxAttributes+Quintuples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MxAttributes+Quintuples.swift"; sourceTree = "<group>"; };
+		3D4267BE254BFCD800DF59CC /* MxAttributesStatus+MxHeartbeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MxAttributesStatus+MxHeartbeat.swift"; sourceTree = "<group>"; };
+		3D4267C5254BFD1C00DF59CC /* MxAttributes+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MxAttributes+Sync.swift"; sourceTree = "<group>"; };
+		3D4267CC254BFE6600DF59CC /* MxAttributes+IntegerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MxAttributes+IntegerValue.swift"; sourceTree = "<group>"; };
+		3D4267CD254BFE6600DF59CC /* MxAttributes+BoolValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MxAttributes+BoolValue.swift"; sourceTree = "<group>"; };
 		3D42C01D1BFDE35500E6D9DF /* EasyLink_Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyLink_Enterprise-Info.plist"; path = "/Users/William/Develop/EasyLink/EasyLink_Enterprise-Info.plist"; sourceTree = "<absolute>"; };
 		3D5442C31F3B2518002A7C32 /* EasyLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EasyLink.h; path = EasyLink/EasyLink.h; sourceTree = "<group>"; };
 		3D565373253BE3E500D4EA72 /* wifiNetworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = wifiNetworkViewController.swift; path = HomePage/wifiNetworkViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -587,8 +614,9 @@
 		3D67394A1FBBF65000892F08 /* launch_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image.png; path = Resources/Images/Common/launch_image.png; sourceTree = SOURCE_ROOT; };
 		3D6B82901BFEFCA3005A8263 /* EMWHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMWHeader.h; path = EasyLink/EMWHeader.h; sourceTree = SOURCE_ROOT; };
 		3D71295518AA26430071D553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MXCHIP/Images.xcassets; sourceTree = "<group>"; };
-		3D7CBD8A2475353700B7F3F1 /* MxModel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MxModel.xib; sourceTree = "<group>"; };
+		3D7CBD8A2475353700B7F3F1 /* MxQuadruples.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MxQuadruples.xib; sourceTree = "<group>"; };
 		3D88DF79248A48760018D695 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Data.swift; path = "Utils/Type Extensions/Data.swift"; sourceTree = "<group>"; };
+		3D8EB74D256EA23500A455E4 /* MxAutomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MxAutomationViewController.swift; sourceTree = "<group>"; };
 		3D9A16671A496ABF00DBBE61 /* EMW3161.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3161.png; path = Resources/Images/iPhone/EMW3161.png; sourceTree = SOURCE_ROOT; };
 		3D9A16681A496ABF00DBBE61 /* EMW3162.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EMW3162.png; path = Resources/Images/iPhone/EMW3162.png; sourceTree = SOURCE_ROOT; };
 		3D9A16751A496CC200DBBE61 /* easycloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = easycloud.png; path = Resources/Images/Common/easycloud.png; sourceTree = SOURCE_ROOT; };
@@ -712,15 +740,12 @@
 		3DD246712530397100D97A32 /* VendorModelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorModelViewCell.swift; sourceTree = "<group>"; };
 		3DD246722530397100D97A32 /* GenericOnOffViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericOnOffViewCell.swift; sourceTree = "<group>"; };
 		3DD246732530397100D97A32 /* GenericLevelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelViewCell.swift; sourceTree = "<group>"; };
-		3DD246752530397100D97A32 /* MxModelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxModelViewCell.swift; sourceTree = "<group>"; };
 		3DD246762530397100D97A32 /* ModelViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelViewSection.swift; sourceTree = "<group>"; };
 		3DD246772530397100D97A32 /* MxModelViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxModelViewSection.swift; sourceTree = "<group>"; };
 		3DD246782530397100D97A32 /* GenericModelViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericModelViewSection.swift; sourceTree = "<group>"; };
 		3DD2468D253039AD00D97A32 /* MxMeshNodeStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MxMeshNodeStatus.swift; path = "BTMesh/Mesh Network/MxMeshNodeStatus.swift"; sourceTree = "<group>"; };
-		3DD24696253039DB00D97A32 /* MxHeartbeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxHeartbeat.swift; sourceTree = "<group>"; };
 		3DD24697253039DB00D97A32 /* MxSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxSync.swift; sourceTree = "<group>"; };
 		3DD24698253039DB00D97A32 /* MxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxMessage.swift; sourceTree = "<group>"; };
-		3DD24699253039DB00D97A32 /* MxAttributesStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxAttributesStatus.swift; sourceTree = "<group>"; };
 		3DD2469A253039DB00D97A32 /* MxAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxAttributes.swift; sourceTree = "<group>"; };
 		3DD2469B253039DB00D97A32 /* MxAttributesSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxAttributesSet.swift; sourceTree = "<group>"; };
 		3DD2469C253039DB00D97A32 /* MxAttributesGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MxAttributesGet.swift; sourceTree = "<group>"; };
@@ -735,6 +760,8 @@
 		3DD246DB25303ADC00D97A32 /* ELAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAsyncSocket.m; sourceTree = "<group>"; };
 		3DD246DC25303ADC00D97A32 /* ELAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAsyncUdpSocket.h; sourceTree = "<group>"; };
 		3DD246DD25303ADC00D97A32 /* ELAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAsyncSocket.h; sourceTree = "<group>"; };
+		3DD2BF4D256AAC0000798701 /* MxAttributes+Automation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MxAttributes+Automation.swift"; sourceTree = "<group>"; };
+		3DDA47EB254C136B002A3146 /* MxAttributes+FwVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MxAttributes+FwVersion.swift"; sourceTree = "<group>"; };
 		3DFC27CB1BFC377F008834C5 /* KNSemiModalStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KNSemiModalStoryboardSegue.h; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.h; sourceTree = "<group>"; };
 		3DFC27CC1BFC377F008834C5 /* KNSemiModalStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KNSemiModalStoryboardSegue.m; path = UITemplate/KNSemiModalStoryboardSegue/KNSemiModalStoryboardSegue.m; sourceTree = "<group>"; };
 		7249A65E039CD4820DDA109A /* libPods-EasyLink.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyLink.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -974,6 +1001,16 @@
 				3D33712E1A49682300ABFF1B /* messageSent.aiff */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		3D34250E255A3A1800262036 /* MxModelViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D34250F255A3A1800262036 /* MxQuadruplesCell.swift */,
+				3D2207E3255D268B001382ED /* MxRangeAttributeCell.swift */,
+				3D34251A255A4BE400262036 /* MxBoolAttributeCell.swift */,
+			);
+			path = MxModelViewCell;
 			sourceTree = "<group>";
 		};
 		3D6B82701BFEEE6E005A8263 /* EasyLink */ = {
@@ -1224,6 +1261,7 @@
 				3DD2466D2530397100D97A32 /* ModelViewCell */,
 				3DD246762530397100D97A32 /* ModelViewSection.swift */,
 				3DD246772530397100D97A32 /* MxModelViewSection.swift */,
+				3D8EB74D256EA23500A455E4 /* MxAutomationViewController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1365,6 +1403,7 @@
 				3DB68BCF246BD54000FF6585 /* Wi-Fi.storyboard */,
 				3DB68BCB246BC90900FF6585 /* Main.storyboard */,
 				3DB68B99246B9AAC00FF6585 /* SetPublication.storyboard */,
+				3D3BA397256E471200180622 /* LocalAutomation.storyboard */,
 				3DB68B9B246B9AAC00FF6585 /* Proxy.storyboard */,
 				3DB68B9D246B9AAC00FF6585 /* Network.storyboard */,
 				3DB68BA1246B9AAC00FF6585 /* Groups.storyboard */,
@@ -1380,7 +1419,7 @@
 			isa = PBXGroup;
 			children = (
 				3DB68BA8246B9AAC00FF6585 /* VendorModel.xib */,
-				3D7CBD8A2475353700B7F3F1 /* MxModel.xib */,
+				3D7CBD8A2475353700B7F3F1 /* MxQuadruples.xib */,
 				3DB68BA9246B9AAC00FF6585 /* GenericLevel.xib */,
 				3DB68BAA246B9AAC00FF6585 /* GenericOnOff.xib */,
 				3DB68BAB246B9AAC00FF6585 /* ConfigurationServer.xib */,
@@ -1392,12 +1431,17 @@
 			isa = PBXGroup;
 			children = (
 				3DD2469A253039DB00D97A32 /* MxAttributes.swift */,
+				3D4267CD254BFE6600DF59CC /* MxAttributes+BoolValue.swift */,
+				3D4267CC254BFE6600DF59CC /* MxAttributes+IntegerValue.swift */,
+				3D4267B7254BFC4D00DF59CC /* MxAttributes+Quintuples.swift */,
+				3DDA47EB254C136B002A3146 /* MxAttributes+FwVersion.swift */,
+				3D4267C5254BFD1C00DF59CC /* MxAttributes+Sync.swift */,
+				3DD2BF4D256AAC0000798701 /* MxAttributes+Automation.swift */,
 				3DD2469C253039DB00D97A32 /* MxAttributesGet.swift */,
 				3DD2469B253039DB00D97A32 /* MxAttributesSet.swift */,
-				3DD24699253039DB00D97A32 /* MxAttributesStatus.swift */,
-				3DD24696253039DB00D97A32 /* MxHeartbeat.swift */,
 				3DD24698253039DB00D97A32 /* MxMessage.swift */,
 				3DD24697253039DB00D97A32 /* MxSync.swift */,
+				3D4267BE254BFCD800DF59CC /* MxAttributesStatus+MxHeartbeat.swift */,
 			);
 			name = MXCHIP;
 			path = "BTMesh/Mesh Network/MXCHIP";
@@ -1408,7 +1452,7 @@
 			children = (
 				3DD2466E2530397100D97A32 /* ModelViewCell.swift */,
 				3DD2466F2530397100D97A32 /* NordicModelViewCell */,
-				3DD246742530397100D97A32 /* MxModelViewCell */,
+				3D34250E255A3A1800262036 /* MxModelViewCell */,
 			);
 			path = ModelViewCell;
 			sourceTree = "<group>";
@@ -1422,14 +1466,6 @@
 				3DD246732530397100D97A32 /* GenericLevelViewCell.swift */,
 			);
 			path = NordicModelViewCell;
-			sourceTree = "<group>";
-		};
-		3DD246742530397100D97A32 /* MxModelViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				3DD246752530397100D97A32 /* MxModelViewCell.swift */,
-			);
-			path = MxModelViewCell;
 			sourceTree = "<group>";
 		};
 		3DD246D525303ADC00D97A32 /* ELReachability */ = {
@@ -1578,10 +1614,9 @@
 			};
 			buildConfigurationList = 3D2AD57E17A247E20026E31E /* Build configuration list for PBXProject "MICO" */;
 			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -1634,6 +1669,7 @@
 				3DB68BBE246B9AAC00FF6585 /* GenericLevel.xib in Resources */,
 				3D3371651A49682400ABFF1B /* PhotoIcon.png in Resources */,
 				3D3371521A49682400ABFF1B /* bubble-flat-outgoing-selected@2x.png in Resources */,
+				3D3BA398256E471200180622 /* LocalAutomation.storyboard in Resources */,
 				3D33714D1A49682300ABFF1B /* bubble-flat-incoming.png in Resources */,
 				3D33716B1A49682400ABFF1B /* messageReceived.aiff in Resources */,
 				3D67394B1FBBF65000892F08 /* launch_image.png in Resources */,
@@ -1661,7 +1697,7 @@
 				3DB68BBC246B9AAC00FF6585 /* VendorModel.xib in Resources */,
 				3D3F869F2497A0B000EFA3F4 /* FwUpdateOverBLE.storyboard in Resources */,
 				3D3371671A49682400ABFF1B /* send-highlighted.png in Resources */,
-				3D7CBD8B2475353700B7F3F1 /* MxModel.xib in Resources */,
+				3D7CBD8B2475353700B7F3F1 /* MxQuadruples.xib in Resources */,
 				3D9A167C1A496CF900DBBE61 /* EasyLinkPhone.png in Resources */,
 				3D33714B1A49682300ABFF1B /* bubble-flat-incoming-selected.png in Resources */,
 				3D3371401A49682300ABFF1B /* bubble-default-incoming-green@2x.png in Resources */,
@@ -1713,7 +1749,7 @@
 				3DB0E0E6216CD5E700357A65 /* bubble-square-outgoing@2x.png in Resources */,
 				3DB0E0E7216CD5E700357A65 /* bubble-default-incoming.png in Resources */,
 				3DB68BBF246B9AAC00FF6585 /* GenericLevel.xib in Resources */,
-				3D7CBD8F2475461D00B7F3F1 /* MxModel.xib in Resources */,
+				3D7CBD8F2475461D00B7F3F1 /* MxQuadruples.xib in Resources */,
 				3DB0E0E8216CD5E700357A65 /* PhotoIcon.png in Resources */,
 				3DB0E0E9216CD5E700357A65 /* bubble-flat-outgoing-selected@2x.png in Resources */,
 				3DB0E0EA216CD5E700357A65 /* bubble-flat-incoming.png in Resources */,
@@ -1743,6 +1779,7 @@
 				3DB68BBD246B9AAC00FF6585 /* VendorModel.xib in Resources */,
 				3DB0E100216CD5E700357A65 /* send-highlighted.png in Resources */,
 				3DB0E101216CD5E700357A65 /* EasyLinkPhone.png in Resources */,
+				3D3BA399256E471200180622 /* LocalAutomation.storyboard in Resources */,
 				3DB0E102216CD5E700357A65 /* bubble-flat-incoming-selected.png in Resources */,
 				3DB0E103216CD5E700357A65 /* bubble-default-incoming-green@2x.png in Resources */,
 				3DB0E104216CD5E700357A65 /* bubble-square-outgoing-selected@2x.png in Resources */,
@@ -1855,6 +1892,7 @@
 				3DB68B60246B9A5F00FF6585 /* FabView.swift in Sources */,
 				3DB68B8C246B9A9200FF6585 /* RangeObject+String.swift in Sources */,
 				3DB68AAC246B996200FF6585 /* GenericOnOffClientCell.swift in Sources */,
+				3D2207E4255D268B001382ED /* MxRangeAttributeCell.swift in Sources */,
 				3DB68B11246B9A0400FF6585 /* NodeAddAppKeyViewController.swift in Sources */,
 				3DB68B64246B9A5F00FF6585 /* SettingsViewController.swift in Sources */,
 				3DB68B01246B9A0400FF6585 /* ConfigurationViewController.swift in Sources */,
@@ -1863,13 +1901,18 @@
 				3DD246B825303A2B00D97A32 /* Data+Hex.swift in Sources */,
 				3DB68B5C246B9A5E00FF6585 /* EditRangesViewController.swift in Sources */,
 				3D3370891A49622700ABFF1B /* Protocols.m in Sources */,
+				3DD2BF4E256AAC0100798701 /* MxAttributes+Automation.swift in Sources */,
 				3D33708C1A49622700ABFF1B /* talkToModuleViewController.m in Sources */,
 				3DB68A8C246ABC3800FF6585 /* SimpleOnOffStatus.swift in Sources */,
+				3D4267B8254BFC4D00DF59CC /* MxAttributes+Quintuples.swift in Sources */,
+				3D4267C6254BFD1C00DF59CC /* MxAttributes+Sync.swift in Sources */,
+				3D34251B255A4BE400262036 /* MxBoolAttributeCell.swift in Sources */,
 				3D3370A21A4962FE00ABFF1B /* EasyLinkOTATableViewController.m in Sources */,
 				3DB68AB6246B99E200FF6585 /* NodeViewCell.swift in Sources */,
 				3DB68AFB246B9A0400FF6585 /* ModelViewController.swift in Sources */,
 				3D3371381A49682300ABFF1B /* JSBubbleView.m in Sources */,
 				3DD246A7253039DB00D97A32 /* MxAttributesSet.swift in Sources */,
+				3D4267D0254BFE6600DF59CC /* MxAttributes+BoolValue.swift in Sources */,
 				3D33713A1A49682300ABFF1B /* JSMessageInputView.m in Sources */,
 				3D3370B91A49658300ABFF1B /* easyLinkIpConfigTableViewController.m in Sources */,
 				3DB68B32246B9A4A00FF6585 /* GroupCell.swift in Sources */,
@@ -1877,6 +1920,7 @@
 				3DB68A92246AF2A100FF6585 /* RootViewController.swift in Sources */,
 				3D33709B1A49628E00ABFF1B /* FTCStringSelectCell.m in Sources */,
 				3D3371701A49682400ABFF1B /* UIView+AnimationOptionsForCurve.m in Sources */,
+				3D342510255A3A1800262036 /* MxQuadruplesCell.swift in Sources */,
 				3DD246E025303ADC00D97A32 /* ELReachability.m in Sources */,
 				3DB68B15246B9A0400FF6585 /* ElementViewController.swift in Sources */,
 				3DB68B78246B9A7000FF6585 /* ProxyCell.swift in Sources */,
@@ -1894,7 +1938,6 @@
 				3DB68AF9246B9A0400FF6585 /* NodeAppKeysViewController.swift in Sources */,
 				3DB68A94246AF2A100FF6585 /* ProgressViewController.swift in Sources */,
 				3DB6F49F23E956DD00FF39BB /* wifiDeviceCell.swift in Sources */,
-				3DD246832530397200D97A32 /* MxModelViewCell.swift in Sources */,
 				3DB68B0D246B9A0400FF6585 /* ModelBindAppKeyViewController.swift in Sources */,
 				3DB68B72246B9A7000FF6585 /* FilterTypeCell.swift in Sources */,
 				3DD2469F253039DB00D97A32 /* MxSync.swift in Sources */,
@@ -1902,6 +1945,7 @@
 				3DD246A1253039DB00D97A32 /* MxMessage.swift in Sources */,
 				3DB68AA8246B996200FF6585 /* GenericLevelServerCell.swift in Sources */,
 				3DB68B5E246B9A5E00FF6585 /* RangeView.swift in Sources */,
+				3D4267BF254BFCD800DF59CC /* MxAttributesStatus+MxHeartbeat.swift in Sources */,
 				3DD2467B2530397200D97A32 /* ConfigurationServerViewCell.swift in Sources */,
 				3DD2468E253039AD00D97A32 /* MxMeshNodeStatus.swift in Sources */,
 				3DB68AAE246B996300FF6585 /* GenericLevelClientCell.swift in Sources */,
@@ -1913,6 +1957,7 @@
 				3D3370B81A49658300ABFF1B /* newModuleTableViewCell.m in Sources */,
 				3DB68A7F246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift in Sources */,
 				3DB68AAA246B996200FF6585 /* GenericOnOffServerCell.swift in Sources */,
+				3D4267CE254BFE6600DF59CC /* MxAttributes+IntegerValue.swift in Sources */,
 				3DB68B54246B9A5E00FF6585 /* EditKeyViewController.swift in Sources */,
 				3DB68A8A246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift in Sources */,
 				3DD246A5253039DB00D97A32 /* MxAttributes.swift in Sources */,
@@ -1944,17 +1989,17 @@
 				3D33716E1A49682400ABFF1B /* UIColor+JSMessagesView.m in Sources */,
 				3D33709C1A49628E00ABFF1B /* FTCSubMenuCell.m in Sources */,
 				3DB68A75246ABBF500FF6585 /* GenericOnOffClientDelegate.swift in Sources */,
+				3DDA47EC254C136B002A3146 /* MxAttributes+FwVersion.swift in Sources */,
 				3DD246812530397200D97A32 /* GenericLevelViewCell.swift in Sources */,
-				3DD246A3253039DB00D97A32 /* MxAttributesStatus.swift in Sources */,
 				3DB68A79246ABBF500FF6585 /* GenericLevelServerDelegate.swift in Sources */,
 				3DB68B90246B9A9200FF6585 /* Address+String.swift in Sources */,
 				3DC14FB22489337E006A9C59 /* MxClientDelegate.swift in Sources */,
 				3D3371391A49682300ABFF1B /* JSDismissiveTextView.m in Sources */,
 				3D33709D1A49628E00ABFF1B /* FTCSwitchCell.m in Sources */,
-				3DD2469D253039DB00D97A32 /* MxHeartbeat.swift in Sources */,
 				3DB68B5A246B9A5E00FF6585 /* ProvisionersViewController.swift in Sources */,
 				3DB68B17246B9A0400FF6585 /* ProvisioningViewDelegate.swift in Sources */,
 				3DB68B70246B9A7000FF6585 /* CustomAddressCell.swift in Sources */,
+				3D8EB74E256EA23500A455E4 /* MxAutomationViewController.swift in Sources */,
 				3D3371371A49682300ABFF1B /* JSBubbleMessageCell.m in Sources */,
 				3DB68A6C246ABBC300FF6585 /* NetworkConnection.swift in Sources */,
 				3DB68B88246B9A9200FF6585 /* UITableView+EmptyView.swift in Sources */,
@@ -2004,6 +2049,7 @@
 				3DB68B8D246B9A9200FF6585 /* RangeObject+String.swift in Sources */,
 				3DB68AAD246B996200FF6585 /* GenericOnOffClientCell.swift in Sources */,
 				3DB68B12246B9A0400FF6585 /* NodeAddAppKeyViewController.swift in Sources */,
+				3D2207E5255D268B001382ED /* MxRangeAttributeCell.swift in Sources */,
 				3DB68B65246B9A5F00FF6585 /* SettingsViewController.swift in Sources */,
 				3DB68B02246B9A0400FF6585 /* ConfigurationViewController.swift in Sources */,
 				3DB68B37246B9A4A00FF6585 /* BottomSheetSegue.swift in Sources */,
@@ -2012,13 +2058,18 @@
 				3DD246B325303A2B00D97A32 /* ClosedRange.swift in Sources */,
 				3DD246B925303A2B00D97A32 /* Data+Hex.swift in Sources */,
 				3DB0E0A9216CD5E700357A65 /* Protocols.m in Sources */,
+				3DD2BF4F256AAC0100798701 /* MxAttributes+Automation.swift in Sources */,
 				3DB0E0AA216CD5E700357A65 /* talkToModuleViewController.m in Sources */,
 				3DB68A8D246ABC3800FF6585 /* SimpleOnOffStatus.swift in Sources */,
+				3D4267B9254BFC4D00DF59CC /* MxAttributes+Quintuples.swift in Sources */,
+				3D4267C7254BFD1C00DF59CC /* MxAttributes+Sync.swift in Sources */,
+				3D34251C255A4BE400262036 /* MxBoolAttributeCell.swift in Sources */,
 				3DB0E0AB216CD5E700357A65 /* EasyLinkOTATableViewController.m in Sources */,
 				3DB68AB7246B99E200FF6585 /* NodeViewCell.swift in Sources */,
 				3DB68AFC246B9A0400FF6585 /* ModelViewController.swift in Sources */,
 				3DB0E0AC216CD5E700357A65 /* JSBubbleView.m in Sources */,
 				3DD246A8253039DB00D97A32 /* MxAttributesSet.swift in Sources */,
+				3D4267D1254BFE6600DF59CC /* MxAttributes+BoolValue.swift in Sources */,
 				3DB0E0AD216CD5E700357A65 /* JSMessageInputView.m in Sources */,
 				3DB0E0AE216CD5E700357A65 /* easyLinkIpConfigTableViewController.m in Sources */,
 				3DB68B33246B9A4A00FF6585 /* GroupCell.swift in Sources */,
@@ -2026,6 +2077,7 @@
 				3DB68A93246AF2A100FF6585 /* RootViewController.swift in Sources */,
 				3DB0E0AF216CD5E700357A65 /* FTCStringSelectCell.m in Sources */,
 				3DB0E0B0216CD5E700357A65 /* UIView+AnimationOptionsForCurve.m in Sources */,
+				3D342511255A3A1800262036 /* MxQuadruplesCell.swift in Sources */,
 				3DD246E125303ADC00D97A32 /* ELReachability.m in Sources */,
 				3DB68B16246B9A0400FF6585 /* ElementViewController.swift in Sources */,
 				3DB68B79246B9A7000FF6585 /* ProxyCell.swift in Sources */,
@@ -2043,7 +2095,6 @@
 				3DB68AFA246B9A0400FF6585 /* NodeAppKeysViewController.swift in Sources */,
 				3DB68A95246AF2A100FF6585 /* ProgressViewController.swift in Sources */,
 				3DB6F4A023E956DD00FF39BB /* wifiDeviceCell.swift in Sources */,
-				3DD246842530397200D97A32 /* MxModelViewCell.swift in Sources */,
 				3DB68B0E246B9A0400FF6585 /* ModelBindAppKeyViewController.swift in Sources */,
 				3DB68B73246B9A7000FF6585 /* FilterTypeCell.swift in Sources */,
 				3DD246A0253039DB00D97A32 /* MxSync.swift in Sources */,
@@ -2051,6 +2102,7 @@
 				3DD246A2253039DB00D97A32 /* MxMessage.swift in Sources */,
 				3DB68AA9246B996200FF6585 /* GenericLevelServerCell.swift in Sources */,
 				3DB68B5F246B9A5E00FF6585 /* RangeView.swift in Sources */,
+				3D4267C0254BFCD800DF59CC /* MxAttributesStatus+MxHeartbeat.swift in Sources */,
 				3DD2467C2530397200D97A32 /* ConfigurationServerViewCell.swift in Sources */,
 				3DD2468F253039AD00D97A32 /* MxMeshNodeStatus.swift in Sources */,
 				3DB68AAF246B996300FF6585 /* GenericLevelClientCell.swift in Sources */,
@@ -2062,6 +2114,7 @@
 				3DB0E0B7216CD5E700357A65 /* newModuleTableViewCell.m in Sources */,
 				3DB68A80246ABC1E00FF6585 /* SimpleOnOffClientDelegate.swift in Sources */,
 				3DB68AAB246B996200FF6585 /* GenericOnOffServerCell.swift in Sources */,
+				3D4267CF254BFE6600DF59CC /* MxAttributes+IntegerValue.swift in Sources */,
 				3DB68B55246B9A5E00FF6585 /* EditKeyViewController.swift in Sources */,
 				3DB68A8B246ABC3800FF6585 /* SimpleOnOffSetUnacknowledged.swift in Sources */,
 				3DD246A6253039DB00D97A32 /* MxAttributes.swift in Sources */,
@@ -2093,17 +2146,17 @@
 				3DB0E0C0216CD5E700357A65 /* UIColor+JSMessagesView.m in Sources */,
 				3DB0E0C1216CD5E700357A65 /* FTCSubMenuCell.m in Sources */,
 				3DB68A76246ABBF500FF6585 /* GenericOnOffClientDelegate.swift in Sources */,
+				3DDA47ED254C136B002A3146 /* MxAttributes+FwVersion.swift in Sources */,
 				3DD246822530397200D97A32 /* GenericLevelViewCell.swift in Sources */,
-				3DD246A4253039DB00D97A32 /* MxAttributesStatus.swift in Sources */,
 				3DB68A7A246ABBF500FF6585 /* GenericLevelServerDelegate.swift in Sources */,
 				3DB68B91246B9A9200FF6585 /* Address+String.swift in Sources */,
 				3DC14FB32489337E006A9C59 /* MxClientDelegate.swift in Sources */,
 				3DB0E0C3216CD5E700357A65 /* JSDismissiveTextView.m in Sources */,
 				3DB0E0C4216CD5E700357A65 /* FTCSwitchCell.m in Sources */,
-				3DD2469E253039DB00D97A32 /* MxHeartbeat.swift in Sources */,
 				3DB68B5B246B9A5E00FF6585 /* ProvisionersViewController.swift in Sources */,
 				3DB68B18246B9A0400FF6585 /* ProvisioningViewDelegate.swift in Sources */,
 				3DB68B71246B9A7000FF6585 /* CustomAddressCell.swift in Sources */,
+				3D8EB74F256EA23500A455E4 /* MxAutomationViewController.swift in Sources */,
 				3DB0E0C5216CD5E700357A65 /* JSBubbleMessageCell.m in Sources */,
 				3DB68A6D246ABBC300FF6585 /* NetworkConnection.swift in Sources */,
 				3DB68B89246B9A9200FF6585 /* UITableView+EmptyView.swift in Sources */,

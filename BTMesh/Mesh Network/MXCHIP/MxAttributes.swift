@@ -9,195 +9,302 @@
 import Foundation
 import nRFMeshProvision
 
-public enum MxAttributeType: UInt16 {
-    case syncType           = 0x0001
-    case fwVersionType      = 0x0005
-    case quintuplesType     = 0x0003
-    case onType             = 0x0100
-    case brightnessType     = 0x0121
-    case colorTempType      = 0x0122
 
-    static let length = 2
+// MARK: - MxAttributeType
+enum MxAttributeType: UInt16 {
+    case syncType               = 0x0001
+    case quintuplesType         = 0x0003
+    case automationType         = 0x0004
+    case fwVersionType          = 0x0005
+    case buttonIDType           = 0x0007
+    case onType                 = 0x0100
+    case brightnessType         = 0x0121
+    case colorTempType          = 0x0122
+    case colorTempPercentType   = 0x01F1
+
+    enum ByteOrder {
+        case littleEndian
+        case bigEndian
+    }
+    
+    static let size = 2
 
     init?(pdu: Data) {
-        guard pdu.count >= 2, let value: UInt16 = pdu.read() else {
+        self.init(pdu: pdu, endian: .littleEndian)
+    }
+    
+    init?(pdu: Data, endian: ByteOrder) {
+        guard pdu.count >= 2,
+              let value: UInt16 = pdu.read() else {
             return nil
         }
-
-        self.init(rawValue: value)
+        
+        switch endian {
+        case .bigEndian: self.init(rawValue: value.bigEndian)
+        case .littleEndian: self.init(rawValue: value)
+        }
     }
 
     public var pdu: Data {
         return self.rawValue.data
     }
-
-    public var name: String {
-        switch self {
-            case .syncType:         return "Sync"
-            case .fwVersionType:    return "FW Version"
-            case .quintuplesType:   return "Quintuples"
-            case .onType:           return "On"
-            case .brightnessType:   return "Brightness"
-            case .colorTempType:    return "Color Temperature"
+    
+    static var attribute: [UInt16 : MxStaticAttribute.Type] {
+        let types: [MxStaticAttribute.Type] = [
+            MxAttribute.On.self,
+            MxAttribute.Quintuples.self,
+            MxAttribute.Sync.self,
+            MxAttribute.Brightness.self,
+            MxAttribute.ColorTemp.self,
+            MxAttribute.ColorTempPercent.self,
+            MxAttribute.FwVersion.self,
+            MxAttribute.ButtonID.self,
+            MxAttribute.Automation.self
+        ]
+        
+        var map: [UInt16 : MxStaticAttribute.Type] = [:]
+        types.forEach {
+            map[$0.type.rawValue] = $0
         }
+        return map
+    }
+
+}
+
+extension MxAttributeType: CustomDebugStringConvertible {
+    
+    var debugDescription: String {
+        switch self {
+        case .syncType:                 return "Sync"
+        case .fwVersionType:            return "FW Version"
+        case .buttonIDType:             return "Button ID"
+        case .quintuplesType:           return "Quintuples"
+        case .onType:                   return "On"
+        case .brightnessType:           return "Brightness"
+        case .colorTempType:            return "Color Temperature"
+        case .colorTempPercentType:     return "Color Temperature"
+        case .automationType:           return "Automatic Rules"
+        }
+    }
+    
+}
+
+// MARK: - MxGenericAttribute
+protocol MxGenericAttribute {
+    var typeValue: UInt16 { get }
+    var pdu: Data? { get }
+    var length: Int { get }
+    init()
+    init?(pdu: Data)
+}
+
+protocol UnknownAttribute: MxGenericAttribute {
+    var value: Data { get set }
+}
+
+protocol MxStaticAttribute: MxGenericAttribute {
+    static var type: MxAttributeType { get }
+    var name: String { get }
+}
+
+protocol MxFixedLengthAttribute: MxStaticAttribute {
+    static var valueSize: Int { get }
+}
+
+extension MxFixedLengthAttribute {
+    var length: Int {
+        return MxAttributeType.size + Self.valueSize
     }
 }
 
-public enum RangeOfSync: UInt8 {
-    case mainAttribute = 0x01
-    case allAttribute  = 0xFF
+// MARK: - MxStringValue
+protocol MxStringValue: MxStaticAttribute {
+        
+    var value: String { get set }
+    var rw: Bool { get }
 }
 
-public enum MxAttribute {
-    case fwVersion(_ major: UInt8, _ minor: UInt8, _ minus: UInt8)
-    case quintuples(pk: String, ps: String, dn: String, ds: String, pid: String, length: Int = 0 )
-    case on(_ on: Bool)
-    case brightness(_ level: UInt16, _ min: UInt16 = 0, _ max: UInt16 = 100)
-    case colorTemp(_ level: UInt16, _ min: UInt16 = 0, _ max: UInt16 = 100)
-    case sync(_ range: RangeOfSync, _ delay: UInt16)
-    case unknown(_ type: UInt16, _ pdu: Data)
+// MARK: - MxBoolValue
+protocol MxBoolValue: MxFixedLengthAttribute {
+        
+    var value: Bool { get set }
+    var rw: Bool { get }
+}
+
+extension MxBoolValue {
     
-    public var type: UInt16 {
-        switch self {
-        case .fwVersion:                return MxAttributeType.fwVersionType.rawValue
-        case .sync:                     return MxAttributeType.syncType.rawValue
-        case .quintuples:               return MxAttributeType.quintuplesType.rawValue
-        case .on:                       return MxAttributeType.onType.rawValue
-        case .brightness:               return MxAttributeType.brightnessType.rawValue
-        case .colorTemp:                return MxAttributeType.colorTempType.rawValue
-        case .unknown(let type, _):     return type
-        }
-    }
-    
-     public var length: Int {
-        switch self {
-        case .fwVersion:
-            return MxAttributeType.length + 3 * MemoryLayout<UInt8>.size
-        case .sync:
-            return MxAttributeType.length + MemoryLayout<UInt8>.size + MemoryLayout<UInt16>.size
-        case .quintuples(_, _, _, _, _, let messageLength):
-            return MxAttributeType.length + messageLength
-        case .on:
-            return MxAttributeType.length + MemoryLayout<UInt8>.size
-        case .brightness: fallthrough
-        case .colorTemp:
-            return MxAttributeType.length + MemoryLayout<UInt16>.size
-        case .unknown(_, let pdu):
-            return MxAttributeType.length + pdu.count
-        }
+    var unit: String? {
+        return nil
     }
     
     init?(pdu: Data) {
-        let pdu = pdu
-        
-        guard pdu.count > 2 else {
+        guard pdu.count >= 3,
+              let typeValue: UInt16 = pdu.read(), typeValue == Self.type.rawValue  else {
             return nil
         }
-        
-        let valueData = pdu.subdata(in: 2..<pdu.count)
-        
-        guard let type = MxAttributeType(pdu: pdu) else {
-            let type: UInt16! = pdu.read()
-            self = .unknown(type, valueData)
-            return
-        }
-        
-        switch type {
-        case .fwVersionType:
-            guard valueData.count >= 3 else { return nil }
-            let major = valueData[0], minor = valueData[1], minus = valueData[2]
-            self = .fwVersion(major, minor, minus)
-        case .syncType:
-            guard let delay: UInt16 = valueData.read(fromOffset: 1),
-                  let range = RangeOfSync(rawValue: valueData[0]) else {
-                return nil
-            }
-            self = .sync(range, delay)
-        case .quintuplesType:
-            let quintuples:[Data] = valueData.split(separator: 0x20)
-
-            guard quintuples.count >= 5 else {
-                return nil
-            }
-
-            guard let pk = String(data: quintuples[0], encoding: .ascii), let ps = String(data: quintuples[1], encoding: .ascii),
-                  let dn = String(data: quintuples[2], encoding: .ascii), let ds = String(data: quintuples[3], encoding: .ascii),
-                  let pid = String(data: quintuples[4], encoding: .ascii) else {
-                return nil
-            }
-            
-            // 0x20 after every data, 5
-            let length = (quintuples[0] + quintuples[1] + quintuples[2] + quintuples[3] + quintuples[4]).count + 5
-            
-            self = .quintuples(pk: pk, ps: ps, dn: dn, ds: ds, pid: pid, length: length)
-        case .onType:
-            self = .on(valueData[0] == 0 ? false:true)
-        case .brightnessType:
-            guard let brightness: UInt16 = valueData.read() else {
-                return nil
-            }
-            self = .brightness(brightness)
-        case .colorTempType:
-            guard let colorTemperature: UInt16 = valueData.read() else {
-                return nil
-            }
-            self = .colorTemp(colorTemperature)
-        }
-        
+        self.init()
+        self.value = pdu[2] == 0 ? false : true
     }
 
-    public var pdu: Data? {
+    var pdu: Data? {
         var pdu = Data()
-        
-        switch self {
-        case let .fwVersion(major, minor, minus):
-            pdu += major
-            pdu += minor
-            pdu += minus
-        case let .sync(range, delay):
-            pdu += range.rawValue
-            pdu += delay
-        case let .quintuples(pk, ps, dn, ds, pid, _):
-            guard let productKeyBytes = pk.data(using: .ascii), let productSecretBytes = ps.data(using: .ascii),
-                  let deviceNameBytes = dn.data(using: .ascii), let deviceSecretBytes = ds.data(using: .ascii),
-                  let productIdBytes = pid.data(using: .ascii) else {
-                return nil
-            }
-            pdu += (productKeyBytes + UInt8(0x20)) + (productSecretBytes + UInt8(0x20)) + (deviceNameBytes + UInt8(0x20)) + (deviceSecretBytes + UInt8(0x20)) + productIdBytes
-        case let .on(on):
-            pdu += on ? UInt8(0x1) : UInt8(0x0)
-        case let .colorTemp(level, _, _): fallthrough
-        case let .brightness(level, _, _):
-            pdu += level.data
-        case let .unknown(_, value):
-            pdu += value
-        }
-        
-        return self.type.littleEndian.data + pdu
+        pdu += Self.type.pdu
+        pdu += value ? UInt8(0x1) : UInt8(0x0)
+        return pdu
     }
     
-    public var value: Data? {
-        guard let pdu = self.pdu else {
+}
+
+// MARK: - MxIntegerValue
+
+protocol MxIntegerValue: MxFixedLengthAttribute {
+    var value: Int { get set }
+    var rw: Bool { get }
+    var unit: String? { get }
+    init()
+}
+
+protocol MxRange: MxIntegerValue {
+    var min: Int { get }
+    var max: Int { get }
+}
+
+
+protocol MxUInt16IntegerValue: MxIntegerValue {
+    
+}
+
+extension MxUInt16IntegerValue {
+    
+    init?(pdu: Data) {
+        guard pdu.count >= MxAttributeType.size + Self.valueSize,
+              let value: UInt16 = pdu.subdata(in: 2 ..< 2 + Self.valueSize).read(),
+              let typeValue: UInt16 = pdu.read(), typeValue == Self.type.rawValue else {
             return nil
         }
-        return pdu.subdata(in: 2..<pdu.count)
+        self.init()
+        self.value = Int(value)
+    }
+    
+    var pdu: Data? {
+        var pdu = Data()
+        pdu += Self.type.pdu
+        pdu += Data(from: UInt16(self.value))
+        return pdu
+    }
+
+}
+
+protocol MxUInt8IntegerValue: MxIntegerValue {
+    
+}
+
+extension MxUInt8IntegerValue {
+    
+    init?(pdu: Data) {
+        guard pdu.count >= MxAttributeType.size + Self.valueSize,
+              let value: UInt8 = pdu.subdata(in: 2 ..< 2 + Self.valueSize).read(),
+              let typeValue: UInt16 = pdu.read(), typeValue == Self.type.rawValue else {
+            return nil
+        }
+        self.init()
+        self.value = Int(value)
+    }
+    
+    var pdu: Data? {
+        var pdu = Data()
+        pdu += Self.type.pdu
+        pdu += Data(from: UInt8(self.value))
+        return pdu
+    }
+
+}
+
+
+
+
+// MARK: - MxAttribute
+struct MxAttribute {
+    
+    static func decode(pdu: Data) -> MxGenericAttribute?  {
+        
+        guard let type: UInt16 = pdu.read() else { return nil }
+        
+        // 确认已知的属性能够按照格式解码成功
+        if let attributeType = MxAttributeType.attribute[type] {
+            return attributeType.init(pdu: pdu)
+        } else {
+            return MxAttribute.Unknown(type, pdu.subdata(in: 2..<pdu.count))
+        }
+    }
+    
+    struct Unknown: UnknownAttribute {
+        
+        var value: Data
+        var typeValue: UInt16
+                
+        var length: Int {
+            return MxAttributeType.size + value.count
+        }
+        
+        init() {
+            self.typeValue = 0
+            self.value = Data()
+        }
+        
+        init(_ typeValue: UInt16, _ value: Data) {
+            self.typeValue = typeValue
+            self.value = value
+        }
+        
+        init?(pdu: Data) {
+            guard pdu.count > 2, let type: UInt16 = pdu.read() else { return nil }
+            self.typeValue = type
+            self.value = pdu.subdata(in: 2..<pdu.count)
+        }
+
+        var pdu: Data? {
+            var pdu = Data()
+            pdu += Data(from: typeValue)
+            pdu += value
+            return pdu
+        }
+        
+    }
+    
+}
+
+// MARK: - Default values
+
+extension MxStaticAttribute {
+    var typeValue: UInt16 {
+        return Self.type.rawValue
+    }
+    
+    var name: String {
+        let type: MxAttributeType = MxAttributeType(rawValue: self.typeValue)!
+        return "\(type.debugDescription)"
     }
 }
 
-extension Array where Element == MxAttribute {
+// MARK: - Array Extension
+
+extension Array where Element == MxGenericAttribute {
     
-    mutating func insert(_ newAttribute: MxAttribute) {
-        if let index = firstIndex(where: { $0.type == newAttribute.type }) {
-                self[index] = newAttribute
+    mutating func insert(_ newAttribute: MxGenericAttribute) {
+        if let index = firstIndex(where: { $0.typeValue == newAttribute.typeValue }) {
+            self[index] = newAttribute
             } else {
-                self.append(newAttribute)
+                self.append(newAttribute )
             }
     }
     
-    mutating func insert(_ newAttributes: [MxAttribute]) {
+    mutating func insert(_ newAttributes: [MxGenericAttribute]) {
         newAttributes.forEach {
             insert($0)
         }
     }
     
 }
+
+

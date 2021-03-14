@@ -50,12 +50,18 @@ protocol ModelViewCellDelegate: class {
     
     /// Whether the view is being refreshed with Pull-to-Refresh or not.
     var isRefreshing: Bool { get }
+    
+    func performSegue(withIdentifier identifier: String, sender: Any?)
 }
 
 extension ModelViewCellDelegate {
     
     func send(_ message: MeshMessage, description: String) {
         send( message, description: description, delegate: nil)
+    }
+    
+    func performSegue(withIdentifier identifier: String, sender: Any?) {
+        performSegue(withIdentifier: identifier, sender: sender)
     }
 }
 
